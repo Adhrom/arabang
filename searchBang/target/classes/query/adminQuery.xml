@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="admin">
+
+	<select id="loginCheck" resultType="String">
+		select adminid from admin_t
+		where adminid = #{adminId} and adminpw = #{adminPw}
+	</select>
+
+	<select id="viewAdmin" resultType="com.mainWeb.searchBang.admin.model.AdminVO">
+		select adminid from admin_t
+		where adminid = #{adminId} and adminpw = #{adminPw}
+	</select>
+
+	<select id="adminList" resultType="com.mainWeb.searchBang.admin.model.AdminVO">
+		select adminid , adminpw from
+		admin_t
+	</select>
+
+	<delete id="delAdmin">
+		delete from admin_t where adminid = #{adminId}
+	</delete>
+
+	<insert id="regAdmin">
+		insert into admin_t values(#{adminId},#{adminPw})
+	</insert>
+</mapper>
