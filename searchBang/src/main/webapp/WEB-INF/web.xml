@@ -39,7 +39,7 @@
 			<param-value>/WEB-INF/spring/customServlet/user-context.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
-	</servlet>
+	</servlet> 
 
 	<servlet-mapping>
 		<servlet-name>user</servlet-name>

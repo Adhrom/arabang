@@ -1,114 +1,178 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>Insert title here</title>
-<style>
-#topMenu {
-	height: 40px; /* ¸ŞÀÎ ¸Ş´ºÀÇ ³ôÀÌ */
-	width: 1000px; /* ¸ŞÀÎ ¸Ş´ºÀÇ ³ĞÀÌ */
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- CSS reset -->
+<link
+	href='http://fonts.googleapis.com/css?family=Titillium+Web:400,600,700'
+	rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="/searchBang/css/admin/reset.css">
+<link rel="stylesheet" href="/searchBang/css/admin/adminstyle.css">
+<link rel="stylesheet" href="/searchBang/css/admin/btstyle.css">
+<!-- Resource style -->
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
+<script src="/searchBang/js/admin/main.js"></script>
+<script src="/searchBang/js/admin/jquery.popupoverlay.js"></script>
+<script>
+	$(document).ready(function() {
+		//ëª¨ë‹¬íŒì—…
+
+		var loginCheck = "<%=(String) session.getAttribute("loginCheck")%>"
+		if (loginCheck == "failure") {
+			$('#login').popup({
+				color : 'white',
+				opacity : 1,
+				transition : '0.3s',
+				scrolllock : true,
+				autoopen : true
+			});
+		} else {
+			$('#login').popup({
+				color : 'white',
+				opacity : 1,
+				transition : '0.3s',
+				scrolllock : true
+			});
+		}
+		// ë¡œê·¸ì¸
+		$("#btnLogin").click(function() {
+			var adminId = $("#adminId").val();
+			var adminPw = $("#adminPw").val();
+			if (adminId == "") {
+				alert("ì•„ì´ë””ë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
+				$("#adminId").focus();
+				return;
+			}
+			if (adminPw == "") {
+				alert("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
+				$("#adminPw").focus();
+				return;
+			}
+			// í¼ ë‚´ë¶€ì˜ ë°ì´í„°ë¥¼ ì „ì†¡í•  ì£¼ì†Œ
+			document.loginform.action = "login.admin"
+			// ì œì¶œ
+			document.loginform.submit();
+		});
+	});
+</script>
+<!-- Resource js -->
+<style type="text/css">
+.inputarea {
+	width: 100%;
+	border-radius: 4px;
+	border: 2px solid #989898;
+	color: #989898;
+	padding: 5px;
 }
 
-#topMenu ul { /* ¸ŞÀÎ ¸Ş´º ¾ÈÀÇ ulÀ» ¼³Á¤ÇÔ: »óÀ§¸Ş´ºÀÇ ul+ÇÏÀ§ ¸Ş´ºÀÇ ul */
-	list-style-type: none; /* ¸ŞÀÎ ¸Ş´º ¾ÈÀÇ ul ³»ºÎÀÇ ¸ñ·Ï Ç¥½Ã¸¦ ¾ø¾ÖÁÜ */
-	margin: 0px; /* ¸ŞÀÎ ¸Ş´º ¾ÈÀÇ ulÀÇ marginÀ» ¾ø¾Ú */
-	padding: 0px; /* ¸ŞÀÎ ¸Ş´º ¾ÈÀÇ ulÀÇ paddingÀ» ¾ø¾Ú */
-}
-
-#topMenu ul li { /* ¸ŞÀÎ ¸Ş´º ¾È¿¡ ul ÅÂ±× ¾È¿¡ ÀÖ´Â li ÅÂ±×ÀÇ ½ºÅ¸ÀÏ Àû¿ë(»óÀ§/ÇÏÀ§¸Ş´º ¸ğµÎ) */
-	color: white; /* ±Û¾¾ »öÀ» Èò»öÀ¸·Î ¼³Á¤ */
-	background-color: #00a699; /* ¹è°æ »öÀ» RGB(2D2D2D)·Î ¼³Á¤ */
-	float: left; /* ¿ŞÂÊÀ¸·Î ³ª¿­µÇµµ·Ï ¼³Á¤ */
-	line-height: 40px; /* ÅØ½ºÆ® ÇÑ ÁÙÀÇ ³ôÀÌ¸¦ 30px·Î ¼³Á¤ */
-	vertical-align: middle; /* ¼¼·Î Á¤·ÄÀ» °¡¿îµ¥·Î ¼³Á¤ */
-	text-align: center; /* ÅØ½ºÆ®¸¦ °¡¿îµ¥·Î Á¤·Ä */
-	position: relative; /* ÇØ´ç li ÅÂ±× ³»ºÎÀÇ top/left Æ÷Áö¼Ç ÃÊ±âÈ­ */
-}
-
-.menuLink, .submenuLink { /* »óÀ§ ¸Ş´º¿Í ÇÏÀ§ ¸Ş´ºÀÇ a ÅÂ±×¿¡ °øÅëÀ¸·Î ¼³Á¤ÇÒ ½ºÅ¸ÀÏ */
-	text-decoration: none; /* a ÅÂ±×ÀÇ ²Ù¹Ò È¿°ú Á¦°Å */
-	display: block; /* a ÅÂ±×ÀÇ Å¬¸¯ ¹üÀ§¸¦ ³ĞÈû */
-	width: 150px; /* ±âº» ³ĞÀÌ¸¦ 150px·Î ¼³Á¤ */
-	font-size: 12px; /* ÆùÆ® »çÀÌÁî¸¦ 12px·Î ¼³Á¤ */
-	font-family: "Trebuchet MS", Dotum; /* ±âº» ÆùÆ®¸¦ ¿µ¾î/ÇÑ±Û ¼ø¼­´ë·Î ¼³Á¤ */
-}
-
-.menuLink { /* »óÀ§ ¸Ş´ºÀÇ ±Û¾¾»öÀ» Èò»öÀ¸·Î ¼³Á¤ */
-	color: white;
-}
-
-.topMenuLi:hover .menuLink { /* »óÀ§ ¸Ş´ºÀÇ li¿¡ ¸¶¿ì½º¿À¹ö µÇ¾úÀ» ¶§ ½ºÅ¸ÀÏ ¼³Á¤ */
-	font-weight: bold; /* ÆùÆ®¸¦ ±½°Ô ¼³Á¤ */
-}
-
-.submenuLink { /* ÇÏÀ§ ¸Ş´ºÀÇ a ÅÂ±× ½ºÅ¸ÀÏ ¼³Á¤ */
-	color: #2d2d2d; /* ±Û¾¾ »öÀ» RGB(2D2D2D)·Î ¼³Á¤ */
-	background-color: white; /* ¹è°æ»öÀ» Èò»öÀ¸·Î ¼³Á¤ */
-	border: solid 1px #dddddd;  Å×µÎ¸®¸¦ ¼³Á¤ */
-	margin-top: -1px; /* À§ Ä­ÀÇ ÇÏ´Ü Å×µÎ¸®¿Í ¾Æ·¡Ä­ÀÇ »ó´Ü Å×µÎ¸®°¡ °ãÃÄÁöµµ·Ï ¼³Á¤ */
-}
-
-.longLink { /* Á» ´õ ±ä ¸Ş´º ½ºÅ¸ÀÏ ¼³Á¤ */
-	width: 150px; /* ³ĞÀÌ´Â 190px·Î ¼³Á¤ */
-}
-
-.submenu { /* ÇÏÀ§ ¸Ş´º ½ºÅ¸ÀÏ ¼³Á¤ */
-	position: absolute; /* htmlÀÇ flow¿¡ ¿µÇâÀ» ¹ÌÄ¡Áö ¾Ê°Ô absolute ¼³Á¤ */
-	height: 0px; /* ÃÊ±â ³ôÀÌ´Â 0px·Î ¼³Á¤ */
-	overflow: hidden; /* ½Ç ³»¿ëÀÌ ³ôÀÌº¸´Ù Ä¿Áö¸é ÇØ´ç ³»¿ë °¨Ãã */
-	transition: height .2s; /* height¸¦ º¯È­ ½ÃÄ×À» ¶§ 0.2ÃÊ°£ º¯È­ µÇµµ·Ï ¼³Á¤(±âº») */
-	-webkit-transition: height .2s;
-	/* height¸¦ º¯È­ ½ÃÄ×À» ¶§ 0.2ÃÊ°£ º¯È­ µÇµµ·Ï ¼³Á¤(±¸¹öÀü Å©·Ò/»çÆÄ¶ó¤Ó) */
-	-moz-transition: height .2s;
-	/* height¸¦ º¯È­ ½ÃÄ×À» ¶§ 0.2ÃÊ°£ º¯È­ µÇµµ·Ï ¼³Á¤(±¸¹öÀü ÆÄÆø) */
-	-o-transition: height .2s;
-	/* height¸¦ º¯È­ ½ÃÄ×À» ¶§ 0.2ÃÊ°£ º¯È­ µÇµµ·Ï ¼³Á¤(±¸¹öÀü ¿ÀÆä¶ó) */
-}
-
-.topMenuLi:hover .submenu { /* »óÀ§ ¸Ş´º¿¡ ¸¶¿ì½º ¸ğ¹öÇÑ °æ¿ì ±× ¾ÈÀÇ ÇÏÀ§ ¸Ş´º ½ºÅ¸ÀÏ ¼³Á¤ */
-	height: 130px; /* ³ôÀÌ¸¦ 130px·Î ¼³Á¤ */
-}
-
-.submenuLink:hover { /* ÇÏÀ§ ¸Ş´ºÀÇ a ÅÂ±×ÀÇ ¸¶¿ì½º ¿À¹ö ½ºÅ¸ÀÏ ¼³Á¤ */
-	color: red; /* ±Û¾¾»öÀ» »¡°£»öÀ¸·Î ¼³Á¤ */
-	background-color: #dddddd; /* ¹è°æÀ» RGB(DDDDDD)·Î ¼³Á¤ */
+#cd-lateral-nav .item-has-children>a::after {
+	content: '';
+	display: block;
+	height: 11px;
+	width: 8px;
+	position: absolute;
+	top: 50%;
+	bottom: auto;
+	-webkit-transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+	transform: translateY(-50%);
+	right: 1em;
+	background: url("/searchBang/img/admin/cd-arrow.svg") no-repeat center
+		center;
+	background-size: 8px 11px;
+	-webkit-transition-property: -webkit-transform;
+	-moz-transition-property: -moz-transform;
+	transition-property: transform;
+	-webkit-transition-duration: 0.2s;
+	-moz-transition-duration: 0.2s;
+	transition-duration: 0.2s;
 }
 </style>
-<!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-</head>
+<title>Notice List</title>
 </head>
 <body>
-	<div id="topMenu">
-		<ul>
-			<li class="topMenuLi"><a class="menuLink" href="#">°øÁö»çÇ×</a>
-				<ul class="submenu">
-					<li><a href="#" class="submenuLink longLink">°í°´°øÁö»çÇ×</a></li>
-					<li><a href="#" class="submenuLink longLink">¾÷Ã¼°øÁö»çÇ×</a></li>
+	<!-- ë¡œê·¸ì¸ì‹¤íŒ¨ ì•Œí„°ì°½ -->
+	<c:if test="${msg == 'failure'}">
+		<script type="text/javascript">
+			alert("ì•„ì´ë”” í˜¹ì€ ë¹„ë°€ë²ˆí˜¸ë¥¼ í‹€ë ¸ìŠµë‹ˆë‹¤. ë‹¤ì‹œ ë¡œê·¸ì¸ í•´ì£¼ì„¸ìš”.");
+		</script>
+	</c:if>
+	<!-- í—¤ë”  -->
+	<header>
+		<a id="cd-logo" href="index.admin"><img
+			src="/searchBang/img/admin/logo.png" alt="Homepage"></a>
+		<nav id="cd-top-nav">
+			<ul>
+				<li><c:choose>
+						<c:when test="${sessionScope.loginId == null }">
+							<a class="initialism login_open btn btn-success">Login</a>
+						</c:when>
+						<c:otherwise>
+							<a href="logout.admin">Logout</a>
+						</c:otherwise>
+					</c:choose></li>
+			</ul>
+		</nav>
+		<a id="cd-menu-trigger" href="#0"><span class="cd-menu-text">Menu</span><span
+			class="cd-menu-icon"></span></a>
+	</header>
+	<!-- ì˜¤ë¥¸ìª½ë©”ë‰´ -->
+	<nav id="cd-lateral-nav">
+		<ul class="cd-navigation">
+			<li class="item-has-children"><a href="#0">ê³µì§€ì‚¬í•­</a>
+				<ul class="sub-menu">
+					<li><a href="companyNoticeList.admin">ì—…ì²´ê³µì§€ì‚¬í•­</a></li>
+					<li><a href="customerNoticeList.admin">ê³ ê°ê³µì§€ì‚¬í•­</a></li>
 				</ul></li>
-			<li>|</li>
-			<li class="topMenuLi"><a class="menuLink" href="#">¾÷Ã¼°ü¸®</a>
-				<ul class="submenu">
-					<li><a href="#" class="submenuLink longLink">¾÷Ã¼½ÂÀÎ/°ÅÀı</a></li>
-					<li><a href="#" class="submenuLink longLink">¾÷Ã¼¸®½ºÆ®</a></li>
-					<li><a href="#" class="submenuLink longLink">¾÷Ã¼Åë°è</a></li>
+			<li class="item-has-children"><a href="#0">ì—…ì²´ê´€ë¦¬</a>
+				<ul class="sub-menu">
+					<li><a href="companyApprove.admin">ì—…ì²´ìŠ¹ì¸/ê±°ì ˆ</a></li>
+					<li><a href="companyList.admin">ì—…ì²´ë¦¬ìŠ¤íŠ¸</a></li>
+					<li><a href="companyStats.admin">ì—…ì²´í†µê³„</a></li>
 				</ul></li>
-			<li>|</li>
-			<li class="topMenuLi"><a class="menuLink" href="#">°í°´°ü¸®</a>
-				<ul class="submenu">
-					<li><a href="#" class="submenuLink">°í°´¸®½ºÆ®</a></li>
-					<li><a href="#" class="submenuLink">°í°´Åë°è</a></li>
+			<li class="item-has-children"><a href="#0">ê³ ê°ê´€ë¦¬</a>
+				<ul class="sub-menu">
+					<li><a href="customerList.admin">ê³ ê°ë¦¬ìŠ¤íŠ¸</a></li>
+					<li><a href="customerStats.admin">ê³ ê°í†µê³„</a></li>
 				</ul></li>
-			<li>|</li>
-			<li class="topMenuLi"><a class="menuLink" href="#">¸ÅÃâÅë°è</a></li>
-			<li>|</li>
-			<li class="topMenuLi"><a class="menuLink" href="#">°ü¸®ÀÚµî·Ï</a></li>
-			<li>|</li>
-			<li class="topMenuLi"><a class="menuLink" href="#">·Î±×¾Æ¿ô</a></li>
+			<li><a href="salesStats.admin">ë§¤ì¶œí†µê³„</a></li>
+			<li><a href="adminManagement.admin">ê´€ë¦¬ìë“±ë¡</a></li>
 		</ul>
+	</nav>
+	<!-- ë¡œê·¸ì¸ ëª¨ë‹¬íŒì—… -->
+	<div id="login">
+		<h1>ADMIN LOGIN</h1>
+		<form name="loginform" method="post">
+			<table style="width: 300px;">
+				<tr>
+					<td><input name="adminId" id="adminId" class="inputarea"
+						placeholder="ID"></td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td><input type="password" name="adminPw" id="adminPw"
+						placeholder="PASSWORD" class="inputarea"></td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>
+						<button type="button" id="btnLogin" class="button"
+							style="width: 100%;">LOGIN</button>
+					</td>
+				</tr>
+			</table>
+		</form>
 	</div>
 </body>
 </html>
