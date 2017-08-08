@@ -105,7 +105,7 @@ public class AdminController {
 
 	// login
 
-	@RequestMapping("/login.admin")
+	//@RequestMapping("/login.admin")
 	public ModelAndView login(@ModelAttribute AdminVO vo, HttpSession session) {
 		boolean result = adminService.loginCheck(vo, session);
 		ModelAndView mv = new ModelAndView();
@@ -118,6 +118,11 @@ public class AdminController {
 		}
 		return mv;
 	}
+	@RequestMapping("/login.admin")
+	public String login2(){
+		return "login";
+	}
+
 
 	// logout
 	@RequestMapping("/logout.admin")
@@ -125,4 +130,7 @@ public class AdminController {
 		adminService.logout(session);
 		return "index";
 	}
+
+
+
 }

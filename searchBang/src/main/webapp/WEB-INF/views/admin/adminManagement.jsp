@@ -17,6 +17,17 @@
 			return;
 		}
 	}
+	function idCheck(inputId) {
+		var list = new Array();
+		<c:forEach items="${list}" var="item">
+		list.push("${item.adminId}");
+		</c:forEach>
+		for ( var i in list) {
+			if (list[i] == inputId)
+				return true;
+		}
+		return false;
+	}
 	$(document).ready(function() {
 		//모달팝업
 		$('#addAdmin').popup({
@@ -47,6 +58,9 @@
 				$("#reregPw").focus();
 				return;
 			}
+			if (idCheck($("#regId").val())){
+				return;
+			}
 			// 폼 내부의 데이터를 전송할 주소
 			document.regAdmin.action = "regAdmin.admin"
 			// 제출
@@ -58,7 +72,10 @@
 			if (!idcheck.test($("#regId").val())) {
 				$("#regIdP").text("아이디는 영문자로 시작하는 6~20자 영문자 또는 숫자이어야 합니다.");
 				return;
-			} else{
+			} else if (idCheck($("#regId").val())) {
+				$("#regIdP").text("이미 등록된 아이디입니다.");
+				return;
+			} else {
 				$("#regIdP").text("좋은 아이디네요!");
 				return;
 			}

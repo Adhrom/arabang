@@ -11,6 +11,7 @@
 		<config>src/main/webapp/WEB-INF/spring/customServlet/user-context.xml</config>
 		<config>src/main/webapp/WEB-INF/spring/customServlet/owner-context.xml</config>
 		<config>src/main/webapp/WEB-INF/spring/customServlet/admin-context.xml</config>
+		<config>src/main/webapp/WEB-INF/spring/security-context.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

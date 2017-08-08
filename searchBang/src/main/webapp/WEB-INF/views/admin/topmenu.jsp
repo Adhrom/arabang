@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +23,6 @@
 <script>
 	$(document).ready(function() {
 		//모달팝업
-
 		var loginCheck = "<%=(String) session.getAttribute("loginCheck")%>"
 		if (loginCheck == "failure") {
 			$('#login').popup({
@@ -60,7 +61,6 @@
 		});
 	});
 </script>
-<!-- Resource js -->
 <style type="text/css">
 .inputarea {
 	width: 100%;
@@ -110,14 +110,12 @@
 			src="/searchBang/img/admin/logo.png" alt="Homepage"></a>
 		<nav id="cd-top-nav">
 			<ul>
-				<li><c:choose>
-						<c:when test="${sessionScope.loginId == null }">
-							<a class="initialism login_open btn btn-success">Login</a>
-						</c:when>
-						<c:otherwise>
-							<a href="logout.admin">Logout</a>
-						</c:otherwise>
-					</c:choose></li>
+				<li><sec:authorize access="isAnonymous()"></sec:authorize>
+							<a class="initialism login_open btn btn-success" href="login.admin">Login</a>
+					<sec:authorize access="isAuthenticated()"></sec:authorize>
+							<a href="logout.admin" id="logoutbtn">Logout</a>
+
+					</li>
 			</ul>
 		</nav>
 		<a id="cd-menu-trigger" href="#0"><span class="cd-menu-text">Menu</span><span
@@ -172,6 +170,8 @@
 					</td>
 				</tr>
 			</table>
+			<input type="hidden" name="${_csrf.parameterName}"
+				value="${_csrf.token}" />
 		</form>
 	</div>
 </body>
