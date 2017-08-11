@@ -3,25 +3,45 @@
 <mapper namespace="admin">
 
 	<select id="loginCheck" resultType="String">
-		select adminid from admin_t
+		select adminid from admin_reg
 		where adminid = #{adminId} and adminpw = #{adminPw}
 	</select>
 
 	<select id="viewAdmin" resultType="com.mainWeb.searchBang.admin.model.AdminVO">
-		select adminid from admin_t
+		select adminid from admin_reg
 		where adminid = #{adminId} and adminpw = #{adminPw}
 	</select>
 
 	<select id="adminList" resultType="com.mainWeb.searchBang.admin.model.AdminVO">
 		select adminid , adminpw from
-		admin_t
+		admin_reg
 	</select>
 
 	<delete id="delAdmin">
-		delete from admin_t where adminid = #{adminId}
+		delete from admin_reg where adminid = #{adminId}
 	</delete>
 
 	<insert id="regAdmin">
-		insert into admin_t values(#{adminId},#{adminPw})
+		insert into admin_reg values(#{adminId},#{adminPw})
 	</insert>
+	<insert id="insertNotice">
+		insert into admin_notice values(#{subject},#{content} ,#{noticeType} , notice_no_seq.nextval)
+	</insert>
+
+	<select id="NoticeList" resultType="com.mainWeb.searchBang.admin.model.AdminNoticeVO">
+		select subject , content , notice_no from
+		admin_notice where noticetype = #{noticeType}
+	</select>
+
+	<select id="noticeRead" resultType="com.mainWeb.searchBang.admin.model.AdminNoticeVO">
+		select * from admin_notice where notice_no = #{notice_no_int}
+	</select>
+
+	<delete id="noticeDel">
+		delete from admin_notice where notice_no = #{notice_no}
+	</delete>
+
+	<update id="noticeUpdate">
+		update admin_notice set subject = #{subject} , content = #{content} where notice_no = #{notice_no}
+	</update>
 </mapper>

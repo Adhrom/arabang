@@ -39,6 +39,7 @@
 			var regPw = $("#regPw").val();
 			var reregPw = $("#reregPw").val();
 			if (regId == "") {
+				$("#regIdP").css("color", "red");
 				$("#regIdP").text("아이디를 입력하세요.");
 				$("#regId").focus();
 				return;
@@ -68,14 +69,17 @@
 		});
 		//관리자등록 검사
 		$("#regId").keyup(function() {
-			var idcheck = /^[a-z]+[a-z0-9]{5,19}$/g;
+			var idcheck = /[a-z0-9]{6,20}$/g;
 			if (!idcheck.test($("#regId").val())) {
-				$("#regIdP").text("아이디는 영문자로 시작하는 6~20자 영문자 또는 숫자이어야 합니다.");
+				$("#regIdP").css("color", "red");
+				$("#regIdP").text("아이디는 6~20자 영문자 또는 숫자이어야 합니다.");
 				return;
 			} else if (idCheck($("#regId").val())) {
+				$("#regIdP").css("color", "red");
 				$("#regIdP").text("이미 등록된 아이디입니다.");
 				return;
 			} else {
+				$("#regIdP").css("color", "#00a699");
 				$("#regIdP").text("좋은 아이디네요!");
 				return;
 			}
@@ -97,6 +101,24 @@
 	background: white;
 	padding: 30px 50px 50px 50px;
 }
+.regStyle{
+	color: red;
+	font-size: 12px;
+	margin: 5px 0px;
+}
+tr, th{
+	letter-spacing: 2px;
+}
+th{
+	background-color: #00a699;
+	color: white;
+	border-bottom: 2px solid #989898;
+	border-top: 2px solid #989898;
+}
+.adminList{
+	text-align: center;
+	padding: 10px;
+}
 </style>
 <title>Admin Management</title>
 </head>
@@ -108,16 +130,17 @@
 		<br />
 		<form name="delAdmin" method="post" action="delAdmin.admin">
 			<input type="hidden" name="adminId" id="hiddenformId">
-			<table>
-				<tr>
-					<td>ID</td>
-					<td>PW</td>
+			<table style="width: 100%;">
+				<tr class="adminList">
+					<th class="adminList" style="border-right: 2px solid white;">ID</th>
+					<th class="adminList" style="border-right: 2px solid white;">PW</th>
+					<th>&nbsp;</th>
 				</tr>
 				<c:forEach var="row" items="${list }">
-					<tr>
-						<td>${row.adminId}</td>
-						<td>${row.adminPw}</td>
-						<td><c:if test="${row.adminId != 'master' }">
+					<tr style="width: 200px;" class="adminList">
+						<td class="adminList">${row.adminId}</td>
+						<td class="adminList">${row.adminPw}</td>
+						<td ><c:if test="${row.adminId != 'master' }">
 								<c:if test="${row.adminId != sessionScope.loginId}">
 									<button type="button" onclick="adminD('${row.adminId}')"
 										class="button">삭제</button>
@@ -125,33 +148,37 @@
 							</c:if></td>
 					</tr>
 				</c:forEach>
+				<tr style="border-top: 2px solid #00a699;">
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td style="text-align: center;"><a class="initialism addAdmin_open btn btn-success"><button
+				class="button">등록</button></a></td>
+				</tr>
 			</table>
 		</form>
-		<br /> <a class="initialism addAdmin_open btn btn-success"><button
-				class="button">등록</button></a>
 	</div>
 	<!-- 모달팝업 -->
 	<div id="addAdmin">
 		<div id="innerdiv">
 			<h1>REG ADMIN</h1>
 			<form name="regAdmin" method="post">
-				<table style="width: 300px; border: 1px;">
+				<table style="width: 300px;">
 					<tr>
 						<td colspan="2"><input name="adminId" id="regId"
 							class="inputarea" placeholder="ID" maxlength="20"><br />
-							<p id="regIdP">&nbsp;</p></td>
+							<p id="regIdP" class="regStyle">&nbsp;</p></td>
 					</tr>
 					<tr>
 						<td colspan="2"><input type="password" name="adminPw"
 							id="regPw" placeholder="PASSWORD" class="inputarea"
 							maxlength="20"><br />
-							<p id="regPwP">&nbsp;</p></td>
+							<p id="regPwP" class="regStyle">&nbsp;</p></td>
 					</tr>
 					<tr>
 						<td colspan="2"><input type="password" name="reregPw"
 							id="reregPw" placeholder="REPASSWORD" class="inputarea"
 							maxlength="20"><br />
-							<p id="reregPwP">&nbsp;</p></td>
+							<p id="reregPwP" class="regStyle">&nbsp;</p></td>
 					</tr>
 					<tr>
 						<td width="150px" align="left">

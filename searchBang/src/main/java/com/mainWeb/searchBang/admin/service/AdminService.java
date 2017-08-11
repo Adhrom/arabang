@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import com.mainWeb.searchBang.admin.model.AdminNoticeVO;
 import com.mainWeb.searchBang.admin.model.AdminVO;
 
 public interface AdminService {
@@ -25,4 +26,18 @@ public interface AdminService {
 	// 아이디삭제
 	public void deleteAdmin(String adminId);
 
+	// 공지사항등록
+	public void insertNotice(AdminNoticeVO noticeVO);
+
+	// 공지사항목록
+	public List<AdminNoticeVO> NoticeList(String noticeType);
+
+	// 공지사항 내용
+	public AdminNoticeVO noticeRead(String notice_no);
+
+	// 공지사항 삭제
+	public void noticeDel(String notice_no);
+
+	// 공지사항 수정
+	public void noticeUpdate(AdminNoticeVO noticeVO);
 }

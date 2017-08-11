@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.mainWeb.searchBang.admin.model.AdminNoticeVO;
 import com.mainWeb.searchBang.admin.model.AdminVO;
 
 @Repository
@@ -46,6 +47,30 @@ public class AdminDAOImpl implements AdminDAO {
 		sqlSession.delete("admin.delAdmin", adminId);
 	}
 
+	@Override
+	public void insertNotice(AdminNoticeVO noticeVO) {
+		sqlSession.insert("admin.insertNotice", noticeVO);
+	}
 
+	@Override
+	public List<AdminNoticeVO> NoticeList(String noticeType) {
+		return sqlSession.selectList("admin.NoticeList",noticeType);
+	}
+
+	@Override
+	public AdminNoticeVO noticeRead(String notice_no) {
+		return sqlSession.selectOne("admin.noticeRead", notice_no);
+	}
+
+	@Override
+	public void noticeDel(String notice_no) {
+		sqlSession.delete("admin.noticeDel",notice_no);
+	}
+
+	@Override
+	public void noticeUpdate(AdminNoticeVO noticeVO) {
+		System.out.println(noticeVO.toString());
+		sqlSession.update("admin.noticeUpdate", noticeVO);
+	}
 
 }

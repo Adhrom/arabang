@@ -8,8 +8,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mainWeb.searchBang.admin.model.AdminNoticeVO;
 import com.mainWeb.searchBang.admin.model.AdminVO;
 import com.mainWeb.searchBang.admin.service.AdminService;
 
@@ -63,8 +66,13 @@ public class AdminController {
 
 	// companyNoticeList
 	@RequestMapping("/companyNoticeList.admin")
-	public String companyNoticeList() {
-		return "companyNoticeList";
+	public ModelAndView companyNoticeList() {
+		String noticeType = "company";
+		List<AdminNoticeVO> noticeList = adminService.NoticeList(noticeType);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("companyNoticeList");
+		mv.addObject("noticeList",noticeList);
+		return mv;
 	}
 
 	// companyStats
@@ -81,8 +89,13 @@ public class AdminController {
 
 	// customerNoticeList
 	@RequestMapping("/customerNoticeList.admin")
-	public String customerNoticeList() {
-		return "customerNoticeList";
+	public ModelAndView customerNoticeList() {
+		String noticeType = "customer";
+		List<AdminNoticeVO> noticeList = adminService.NoticeList(noticeType);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("customerNoticeList");
+		mv.addObject("noticeList",noticeList);
+		return mv;
 	}
 
 	// customerStats
@@ -92,11 +105,45 @@ public class AdminController {
 	}
 
 	// noticeWrite
-	@RequestMapping("/noticeWrite.admin")
+	@RequestMapping(value="/noticeWrite.admin" , method=RequestMethod.GET)
 	public String noticeWrite() {
 		return "noticeWrite";
 	}
+	@RequestMapping(value="/noticeWrite.admin" , method=RequestMethod.POST)
+	public ModelAndView noticeModify(@ModelAttribute AdminNoticeVO noticeVO) {
+		ModelAndView mv = new ModelAndView();
+		 mv.addObject("noticeVO",noticeVO);
+		 mv.setViewName("noticeWrite");
+		return mv;
+	}
 
+	@RequestMapping("/insertNotice.admin")
+	public String insertNotice(@ModelAttribute AdminNoticeVO noticeVO){
+		adminService.insertNotice(noticeVO);
+		return noticeVO.getNoticeType()+"NoticeList";
+	}
+	// noticeRead
+	@RequestMapping("/noticeRead.admin")
+	public ModelAndView noticeRead(@RequestParam(value="notice_no", required=true)String notice_no){
+		AdminNoticeVO noticeVO = adminService.noticeRead(notice_no);
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("noticeVO",noticeVO);
+		mv.setViewName("noticeRead");
+		return mv;
+	}
+	// noticeDel
+	@RequestMapping("/noticeDel.admin")
+	public String noticeDel(@ModelAttribute AdminNoticeVO noticeVO){
+		String notice_no = String.valueOf(noticeVO.getNotice_no());
+		adminService.noticeDel(notice_no);
+		return noticeVO.getNoticeType()+"NoticeList";
+	}
+	// noticeUpdate
+	@RequestMapping("/noticeUpdate.admin")
+	public String noticeUpdate(@ModelAttribute AdminNoticeVO noticeVO){
+		adminService.noticeUpdate(noticeVO);
+		return noticeVO.getNoticeType()+"NoticeList";
+	}
 	// salesStats
 	@RequestMapping("/salesStats.admin")
 	public String salesStats() {
@@ -105,7 +152,7 @@ public class AdminController {
 
 	// login
 
-	//@RequestMapping("/login.admin")
+	@RequestMapping("/login.admin")
 	public ModelAndView login(@ModelAttribute AdminVO vo, HttpSession session) {
 		boolean result = adminService.loginCheck(vo, session);
 		ModelAndView mv = new ModelAndView();
@@ -117,10 +164,6 @@ public class AdminController {
 			mv.addObject("msg", "failure");
 		}
 		return mv;
-	}
-	@RequestMapping("/login.admin")
-	public String login2(){
-		return "login";
 	}
 
 

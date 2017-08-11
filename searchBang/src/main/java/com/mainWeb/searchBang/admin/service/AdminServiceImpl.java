@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Service;
 
 import com.mainWeb.searchBang.admin.dao.AdminDAO;
+import com.mainWeb.searchBang.admin.model.AdminNoticeVO;
 import com.mainWeb.searchBang.admin.model.AdminVO;
 
 @Service
@@ -50,6 +51,31 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public void deleteAdmin(String adminId) {
 		adminDAO.deleteAdmin(adminId);
+	}
+
+	@Override
+	public void insertNotice(AdminNoticeVO noticeVO) {
+		adminDAO.insertNotice(noticeVO);
+	}
+
+	@Override
+	public List<AdminNoticeVO> NoticeList(String noticeType) {
+		return adminDAO.NoticeList(noticeType);
+	}
+
+	@Override
+	public AdminNoticeVO noticeRead(String notice_no) {
+		return adminDAO.noticeRead(notice_no);
+	}
+
+	@Override
+	public void noticeDel(String notice_no) {
+		adminDAO.noticeDel(notice_no);
+	}
+
+	@Override
+	public void noticeUpdate(AdminNoticeVO noticeVO) {
+		adminDAO.noticeUpdate(noticeVO);
 	}
 
 }
