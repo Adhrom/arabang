@@ -120,7 +120,7 @@ public class AdminController {
 	@RequestMapping("/insertNotice.admin")
 	public String insertNotice(@ModelAttribute AdminNoticeVO noticeVO){
 		adminService.insertNotice(noticeVO);
-		return noticeVO.getNoticeType()+"NoticeList";
+		return "redirect:"+noticeVO.getNoticeType()+"NoticeList.admin";
 	}
 	// noticeRead
 	@RequestMapping("/noticeRead.admin")
@@ -136,13 +136,13 @@ public class AdminController {
 	public String noticeDel(@ModelAttribute AdminNoticeVO noticeVO){
 		String notice_no = String.valueOf(noticeVO.getNotice_no());
 		adminService.noticeDel(notice_no);
-		return noticeVO.getNoticeType()+"NoticeList";
+		return "redirect:"+noticeVO.getNoticeType()+"NoticeList.admin";
 	}
 	// noticeUpdate
-	@RequestMapping("/noticeUpdate.admin")
+	@RequestMapping(value="/noticeUpdate.admin" , method=RequestMethod.POST)
 	public String noticeUpdate(@ModelAttribute AdminNoticeVO noticeVO){
 		adminService.noticeUpdate(noticeVO);
-		return noticeVO.getNoticeType()+"NoticeList";
+		return "redirect:"+noticeVO.getNoticeType()+"NoticeList.admin";
 	}
 	// salesStats
 	@RequestMapping("/salesStats.admin")

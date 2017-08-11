@@ -12,7 +12,7 @@
 	rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="/searchBang/css/admin/reset.css">
 <link rel="stylesheet" href="/searchBang/css/admin/adminstyle.css">
-<link rel="stylesheet" href="/searchBang/css/admin/btstyle.css">
+<link rel="stylesheet" href="/searchBang/css/common/btstyle.css">
 <!-- Resource style -->
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.9.0.min.js"></script>

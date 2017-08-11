@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/searchBang/css/admin/tablestyle.css">
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
 <script>
@@ -48,18 +49,24 @@
 				$("#regPwP").text("비밀번호를 입력하세요.");
 				$("#regPw").focus();
 				return;
+			} else {
+				$("#regPwP").text("　");
 			}
 			if (reregPw == "") {
 				$("#reregPwP").text("비밀번호를 입력하세요.");
 				$("#reregPw").focus();
 				return;
+			} else {
+				$("#regrePwP").text("　");
 			}
 			if (reregPw != regPw) {
-				$("#reregPwP").text("비밀번호가 다릅니다.");
+				$("#reregPwP").text("비밀번호가 다릅니다 확인해주세요.");
 				$("#reregPw").focus();
 				return;
+			} else {
+				$("#regrePwP").text("　");
 			}
-			if (idCheck($("#regId").val())){
+			if (idCheck($("#regId").val())) {
 				return;
 			}
 			// 폼 내부의 데이터를 전송할 주소
@@ -101,23 +108,11 @@
 	background: white;
 	padding: 30px 50px 50px 50px;
 }
-.regStyle{
+
+.regStyle {
 	color: red;
 	font-size: 12px;
 	margin: 5px 0px;
-}
-tr, th{
-	letter-spacing: 2px;
-}
-th{
-	background-color: #00a699;
-	color: white;
-	border-bottom: 2px solid #989898;
-	border-top: 2px solid #989898;
-}
-.adminList{
-	text-align: center;
-	padding: 10px;
 }
 </style>
 <title>Admin Management</title>
@@ -130,17 +125,17 @@ th{
 		<br />
 		<form name="delAdmin" method="post" action="delAdmin.admin">
 			<input type="hidden" name="adminId" id="hiddenformId">
-			<table style="width: 100%;">
-				<tr class="adminList">
-					<th class="adminList" style="border-right: 2px solid white;">ID</th>
-					<th class="adminList" style="border-right: 2px solid white;">PW</th>
+			<table id="admintable">
+				<tr class="admintr">
+					<th class="adminth" style="border-right: 2px solid white;">ID</th>
+					<th class="adminth" style="border-right: 2px solid white;">PW</th>
 					<th>&nbsp;</th>
 				</tr>
 				<c:forEach var="row" items="${list }">
-					<tr style="width: 200px;" class="adminList">
-						<td class="adminList">${row.adminId}</td>
-						<td class="adminList">${row.adminPw}</td>
-						<td ><c:if test="${row.adminId != 'master' }">
+					<tr class="adminList">
+						<td class="admintd">${row.adminId}</td>
+						<td class="admintd">${row.adminPw}</td>
+						<td class="admintd"><c:if test="${row.adminId != 'master' }">
 								<c:if test="${row.adminId != sessionScope.loginId}">
 									<button type="button" onclick="adminD('${row.adminId}')"
 										class="button">삭제</button>
@@ -149,12 +144,15 @@ th{
 					</tr>
 				</c:forEach>
 				<tr style="border-top: 2px solid #00a699;">
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td style="text-align: center;"><a class="initialism addAdmin_open btn btn-success"><button
-				class="button">등록</button></a></td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
+					<td>&nbsp;</td>
 				</tr>
 			</table>
+			<p style="text-align: center;">
+				<a class="initialism addAdmin_open btn btn-success"><button
+						class="button">등록</button></a>
+			</p>
 		</form>
 	</div>
 	<!-- 모달팝업 -->

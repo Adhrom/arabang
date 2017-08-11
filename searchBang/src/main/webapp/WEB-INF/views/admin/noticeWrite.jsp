@@ -59,13 +59,13 @@
 	$(document).ready(function() {
 		$('#save').click(function() {
 			editor.updateElement();
-			$('#frm').action = "insertNotice.admin"
-			$('#frm').submit();
+			document.frm.action = "insertNotice.admin"
+			document.frm.submit();
 		});
 		$('#modify').click(function() {
 			editor.updateElement();
-			$('#frm').action = "noticeWrite.admin"
-			$('#frm').submit();
+			document.frm.action = "noticeUpdate.admin"
+			document.frm.submit();
 		});
 		$('#cancel').click(function() {
 			history.go(-1);
@@ -81,7 +81,7 @@
 		<h1>Notice Write</h1>
 		<hr />
 		<br />
-		<form id="frm" name="frm" action="insertNotice.admin" method="post">
+		<form id="frm" name="frm" method="post">
 			<table style="width: 800px;">
 				<tr>
 					<td><strong>Subject</strong>&nbsp;</td>

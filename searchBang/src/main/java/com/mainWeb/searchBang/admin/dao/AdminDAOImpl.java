@@ -69,7 +69,6 @@ public class AdminDAOImpl implements AdminDAO {
 
 	@Override
 	public void noticeUpdate(AdminNoticeVO noticeVO) {
-		System.out.println(noticeVO.toString());
 		sqlSession.update("admin.noticeUpdate", noticeVO);
 	}
 

@@ -1,0 +1,121 @@
+@CHARSET "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+b#title-b {
+	font-size: 40px;
+}
+
+.circle-wrapper {
+	height: 3%;
+	margin-top: 50px;
+	margin-left: 200px;
+	margin-right: 200px;
+	left: 100px;
+	border: solid 1px white;
+}
+
+.circle1 {
+	width: 30px;
+	height: 30px;
+	-moz-border-radius: 30px;
+	-webkit-border-radius: 30px;
+	border: 1.5px;
+	border-color: #989898;
+	border-style: solid;
+	border-radius: 50px;
+	text-align: center;
+	color: #989898;
+	line-height: 30px;
+}
+
+.circle2 {
+	margin-top: -33px;
+	margin-left: 183px;
+	top: 10px;
+	width: 30px;
+	height: 30px;
+	-moz-border-radius: 30px;
+	-webkit-border-radius: 30px;
+	border: 1.5px;
+	border-color: #00a699;
+	border-style: solid;
+	border-radius: 50px;
+	text-align: center;
+	color: #00a699;
+	line-height: 30px;
+}
+
+.circle3 {
+	margin-top: -33px;
+	margin-left: 365px;
+	top: 10px;
+	width: 30px;
+	height: 30px;
+	-moz-border-radius: 30px;
+	-webkit-border-radius: 30px;
+	border: 1.5px;
+	border-color: #989898;
+	border-style: solid;
+	border-radius: 50px;
+	text-align: center;
+	color: #989898;
+	line-height: 30px;
+}
+
+.line1 {
+	margin-top: -18px;
+	margin-left: 33px;
+	width: 150px;
+	background: lightgray;
+	border: 0.5px solid #989898;
+	line-height: 100px;
+}
+
+.line2 {
+	margin-top: -1.5px;
+	margin-left: 215px;
+	width: 150px;
+	background: lightgray;
+	border: 0.5px solid #00a699;
+	line-height: 100px;
+}
+
+.input-box {
+	margin-top: 8%;
+	margin-bottom: 10%; /* footer와의 간격*/
+	width: auto;
+	border: solid 1px #989898;
+	border-radius: 5px;
+}
+
+.input-box-value {
+	width: 50%;
+	height: 400px;
+	margin-top: 40px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 40px;
+	border: solid 1px white;
+}
+
+.label {
+	font-size: 12px;
+}
+
+.frmdate {
+	height: 25px;
+	width: 98%;
+}
+
+table {
+	width: 100%;
+}
+
+.frmtd {
+	margin-top: 5px;
+	margin-bottom: 15px;
+}

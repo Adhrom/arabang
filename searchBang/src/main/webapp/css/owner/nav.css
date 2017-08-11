@@ -1,0 +1,101 @@
+@charset "UTF-8";
+
+@font-face{
+	font-family:'yache';
+	src:url('/searchBang/font/yache_bold.eot');
+	src:local(※), url('/searchBang/font/yache_bold.woff') format('woff');
+}
+body {
+	margin: 0px;
+	padding: 0px;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 11pt;
+	font-weight: 300;
+	color: #6c6c6c
+}
+
+
+b#yache-font {
+	font-family:"yache";
+	font-size:150%;
+}
+/*�޴� �������� ���೻�� ��*/
+#menu {
+
+	padding-right : 20px;
+	position: absolute;
+	right: 0;
+	top: 5px;
+}
+
+#menu ul {
+	display: inline-block;
+}
+
+#menu li {
+	display: block;
+	float: left;
+	text-align: center;
+}
+
+
+/*���ڰ���*/
+#menu li a, #menu li span {
+	display: inline-block;
+	margin-left: 1px;
+	padding: 1em 1.5em 1em 1.5em;
+	letter-spacing: 0.10em;
+	text-decoration: none;
+	font-size: 1em;
+	text-transform: uppercase;
+	outline: 0;
+	color: #FFF;
+}
+
+/* ���� �޴��� li�� ���콺���� �Ǿ��� �� ��Ÿ�� ���� */
+#menu a:HOVER{
+	background: #fff;
+	border-radius: 4px;
+	color: #00a699;
+	transition-duration: 0.01s;
+}
+
+#logo {
+	position: absolute;
+	top: 0.3em;
+	width: 100%;
+	background: #00a699;
+}
+
+#logo h1 {
+	display: inline-block;
+	font-size: 2.5em;
+	text-transform: uppercase;
+	font-weight: 700;
+	color: #ED7070;
+	padding-right: 0.50em;
+	border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#logo span {
+	display: inline-block;
+	padding-right: .50em;
+	letter-spacing: 0.10em;
+	text-transform: uppercase;
+	font-size: 0.90em;
+}
+
+#logo a {
+	text-decoration: none;
+	color: #FFF;
+}
+
+#header-wrapper {
+	background: #00a699;
+	height: 60px;
+}
+
+#header {
+	position: relative;
+	height: 100px;
+}
