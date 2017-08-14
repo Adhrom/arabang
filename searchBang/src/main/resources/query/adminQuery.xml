@@ -44,4 +44,20 @@
 	<update id="noticeUpdate">
 		update admin_notice set subject = #{subject} , content = #{content} where notice_no = #{notice_no}
 	</update>
+
+	<select id="approveCompany" resultType="com.mainWeb.searchBang.owner.model.OwnerVO">
+		select owneremail , ownername , ownerphone from owner_reg where approve = 'n'
+	</select>
+
+	<update id="approveOk">
+		update owner_reg set approve = 'y' where owneremail = #{ownerEmail}
+	</update>
+
+	<update id="approveCancel">
+		update owner_reg set approve = 'c' where owneremail = #{ownerEmail}
+	</update>
+
+	<select id="approveList" resultType="com.mainWeb.searchBang.owner.model.OwnerVO">
+		select owneremail , ownername , ownerphone from owner_reg where approve = 'y'
+	</select>
 </mapper>

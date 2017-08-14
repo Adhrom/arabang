@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.mainWeb.searchBang.admin.dao.AdminDAO;
 import com.mainWeb.searchBang.admin.model.AdminNoticeVO;
 import com.mainWeb.searchBang.admin.model.AdminVO;
+import com.mainWeb.searchBang.owner.model.OwnerVO;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -76,6 +77,21 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public void noticeUpdate(AdminNoticeVO noticeVO) {
 		adminDAO.noticeUpdate(noticeVO);
+	}
+
+	@Override
+	public List<OwnerVO> companyApprove() {
+		return adminDAO.companyApprove();
+	}
+
+	@Override
+	public void approve(String approve,OwnerVO ownerVO) {
+		adminDAO.approve(approve, ownerVO);
+	}
+
+	@Override
+	public List<OwnerVO> companyList() {
+		return adminDAO.companyList();
 	}
 
 }

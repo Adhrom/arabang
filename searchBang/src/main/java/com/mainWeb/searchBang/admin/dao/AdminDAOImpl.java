@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mainWeb.searchBang.admin.model.AdminNoticeVO;
 import com.mainWeb.searchBang.admin.model.AdminVO;
+import com.mainWeb.searchBang.owner.model.OwnerVO;
 
 @Repository
 public class AdminDAOImpl implements AdminDAO {
@@ -54,7 +55,7 @@ public class AdminDAOImpl implements AdminDAO {
 
 	@Override
 	public List<AdminNoticeVO> NoticeList(String noticeType) {
-		return sqlSession.selectList("admin.NoticeList",noticeType);
+		return sqlSession.selectList("admin.NoticeList", noticeType);
 	}
 
 	@Override
@@ -64,12 +65,30 @@ public class AdminDAOImpl implements AdminDAO {
 
 	@Override
 	public void noticeDel(String notice_no) {
-		sqlSession.delete("admin.noticeDel",notice_no);
+		sqlSession.delete("admin.noticeDel", notice_no);
 	}
 
 	@Override
 	public void noticeUpdate(AdminNoticeVO noticeVO) {
 		sqlSession.update("admin.noticeUpdate", noticeVO);
+	}
+
+	@Override
+	public List<OwnerVO> companyApprove() {
+		return sqlSession.selectList("admin.approveCompany");
+	}
+
+	@Override
+	public void approve(String approve, OwnerVO ownerVO) {
+		if (approve.equals("ok"))
+			sqlSession.update("admin.approveOk", ownerVO);
+		if (approve.equals("cancel"))
+			sqlSession.update("admin.approveCancel", ownerVO);
+	}
+
+	@Override
+	public List<OwnerVO> companyList() {
+		return sqlSession.selectList("admin.approveList");
 	}
 
 }

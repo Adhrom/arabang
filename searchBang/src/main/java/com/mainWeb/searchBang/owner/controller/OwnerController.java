@@ -19,4 +19,6 @@ public class OwnerController {
 
 		return "index.owner";
 	}
+	
+	
 }

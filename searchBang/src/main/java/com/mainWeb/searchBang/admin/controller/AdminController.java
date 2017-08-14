@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mainWeb.searchBang.admin.model.AdminNoticeVO;
 import com.mainWeb.searchBang.admin.model.AdminVO;
 import com.mainWeb.searchBang.admin.service.AdminService;
+import com.mainWeb.searchBang.owner.model.OwnerVO;
 
 @Controller
 public class AdminController {
@@ -54,14 +55,28 @@ public class AdminController {
 
 	// companyApprove
 	@RequestMapping("/companyApprove.admin")
-	public String companyApprove() {
-		return "companyApprove";
+	public ModelAndView companyApprove() {
+		List<OwnerVO> list = adminService.companyApprove();
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("list",list);
+		mv.setViewName("companyApprove");
+		return mv;
+	}
+	@RequestMapping("/approve.admin")
+	public String approve(@RequestParam(value="approve", required=true)String approve , @ModelAttribute OwnerVO ownerVO){
+		System.out.println(approve+"//"+ownerVO.getOwnerEmail());
+		adminService.approve(approve, ownerVO);
+		return "redirect:companyApprove.admin";
 	}
 
 	// companyList
 	@RequestMapping("/companyList.admin")
-	public String companyList() {
-		return "companyList";
+	public ModelAndView companyList() {
+		List<OwnerVO> list = adminService.companyList();
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("list",list);
+		mv.setViewName("companyList");
+		return mv;
 	}
 
 	// companyNoticeList

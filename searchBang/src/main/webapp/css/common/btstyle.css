@@ -1,5 +1,5 @@
 .button {
-	background-color: #00a699; /* Green */
+	background-color: #00a699;
 	border: none;
 	padding: 6px 18px;
 	text-align: center;
@@ -23,6 +23,35 @@
 }
 
 .button:ACTIVE {
+	background-color: white;
+	color: #989898;
+}
+
+.cancel {
+	background-color: red;
+	border: none;
+	padding: 6px 18px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 14px;
+	font-weight: bold;
+	margin: 4px 2px;
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
+	cursor: pointer;
+	background-color: white;
+	border: 2px solid red;
+	border-radius: 4px;
+	color: #989898;
+}
+
+.cancel:hover {
+	background-color: red;
+	color: white;
+}
+
+.cancel:ACTIVE {
 	background-color: white;
 	color: #989898;
 }

@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import com.mainWeb.searchBang.admin.model.AdminNoticeVO;
 import com.mainWeb.searchBang.admin.model.AdminVO;
+import com.mainWeb.searchBang.owner.model.OwnerVO;
 
 public interface AdminService {
 	// 로그인
@@ -40,4 +41,13 @@ public interface AdminService {
 
 	// 공지사항 수정
 	public void noticeUpdate(AdminNoticeVO noticeVO);
+
+	// 오너승인리스트
+	public List<OwnerVO> companyApprove();
+
+	// 오너승인
+	public void approve(String approve,OwnerVO ownerVO);
+
+	// 오너리스트
+	public List<OwnerVO> companyList();
 }

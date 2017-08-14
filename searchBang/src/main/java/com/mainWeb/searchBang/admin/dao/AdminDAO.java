@@ -6,37 +6,48 @@ import javax.servlet.http.HttpSession;
 
 import com.mainWeb.searchBang.admin.model.AdminNoticeVO;
 import com.mainWeb.searchBang.admin.model.AdminVO;
+import com.mainWeb.searchBang.owner.model.OwnerVO;
 
 public interface AdminDAO {
-	// ·Î±×ÀÎ
+	// ï¿½Î±ï¿½ï¿½ï¿½
 	public boolean loginCheck(AdminVO vo);
 
-	// ·Î±×ÀÎÁ¤º¸
+	// ï¿½Î±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public AdminVO viewAdmin(AdminVO vo);
 
-	// ·Î±×¾Æ¿ô
+	// ï¿½Î±×¾Æ¿ï¿½
 	public void logout(HttpSession session);
 
-	// ¾ÆÀÌµð¸ñ·Ï
+	// ï¿½ï¿½ï¿½Ìµï¿½ï¿½ï¿½
 	public List<AdminVO> adminList();
 
-	// ¾ÆÀÌµðµî·Ï
+	// ï¿½ï¿½ï¿½Ìµï¿½ï¿½ï¿½
 	public void insertAdmin(AdminVO vo);
 
-	// ¾ÆÀÌµð»èÁ¦
+	// ï¿½ï¿½ï¿½Ìµï¿½ï¿½ï¿½ï¿½
 	public void deleteAdmin(String adminId);
 
-	// °øÁö»çÇ×µî·Ï
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×µï¿½ï¿½
 	public void insertNotice(AdminNoticeVO noticeVO);
 
-	// °øÁö»çÇ× ¸ñ·Ï
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	public List<AdminNoticeVO> NoticeList(String noticeType);
 
-	// °øÁö»çÇ× ³»¿ë
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public AdminNoticeVO noticeRead(String notice_no);
 
-	// °øÁö»çÇ× »èÁ¦
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public void noticeDel(String notice_no);
-	// °øÁö»çÇ× ¼öÁ¤
+
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public void noticeUpdate(AdminNoticeVO noticeVO);
+
+	// ï¿½ï¿½ï¿½Ê½ï¿½ï¿½Î¸ï¿½ï¿½ï¿½Æ®
+	public List<OwnerVO> companyApprove();
+
+	// ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½
+	public void approve(String approve,OwnerVO ownerVO);
+
+	// ï¿½ï¿½ï¿½Ê¸ï¿½ï¿½ï¿½Æ®
+	public List<OwnerVO> companyList();
 }

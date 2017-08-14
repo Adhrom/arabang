@@ -5,7 +5,7 @@ public class OwnerVO {
 	private String ownerPw;
 	private String ownerPhone;
 	private String ownerEmail;
-	private boolean approve;
+	private String approve;
 
 	public String getOwnerName() {
 		return ownerName;
@@ -39,11 +39,11 @@ public class OwnerVO {
 		this.ownerEmail = ownerEmail;
 	}
 
-	public boolean isApprove() {
+	public String getApprove() {
 		return approve;
 	}
 
-	public void setApprove(boolean approve) {
+	public void setApprove(String approve) {
 		this.approve = approve;
 	}
 
