@@ -9,45 +9,45 @@ import com.mainWeb.searchBang.admin.model.AdminVO;
 import com.mainWeb.searchBang.owner.model.OwnerVO;
 
 public interface AdminService {
-	// ·Î±×ÀÎ
+	// ë¡œê·¸ì¸
 	public boolean loginCheck(AdminVO vo, HttpSession session);
 
-	// ·Î±×ÀÎÁ¤º¸
+	// ë¡œê·¸ì¸ì •ë³´
 	public AdminVO viewAdmin(AdminVO vo);
 
-	// ·Î±×¾Æ¿ô
+	// ë¡œê·¸ì•„ì›ƒ
 	public void logout(HttpSession session);
 
-	// ¾ÆÀÌµğ¸ñ·Ï
+	// ê´€ë¦¬ìë“±ë¡ë¦¬ìŠ¤íŠ¸
 	public List<AdminVO> adminList();
 
-	// ¾ÆÀÌµğµî·Ï
+	// ê´€ë¦¬ìë“±ë¡
 	public void insertAdmin(AdminVO vo);
 
-	// ¾ÆÀÌµğ»èÁ¦
+	// ê´€ë¦¬ìì‚­ì œ
 	public void deleteAdmin(String adminId);
 
-	// °øÁö»çÇ×µî·Ï
+	// ê³µì§€ì‚¬í•­ë“±ë¡
 	public void insertNotice(AdminNoticeVO noticeVO);
 
-	// °øÁö»çÇ×¸ñ·Ï
+	// ê³µì§€ì‚¬í•­ë¦¬ìŠ¤íŠ¸
 	public List<AdminNoticeVO> NoticeList(String noticeType);
 
-	// °øÁö»çÇ× ³»¿ë
+	// ê³µì§€ì‚¬í•­ì½ê¸°
 	public AdminNoticeVO noticeRead(String notice_no);
 
-	// °øÁö»çÇ× »èÁ¦
+	// ê³µì§€ì‚¬í•­ì‚­ì œ
 	public void noticeDel(String notice_no);
 
-	// °øÁö»çÇ× ¼öÁ¤
+	// ê³µì§€ì‚¬í•­ìˆ˜ì •
 	public void noticeUpdate(AdminNoticeVO noticeVO);
 
-	// ¿À³Ê½ÂÀÎ¸®½ºÆ®
+	// ì˜¤ë„ˆìŠ¹ì¸ë¦¬ìŠ¤íŠ¸
 	public List<OwnerVO> companyApprove();
 
-	// ¿À³Ê½ÂÀÎ
+	// ì˜¤ë„ˆìŠ¹ì¸
 	public void approve(String approve,OwnerVO ownerVO);
 
-	// ¿À³Ê¸®½ºÆ®
+	// ì˜¤ë„ˆë¦¬ìŠ¤íŠ¸
 	public List<OwnerVO> companyList();
 }
