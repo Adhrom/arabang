@@ -105,31 +105,47 @@
 			</div>
 		</div>
 		<div id = "right" style="width: 530px;">
-			<table>
-				<tr>
-					<td>
-						<input type="text" id="accomName" name="accomName" placeholder="숙소이름">
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<input type="text" id="accomAddress" name="accomAddress" placeholder="주소" readonly="readonly">
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<input type="text" id="accomAddress2" name="accomAddress2" placeholder="나머지 주소">
-					</td>
-					<td>
-						<input type="button" value="검색" onclick="execDaumPostcode()">
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<input type="text" id="accomPhone" name="accomPhone" placeholder="숙소 전화번호">
-					</td>
-				</tr>
-			</table>
+			<div id="accominfo">
+				<table>
+					<tr>
+						<td>
+							<input type="text" id="accomName" name="accomName" placeholder="숙소이름">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="text" id="accomAddress" name="accomAddress" placeholder="주소" readonly="readonly">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="text" id="accomAddress2" name="accomAddress2" placeholder="나머지 주소">
+						</td>
+						<td>
+							<input type="button" value="검색" onclick="execDaumPostcode()">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="text" id="accomPhone" name="accomPhone" placeholder="숙소 전화번호">
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div id="parking">
+				<strong>주차장 정보</strong>
+				<br/>&nbsp;
+				<input type="checkbox" name="parking_having" id="parking_having"><label for="parking_having">주차시설 보유(이용 전 숙소에 문의해주세요)</label>
+				<input type="checkbox" name="parking_none" id="parking_none"><label for="parking_none">주차시설 미보유</label>
+				<br/>&nbsp;
+				<input type="checkbox" name="parking_valet" id="parking_valet"><label for="parking_valet">무료 발렛파킹</label>
+				<input type="checkbox" name="parking_free" id="parking_free"><label for="parking_free">무료 주차</label>
+				<input type="checkbox" name="parking_inCharge" id="parking_inCharge"><label for="parking_inCharge">유료 주차</label>
+			</div>
+			<div id="info">
+				<strong>추가 안내사항</strong><br/>
+				<textarea rows="20" cols="50"></textarea>
+			</div>
 		</div>
 		</form>
 	</section>
