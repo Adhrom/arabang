@@ -11,4 +11,9 @@
 		select count(*)
 		from OWNER_REG where OWNEREMAIL = #{id}
 	</select>
+	
+	<select id="loginOwner" parameterType="java.util.Map" resultType="java.lang.String">
+		select approve
+		from OWNER_REG where OWNEREMAIL = #{id} and OWNERPW = #{pass}
+	</select>
 </mapper>

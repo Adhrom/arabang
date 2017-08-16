@@ -17,10 +17,10 @@
 			</div>
 			<div id="menu">
 				<ul>
-					<li><a href="#" accesskey="1" title="">공지사항</a></li>
-					<li><a href="#" accesskey="2" title="">예약내역</a></li>
-					<li><a href="#" accesskey="3" title="">더보기</a></li>
-					<li><a href="#" accesskey="4" title="">로그인</a></li>
+					<li><a href="#" accesskey="1">공지사항</a></li>
+					<li><a href="#" accesskey="2">예약내역</a></li>
+					<li><a href="#" accesskey="3">더보기</a></li>
+					<li><a href="ownerLogin.owner" accesskey="4">로그인</a></li>
 				</ul>
 			</div>
 		</div>

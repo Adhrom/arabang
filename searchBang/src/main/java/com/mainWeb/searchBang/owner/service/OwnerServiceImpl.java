@@ -1,5 +1,7 @@
 package com.mainWeb.searchBang.owner.service;
 
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -20,6 +22,11 @@ public class OwnerServiceImpl implements OwnerService {
 	
 	public int idCheckOwner(String id){
 		return dao.idCheckOwner(id);
+	}
+
+	@Override
+	public String loginOwner(Map<String, Object> map) {
+		return dao.loginOwner(map);
 	}
 
 }
