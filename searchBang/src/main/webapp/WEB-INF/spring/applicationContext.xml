@@ -24,13 +24,13 @@
 		</property>
 		<!-- JDBC 접속 문자열 생성 -->
 		<property name="url">
-			<value>jdbc:oracle:thin:@localhost:1521:xe</value>
+			<value>jdbc:oracle:thin:@18.220.52.236:1521:xe</value>
 		</property>
 		<property name="username">
-			<value>jongdool</value>
+			<value>ara</value>
 		</property>
 		<property name="password">
-			<value>0000</value>
+			<value>ara</value>
 		</property>
 	</bean>
 	<!-- Transaction 관리자 설정 -->

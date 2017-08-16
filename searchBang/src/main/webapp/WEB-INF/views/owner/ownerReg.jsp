@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -103,7 +104,6 @@
 	function bubblingClickChecking(){
 		if(bubblingClickFlag) // true
 			return bubblingClickFlag;
-
 		else{ // false
 			bubblingClickFlag = true;
 			return false;
@@ -118,10 +118,10 @@
 		tid = setInterval('msg_time()', 1000)
 
 		$.ajax({
-			data : {idfield : input},
-			url : "getCertificationNum.do",
+			data : {idfield : input}, // key : value 
+			url : "getCertificationNum.owner",
 			success : function(data){
-				document.getElementById("secret_ceritify").value = data;
+				document.getElementById("secret_ceritify").value = data; // hidden 태그의 인증번호 셋팅
 			}
 		});
 	};
@@ -210,11 +210,14 @@
 							<td colspan="2" class="label">&nbsp;&nbsp;이메일</td>
 						</tr>
 						<tr>
-							<td style="width: 75%"><input type="email" class="frmdate"
-								id="ownerEmail" name="ownerEmail" readonly="readonly"></td>
-							<td style="width: 25%"><a
-								class="initialism idchk_open btn btn-success"><button
-										class="button" style="font-size: 12px">인증하기</button></a></td>
+							<c:if test="${chkVal ne 1 }">
+								<td style="width: 75%"><input type="email" class="frmdate" id="ownerEmail" name="ownerEmail" readonly="readonly"></td>
+							</c:if>
+							
+							<c:if test="${chkVal eq 1 }">
+								<td style="width: 75%"><input type="email" class="frmdate" id="ownerEmail" name="ownerEmail" readonly="readonly" value="${email }"></td>
+							</c:if>
+							<td style="width: 25%"><a class="initialism idchk_open btn btn-success"><button class="button" style="font-size: 12px">인증하기</button></a></td>
 						</tr>
 						<tr>
 							<td colspan="2" id="ownerEmailP" class="label">&nbsp;</td>
@@ -268,32 +271,8 @@
 	</footer>
 	<!-- 모달팝업 이메일인증 -->
 	<div id="idchk">
-		<div
-			style="background-color: white; width: 500px; height: 500px; padding: 20px;">
-			<form name="IDcertify" id="IDcertify" action="approval.do"
-				method="post" onsubmit="validate();">
-				<table>
-					<tr>
-						<td colspan="2"><input type="text" name="idfield"
-							id="idfield" size="25" maxlength="40" oninput="checkID()"
-							placeholder="아이디를 입력해 주세요"></td>
-						<td rowspan="2" align="center"><input type="button"
-							value="인증하기" onclick="Start()"></td>
-					</tr>
-
-					<tr>
-						<td><div id="idCheckfield"></div></td>
-						<td><div id="ViewTimer"></div>
-					</tr>
-					<tr>
-						<td><input type="text" name="certify" id="certify" size="20"
-							placeholder="인증번호를 입력해 주세요" value=""></td>
-						<td><input type="hidden" name="secret_ceritify"
-							id="secret_ceritify" value=""></td>
-						<td><input type="submit" value="확인"></td>
-					</tr>
-				</table>
-			</form>
+		<div style="background-color: white; width: 500px; height: 500px; padding: 20px;">
+			<jsp:include page="certify.jsp" flush="false" />
 		</div>
 	</div>
 </body>
