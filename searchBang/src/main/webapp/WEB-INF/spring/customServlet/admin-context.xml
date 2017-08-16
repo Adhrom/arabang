@@ -37,7 +37,7 @@
 
 	<context:component-scan base-package="com.mainWeb.searchBang.admin" />
 
-	<interceptors>
+<!-- 	<interceptors>
 		<interceptor>
 			<mapping path="/companyNoticeList.admin" />
 			<mapping path="/customerNoticeList.admin" />
@@ -50,5 +50,5 @@
 			<mapping path="/adminManagement.admin" />
 			<beans:bean class="com.mainWeb.searchBang.interceptor.Interceptor" />
 		</interceptor>
-	</interceptors>
+	</interceptors> -->
 </beans:beans>

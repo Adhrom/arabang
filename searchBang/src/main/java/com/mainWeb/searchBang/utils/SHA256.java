@@ -3,26 +3,27 @@ package com.mainWeb.searchBang.utils;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
+@SuppressWarnings("restriction")
 public class SHA256 {
-	
+
 	BASE64Encoder encoder = new BASE64Encoder();
 	BASE64Decoder decoder = new BASE64Decoder();
-	
+
 	private static SHA256 s = new SHA256();
-	
+
 	public SHA256(){}
-	
+
 	public static SHA256 getInsatnce(){
 		return s;
 	}
-	
+
 	public String getSha256(byte[] plainText)throws Exception{
 		String enc = getString(Sha256EncryptB(plainText));
 		return enc;
 	}
 
 	public String Sha256Encrypt(byte[] plainTextByte) throws Exception {
-		
+
 		byte[] bszDigest = new byte[32];
 
 		SHA256_Encrypt( plainTextByte, plainTextByte.length, bszDigest );
@@ -30,7 +31,7 @@ public class SHA256 {
 	}
 
 	public byte[] Sha256EncryptB(byte[] plainTextByte) throws Exception {
-		
+
 		byte[] bszDigest = new byte[32];
 
 		SHA256_Encrypt( plainTextByte, plainTextByte.length, bszDigest );
@@ -86,13 +87,13 @@ public class SHA256 {
 			int mask_value =  0x0ff << shift_value;
 			int mask_value2 = ~mask_value;
 			int value2 = (value&0x0ff) << shift_value;
-			dst[b_offset/4] = (dst[b_offset/4] & mask_value2) | (value2 & mask_value);    
+			dst[b_offset/4] = (dst[b_offset/4] & mask_value2) | (value2 & mask_value);
 		} else {
 			int shift_value = (b_offset%4)*8;
 			int mask_value =  0x0ff << shift_value;
 			int mask_value2 = ~mask_value;
 			int value2 = (value&0x0ff) << shift_value;
-			dst[b_offset/4] = (dst[b_offset/4] & mask_value2) | (value2 & mask_value);    
+			dst[b_offset/4] = (dst[b_offset/4] & mask_value2) | (value2 & mask_value);
 		}
 	}
 
@@ -108,7 +109,7 @@ public class SHA256 {
 			int value = (src[b_offset/4] & mask_value) >> shift_value;
 			return (byte)value;
 		}
-		
+
 	}
 
 	public static byte[] get_bytes_for_ints(int[] src, int offset, int ENDIAN) {
@@ -117,7 +118,7 @@ public class SHA256 {
 		for(int i=0; i<iLen; i++) {
 			int_to_byte(result, i*4, src, offset+i, ENDIAN);
 		}
-		
+
 		return result;
 	}
 
@@ -157,7 +158,7 @@ public class SHA256 {
 			dst[dst_offset+2] = (byte)((src >> 16) & 0x0ff);
 			dst[dst_offset+3] = (byte)((src >> 24) & 0x0ff);
 		}
-		
+
 	}
 
 	public static void int_to_byte_unit_big_endian(byte[] dst, int dst_offset, int src) {
@@ -195,13 +196,13 @@ public class SHA256 {
 
 	private static final int SHA256_K[] =
 	{
-		0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1,	0x923f82a4, 0xab1c5ed5, 
-		0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3,	0x72be5d74, 0x80deb1fe, 0x9bdc06a7, 0xc19bf174, 
+		0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1,	0x923f82a4, 0xab1c5ed5,
+		0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3,	0x72be5d74, 0x80deb1fe, 0x9bdc06a7, 0xc19bf174,
 		0xe49b69c1, 0xefbe4786,	0x0fc19dc6, 0x240ca1cc, 0x2de92c6f, 0x4a7484aa, 0x5cb0a9dc, 0x76f988da,
-		0x983e5152, 0xa831c66d, 0xb00327c8, 0xbf597fc7, 0xc6e00bf3, 0xd5a79147,	0x06ca6351, 0x14292967, 
-		0x27b70a85, 0x2e1b2138, 0x4d2c6dfc, 0x53380d13,	0x650a7354, 0x766a0abb, 0x81c2c92e, 0x92722c85, 
+		0x983e5152, 0xa831c66d, 0xb00327c8, 0xbf597fc7, 0xc6e00bf3, 0xd5a79147,	0x06ca6351, 0x14292967,
+		0x27b70a85, 0x2e1b2138, 0x4d2c6dfc, 0x53380d13,	0x650a7354, 0x766a0abb, 0x81c2c92e, 0x92722c85,
 		0xa2bfe8a1, 0xa81a664b,	0xc24b8b70, 0xc76c51a3, 0xd192e819, 0xd6990624, 0xf40e3585, 0x106aa070,
-		0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5, 0x391c0cb3, 0x4ed8aa4a,	0x5b9cca4f, 0x682e6ff3, 
+		0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5, 0x391c0cb3, 0x4ed8aa4a,	0x5b9cca4f, 0x682e6ff3,
 		0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208,	0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2
 	};
 
@@ -398,7 +399,7 @@ public class SHA256 {
 		public int uLowLength;
 		public byte szBuffer[] = new byte[SHA256_DIGEST_BLOCKLEN];
 	}
-	
+
 	public byte[] getBytes(String data) {
 		String[] str = data.split(",");
 		byte[] result = new byte[str.length];
@@ -422,7 +423,7 @@ public class SHA256 {
 			str = "00";
 		else if(str.length() == 1)
 			str = "0" + str;
-		
+
 		str = str.toUpperCase();
 		return (byte)(getHexNibble(str.charAt(0)) * 16 + getHexNibble(str.charAt(1)));
 	}

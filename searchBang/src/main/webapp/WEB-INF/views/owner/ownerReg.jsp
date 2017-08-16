@@ -77,6 +77,23 @@
 			document.regOwner.action = "insertOwner.owner";
 			document.regOwner.submit();
 		});
+		$('#approval').click(function() {
+			var v1 = $("#certify").val();
+			var v2 = $("#secret_ceritify").val();
+			var email = $('#idfield').val();
+			if(email==""){
+				alert("이메일을 입력해 주세요.");
+				return false;
+			}
+			if(v1 != v2){
+				alert("인증번호가 다릅니다 올바른 인증번호를 입력해주세요.");
+				return false;
+			}
+			alert($('#idfield').val());
+			$('#ownerEmail').val($('#idfield').val());
+			var bt = document.getElementById('approvalbt');
+			bt.disabled = 'disabled';
+		});
 	});
 
 	//이메일인증
@@ -86,7 +103,7 @@
 
 	// 시간설정 함수
 	function msg_time() {
-		m = Math.floor(SetTime / 60) + " : " + (SetTime % 60) + " 초"; // 남은 시간 계산
+		m = Math.floor(SetTime / 60) + " : " + (SetTime % 60) + " 초";
 		var msg = "<font color='red'>" + m + "</font>";
 		document.all.ViewTimer.innerHTML = msg; // div 영역에 보여줌
 		SetTime--; // 1초씩 감소
@@ -112,13 +129,23 @@
 
 	// 실제로 타이머가 돌아가는 함수
 	function Start() {
+		var email = $('#idfield').val();
+		if(email==""){
+			alert("이메일을 입력해 주세요.");
+			return false;
+		}
+		var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+		if(!regExp.test($('#idfield').val())){
+			alert("올바른 이메일을 적어주세요.");
+			return false;
+		}
 		var input = $('input[id="idfield"]').parent().parent().find('input[type="text"]').val();
 		if(bubblingClickChecking())
 			return ;
 		tid = setInterval('msg_time()', 1000)
 
 		$.ajax({
-			data : {idfield : input}, // key : value 
+			data : {idfield : input}, // key : value
 			url : "getCertificationNum.owner",
 			success : function(data){
 				document.getElementById("secret_ceritify").value = data; // hidden 태그의 인증번호 셋팅
@@ -128,7 +155,13 @@
 
 	// 아이디 실시간 검증
 	function checkID(){
+		var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 		// var x = document.getElementById("idfield").val();
+		if(!regExp.test($('#idfield').val())){
+			var message = "<font color = red>" + "올바른 이메일을 적어주세요." + "</font>";
+			document.getElementById("idCheckfield").innerHTML = message;
+			return false;
+		}
 		var input = $('input[id="idfield"]').parent().parent().find('input[type="text"]').val();
 		$.ajax({
 			data : {idfield : input},
@@ -145,21 +178,6 @@
 				}
 			}
 		});
-	}
-
-	function validate(){
-		var v1 = $("#certify").val();
-		var v2 = $("#secret_ceritify").val();
-
-		if(v1 != v2){
-			alert("입력한 두 값은 틀립니다");
-			return true;
-		}
-
-		else{
-			alert("입력한 두 값은 같습니다");
-			return true;
-		}
 	}
 </script>
 </head>
@@ -210,14 +228,8 @@
 							<td colspan="2" class="label">&nbsp;&nbsp;이메일</td>
 						</tr>
 						<tr>
-							<c:if test="${chkVal ne 1 }">
-								<td style="width: 75%"><input type="email" class="frmdate" id="ownerEmail" name="ownerEmail" readonly="readonly"></td>
-							</c:if>
-							
-							<c:if test="${chkVal eq 1 }">
-								<td style="width: 75%"><input type="email" class="frmdate" id="ownerEmail" name="ownerEmail" readonly="readonly" value="${email }"></td>
-							</c:if>
-							<td style="width: 25%"><a class="initialism idchk_open btn btn-success"><button class="button" style="font-size: 12px">인증하기</button></a></td>
+							<td style="width: 75%"><input type="email" class="frmdate" id="ownerEmail" name="ownerEmail" readonly="readonly"></td>
+							<td style="width: 25%"><a class="initialism idchk_open btn btn-success"><button id="approvalbt" class="button" style="font-size: 12px;">인증하기</button></a></td>
 						</tr>
 						<tr>
 							<td colspan="2" id="ownerEmailP" class="label">&nbsp;</td>
