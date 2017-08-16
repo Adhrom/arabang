@@ -1,0 +1,225 @@
+@CHARSET "UTF-8";
+
+@import url('http://fonts.googleapis.com/earlyaccess/nanumgothic.css');
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-jp.css);
+/* 구글 폰트 나무고딕 CDN방식이용. */
+
+* {
+	maring:0;
+	padding:0;
+	
+}
+
+
+body{
+	margin:auto;
+	width:1000px;
+	
+	font-family:'Spoqa Han Sans', sans-serif;
+	
+	
+	/*웹폰트 안티앨리어싱*/
+
+}
+
+
+
+
+/*로그인 화면*/
+.title { /*회원가입 텍스트*/
+	margin:auto;
+	margin-top:30px;
+	margin-bottom:10px;
+	
+	text-align:center;
+	border: solid 1px white;
+	font-weight:normal;
+	color:#192A28;
+}
+.login-form {
+	margin:auto;
+	width:400px;
+	height:300px;
+	border: solid 1px #00a699;
+}
+
+div#login-box {
+	margin: 20px 60px 20px 60px;
+}
+
+.login-title {
+	border: solid 1px white;
+	font-weight:normal;
+	color:#192A28;
+	
+}
+.input-txt {
+	
+	margin-left:20px;
+	margin-bottom:5px;
+	font-size:9pt;
+	font-weight:normal;
+	color:#192A28;
+}
+div#input-box {
+	margin: auto;
+	width:auto;
+	height:30px;
+	
+	font-size:large;
+	
+	
+}
+
+
+.input-type {
+	width:100%;
+	height:100%;
+	border: solid 1px white;
+	border-color:gray;
+	border-type:solid;
+	box-shadow:0.5px 0.2px 0.5px 0.2px lightgray;
+}
+
+input[type=checkbox] {  
+    display: none;  
+}
+
+input[type=checkbox] + label{
+	margin-top:20px;
+    display: inline-block;  
+    cursor: pointer;  
+    position: relative;  
+    padding-left: 25px;  
+    margin-right: 15px;
+    font-weight:normal; 
+    font-size: 10pt;
+    
+}
+
+input[type=checkbox]+ label:before {     
+	
+    content: "";  
+    display: inline-block;  
+    width: 15px;  
+    height: 15px;  
+    margin-right: 20px;  
+    position: absolute;  
+    left: 0;  
+    bottom: 1px;  
+    background-color: white;  
+    
+    box-shadow: 1px 1px 0px 0px gray, 0px 0px 1px 1px gray;
+    /*box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);*/  
+}
+input[type=checkbox]:checked + label:before { 
+
+    content: "\2713";  /* 체크모양 */
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);  
+    font-size: 15px; 
+    font-weight:800; 
+    color: #fff;  
+    background:#2f87c1;
+    text-align: center;  
+    line-height: 15px;  /*체크크기조절*/
+
+}
+
+
+div#remember-txt-sector {
+	margin:auto;
+	
+	border: solid 1px white;
+}
+
+
+h4#pwd-search {
+	margin-top:-20px;
+	margin-bottom:-5px;
+	font-size:10pt;
+	text-align:right;
+	border: solid 1px white;
+	font-weight:normal;
+	color:#243C39;
+}
+
+a:link{text-decoration: none; color:black;}
+a:visited{text-decoration: none; color:black;}
+a:active{text-decoration: none; color:black;}
+a:hover{text-decoration: none; color:black;}
+
+input#login-btn {
+	margin-top:15px;
+	width:135px;
+	height:35px;
+	float:left;
+	background-color:#00a699;
+	border-style:solid;
+	border-color:#00a699;
+	color:white;
+	font-size:10pt;
+	font-weight: bold;
+
+}
+
+input#join-btn {
+	margin-top:15px;
+	width:135px;
+	height:35px;
+	float:right;
+	background-color:#00a699;
+	border-style:solid;
+	border-color:#00a699;
+	color:white;
+	font-size:10pt;
+	font-weight: bold;
+
+}
+
+
+input#social-login {
+	margin-top:30px;
+	width:135px;
+	height:35px;
+}
+/*로그인 화면*/
+
+/*소셜로그인 버튼*/
+/* Shared */
+.loginBtn {
+  width:135px;
+  box-sizing: border-box;
+  position: relative;
+  /* width: 13em;  - apply for fixed size */
+  
+  margin-top: 5px;
+  
+  
+  padding: 0 15px 0 46px;
+  border: none;
+  text-align: left;
+  line-height: 34px;
+  white-space: nowrap;
+  
+  font-size: 10px;
+  color: #FFF;
+  
+}
+.loginBtn:before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 34px;
+  height: 100%;
+}
+.loginBtn:focus {
+  outline: none;
+}
+.loginBtn:active {
+	
+  	box-shadow: inset 0 0 0 32px rgba(0,0,0,0.1);
+}
+

@@ -1,5 +1,7 @@
 package com.mainWeb.searchBang.owner.dao;
 
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -21,6 +23,11 @@ public class OwnerDAOImpl implements OwnerDAO {
 	@Override
 	public int idCheckOwner(String id) {
 		return sqlSessionTemplate.selectOne("owner.idCheckOwner", id);
+	}
+
+	@Override
+	public String loginOwner(Map<String, Object> map) {
+		return sqlSessionTemplate.selectOne("owner.loginOwner", map);
 	}
 
 }

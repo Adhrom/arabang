@@ -9,8 +9,7 @@
 <title>ARA 가족신청</title>
 <link rel="stylesheet" href="/searchBang/css/owner/owner_style.css">
 <link rel="stylesheet" href="/searchBang/css/common/btstyle.css">
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
 <script src="/searchBang/js/admin/jquery.popupoverlay.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -178,6 +177,22 @@
 				}
 			}
 		});
+<<<<<<< HEAD
+=======
+	}
+
+	function validate(){
+		var v1 = $("#certify").val();
+		var v2 = $("#secret_ceritify").val();
+		if(v1 != v2){
+			alert("입력한 두 값은 틀립니다"); // 수정요망..
+			return true;
+		}
+		else{
+			alert("입력한 두 값은 같습니다"); // 수정요망..
+			return true;
+		}
+>>>>>>> branch 'master' of https://github.com/Adhrom/arabang.git
 	}
 </script>
 </head>
@@ -218,8 +233,12 @@
 							<td colspan="2" class="label">&nbsp;&nbsp;이름</td>
 						</tr>
 						<tr>
-							<td colspan="2"><input type="text" class="frmdate"
-								id="ownerName" name="ownerName"></td>
+							<c:if test="${!name}">
+							<td colspan="2"><input type="text" class="frmdate" id="ownerName" name="ownerName" value=""></td>
+							</c:if>
+							<c:if test="${name }">
+							<td colspan="2"><input type="text" class="frmdate" id="ownerName" name="ownerName" value="${name}"></td>
+							</c:if>
 						</tr>
 						<tr>
 							<td colspan="2" id="ownerNameP" class="label">&nbsp;</td>

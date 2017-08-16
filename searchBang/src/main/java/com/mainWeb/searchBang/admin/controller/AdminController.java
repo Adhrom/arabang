@@ -1,7 +1,6 @@
 package com.mainWeb.searchBang.admin.controller;
 
 import java.util.List;
-
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -16,12 +15,14 @@ import com.mainWeb.searchBang.admin.model.AdminNoticeVO;
 import com.mainWeb.searchBang.admin.model.AdminVO;
 import com.mainWeb.searchBang.admin.service.AdminService;
 import com.mainWeb.searchBang.owner.model.OwnerVO;
+import com.mainWeb.searchBang.utils.SHA256;
 
 @Controller
 public class AdminController {
 
 	@Inject
 	AdminService adminService;
+	SHA256 sha = SHA256.getInsatnce();
 
 	// index
 	@RequestMapping("/index.admin")
@@ -41,7 +42,11 @@ public class AdminController {
 
 	// regAdmin
 	@RequestMapping("/regAdmin.admin")
-	public String regAdmin(@ModelAttribute AdminVO vo) {
+	public String regAdmin(@ModelAttribute AdminVO vo) throws Exception {
+		
+		String cryptStr = sha.getSha256(vo.getAdminPw().getBytes());
+		vo.setAdminPw(cryptStr);
+		
 		adminService.insertAdmin(vo);
 		return "redirect:adminManagement.admin";
 	}
@@ -168,7 +173,13 @@ public class AdminController {
 	// login
 
 	@RequestMapping("/login.admin")
-	public ModelAndView login(@ModelAttribute AdminVO vo, HttpSession session) {
+	public ModelAndView login(@ModelAttribute AdminVO vo, 
+			HttpSession session) throws Exception {
+		
+		// 로그인시 암호화해서 vo모델링
+		String cryptPw = sha.getSha256(vo.getAdminPw().getBytes());
+		vo.setAdminPw(cryptPw);
+		
 		boolean result = adminService.loginCheck(vo, session);
 		ModelAndView mv = new ModelAndView();
 		if (result == true) {
@@ -180,15 +191,11 @@ public class AdminController {
 		}
 		return mv;
 	}
-
-
+	
 	// logout
 	@RequestMapping("/logout.admin")
 	public String logout(HttpSession session) {
 		adminService.logout(session);
 		return "index";
 	}
-
-
-
 }

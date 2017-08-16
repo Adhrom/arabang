@@ -1,5 +1,7 @@
 package com.mainWeb.searchBang.owner.service;
 
+import java.util.Map;
+
 import com.mainWeb.searchBang.owner.model.OwnerVO;
 
 public interface OwnerService {
@@ -9,4 +11,7 @@ public interface OwnerService {
 	
 	// 아이디 체크
 	public int idCheckOwner(String id);
+	
+	// 로그인 처리
+	public String loginOwner(Map<String, Object> map);
 }
