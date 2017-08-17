@@ -22,7 +22,6 @@ public class AccomVO {
 	private String accomimg7;
 	private String accomimg8;
 	private String accomimg9;
-	private String accomimg10;
 	private String option_couplePC;
 	private String option_partyRoom;
 	private String option_noPeople;
@@ -48,6 +47,15 @@ public class AccomVO {
 	private String parking_free;
 	private String parking_none;
 	private String parking_having;
+	private String ownerEmail;
+
+	public String getOwnerEmail() {
+		return ownerEmail;
+	}
+
+	public void setOwnerEmail(String ownerEmail) {
+		this.ownerEmail = ownerEmail;
+	}
 
 	public int getAccom_no() {
 		return accom_no;
@@ -215,14 +223,6 @@ public class AccomVO {
 
 	public void setAccomimg9(String accomimg9) {
 		this.accomimg9 = accomimg9;
-	}
-
-	public String getAccomimg10() {
-		return accomimg10;
-	}
-
-	public void setAccomimg10(String accomimg10) {
-		this.accomimg10 = accomimg10;
 	}
 
 	public String getOption_couplePC() {
@@ -424,5 +424,28 @@ public class AccomVO {
 	public void setParking_having(String parking_having) {
 		this.parking_having = parking_having;
 	}
+
+	@Override
+	public String toString() {
+		return "AccomVO [accom_no=" + accom_no + ", accomName=" + accomName + ", accomAddress=" + accomAddress
+				+ ", accomAddress2=" + accomAddress2 + ", accomPhone=" + accomPhone + ", accomSubway=" + accomSubway
+				+ ", accomInfo=" + accomInfo + ", accomType=" + accomType + ", accomGrade=" + accomGrade + ", accomGPA="
+				+ accomGPA + ", accomHotdeal=" + accomHotdeal + ", accomHotdeal_DC=" + accomHotdeal_DC + ", accomimg1="
+				+ accomimg1 + ", accomimg2=" + accomimg2 + ", accomimg3=" + accomimg3 + ", accomimg4=" + accomimg4
+				+ ", accomimg5=" + accomimg5 + ", accomimg6=" + accomimg6 + ", accomimg7=" + accomimg7 + ", accomimg8="
+				+ accomimg8 + ", accomimg9=" + accomimg9 + ", option_couplePC=" + option_couplePC
+				+ ", option_partyRoom=" + option_partyRoom + ", option_noPeople=" + option_noPeople + ", option_duplex="
+				+ option_duplex + ", option_spa=" + option_spa + ", option_pickUp=" + option_pickUp
+				+ ", option_withAnimal=" + option_withAnimal + ", option_business=" + option_business
+				+ ", option_noSmoking=" + option_noSmoking + ", option_barbecue=" + option_barbecue
+				+ ", option_cleanroom=" + option_cleanroom + ", option_playGround=" + option_playGround
+				+ ", option_kitchen=" + option_kitchen + ", option_hanok=" + option_hanok + ", option_glamping="
+				+ option_glamping + ", option_seminar=" + option_seminar + ", option_womenOnly=" + option_womenOnly
+				+ ", option_nokids=" + option_nokids + ", option_freeBlackfast=" + option_freeBlackfast
+				+ ", option_snackBar=" + option_snackBar + ", parking_valet=" + parking_valet + ", parking_inCharge="
+				+ parking_inCharge + ", parking_free=" + parking_free + ", parking_none=" + parking_none
+				+ ", parking_having=" + parking_having + ", ownerEmail=" + ownerEmail + "]";
+	}
+
 
 }

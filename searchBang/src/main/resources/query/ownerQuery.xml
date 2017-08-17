@@ -4,16 +4,49 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="owner">
 	<insert id="insertOwner">
-		insert into owner_reg values (#{ownerEmail},#{ownerName},#{ownerPw},#{ownerPhone},'n')
+		insert into owner_reg values
+		(#{ownerEmail},#{ownerName},#{ownerPw},#{ownerPhone},'n')
 	</insert>
-	
-	<select id="idCheckOwner" parameterType="java.lang.String" resultType="java.lang.Integer">
+
+	<select id="idCheckOwner" parameterType="java.lang.String"
+		resultType="java.lang.Integer">
 		select count(*)
 		from OWNER_REG where OWNEREMAIL = #{id}
 	</select>
-	
-	<select id="loginOwner" parameterType="java.util.Map" resultType="java.lang.String">
+
+	<select id="loginOwner" parameterType="java.util.Map"
+		resultType="java.lang.String">
 		select approve
-		from OWNER_REG where OWNEREMAIL = #{id} and OWNERPW = #{pass}
+		from OWNER_REG where OWNEREMAIL = #{id} and
+		OWNERPW = #{pass}
 	</select>
+
+	<insert id="addedAccom">
+		insert into accom values(accom_no_seq.nextval ,
+		#{accomName} ,
+		#{accomAddress} , #{accomPhone} , #{accomInfo} ,
+		#{accomType} , 1 , 1.0
+		, 'n' ,
+		0 ,
+		<!-- #{accomimg1} , #{accomimg2} , #{accomimg3} , #{accomimg4} , #{accomimg5}
+			, #{accomimg6} , #{accomimg7} , #{accomimg8} , #{accomimg9} -->
+		'나중에 이미지 경로 들어가야함' ,'나중에 이미지 경로 들어가야함' , '나중에 이미지 경로 들어가야함' , '나중에 이미지
+		경로 들어가야함' , '나중에 이미지 경로 들어가야함' , '나중에 이미지 경로 들어가야함' , '나중에 이미지 경로
+		들어가야함' , '나중에 이미지 경로 들어가야함' , '나중에 이미지 경로 들어가야함'
+		, #{option_couplePC} , #{option_partyRoom},
+		#{option_noPeople} ,
+		#{option_duplex} , #{option_spa} , #{option_pickUp} ,
+		#{option_withAnimal} , #{option_business} ,
+		#{option_noSmoking} ,
+		#{option_barbecue} , #{option_cleanroom} ,
+		#{option_playGround} ,
+		#{option_kitchen} , #{option_hanok} ,
+		#{option_glamping} ,
+		#{option_seminar} , #{option_womenOnly} , #{option_nokids} ,
+		#{option_freeBlackfast} , #{option_snackBar} , #{parking_valet} ,
+		#{parking_inCharge} , #{parking_free} ,
+		#{parking_none}
+		,#{parking_having} ,#{ownerEmail} ,#{accomAddress2}
+		)
+	</insert>
 </mapper>

@@ -177,22 +177,6 @@
 				}
 			}
 		});
-<<<<<<< HEAD
-=======
-	}
-
-	function validate(){
-		var v1 = $("#certify").val();
-		var v2 = $("#secret_ceritify").val();
-		if(v1 != v2){
-			alert("입력한 두 값은 틀립니다"); // 수정요망..
-			return true;
-		}
-		else{
-			alert("입력한 두 값은 같습니다"); // 수정요망..
-			return true;
-		}
->>>>>>> branch 'master' of https://github.com/Adhrom/arabang.git
 	}
 </script>
 </head>

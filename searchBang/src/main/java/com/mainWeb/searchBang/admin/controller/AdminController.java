@@ -43,10 +43,10 @@ public class AdminController {
 	// regAdmin
 	@RequestMapping("/regAdmin.admin")
 	public String regAdmin(@ModelAttribute AdminVO vo) throws Exception {
-		
+
 		String cryptStr = sha.getSha256(vo.getAdminPw().getBytes());
 		vo.setAdminPw(cryptStr);
-		
+
 		adminService.insertAdmin(vo);
 		return "redirect:adminManagement.admin";
 	}
@@ -69,7 +69,6 @@ public class AdminController {
 	}
 	@RequestMapping("/approve.admin")
 	public String approve(@RequestParam(value="approve", required=true)String approve , @ModelAttribute OwnerVO ownerVO){
-		System.out.println(approve+"//"+ownerVO.getOwnerEmail());
 		adminService.approve(approve, ownerVO);
 		return "redirect:companyApprove.admin";
 	}
@@ -173,13 +172,13 @@ public class AdminController {
 	// login
 
 	@RequestMapping("/login.admin")
-	public ModelAndView login(@ModelAttribute AdminVO vo, 
+	public ModelAndView login(@ModelAttribute AdminVO vo,
 			HttpSession session) throws Exception {
-		
+
 		// 로그인시 암호화해서 vo모델링
 		String cryptPw = sha.getSha256(vo.getAdminPw().getBytes());
 		vo.setAdminPw(cryptPw);
-		
+
 		boolean result = adminService.loginCheck(vo, session);
 		ModelAndView mv = new ModelAndView();
 		if (result == true) {
@@ -191,7 +190,7 @@ public class AdminController {
 		}
 		return mv;
 	}
-	
+
 	// logout
 	@RequestMapping("/logout.admin")
 	public String logout(HttpSession session) {

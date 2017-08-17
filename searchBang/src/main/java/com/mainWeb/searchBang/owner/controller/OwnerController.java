@@ -6,6 +6,8 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mainWeb.searchBang.owner.model.AccomVO;
 import com.mainWeb.searchBang.owner.model.OwnerVO;
 import com.mainWeb.searchBang.owner.service.OwnerService;
 import com.mainWeb.searchBang.utils.CharMix;
@@ -72,10 +75,20 @@ public class OwnerController {
 
 		return message;
 	}
-	// 숙소추가
+	// 숙소추가페이지
 	@RequestMapping("/addedAccom.owner")
 	public String addedAccom(){
 		return "addedAccom";
+	}
+
+	// 숙소추가
+	@RequestMapping("/insertAccom.owner")
+	public String insertAccom(@ModelAttribute AccomVO accomVO, HttpServletRequest request){
+		//HttpSession session = request.getSession();
+		//accomVO.setOwnerEmail((String)session.getAttribute("ownerEmail"));
+		accomVO.setOwnerEmail("dlwjdtn777@gmail.com");
+		service.addedAccom(accomVO);
+		return "ownerReg";
 	}
 
 

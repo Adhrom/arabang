@@ -7,11 +7,12 @@ import javax.inject.Inject;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.mainWeb.searchBang.owner.model.AccomVO;
 import com.mainWeb.searchBang.owner.model.OwnerVO;
 
 @Repository
 public class OwnerDAOImpl implements OwnerDAO {
-	
+
 	@Inject
 	private SqlSessionTemplate sqlSessionTemplate;
 
@@ -28,6 +29,11 @@ public class OwnerDAOImpl implements OwnerDAO {
 	@Override
 	public String loginOwner(Map<String, Object> map) {
 		return sqlSessionTemplate.selectOne("owner.loginOwner", map);
+	}
+
+	@Override
+	public void addedAccom(AccomVO accomVO) {
+		sqlSessionTemplate.insert("owner.addedAccom", accomVO);
 	}
 
 }

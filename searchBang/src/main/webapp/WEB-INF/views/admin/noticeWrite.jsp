@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/searchBang/css/admin/btstyle.css">
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
 <script src="/searchBang/js/admin/modernizr.js"></script>
@@ -14,8 +13,7 @@
 <script type="text/javascript">
 	function getUrlParams() {
 		var params = {};
-		window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str,
-				key, value) {
+		window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str, key, value) {
 			params[key] = value;
 		});
 		return params;
@@ -102,7 +100,7 @@
 					<td><br /></td>
 				</tr>
 				<tr>
-					<td colspan="2"><textarea rows="10" cols="30" id="content"
+					<td colspan="2"><textarea rows="30" cols="30" id="content"
 							name="content" style="width: 790px; height: 600px;">${noticeVO.content }</textarea></td>
 				</tr>
 				<tr>
