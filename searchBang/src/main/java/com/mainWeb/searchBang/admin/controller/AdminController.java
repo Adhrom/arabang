@@ -138,6 +138,7 @@ public class AdminController {
 
 	@RequestMapping("/insertNotice.admin")
 	public String insertNotice(@ModelAttribute AdminNoticeVO noticeVO){
+		System.out.println(noticeVO);
 		adminService.insertNotice(noticeVO);
 		return "redirect:"+noticeVO.getNoticeType()+"NoticeList.admin";
 	}

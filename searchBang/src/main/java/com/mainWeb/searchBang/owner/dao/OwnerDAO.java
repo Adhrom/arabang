@@ -4,6 +4,7 @@ import java.util.Map;
 
 import com.mainWeb.searchBang.owner.model.AccomVO;
 import com.mainWeb.searchBang.owner.model.OwnerVO;
+import com.mainWeb.searchBang.owner.model.RoomVO;
 
 public interface OwnerDAO {
 
@@ -18,4 +19,7 @@ public interface OwnerDAO {
 
 	// 숙소등록
 	public void addedAccom(AccomVO accomVO);
+
+	// 방등록
+	public void addedRoom(RoomVO roomVO);
 }

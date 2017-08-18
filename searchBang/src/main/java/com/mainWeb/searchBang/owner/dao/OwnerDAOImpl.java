@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mainWeb.searchBang.owner.model.AccomVO;
 import com.mainWeb.searchBang.owner.model.OwnerVO;
+import com.mainWeb.searchBang.owner.model.RoomVO;
 
 @Repository
 public class OwnerDAOImpl implements OwnerDAO {
@@ -34,6 +35,12 @@ public class OwnerDAOImpl implements OwnerDAO {
 	@Override
 	public void addedAccom(AccomVO accomVO) {
 		sqlSessionTemplate.insert("owner.addedAccom", accomVO);
+	}
+
+	@Override
+	public void addedRoom(RoomVO roomVO) {
+		System.out.println(roomVO);
+		sqlSessionTemplate.insert("owner.addedRoom",roomVO);
 	}
 
 }

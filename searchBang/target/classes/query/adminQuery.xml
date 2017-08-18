@@ -25,7 +25,7 @@
 		insert into admin_reg values(#{adminId},#{adminPw})
 	</insert>
 	<insert id="insertNotice">
-		insert into admin_notice values(#{subject},#{content} ,#{noticeType} , notice_no_seq.nextval)
+		insert into admin_notice values(notice_no_seq.nextval,#{noticeType},#{content},#{subject})
 	</insert>
 
 	<select id="NoticeList" resultType="com.mainWeb.searchBang.admin.model.AdminNoticeVO">

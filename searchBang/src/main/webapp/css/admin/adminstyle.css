@@ -58,7 +58,7 @@ Main components
   min-height: 100%;
   position: relative;
   background-color: #FFFFFF;
-  z-index: 2;
+  z-index: -1;
   padding-top: 70px;
   /* Force Hardware Acceleration in WebKit */
   -webkit-transform: translateZ(0);
@@ -122,14 +122,14 @@ header.is-fixed {
 #cd-logo {
   display: block;
   float: left;
-  margin: 12px 0 0 20px;
+  margin: 9px 0 0 20px;
 }
 #cd-logo img {
   display: block;
 }
 @media only screen and (min-width: 10px) {
   #cd-logo {
-    margin: 22px 0 0 30px;
+    margin: 15px 0 0 30px;
   }
 }
 
@@ -334,7 +334,7 @@ header.is-fixed {
   transform: translateY(-50%) rotate(90deg);
 }
 /*
-¿ù·¡ #cd-lateral-nav .item-has-children>a::after ÀÖ´øÀÚ¸®
+ï¿½ï¿½ï¿½ï¿½ #cd-lateral-nav .item-has-children>a::after ï¿½Ö´ï¿½ï¿½Ú¸ï¿½
 */
 #cd-lateral-nav .socials {
   padding: 0 32px;

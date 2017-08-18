@@ -9,7 +9,8 @@
 <title>ARA 가족신청</title>
 <link rel="stylesheet" href="/searchBang/css/owner/owner_style.css">
 <link rel="stylesheet" href="/searchBang/css/common/btstyle.css">
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
 <script src="/searchBang/js/admin/jquery.popupoverlay.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -20,7 +21,7 @@
 			history.go(-1);
 		});
 		$('#next').click(function() {
-			var regExp = /^\d{2,3}-\d{3,4}-\d{4}$/;
+			var regExp = /^\d{2,4}-\d{3,4}-\d{4}$/;
 			var ownerName = $('#ownerName').val();
 			var ownerEmail = $('#ownerEmail').val();
 			var ownerPw = $('#ownerPw').val();
@@ -80,18 +81,18 @@
 			var v1 = $("#certify").val();
 			var v2 = $("#secret_ceritify").val();
 			var email = $('#idfield').val();
-			if(email==""){
+			if (email == "") {
 				alert("이메일을 입력해 주세요.");
 				return false;
 			}
-			if(v1 != v2){
+			if (v1 != v2) {
 				alert("인증번호가 다릅니다 올바른 인증번호를 입력해주세요.");
 				return false;
 			}
-			alert($('#idfield').val());
 			$('#ownerEmail').val($('#idfield').val());
 			var bt = document.getElementById('approvalbt');
 			bt.disabled = 'disabled';
+			$('#idchk').popup('hide');
 		});
 	});
 
@@ -117,10 +118,10 @@
 	}
 
 	// 중복클릭 방지
-	function bubblingClickChecking(){
-		if(bubblingClickFlag) // true
+	function bubblingClickChecking() {
+		if (bubblingClickFlag) // true
 			return bubblingClickFlag;
-		else{ // false
+		else { // false
 			bubblingClickFlag = true;
 			return false;
 		}
@@ -129,65 +130,72 @@
 	// 실제로 타이머가 돌아가는 함수
 	function Start() {
 		var email = $('#idfield').val();
-		if(email==""){
+		if (email == "") {
 			alert("이메일을 입력해 주세요.");
 			return false;
 		}
 		var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-		if(!regExp.test($('#idfield').val())){
+		if (!regExp.test($('#idfield').val())) {
 			alert("올바른 이메일을 적어주세요.");
 			return false;
 		}
-		var input = $('input[id="idfield"]').parent().parent().find('input[type="text"]').val();
-		if(bubblingClickChecking())
-			return ;
+		var input = $('input[id="idfield"]').parent().parent().find(
+				'input[type="text"]').val();
+		if (bubblingClickChecking())
+			return;
 		tid = setInterval('msg_time()', 1000)
 
 		$.ajax({
-			data : {idfield : input}, // key : value
+			data : {
+				idfield : input
+			}, // key : value
 			url : "getCertificationNum.owner",
-			success : function(data){
+			success : function(data) {
 				document.getElementById("secret_ceritify").value = data; // hidden 태그의 인증번호 셋팅
 			}
 		});
 	};
 
 	// 아이디 실시간 검증
-	function checkID(){
+	function checkID() {
 		var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 		// var x = document.getElementById("idfield").val();
-		if(!regExp.test($('#idfield').val())){
+		if (!regExp.test($('#idfield').val())) {
 			var message = "<font color = red>" + "올바른 이메일을 적어주세요." + "</font>";
 			document.getElementById("idCheckfield").innerHTML = message;
 			return false;
 		}
-		var input = $('input[id="idfield"]').parent().parent().find('input[type="text"]').val();
-		$.ajax({
-			data : {idfield : input},
-			type: "get",
-			url : "checkId.owner",
-			success : function(data){
-				if(data == "1"){
-					var message = "<font color = red>" + "사용할 수 없는 아이디 입니다" + "</font>";
-					document.getElementById("idCheckfield").innerHTML = message;
-				}
-				else if(data == "0"){
-					var message = "<font color = blue>" + "사용할 수 있는 아이디 입니다" + "</font>";
-					document.getElementById("idCheckfield").innerHTML = message;
-				}
-			}
-		});
+		var input = $('input[id="idfield"]').parent().parent().find(
+				'input[type="text"]').val();
+		$
+				.ajax({
+					data : {
+						idfield : input
+					},
+					type : "get",
+					url : "checkId.owner",
+					success : function(data) {
+						if (data == "1") {
+							var message = "<font color = red>"
+									+ "사용할 수 없는 아이디 입니다" + "</font>";
+							document.getElementById("idCheckfield").innerHTML = message;
+						} else if (data == "0") {
+							var message = "<font color = blue>"
+									+ "사용할 수 있는 아이디 입니다" + "</font>";
+							document.getElementById("idCheckfield").innerHTML = message;
+						}
+					}
+				});
 	}
 </script>
 </head>
 <body>
 	<!-- 헤더 -->
-	<header id="header">
-		<jsp:include page="nav.jsp" flush="false"></jsp:include>
-	</header>
+
+	<jsp:include page="topmenu.jsp" flush="false"></jsp:include>
+
 	<!-- 메인콘텐츠 -->
-	<section class="section"
-		style="margin-top: 20px; width: 800px; margin-left: auto; margin-right: auto;">
+	<div class="cd-main-content" style="width: 1000px; margin: 0 auto;">
 		<h4 id="title-a">알아방 가족이 되어주세요</h4>
 		<b id="title-b">알아방 가족 신청 페이지</b>
 
@@ -218,10 +226,12 @@
 						</tr>
 						<tr>
 							<c:if test="${!name}">
-							<td colspan="2"><input type="text" class="frmdate" id="ownerName" name="ownerName" value=""></td>
+								<td colspan="2"><input type="text" class="frmdate"
+									id="ownerName" name="ownerName" value=""></td>
 							</c:if>
 							<c:if test="${name }">
-							<td colspan="2"><input type="text" class="frmdate" id="ownerName" name="ownerName" value="${name}"></td>
+								<td colspan="2"><input type="text" class="frmdate"
+									id="ownerName" name="ownerName" value="${name}"></td>
 							</c:if>
 						</tr>
 						<tr>
@@ -231,8 +241,11 @@
 							<td colspan="2" class="label">&nbsp;&nbsp;이메일</td>
 						</tr>
 						<tr>
-							<td style="width: 75%"><input type="email" class="frmdate" id="ownerEmail" name="ownerEmail" readonly="readonly"></td>
-							<td style="width: 25%"><a class="initialism idchk_open btn btn-success"><button id="approvalbt" class="button" style="font-size: 12px;">인증하기</button></a></td>
+							<td style="width: 75%"><input type="email" class="frmdate"
+								id="ownerEmail" name="ownerEmail" readonly="readonly"></td>
+							<td style="width: 25%"><a
+								class="initialism idchk_open btn btn-success"><button
+										id="approvalbt" class="button" style="font-size: 12px;">인증하기</button></a></td>
 						</tr>
 						<tr>
 							<td colspan="2" id="ownerEmailP" class="label">&nbsp;</td>
@@ -279,14 +292,15 @@
 				</form>
 			</div>
 		</div>
-	</section>
+	</div>
 	<!-- 푸터 -->
 	<footer>
 		<jsp:include page="footer.jsp" flush="false"></jsp:include>
 	</footer>
 	<!-- 모달팝업 이메일인증 -->
 	<div id="idchk">
-		<div style="background-color: white; width: 500px; height: 500px; padding: 20px;">
+		<div
+			style="background-color: white; width: 500px; height: 500px; padding: 20px;">
 			<jsp:include page="certify.jsp" flush="false" />
 		</div>
 	</div>

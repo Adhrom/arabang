@@ -6,13 +6,13 @@ body {
 
 #footer {
 
-	
+
 	background: #f6f6f6;
 	color: #aaa;
 
 }
 
-ul li{
+#footer ul li{
 	list-style : none;
 	display: inline;
 	letter-spacing: 0.09px; /*자간*/
@@ -46,7 +46,7 @@ ul li{
 	float : inline;
 	opacity: 0.3;
 	width: 28px;
-	
+
 }
 /*
 @media screen and (max-width: 1024px) {

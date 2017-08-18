@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.mainWeb.searchBang.owner.dao.OwnerDAO;
 import com.mainWeb.searchBang.owner.model.AccomVO;
 import com.mainWeb.searchBang.owner.model.OwnerVO;
+import com.mainWeb.searchBang.owner.model.RoomVO;
 
 @Service
 public class OwnerServiceImpl implements OwnerService {
@@ -83,6 +84,11 @@ public class OwnerServiceImpl implements OwnerService {
 		if(accomVO.getParking_valet()==null)
 			accomVO.setParking_valet("off");
 		dao.addedAccom(accomVO);
+	}
+
+	@Override
+	public void addedRoom(RoomVO roomVO) {
+		dao.addedRoom(roomVO);
 	}
 
 }
