@@ -10,8 +10,7 @@
 <title>숙소 추가 페이지</title>
 <link rel="stylesheet" href="/searchBang/css/common/btstyle.css">
 <link rel="stylesheet" href="/searchBang/css/common/checkboxstyle.css">
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
 <script src="/searchBang/resources/ckeditor/ckeditor.js"></script>
 <style type="text/css">
 .divmargin {

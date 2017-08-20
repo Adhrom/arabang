@@ -183,5 +183,4 @@ public class RoomVO {
 				+ roomimg4 + ", roomimg5=" + roomimg5 + ", roomimg6=" + roomimg6 + ", roomimg8=" + roomimg8
 				+ ", roomimg9=" + roomimg9 + "]";
 	}
-
 }
