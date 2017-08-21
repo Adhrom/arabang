@@ -43,8 +43,7 @@
 					<li class="text" id="family">알아방의 가족이 되신것을 환영합니다.</li>
 				</ul>
 				<div style="width: 100px; margin: 0 auto;">
-					<a href="index.owner"><button class="button"
-							style="padding: 0 50px 0 50px;">홈으로</button></a>
+					<a href="index.owner"><button class="button" style="padding: 50px 0 50px 0;">홈으로</button></a>
 				</div>
 				<br />
 			</div>

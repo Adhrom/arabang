@@ -33,7 +33,6 @@
 			});
 		} else {
 			$('#login').popup({
-				color : 'white',
 				opacity : 1,
 				transition : '0.3s',
 				scrolllock : true
@@ -94,7 +93,7 @@
 	transition-duration: 0.2s;
 }
 </style>
-<title>Notice List</title>
+<title></title>
 </head>
 <body>
 	<!-- 로그인실패 알터창 -->

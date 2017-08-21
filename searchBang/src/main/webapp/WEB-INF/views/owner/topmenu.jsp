@@ -17,49 +17,6 @@
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
 <script src="/searchBang/js/admin/main.js"></script>
-<script src="/searchBang/js/admin/jquery.popupoverlay.js"></script>
-<script>
-	$(document).ready(function() {
-		//모달팝업
-		var loginCheck = "<%=(String) session.getAttribute("loginCheck")%>";
-
-		if (loginCheck == "failure") {
-			$('#login').popup({
-				color : 'white',
-				opacity : 1,
-				transition : '0.3s',
-				scrolllock : true,
-				autoopen : true
-			});
-		} else {
-			$('#login').popup({
-				color : 'white',
-				opacity : 1,
-				transition : '0.3s',
-				scrolllock : true
-			});
-		}
-		// 로그인
-		$("#btnLogin").click(function() {
-			var adminId = $("#adminId").val();
-			var adminPw = $("#adminPw").val();
-			if (adminId == "") {
-				alert("아이디를 입력하세요.");
-				$("#adminId").focus();
-				return;
-			}
-			if (adminPw == "") {
-				alert("비밀번호를 입력하세요.");
-				$("#adminPw").focus();
-				return;
-			}
-			// 폼 내부의 데이터를 전송할 주소
-			document.loginform.action = "login.admin"
-			// 제출
-			document.loginform.submit();
-		});
-	});
-</script>
 <style type="text/css">
 .inputarea {
 	width: 100%;
@@ -94,7 +51,7 @@
 	transition-duration: 0.2s;
 }
 </style>
-<title>Notice List</title>
+<title></title>
 </head>
 <body>
 	<!-- 로그인실패 알터창 -->
@@ -126,55 +83,17 @@
 	<!-- 오른쪽메뉴 -->
 	<nav id="cd-lateral-nav">
 		<ul class="cd-navigation">
-			<li class="item-has-children"><a href="#0">공지사항</a>
+			<li><a href="#0">공지사항</a></li>
+			<li><a href="#0">마이페이지</a></li>
+			<li class="item-has-children"><a href="#0">숙소관리</a>
 				<ul class="sub-menu">
-					<li><a href="companyNoticeList.admin">업체공지사항</a></li>
-					<li><a href="customerNoticeList.admin">고객공지사항</a></li>
+					<li><a href="customerList.admin">숙소추가/수정/삭제</a></li>
+					<li><a href="customerStats.admin">방추가/수정/삭제</a></li>
 				</ul></li>
-			<li class="item-has-children"><a href="#0">업체관리</a>
-				<ul class="sub-menu">
-					<li><a href="companyApprove.admin">업체승인/거절</a></li>
-					<li><a href="companyList.admin">업체리스트</a></li>
-					<li><a href="companyStats.admin">업체통계</a></li>
-				</ul></li>
-			<li class="item-has-children"><a href="#0">고객관리</a>
-				<ul class="sub-menu">
-					<li><a href="customerList.admin">고객리스트</a></li>
-					<li><a href="customerStats.admin">고객통계</a></li>
-				</ul></li>
-			<li><a href="salesStats.admin">매출통계</a></li>
-			<li><a href="adminManagement.admin">관리자등록</a></li>
+			<li><a href="salesStats.admin">핫딜</a></li>
+			<li><a href="salesStats.admin">1:1문의</a></li>
+			<li><a href="adminManagement.admin">이용가이드</a></li>
 		</ul>
 	</nav>
-	<!-- 로그인 모달팝업 -->
-	<div id="login">
-		<h1>ADMIN LOGIN</h1>
-		<form name="loginform" method="post">
-			<table style="width: 300px;">
-				<tr>
-					<td><input name="adminId" id="adminId" class="inputarea"
-						placeholder="ID"></td>
-				</tr>
-				<tr>
-					<td>&nbsp;</td>
-				</tr>
-				<tr>
-					<td><input type="password" name="adminPw" id="adminPw"
-						placeholder="PASSWORD" class="inputarea"></td>
-				</tr>
-				<tr>
-					<td>&nbsp;</td>
-				</tr>
-				<tr>
-					<td>
-						<button type="button" id="btnLogin" class="button"
-							style="width: 100%;">LOGIN</button>
-					</td>
-				</tr>
-			</table>
-			<input type="hidden" name="${_csrf.parameterName}"
-				value="${_csrf.token}" />
-		</form>
-	</div>
 </body>
 </html>

@@ -23,10 +23,9 @@
 					<li class="joinMent">간편한 회원가입으로 내 업체 관리 바로바로 손쉽게!</li>
 					<li class="joinMent">리뷰관리, 서비스통계, 매출관리등의 다양한 혜택들을 살펴보세요.</li>
 				</ul>
-
-				<div id="button">
+					<div style="width: 300px; margin: 0 auto;">
 					<a href="ownerReg1.owner"><button class="button">가입하기</button></a>
-				</div>
+					</div>
 			</div>
 		</div>
 	</div>
