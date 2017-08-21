@@ -8,20 +8,10 @@
 * {
 	maring:0;
 	padding:0;
-	
-}
-
-
-body{
-	margin:auto;
-	width:1000px;
-	
-	font-family:'Spoqa Han Sans', sans-serif;
-	
-	
-	/*웹폰트 안티앨리어싱*/
 
 }
+
+
 
 
 /*///////////////////////
@@ -88,7 +78,7 @@ header {
 	margin:auto;
 	margin-top:30px;
 	margin-bottom:10px;
-	
+
 	text-align:center;
 	border: solid 1px white;
 	font-weight:normal;
@@ -108,10 +98,10 @@ div#login-box {
 	border: solid 1px white;
 	font-weight:normal;
 	color:#192A28;
-	
+
 }
 .input-txt {
-	
+
 	margin-left:20px;
 	margin-bottom:5px;
 	font-size:9pt;
@@ -122,10 +112,10 @@ div#input-box {
 	margin: auto;
 	width:auto;
 	height:30px;
-	
+
 	font-size:large;
-	
-	
+
+
 }
 
 
@@ -138,46 +128,46 @@ div#input-box {
 	box-shadow:0.5px 0.2px 0.5px 0.2px lightgray;
 }
 
-input[type=checkbox] {  
-    display: none;  
+input[type=checkbox] {
+    display: none;
 }
 
 input[type=checkbox] + label{
 	margin-top:20px;
-    display: inline-block;  
-    cursor: pointer;  
-    position: relative;  
-    padding-left: 25px;  
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    padding-left: 25px;
     margin-right: 15px;
-    font-weight:normal; 
+    font-weight:normal;
     font-size: 10pt;
-    
+
 }
 
-input[type=checkbox]+ label:before {     
-	
-    content: "";  
-    display: inline-block;  
-    width: 15px;  
-    height: 15px;  
-    margin-right: 20px;  
-    position: absolute;  
-    left: 0;  
-    bottom: 1px;  
-    background-color: white;  
-    
+input[type=checkbox]+ label:before {
+
+    content: "";
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-right: 20px;
+    position: absolute;
+    left: 0;
+    bottom: 1px;
+    background-color: white;
+
     box-shadow: 1px 1px 0px 0px gray, 0px 0px 1px 1px gray;
-    /*box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);*/  
+    /*box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);*/
 }
-input[type=checkbox]:checked + label:before { 
+input[type=checkbox]:checked + label:before {
 
     content: "\2713";  /* 체크모양 */
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);  
-    font-size: 15px; 
-    font-weight:800; 
-    color: #fff;  
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
+    font-size: 15px;
+    font-weight:800;
+    color: #fff;
     background:#2f87c1;
-    text-align: center;  
+    text-align: center;
     line-height: 15px;  /*체크크기조절*/
 
 }
@@ -185,7 +175,7 @@ input[type=checkbox]:checked + label:before {
 
 div#remember-txt-sector {
 	margin:auto;
-	
+
 	border: solid 1px white;
 }
 
@@ -248,19 +238,19 @@ input#social-login {
   box-sizing: border-box;
   position: relative;
   /* width: 13em;  - apply for fixed size */
-  
+
   margin-top: 5px;
-  
-  
+
+
   padding: 0 15px 0 46px;
   border: none;
   text-align: left;
   line-height: 34px;
   white-space: nowrap;
-  
+
   font-size: 10px;
   color: #FFF;
-  
+
 }
 .loginBtn:before {
   content: "";
@@ -275,7 +265,7 @@ input#social-login {
   outline: none;
 }
 .loginBtn:active {
-	
+
   	box-shadow: inset 0 0 0 32px rgba(0,0,0,0.1);
 }
 
@@ -285,7 +275,7 @@ input#social-login {
   background-color: #4C69BA;
   background-image: linear-gradient(#4C69BA, #3B55A0);
   /*font-family: "Helvetica neue", Helvetica Neue, Helvetica, Arial, sans-serif;*/
-  
+
   text-shadow: 0 -1px 0 #354C8C;
 }
 .loginBtn--facebook:before {
@@ -302,7 +292,7 @@ input#social-login {
 .loginBtn--naver {
   /*font-family: "Roboto", Roboto, arial, sans-serif;*/
   background: #4ab941;
-  
+
   left:7px;
 }
 .loginBtn--naver:before {
@@ -312,7 +302,7 @@ input#social-login {
 .loginBtn--naver:hover,
 .loginBtn--naver:focus {
   background: #3ed86c;
-  
+
 }
 
 /* Google */
@@ -351,11 +341,11 @@ input#social-login {
 /*SOHO 가입*/
 
 .soho-form {
-	margin:0 auto;	
+	margin:0 auto;
 	width:800px;
 }
 .soho-comment {
-	font-size:20px;	
+	font-size:20px;
 }
 
 .soho-title {
@@ -367,7 +357,7 @@ input#social-login {
 /*방정보 검색 jsp start */
 
 aside#left { /*좌측 조건및 체크박스 구간*/
-	
+
 	margin-top:5px;
 	margin-bottom:5px;
 	width:230px;
@@ -394,7 +384,7 @@ aside#left { /*좌측 조건및 체크박스 구간*/
 	text-align:justify;
 	text-justify:inter-cluster;
 	border: solid 1px white;
-	
+
 }
 
 
@@ -415,9 +405,9 @@ aside#left { /*좌측 조건및 체크박스 구간*/
 	font-size:10px;
 	background-color:white;
 	color:#00a699;
-	
-	
-	
+
+
+
 }
 #btn-submit {
 	display:block;
@@ -431,17 +421,17 @@ aside#left { /*좌측 조건및 체크박스 구간*/
 	border-style:solid;
 	border-width:1px;
 	border-radius:5px;
-	border-style:solid;	
+	border-style:solid;
 	border-color:#00a699;
 	font-weight:530;
 	font-size:10px;
 	background-color:#00a699;
 	color:white;
-	
+
 }
 
 h3#left-title-b {
-	
+
 	color: gray;
 	height: 12px;
 	font-size:11pt;
@@ -455,7 +445,7 @@ div#aside-left input {
 	font-weight:normal;
 	font-size:10pt;
 	margin-left:10px;
-	
+
 	border: dotted 1px white;
 }
 div#aside-left-list {
@@ -468,7 +458,7 @@ div#aside-left-list {
 	border: dotted 1px white;
 }
 div#aside-left-list-split-l{
-	width:45%;	
+	width:45%;
 	float:left;
 	font-size:12px;
 	color:gray;
@@ -478,7 +468,7 @@ div#aside-left-list-split-l{
 div#aside-left-list-split-r{
 	width:50%;
 
-	
+
 	float:right;
 	font-size:12px;
 	color:gray;
@@ -488,7 +478,7 @@ div#aside-left-list-split-r{
 section#view {
 	position:absoulute;
 	margin-top:15px;
-	
+
 
 }
 
@@ -496,12 +486,12 @@ section#view {
 #main-view{
 	position:absoulute;
 	float:left;
-	
+
 	margin-top:-920px;
 	margin-left:300px;
-	
+
 	border: none 1px orange;
-	
+
 }
 
 
@@ -513,14 +503,14 @@ ul li{
 	text-align:left;
 	list-style:none; /*리스트 스타일 요소를 삭제하자. -블릿제거-*/
 	color:gray;
-	
+
 }
 
 .entry {
 	position:absoulte;
 	width:697px;
 	height:295px;
-	
+
 	margin-bottom:5px;
 	background-image:url('../../img/testimg01.jpg');
 	background-size: 697px 294px;
@@ -546,12 +536,12 @@ ul li{
 
 
 
-.banner-txt-b {	
+.banner-txt-b {
 	position:absoulute;
 	width:300px;
 	padding-top:200px;
 	margin-left:20px;
-	
+
 	color:white;
 	text-shadow: 0px 1px 1px 1px black;
 	border:none 1px white;
@@ -614,7 +604,7 @@ ul li{
 	line-height:8pt;
 	text-align:center;
 	text-shadow: 0px 2px 1px 0px black;
-	
+
 }
 .banner-price-c {
 	position:absoulute;
@@ -625,7 +615,7 @@ ul li{
 	font-weight:normal;
 	color:white;
 	text-shadow: 0px 2px 1px 1px black;
-	
+
 }
 
 /*방정보 검색 jsp end*/

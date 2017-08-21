@@ -1,12 +1,7 @@
 @CHARSET "UTF-8";
 /* Footer */
-body {
-	height:200px;
-}
-
 #footer {
-
-
+	height:200px;
 	background: #f6f6f6;
 	color: #aaa;
 

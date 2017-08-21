@@ -53,8 +53,7 @@
 		#{option_snackBar} , #{parking_valet} ,
 		#{parking_inCharge} ,
 		#{parking_free} ,
-		#{parking_none}
-		,#{parking_having} ,#{ownerEmail}
+		#{parking_having} ,#{ownerEmail}
 		,#{accomAddress2}
 		)
 	</insert>

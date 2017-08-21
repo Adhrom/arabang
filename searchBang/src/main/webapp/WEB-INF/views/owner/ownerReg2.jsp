@@ -11,7 +11,6 @@
 <link rel="stylesheet" href="/searchBang/css/common/btstyle.css">
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
-<script src="/searchBang/js/admin/jquery.popupoverlay.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#idchk').popup({

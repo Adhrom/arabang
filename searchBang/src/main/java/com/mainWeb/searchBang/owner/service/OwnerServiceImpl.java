@@ -76,11 +76,9 @@ public class OwnerServiceImpl implements OwnerService {
 		if(accomVO.getParking_free()==null)
 			accomVO.setParking_free("off");
 		if(accomVO.getParking_having()==null)
-			accomVO.setParking_having("off");
+			accomVO.setParking_having("no");
 		if(accomVO.getParking_inCharge()==null)
 			accomVO.setParking_inCharge("off");
-		if(accomVO.getParking_none()==null)
-			accomVO.setParking_none("off");
 		if(accomVO.getParking_valet()==null)
 			accomVO.setParking_valet("off");
 		dao.addedAccom(accomVO);

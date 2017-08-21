@@ -12,38 +12,44 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class UserController {
-	
+
 	private Map<String, Object> map = new HashMap<String, Object>();
-	
+
+	// 메인인덱스
+	@RequestMapping("index.bang")
+	public String index(){
+		return "index";
+	}
+
 	@RequestMapping("/login.bang")
 	public String userLogin(){
 		map.clear();
 		return "login";
 	}
-	
+
 	@RequestMapping("/naverLoginProc.bang")
 	public String naverLoginProc(){
 		return "naverLoginProc";
 	}
-	
-	//  setKakaoInfo() , setNaverInfo() 함수는 모두 같은 형태를 띄고 있어서 facebook / google 
+
+	//  setKakaoInfo() , setNaverInfo() 함수는 모두 같은 형태를 띄고 있어서 facebook / google
 	// 로그인 연동 또한 이런 같은 형태의 모형이 나온다면 한번에 합칠예정임.
-	// 일단은 되는대로 함수만들어서 세팅중임 .... 
-	
+	// 일단은 되는대로 함수만들어서 세팅중임 ....
+
 	@RequestMapping(value="/kakaogetInfo.bang", method={RequestMethod.GET , RequestMethod.POST})
-	public @ResponseBody void setKakaoInfo(@RequestParam("nickname") String nickname, 
+	public @ResponseBody void setKakaoInfo(@RequestParam("nickname") String nickname,
 			@RequestParam("email") String email){
 		map.put("nickname", nickname);
 		map.put("email", email);
 	}
-	
+
 	@RequestMapping(value="/navergetInfo.bang")
-	public @ResponseBody void setNaverInfo(@RequestParam("email") String email, 
+	public @ResponseBody void setNaverInfo(@RequestParam("email") String email,
 			@RequestParam("nickname") String nickname){
 		map.put("email", email);
 		map.put("nickname", nickname);
 	}
-	
+
 	@RequestMapping("/sendInfo.bang")
 	public ModelAndView sendInfo(){
 		ModelAndView mv = new ModelAndView();

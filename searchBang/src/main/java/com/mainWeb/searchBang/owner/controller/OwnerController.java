@@ -32,6 +32,11 @@ public class OwnerController {
 	// 암호화 객체 할당
 	SHA256 sha = SHA256.getInsatnce();
 
+	// 오너 인덱스
+	@RequestMapping("/index.owner")
+	public String index(){
+		return "index";
+	}
 	// 회원가입 화면
 	@RequestMapping("/newCompanyJoin.owner")
 	public String companyjoin(){
