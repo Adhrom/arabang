@@ -14,10 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class UserController {
 	
 	private Map<String, Object> map = new HashMap<String, Object>();
-	
 	@RequestMapping("/login.bang")
 	public String userLogin(){
-		map.clear();
 		return "login";
 	}
 	
@@ -37,9 +35,16 @@ public class UserController {
 		map.put("email", email);
 	}
 	
-	@RequestMapping(value="/navergetInfo.bang")
+	@RequestMapping(value="/navergetInfo.bang",method={RequestMethod.GET , RequestMethod.POST})
 	public @ResponseBody void setNaverInfo(@RequestParam("email") String email, 
 			@RequestParam("nickname") String nickname){
+		map.put("email", email);
+		map.put("nickname", nickname);
+	}
+	
+	@RequestMapping(value="/facebookInfo.bang",method={RequestMethod.GET , RequestMethod.POST})
+	public @ResponseBody void setFacebookInfo(@RequestParam("nickname") String nickname,
+			@RequestParam("email") String email){
 		map.put("email", email);
 		map.put("nickname", nickname);
 	}
