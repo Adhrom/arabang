@@ -9,7 +9,7 @@ body, h1, h2, h3, h4, h5, h6, input, textarea, select, button, table {
     -webkit-tap-highlight-color: transparent;
 }
 
-ul, il{
+#join ul li{
 	list-style: none;
 	margin-left: auto;
 	margin-right: auto;
@@ -37,9 +37,4 @@ b#title-b {
 	font-size: 30px;
 	color: #00a699;
 	margin-bottom: 1%;
-}
-#button{
-	width:1000px;
-	margin-left:36.8%;
-	margin-bottom: 5%;
 }
