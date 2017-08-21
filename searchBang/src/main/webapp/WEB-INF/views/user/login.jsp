@@ -6,6 +6,8 @@
 <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+<script src="https://apis.google.com/js/api:client.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Login View</title>
 <!-- HTTPS required. HTTP will give a 403 forbidden response -->
@@ -41,10 +43,13 @@
 <div id="naver_id_login"></div>
 <div id="fb-root"></div>
 <div class="fb-login-button" data-max-rows="1" data-size="large"
-	data-button-type="login_with" data-show-faces="true"
-data-auto-logout-link="true" data-use-continue-as="false"></div> 
+	data-button-type="login_with" data-show-faces="false"
+data-auto-logout-link="false" data-use-continue-as="false"></div> 
 <!-- data-auto-logout-link  = false 로 해야 login / logout 체인지 x-->
 <div id="test1"></div> <!-- 로그인 했을때 정보가 나오게 하는 div태그 지워도 상관 x -->
+<div id="customBtn" class="customGPlusSignIn">
+<span class="icon"></span>
+<span class="buttonText">Google로 로그인 하기</span>
 </div>
 </form>
 </body>
@@ -170,8 +175,13 @@ data-auto-logout-link="true" data-use-continue-as="false"></div>
 				},
 				dataType : "json"
 			});
-			location.href = "sendInfo.bang";
+			//location.href = "sendInfo.bang";
 		});
 	}	
+	
+	
+	// Google login Script part..
+	
+	
 </script>
 </html>

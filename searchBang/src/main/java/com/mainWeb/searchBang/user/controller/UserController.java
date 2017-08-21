@@ -1,19 +1,26 @@
 package com.mainWeb.searchBang.user.controller;
 
-import java.util.HashMap;
-import java.util.Map;
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mainWeb.searchBang.user.service.UserService;
+
 @Controller
+@SessionAttributes({"nickname","email"})
 public class UserController {
 	
-	private Map<String, Object> map = new HashMap<String, Object>();
+	@Inject
+	private UserService service;
+	
 	@RequestMapping("/login.bang")
 	public String userLogin(){
 		return "login";
@@ -29,32 +36,14 @@ public class UserController {
 	// 일단은 되는대로 함수만들어서 세팅중임 .... 
 	
 	@RequestMapping(value="/kakaogetInfo.bang", method={RequestMethod.GET , RequestMethod.POST})
-	public @ResponseBody void setKakaoInfo(@RequestParam("nickname") String nickname, 
-			@RequestParam("email") String email){
-		map.put("nickname", nickname);
-		map.put("email", email);
+	public void socialInfoSetting(Model model, HttpServletRequest request){
+		model.addAttribute("nickname",request.getParameter("nickname"));
+		model.addAttribute("email",request.getParameter("email"));
 	}
-	
-	@RequestMapping(value="/navergetInfo.bang",method={RequestMethod.GET , RequestMethod.POST})
-	public @ResponseBody void setNaverInfo(@RequestParam("email") String email, 
-			@RequestParam("nickname") String nickname){
-		map.put("email", email);
-		map.put("nickname", nickname);
-	}
-	
-	@RequestMapping(value="/facebookInfo.bang",method={RequestMethod.GET , RequestMethod.POST})
-	public @ResponseBody void setFacebookInfo(@RequestParam("nickname") String nickname,
-			@RequestParam("email") String email){
-		map.put("email", email);
-		map.put("nickname", nickname);
-	}
-	
+
 	@RequestMapping("/sendInfo.bang")
-	public ModelAndView sendInfo(){
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("nickname",(String)map.get("nickname"));
-		mv.addObject("email",(String)map.get("email"));
-		mv.setViewName("owner_join");
-		return mv;
+	public String sendInfo(@ModelAttribute(value="nickname") String name){
+		System.out.println(name);
+		return "owner_join";
 	}
 }
