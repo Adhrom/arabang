@@ -22,7 +22,7 @@ public class AdminController {
 
 	@Inject
 	AdminService adminService;
-	SHA256 sha = SHA256.getInsatnce();
+//	SHA256 sha = SHA256.getInsatnce(); sha 객체 할당
 
 	// index
 	@RequestMapping("/index.admin")
@@ -44,8 +44,8 @@ public class AdminController {
 	@RequestMapping("/regAdmin.admin")
 	public String regAdmin(@ModelAttribute AdminVO vo) throws Exception {
 
-		String cryptStr = sha.getSha256(vo.getAdminPw().getBytes());
-		vo.setAdminPw(cryptStr);
+//		String cryptStr = sha.getSha256(vo.getAdminPw().getBytes());  비밀번호 세팅과정
+//		vo.setAdminPw(cryptStr);
 
 		adminService.insertAdmin(vo);
 		return "redirect:adminManagement.admin";
@@ -176,9 +176,9 @@ public class AdminController {
 	public ModelAndView login(@ModelAttribute AdminVO vo,
 			HttpSession session) throws Exception {
 
-		// 로그인시 암호화해서 vo모델링
-		String cryptPw = sha.getSha256(vo.getAdminPw().getBytes());
-		vo.setAdminPw(cryptPw);
+//		로그인시 암호화해서 vo모델링
+//		String cryptPw = sha.getSha256(vo.getAdminPw().getBytes());
+//		vo.setAdminPw(cryptPw);
 
 		boolean result = adminService.loginCheck(vo, session);
 		ModelAndView mv = new ModelAndView();

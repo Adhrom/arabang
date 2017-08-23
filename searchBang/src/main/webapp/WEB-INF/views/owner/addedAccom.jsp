@@ -313,7 +313,7 @@ input[type=file] {
 							<td width="85%"><input type="text" id="accomAddress2"
 								name="accomAddress2" placeholder="나머지 주소"
 								style="width: 99%; height: 30px; padding-left: 15px;"></td>
-							<td style="padding-left: 15px;"><input type="button"
+							<td><input type="button"
 								value="검색" onclick="execDaumPostcode()" class="button">
 							</td>
 						</tr>
@@ -327,11 +327,11 @@ input[type=file] {
 				<div id="parking" class="checks etrans divmargin">
 					<strong>주차장 정보</strong>
 					<div class="divmargin2"></div>
-					&nbsp; <input type="checkbox" name="parking_having"
-						id="parking_having"><label for="parking_having">주차시설
-						보유(이용 전 숙소에 문의해주세요)</label>&nbsp;&nbsp; <input type="checkbox"
-						name="parking_none" id="parking_none"><label
-						for="parking_none">주차시설 미보유</label>
+					&nbsp; <input type="radio" name="parking_having"
+						id="parking_having_yes" value="yes"><label for="parking_having_yes">주차시설
+						보유(이용 전 숙소에 문의해주세요)</label>&nbsp;&nbsp; <input type="radio"
+						name="parking_having" id="parking_having_no" value="no"><label
+						for="parking_having_no">주차시설 미보유</label>
 					<div class="divmargin2"></div>
 					&nbsp; <input type="checkbox" name="parking_valet"
 						id="parking_valet"><label for="parking_valet">무료

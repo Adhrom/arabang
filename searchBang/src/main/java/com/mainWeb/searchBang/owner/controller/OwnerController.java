@@ -1,5 +1,6 @@
 package com.mainWeb.searchBang.owner.controller;
 
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,6 +9,7 @@ import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.codec.binary.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +25,7 @@ import com.mainWeb.searchBang.owner.service.OwnerService;
 import com.mainWeb.searchBang.utils.CharMix;
 import com.mainWeb.searchBang.utils.Mail;
 import com.mainWeb.searchBang.utils.SHA256;
-import com.sun.mail.util.BASE64EncoderStream;
+
 
 @Controller
 public class OwnerController {
@@ -32,7 +34,13 @@ public class OwnerController {
 	private OwnerService service;
 	// 암호화 객체 할당
 	SHA256 sha = SHA256.getInsatnce();
+	
 
+	// 오너 인덱스
+	@RequestMapping("/index.owner")
+	public String index(){
+		return "index";
+	}
 	// 회원가입 화면
 	@RequestMapping("/newCompanyJoin.owner")
 	public String companyjoin(){

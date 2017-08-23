@@ -17,6 +17,8 @@
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
 <script src="/searchBang/js/admin/main.js"></script>
+<script src="/searchBang/js/admin/jquery.popupoverlay.js"></script>
+<script src="/searchBang/js/owner/index.min.js"></script>
 <style type="text/css">
 .inputarea {
 	width: 100%;
@@ -87,12 +89,12 @@
 			<li><a href="#0">마이페이지</a></li>
 			<li class="item-has-children"><a href="#0">숙소관리</a>
 				<ul class="sub-menu">
-					<li><a href="customerList.admin">숙소추가/수정/삭제</a></li>
-					<li><a href="customerStats.admin">방추가/수정/삭제</a></li>
+					<li><a href="addedAccom.owner">숙소추가/수정/삭제</a></li>
+					<li><a href="addedRoom.owner">방추가/수정/삭제</a></li>
 				</ul></li>
-			<li><a href="salesStats.admin">핫딜</a></li>
-			<li><a href="salesStats.admin">1:1문의</a></li>
-			<li><a href="adminManagement.admin">이용가이드</a></li>
+			<li><a href="#">핫딜</a></li>
+			<li><a href="#">1:1문의</a></li>
+			<li><a href="#">이용가이드</a></li>
 		</ul>
 	</nav>
 </body>

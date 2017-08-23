@@ -5,9 +5,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="refresh" content="3">
+<meta http-equiv="refresh" content="5">
 <title>Insert title here</title>
-<link rel="stylesheet" href="owner_join.css">
+<link rel="stylesheet" href="/searchBang/css/user/owner_join.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
 	function changeView(value) {
@@ -34,8 +34,7 @@
 </head>
 <body>
 
-	<section class="section"
-		style="margin-top: 20px; width: 1000px; margin-left: auto; margin-right: auto;">
+	<section class="section" style="margin-top: 20px; width: 1000px; margin-left: auto; margin-right: auto;">
 		<h4 id="title-a">알아방 가족이 되어주세요</h4>
 		<b id="title-b">알아방 가족 신청 페이지</b>
 
@@ -52,6 +51,7 @@
 		</div>
 
 		<div class="input-box">
+			<form action="resistUser.bang" name="registUser" method="post">
 			<input type="hidden" name="idCheckval" id="idCheckVal" value=0>
 			<c:if test=""> <!-- 아이디 체크를 거쳤을 경우 세팅 될 값..? -->
 				<input type="hidden" name="idCheckVal" id="idCheckVal" value="${CheckVal}"> 
@@ -81,9 +81,10 @@
 			<b id="input-name-text">업체 대표 번호</b><br /> 
 			<input class="input-value" type="tel" name="phone"> 
 			
-			<input id="back-btn" type="button" name="back" value="이전"> 
+			<input id="back-btn" type="button" name="back" value="이전" onclick="'javascirpt:history.go(-1)'"> 
 			<input id="next-btn" type="submit" id="next" value="다음" onClick="changeView(4);">
 			</div>
+			</form>
 		</div>
 	</section>
 </body>

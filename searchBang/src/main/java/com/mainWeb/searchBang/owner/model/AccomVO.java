@@ -45,7 +45,6 @@ public class AccomVO {
 	private String parking_valet;
 	private String parking_inCharge;
 	private String parking_free;
-	private String parking_none;
 	private String parking_having;
 	private String ownerEmail;
 
@@ -409,13 +408,6 @@ public class AccomVO {
 		this.parking_free = parking_free;
 	}
 
-	public String getParking_none() {
-		return parking_none;
-	}
-
-	public void setParking_none(String parking_none) {
-		this.parking_none = parking_none;
-	}
 
 	public String getParking_having() {
 		return parking_having;
@@ -443,8 +435,7 @@ public class AccomVO {
 				+ option_glamping + ", option_seminar=" + option_seminar + ", option_womenOnly=" + option_womenOnly
 				+ ", option_nokids=" + option_nokids + ", option_freeBlackfast=" + option_freeBlackfast
 				+ ", option_snackBar=" + option_snackBar + ", parking_valet=" + parking_valet + ", parking_inCharge="
-				+ parking_inCharge + ", parking_free=" + parking_free + ", parking_none=" + parking_none
-				+ ", parking_having=" + parking_having + ", ownerEmail=" + ownerEmail + "]";
+				+ parking_inCharge + ", parking_free=" + parking_free + ", parking_having=" + parking_having + ", ownerEmail=" + ownerEmail + "]";
 	}
 
 

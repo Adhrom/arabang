@@ -20,7 +20,7 @@ function naverSignInCallback() {
 		},
 		type : "post",
 		dataType : "json",
-		url : "navergetInfo.bang"
+		url : "getInfo.bang"
 	});
 }
 </script>
