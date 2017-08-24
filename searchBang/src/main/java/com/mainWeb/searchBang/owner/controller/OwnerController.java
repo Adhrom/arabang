@@ -1,17 +1,12 @@
 package com.mainWeb.searchBang.owner.controller;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 import javax.inject.Inject;
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -19,12 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.mainWeb.searchBang.admin.model.AdminNoticeVO;
-import com.mainWeb.searchBang.admin.service.AdminService;
 import com.mainWeb.searchBang.owner.model.AccomVO;
 import com.mainWeb.searchBang.owner.model.OwnerVO;
 import com.mainWeb.searchBang.owner.model.RoomVO;
@@ -38,24 +29,17 @@ public class OwnerController {
 
 	@Inject
 	private OwnerService service;
-	@Inject
-	AdminService adminService;
 	// 암호화 객체 할당
 	SHA256 sha = SHA256.getInsatnce();
 
 	// 오너 인덱스
 	@RequestMapping("/index.owner")
-	public ModelAndView index() {
-		ModelAndView mv = new ModelAndView();
-		List<AdminNoticeVO> list = service.noticeList();
-		mv.addObject("list", list);
-		mv.setViewName("index");
-		return mv;
+	public String index(){
+		return "index";
 	}
-
 	// 회원가입 화면
 	@RequestMapping("/newCompanyJoin.owner")
-	public String companyjoin() {
+	public String companyjoin(){
 		return "newCompanyJoin";
 	}
 
@@ -63,12 +47,10 @@ public class OwnerController {
 	public String onwer_join1() {
 		return "ownerReg1";
 	}
-
 	@RequestMapping("/ownerReg2.owner")
 	public String onwer_join2() {
 		return "ownerReg2";
 	}
-
 	@RequestMapping("/ownerReg3.owner")
 	public String onwer_join3() {
 		return "ownerReg3";
@@ -82,9 +64,9 @@ public class OwnerController {
 
 	// 로그인 처리
 	@RequestMapping(value = "/loginProc.owner", method = RequestMethod.POST)
-	public ModelAndView loginCheck(@RequestParam("loginEmail") String id, @RequestParam("loginPass") String pass,
-			HttpServletRequest req) throws Exception {
-		HttpSession session = req.getSession();
+	public ModelAndView loginCheck(@RequestParam("loginEmail") String id, @RequestParam("loginPass") String pass)
+			throws Exception {
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		String cryptPass = sha.getSha256(pass.getBytes());
 
@@ -94,7 +76,6 @@ public class OwnerController {
 		ModelAndView mv = new ModelAndView();
 
 		if (service.loginOwner(map).equals("y")) {
-			session.setAttribute("loginId", id);
 			// 관리자 승인OK
 		}
 
@@ -104,10 +85,8 @@ public class OwnerController {
 
 		else if (service.loginOwner(map).equals("c")) {
 			// 관리자 승인 거절.
-		} else if (service.loginOwner(map).equals("")) {
-			session.setAttribute("msg", "failure");
 		}
-		mv.setViewName("redirect:index.owner");
+		mv.setViewName("로그인 결과 뷰명칭");
 		return mv;
 	}
 
@@ -122,7 +101,7 @@ public class OwnerController {
 
 		service.insertOwner(ownerVO);
 
-		return "ownerReg3";
+		return "ownerReg3.owner";
 	}
 
 	// 실시간 아이디 체크(?)
@@ -143,195 +122,32 @@ public class OwnerController {
 		return message;
 	}
 
-	// 로그아웃
-	@RequestMapping("/logout.owner")
-	public String logout(HttpSession session) {
-		service.logout(session);
-		return "redirect:index.owner";
-	}
-
-	// 숙소관리
-	@RequestMapping("/accomManagement.owner")
-	public ModelAndView accomManagement(HttpServletRequest req) {
-		ModelAndView mv = new ModelAndView();
-		HttpSession session = req.getSession(false);
-		String loginId = (String) session.getAttribute("loginId");
-		List<AccomVO> list = service.accomList(loginId);
-		mv.addObject("size", list.size());
-		mv.addObject("list", list);
-		mv.setViewName("accomManagement");
-		return mv;
-	}
-
 	// 숙소추가페이지
 	@RequestMapping("/addedAccom.owner")
-	public ModelAndView addedAccom(@RequestParam(value = "accom_no", required = false) String accom_no) {
-		ModelAndView mv = new ModelAndView();
-		try {
-			if (accom_no.length() != 0) {
-				AccomVO vo = service.accomInfo(accom_no);
-				mv.addObject("vo", vo);
-			}
-		} catch (Exception e) {
-		}
-		mv.setViewName("addedAccom");
-		return mv;
+	public String addedAccom() {
+		return "addedAccom";
 	}
 
 	// 숙소추가
-	@RequestMapping(value = "/insertAccom.owner", method = RequestMethod.POST)
-	public String insertAccom(@ModelAttribute AccomVO accomVO, MultipartHttpServletRequest req)
-			throws IllegalStateException, IOException {
-		HttpSession session = req.getSession(false);
-		List<MultipartFile> files = accomVO.getUploadFile(); // MultipartFile타입의
-																// 리스트
-		String fileName[] = new String[files.size()]; // 파일 이름을 닮을 배열
-		String root_path = session.getServletContext().getRealPath("/"); // 루트
-																			// 경로
-		String real_path = "img/owner/Accom/"; // 상대경로
-		String path = root_path + real_path; // 전체경로\
-		File Dir = new File(path); // 폴더가 없으면 만들기 위해서
-		if (!Dir.exists())
-			Dir.mkdirs();
-		if (!files.isEmpty()) // 업로드파일이 비어 있지 않다면
-		{
-			for (int i = 0; i < files.size(); i++) {
-				UUID uuid = UUID.randomUUID();
-				fileName[i] = files.get(i).getOriginalFilename();
-				String saveName = uuid.toString() + "_" + fileName[i];
-				files.get(i).transferTo(new File(path + saveName));
-				if (i == 0)
-					accomVO.setAccomimg1("/searchBang/" + real_path + saveName);
-				if (i == 1)
-					accomVO.setAccomimg2("/searchBang/" + real_path + saveName);
-				if (i == 2)
-					accomVO.setAccomimg3("/searchBang/" + real_path + saveName);
-				if (i == 3)
-					accomVO.setAccomimg4("/searchBang/" + real_path + saveName);
-				if (i == 4)
-					accomVO.setAccomimg5("/searchBang/" + real_path + saveName);
-				if (i == 5)
-					accomVO.setAccomimg6("/searchBang/" + real_path + saveName);
-				if (i == 6)
-					accomVO.setAccomimg7("/searchBang/" + real_path + saveName);
-				if (i == 7)
-					accomVO.setAccomimg8("/searchBang/" + real_path + saveName);
-				if (i == 8)
-					accomVO.setAccomimg9("/searchBang/" + real_path + saveName);
-			}
-		}
-		accomVO.setOwnerEmail((String) session.getAttribute("loginId"));
+	@RequestMapping("/insertAccom.owner")
+	public String insertAccom(@ModelAttribute AccomVO accomVO, HttpServletRequest req) {
+		// HttpSession session = request.getSession();
+		// accomVO.setOwnerEmail((String)session.getAttribute("ownerEmail"));
+		accomVO.setOwnerEmail("dlwjdtn777@gmail.com");
 		service.addedAccom(accomVO);
-		return "index";
-	}
-
-	// 숙소삭제
-	@RequestMapping("/deleteAccom.owner")
-	public String deleteAccom(@RequestParam(value = "accom_no", required = true) String accom_no) {
-		service.deleteAccom(accom_no);
-		return "redirect:accomManagement.owner";
-	}
-
-	// 방관리
-	@RequestMapping("/roomManagement")
-	public ModelAndView roomManagement(@RequestParam(value = "accom_no", required = false) String accom_no,
-			HttpServletRequest req) {
-		HttpSession session = req.getSession();
-		session.setAttribute("accom_no", accom_no);
-		ModelAndView mv = new ModelAndView();
-		List<RoomVO> list = service.roomList(accom_no);
-		mv.addObject("size", list.size());
-		mv.addObject("list", list);
-		mv.setViewName("roomManagement");
-		return mv;
+		return "ownerReg";
 	}
 
 	// 방추가페이지
 	@RequestMapping("/addedRoom.owner")
-	public ModelAndView addedRoom(@RequestParam(value = "room_no", required = false) String room_no) {
-		ModelAndView mv = new ModelAndView();
-		try {
-			if (room_no.length() != 0) {
-				RoomVO vo = service.roomInfo(room_no);
-				mv.addObject("vo", vo);
-			}
-		} catch (Exception e) {
-		}
-		mv.setViewName("addedRoom");
-		return mv;
+	public String addedRoom() {
+		return "addedRoom";
 	}
 
-	// 방추가
-	@RequestMapping(value = "/insertRoom.owner", method = RequestMethod.POST)
-	public String insertOwner(MultipartHttpServletRequest req, @ModelAttribute RoomVO roomVO)
-			throws IllegalStateException, IOException {
-		HttpSession session = req.getSession();
-		List<MultipartFile> files = roomVO.getUploadFile(); // MultipartFile타입의
-															// 리스트
-		String fileName[] = new String[files.size()]; // 파일 이름을 닮을 배열
-		String root_path = session.getServletContext().getRealPath("/"); // 루트
-																			// 경로
-		String real_path = "img/owner/Room/"; // 상대경로
-		String path = root_path + real_path; // 전체경로
-		File Dir = new File(path); // 폴더가 없으면 만들기 위해서
-		if (!Dir.exists())
-			Dir.mkdirs();
-		if (!files.isEmpty()) // 업로드파일이 비어 있지 않다면
-		{
-			for (int i = 0; i < files.size(); i++) {
-				UUID uuid = UUID.randomUUID();
-				fileName[i] = files.get(i).getOriginalFilename();
-				String saveName = uuid.toString() + "_" + fileName[i];
-				files.get(i).transferTo(new File(path + saveName));
-				if (i == 0)
-					roomVO.setRoomimg1("/searchBang/" + real_path + saveName);
-				if (i == 1)
-					roomVO.setRoomimg2("/searchBang/" + real_path + saveName);
-				if (i == 2)
-					roomVO.setRoomimg3("/searchBang/" + real_path + saveName);
-				if (i == 3)
-					roomVO.setRoomimg4("/searchBang/" + real_path + saveName);
-				if (i == 4)
-					roomVO.setRoomimg5("/searchBang/" + real_path + saveName);
-				if (i == 5)
-					roomVO.setRoomimg6("/searchBang/" + real_path + saveName);
-				if (i == 6)
-					roomVO.setRoomimg7("/searchBang/" + real_path + saveName);
-				if (i == 7)
-					roomVO.setRoomimg8("/searchBang/" + real_path + saveName);
-				if (i == 8)
-					roomVO.setRoomimg9("/searchBang/" + real_path + saveName);
-			}
-		}
-		service.addedRoom(roomVO, session);
-		return "index";
-	}
-
-	// 방삭제
-	@RequestMapping("/deleteRoom.owner")
-	public String deleteRoom(@RequestParam(value = "room_no", required = true) String room_no) {
-		service.deleteRoom(room_no);
-		return "redirect:accomManagement.owner";
-	}
-
-	// 공지사항리스트
-	@RequestMapping("/noticeList.owner")
-	public ModelAndView companyNoticeList() {
-		String noticeType = "company";
-		List<AdminNoticeVO> noticeList = adminService.NoticeList(noticeType);
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("noticeList");
-		mv.addObject("noticeList",noticeList);
-		return mv;
-	}
-
-	// 공지사항 읽기
-	@RequestMapping("/noticeRead.owner")
-	public ModelAndView noticeRead(@RequestParam(value="notice_no", required=true)String notice_no){
-		AdminNoticeVO noticeVO = adminService.noticeRead(notice_no);
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("noticeVO",noticeVO);
-		mv.setViewName("noticeRead");
-		return mv;
+	// 숙소추가
+	@RequestMapping("/insertRoom.owner")
+	public String insertOwner(@ModelAttribute RoomVO roomVO, HttpServletRequest req){
+		service.addedRoom(roomVO);
+		return "ownerReg";
 	}
 }

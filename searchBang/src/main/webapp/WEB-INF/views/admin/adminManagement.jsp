@@ -134,6 +134,7 @@
 				<c:forEach var="row" items="${list }">
 					<tr class="adminList">
 						<td class="admintd">${row.adminId}</td>
+						<td class="admintd">${row.adminPw}</td>
 						<td class="admintd"><c:if test="${row.adminId != 'master' }">
 								<c:if test="${row.adminId != sessionScope.loginId}">
 									<button type="button" onclick="adminD('${row.adminId}')"

@@ -64,16 +64,17 @@
 	</c:if>
 	<!-- 헤더  -->
 	<header>
-		<a id="cd-logo" href="index.owner"><img
+		<a id="cd-logo" href="index.admin"><img
 			src="/searchBang/img/admin/logo.png" alt="Homepage"></a>
 		<nav id="cd-top-nav">
 			<ul>
 				<li><c:choose>
 						<c:when test="${loginId==null }">
-							<a href="ownerLogin.owner">Login</a>
+							<a class="initialism login_open btn btn-success"
+								href="login.admin">Login</a>
 						</c:when>
 						<c:otherwise>
-							<a href="logout.owner" id="logoutbtn">Logout</a>
+							<a href="logout.admin" id="logoutbtn">Logout</a>
 						</c:otherwise>
 					</c:choose></li>
 			</ul>
@@ -84,9 +85,14 @@
 	<!-- 오른쪽메뉴 -->
 	<nav id="cd-lateral-nav">
 		<ul class="cd-navigation">
-			<li><a href="noticeList.owner">공지사항</a></li>
+			<li><a href="#0">공지사항</a></li>
 			<li><a href="#0">마이페이지</a></li>
-			<li><a href="accomManagement.owner">숙소관리</a></li>
+			<li class="item-has-children"><a href="#0">숙소관리</a>
+				<ul class="sub-menu">
+					<li><a href="addedAccom.owner">숙소추가/수정/삭제</a></li>
+					<li><a href="addedRoom.owner">방추가/수정/삭제</a></li>
+				</ul></li>
+			<li><a href="#">핫딜</a></li>
 			<li><a href="#">1:1문의</a></li>
 			<li><a href="#">이용가이드</a></li>
 		</ul>

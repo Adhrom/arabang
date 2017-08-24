@@ -1,9 +1,10 @@
 @CHARSET "UTF-8";
 /* Footer */
 #footer {
-	margin-top: 50px;
+	height:200px;
 	background: #f6f6f6;
 	color: #aaa;
+
 }
 
 #footer ul li{

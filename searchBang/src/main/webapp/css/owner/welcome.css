@@ -97,7 +97,7 @@ table {
     border-top: 0 none;
     height: 110px;
     overflow-y: scroll;
-    padding: 30px;
+     padding: 30px;
     border: 1px solid #ddd;
 }
 
@@ -125,7 +125,7 @@ td, th {
 }
 /*이전 다음 버튼*/
 #btn{
-	width:160px;
+	width:300px;
 	margin-left:auto;
 	margin-right:auto;
 	margin-top: 5%;

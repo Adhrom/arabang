@@ -1,9 +1,5 @@
 package com.mainWeb.searchBang.owner.model;
 
-import java.util.List;
-
-import org.springframework.web.multipart.MultipartFile;
-
 public class RoomVO {
 	private int room_no;
 	private int accom_no;
@@ -22,26 +18,8 @@ public class RoomVO {
 	private String roomimg4;
 	private String roomimg5;
 	private String roomimg6;
-	private String roomimg7;
 	private String roomimg8;
 	private String roomimg9;
-	private List<MultipartFile> uploadFile;
-
-	public String getRoomimg7() {
-		return roomimg7;
-	}
-
-	public void setRoomimg7(String roomimg7) {
-		this.roomimg7 = roomimg7;
-	}
-
-	public List<MultipartFile> getUploadFile() {
-		return uploadFile;
-	}
-
-	public void setUploadFile(List<MultipartFile> uploadFile) {
-		this.uploadFile = uploadFile;
-	}
 
 	public int getRoom_no() {
 		return room_no;
@@ -202,9 +180,7 @@ public class RoomVO {
 				+ roomRent_Usetime + ", roomRent_Closingtime=" + roomRent_Closingtime + ", roomLodge=" + roomLodge
 				+ ", roomLodge_Checkin=" + roomLodge_Checkin + ", roomLodge_Checkout=" + roomLodge_Checkout
 				+ ", roomimg1=" + roomimg1 + ", roomimg2=" + roomimg2 + ", roomimg3=" + roomimg3 + ", roomimg4="
-				+ roomimg4 + ", roomimg5=" + roomimg5 + ", roomimg6=" + roomimg6 + ", roomimg7=" + roomimg7
-				+ ", roomimg8=" + roomimg8 + ", roomimg9=" + roomimg9 + ", uploadFile=" + uploadFile + "]";
+				+ roomimg4 + ", roomimg5=" + roomimg5 + ", roomimg6=" + roomimg6 + ", roomimg8=" + roomimg8
+				+ ", roomimg9=" + roomimg9 + "]";
 	}
-
-
 }

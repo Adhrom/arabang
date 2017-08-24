@@ -27,10 +27,11 @@
 		#{accomType} , 1 , 1.0
 		, 'n' ,
 		0 ,
-		#{accomimg1} , #{accomimg2} ,
-		#{accomimg3} , #{accomimg4} , #{accomimg5}
-		, #{accomimg6} ,
-		#{accomimg7} , #{accomimg8} , #{accomimg9}
+		<!-- #{accomimg1} , #{accomimg2} , #{accomimg3} , #{accomimg4} , #{accomimg5}
+			, #{accomimg6} , #{accomimg7} , #{accomimg8} , #{accomimg9} -->
+		'나중에 이미지 경로 들어가야함' ,'나중에 이미지 경로 들어가야함' , '나중에 이미지 경로 들어가야함' , '나중에 이미지
+		경로 들어가야함' , '나중에 이미지 경로 들어가야함' , '나중에 이미지 경로 들어가야함' , '나중에 이미지 경로
+		들어가야함' , '나중에 이미지 경로 들어가야함' , '나중에 이미지 경로 들어가야함'
 		, #{option_couplePC} ,
 		#{option_partyRoom},
 		#{option_noPeople} ,
@@ -49,6 +50,7 @@
 		#{option_womenOnly} , #{option_nokids} ,
 		#{option_freeBlackfast} ,
 		#{option_snackBar} , #{parking_valet} ,
+		#{parking_inCharge} ,
 		#{parking_free} ,
 		#{parking_having} ,#{ownerEmail}
 		,#{accomAddress2}
@@ -58,54 +60,15 @@
 	<insert id="addedRoom">
 		insert into room values(room_no_seq.nextval ,
 		#{accom_no} , #{roomType}
-		, #{roomCount} ,#{roomUsingPeople}
-		,#{roomRent}
+		, #{roomCount} ,#{roomUsingPeople} ,#{roomRent}
 		,#{roomRent_Usetime}
-		,#{roomRent_Closingtime} ,#{roomLodge}
-		,#{roomLodge_Checkin}
+		,#{roomRent_Closingtime} ,#{roomLodge} ,#{roomLodge_Checkin}
 		,#{roomLodge_Checkout}
-		, #{roomimg1} ,
-		#{roomimg2} , #{roomimg3}
-		, #{roomimg4} , #{roomimg5} , #{roomimg6} , #{roomimg7} ,
-		#{roomimg8}
-		, #{roomimg9}
-		)
+		,		<!-- #{accomimg1} , #{accomimg2} , #{accomimg3}
+			, #{accomimg4} , #{accomimg5} , #{accomimg6} , #{accomimg7} , #{accomimg8}
+			, #{accomimg9} -->
+		'나중에 이미지 경로 들어가야함' ,'나중에 이미지 경로 들어가야함' , '나중에 이미지 경로 들어가야함' , '나중에 이미지
+		경로 들어가야함' , '나중에 이미지 경로 들어가야함' , '나중에 이미지 경로 들어가야함' , '나중에 이미지 경로
+		들어가야함' , '나중에 이미지 경로 들어가야함' , '나중에 이미지 경로 들어가야함' )
 	</insert>
-
-	<select id="noticeList" resultType="com.mainWeb.searchBang.admin.model.AdminNoticeVO">
-		select * from admin_notice
-		where noticetype = 'company' order by notice_no desc
-	</select>
-
-	<select id="accomList" resultType="com.mainWeb.searchBang.owner.model.AccomVO">
-		select * from accom where owneremail = #{loginId}
-	</select>
-
-	<select id="accomInfo" resultType="com.mainWeb.searchBang.owner.model.AccomVO">
-		select * from accom where accom_no = #{accom_no}
-	</select>
-
-	<select id="roomList" resultType="com.mainWeb.searchBang.owner.model.RoomVO">
-		select * from room where accom_no = #{accom_no}
-	</select>
-
-	<select id="roomInfo" resultType="com.mainWeb.searchBang.owner.model.RoomVO">
-		select * from room where room_no = #{room_no}
-	</select>
-
-	<delete id="deleteAccom">
-		delete from accom where accom_no = #{accom_no}
-	</delete>
-
-	<update id="updateAccom">
-
-	</update>
-
-	<delete id="deleteRoom">
-		delete from room where room_no = #{room_no}
-	</delete>
-
-	<update id="updateRoom">
-
-	</update>
 </mapper>

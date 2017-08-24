@@ -10,12 +10,12 @@ b#title-b {
 }
 
 .circle-wrapper {
+	height: 3%;
 	margin-top: 50px;
-	margin-left: 300px;
-	margin-right: 300px;
+	margin-left: 200px;
+	margin-right: 200px;
 	left: 100px;
 	border: solid 1px white;
-	margin-bottom: 10%;
 }
 
 .circle1 {

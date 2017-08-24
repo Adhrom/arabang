@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,17 +71,23 @@
 		<section class="bottom-section">
 			<aside class="left-side">
 				<h3>알아방 공지사항</h3>
-				<table>
-					<c:forEach items="${list }" varStatus="number" step="1" begin="1"
-						end="5" var="row">
-						<tr>
-							<td>${row.subject }</td>
-						<tr>
-					</c:forEach>
-					<tr>
-						<td  align="center"><a href="noticeList.owner"><button class="button">더보기</button></a></td>
-					</tr>
-				</table>
+				<hr class="under-line1">
+
+				<div>${vo.notice}</div>
+				<hr class="under-line2">
+
+				<div>${vo.notice}</div>
+				<hr class="under-line2">
+
+				<div>${vo.notice}</div>
+				<hr class="under-line2">
+
+				<div>${vo.notice}</div>
+				<hr class="under-line2">
+
+				<div>${vo.notice}</div>
+				<hr class="under-line2">
+				<input class="notice-more-button" type="button" value="더보기">
 			</aside>
 			<aside class="right-side">
 				<div class="right-side-fix">
@@ -92,8 +97,8 @@
 								src="/searchBang/img/owner/ceoimage480p.jpg" width=720
 								height=300 alt="사장님용 광고 슬라이드"></li>
 							<li class="banner_02"><img
-								src="/searchBang/img/owner/main.jpg" width=720 height=300
-								alt="사장님용 광고 슬라이드"></li>
+								src="/searchBang/img/owner/main.jpg" width=720
+								height=300 alt="사장님용 광고 슬라이드"></li>
 						</ul>
 					</div>
 				</div>
