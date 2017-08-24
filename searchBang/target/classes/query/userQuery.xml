@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="user">
+
+	<insert id="insertUser" parameterType="com.mainWeb.searchBang.user.model.UserVO">
+		INSERT INTO MEMBER_REG 
+		values(#{MEMBEREMAIL}, #{MEMBERPW}, #{MEMBERNICKNAME},#{MEMBERPHONE})
+	</insert>
+	
+	<select id="loginuser"  resultType="com.mainWeb.searchBang.user.model.UserInfoVO">
+		select memberemail from member_reg 
+		where memberemail = #{memberEmail} and memberpw = #{memberPw}
+	</select>
+	
+	<select id="getUserInfo" parameterType="java.util.Map" resultType="com.mainWeb.searchBang.user.model.UserInfoVO">
+		SELECT * FROM MEMBER_REG
+		WHERE MEMBEREMAIL = #{id} AND MEMBERPW = #{password}
+	</select>
+	
+	<delete id="deleteUserInfo" parameterType="java.util.Map">
+		DELETE FROM MEMBER_REG
+		WHERE MEMBEREMAIL = #{id} AND MEMBERPW = #{password}
+	</delete>
+	
+	<update id="changePassword" parameterMap="java.util.Map">
+		UPDATE MEMBER_REG SET MEMBERPW = #{password}
+		WHERE MEMBERNICKNAME = #{id}
+	</update>
+	
+	<update id="updateInfo" parameterType="java.util.Map">
+		UPDATE MEMBER_REG SET MEMBERPW = #{memberPw}, MEMBERNICKNAME = #{memberNickname}, MEMBERPHONE = #{memberPhone} 
+		WHERE MEMBEREMAIL = #{memberEmail}
+	</update>
+	
+	<select id="findAccom" parameterType="java.lang.String" resultType="com.mainWeb.searchBang.owner.model.AccomVO">
+		SELECT * FROM ACCOM WHERE ACCOMADDRESS LIKE #{address}
+	</select>
+</mapper>

@@ -1,19 +1,27 @@
 package com.mainWeb.searchBang.user.controller;
 
-import java.util.HashMap;
-import java.util.Map;
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mainWeb.searchBang.user.model.UserInfoVO;
+import com.mainWeb.searchBang.user.model.UserVO;
+import com.mainWeb.searchBang.user.service.UserService;
+
 @Controller
 public class UserController {
-
-	private Map<String, Object> map = new HashMap<String, Object>();
+	
+	@Inject
+	private UserService service;
 
 	// 메인인덱스
 	@RequestMapping("index.bang")
@@ -23,39 +31,91 @@ public class UserController {
 
 	@RequestMapping("/login.bang")
 	public String userLogin(){
-		map.clear();
 		return "login";
+	}
+	
+	@RequestMapping("/userReg.bang")
+	public String userRegistForm(){
+		return "user_join";
 	}
 
 	@RequestMapping("/naverLoginProc.bang")
 	public String naverLoginProc(){
 		return "naverLoginProc";
 	}
-
-	//  setKakaoInfo() , setNaverInfo() 함수는 모두 같은 형태를 띄고 있어서 facebook / google
-	// 로그인 연동 또한 이런 같은 형태의 모형이 나온다면 한번에 합칠예정임.
-	// 일단은 되는대로 함수만들어서 세팅중임 ....
-
-	@RequestMapping(value="/kakaogetInfo.bang", method={RequestMethod.GET , RequestMethod.POST})
-	public @ResponseBody void setKakaoInfo(@RequestParam("nickname") String nickname,
-			@RequestParam("email") String email){
-		map.put("nickname", nickname);
-		map.put("email", email);
-	}
-
-	@RequestMapping(value="/navergetInfo.bang")
-	public @ResponseBody void setNaverInfo(@RequestParam("email") String email,
-			@RequestParam("nickname") String nickname){
-		map.put("email", email);
-		map.put("nickname", nickname);
+	
+	@RequestMapping(value="/getInfo.bang", method={RequestMethod.GET , RequestMethod.POST})
+	public @ResponseBody void setKakaoInfo(HttpServletRequest request, Model model){
+		HttpSession session = request.getSession();
+		session.setAttribute("nickname",request.getParameter("nickname"));
+		session.setAttribute("email",request.getParameter("email"));
 	}
 
 	@RequestMapping("/sendInfo.bang")
-	public ModelAndView sendInfo(){
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("nickname",(String)map.get("nickname"));
-		mv.addObject("email",(String)map.get("email"));
-		mv.setViewName("owner_join");
+	public ModelAndView sendInfo(HttpSession session){
+		ModelAndView mv = new ModelAndView("redirect:userReg.bang");
+		mv.addObject("nickname",session.getAttribute("nickname"));
+		mv.addObject("email",session.getAttribute("email"));
 		return mv;
 	}
+	
+	@RequestMapping(value="/resistUser.bang", method=RequestMethod.POST)
+	public String registInfo(@ModelAttribute UserVO vo) throws Exception{
+		service.insertUserService(vo);
+		return null;
+	}
+	
+	
+	@RequestMapping(value="/loginProc.bang", method={RequestMethod.POST,RequestMethod.GET})
+	public String loginProc(@RequestParam("email") String email, 
+			@RequestParam("password") String password, HttpSession session, Model model) throws Exception{
+		System.out.println("컨트롤러 진입 :"+email + " / "+password);
+		UserInfoVO vo = new UserInfoVO();
+		boolean result = service.loginUserService(email, password, session , vo);
+		
+		if(result)
+			model.addAttribute("msg","success");
+		else
+			model.addAttribute("msg","fail");
+		
+		return "redirect:login.bang";
+	}
+		
+//	정보를 가져오는 과정
+//	public String getInfo(Model model,@RequestParam("email") String id, 
+//			@RequestParam("password") String password) throws Exception{
+//		UserVO info = service.getUserInfoService(id, password);
+//		model.addAttribute("info",info);
+//		return null;
+//	}
+	
+//	 정보 삭제 과정
+//	public String deleteInfo(Model model, @RequestParam("email") String id, 
+//			@RequestParam("password") String password) throws Exception{
+//		service.deleteUserInfoService(id, password);
+//	return null;
+//	}
+	
+//	비밀번호 변경
+//	public String changePassword(Model model, @RequestParam("email") String id, 
+//			@RequestParam("password") String password) throws Exception{
+//		service.changePasswordService(id, password);
+//		return null;
+//	}
+	
+//	정보수정
+//	public String updateInfo(Model model, @RequestParam("email") String id,  @RequestParam("password") String password,
+//			@RequestParam("nickname") String nickname, @RequestParam("phone") String phone) throws Exception{
+//		service.updateInfoService(id, password, nickname, phone);
+//		return null;
+//	}
+	
+//	숙소정보 받아오기
+//	public String getAccomList(Model model, @RequestParam("dong") String dong){
+//		List<AccomVO> accomList = service.accomListService(dong);
+//		model.addAttribute("accomList",accomList);
+//		return null;
+//	}
+	
+	
 }
