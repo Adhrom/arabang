@@ -10,9 +10,9 @@
 		values(#{MEMBEREMAIL}, #{MEMBERPW}, #{MEMBERNICKNAME},#{MEMBERPHONE})
 	</insert>
 	
-	<select id="loginuser" parameterType="java.util.Map" resultType="java.lang.String">
+	<select id="loginuser"  resultType="com.mainWeb.searchBang.user.model.UserInfoVO">
 		select memberemail from member_reg 
-		where memberemail = #{id} and memberpw = #{password}
+		where memberemail = #{memberEmail} and memberpw = #{memberPw}
 	</select>
 	
 	<select id="getUserInfo" parameterType="java.util.Map" resultType="com.mainWeb.searchBang.user.model.UserInfoVO">

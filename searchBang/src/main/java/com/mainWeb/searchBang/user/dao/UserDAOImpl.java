@@ -24,13 +24,13 @@ public class UserDAOImpl implements UserDAO{
 	}
 	
 	@Override
-	public boolean loginUserDAO(Map<String, Object> info) {
-		System.out.println("dao 진입 : " + info.get("id") + " / "+ info.get("password") );
-		UserInfoVO vo = sqlsession.selectOne("user.loginUser", info);
+	public boolean loginUserDAO(UserInfoVO vo) {
+		System.out.println("dao 진입 : " + vo.getMemberEmail() + " / "+ vo.getMemberPw() );
+		vo = sqlsession.selectOne("user.loginuser", vo);
 
 		System.out.println(vo.toString());
 		
-		return (vo.getMemberMail() == null) ? false : true;
+		return (vo.getMemberEmail() == null) ? false : true;
 	}
 
 	@Override

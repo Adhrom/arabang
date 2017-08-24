@@ -14,7 +14,7 @@ public interface UserService {
 	public void insertUserService(UserVO vo) throws Exception;
 	
 	//로그인
-	public boolean loginUserService(String id, String pass, HttpSession session) throws Exception;
+	public boolean loginUserService(String id, String pass, HttpSession session , UserInfoVO vo) throws Exception;
 	
 	// 계정 정보 가져오기
 	public UserInfoVO getUserInfoService(String id, String password) throws Exception;

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mainWeb.searchBang.user.model.UserInfoVO;
 import com.mainWeb.searchBang.user.model.UserVO;
 import com.mainWeb.searchBang.user.service.UserService;
 
@@ -69,7 +70,8 @@ public class UserController {
 	public String loginProc(@RequestParam("email") String email, 
 			@RequestParam("password") String password, HttpSession session, Model model) throws Exception{
 		System.out.println("컨트롤러 진입 :"+email + " / "+password);
-		boolean result = service.loginUserService(email, password, session);
+		UserInfoVO vo = new UserInfoVO();
+		boolean result = service.loginUserService(email, password, session , vo);
 		
 		if(result)
 			model.addAttribute("msg","success");

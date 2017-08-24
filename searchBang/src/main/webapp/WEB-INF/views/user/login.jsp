@@ -26,7 +26,10 @@
 				document.getElementById("test22").innerHTML = data
 			},
 			error : function(request,status,error){
-				alert("code:"+request.status+"\n"+"message:"+request.responseText);
+				document.getElementById("test11").innerHTML
+						= "code:"+request.status+"\n"
+						+"message:"+request.responseText+"\n"
+						+"error:"+error;
 			}
 		});
 	}

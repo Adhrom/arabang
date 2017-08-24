@@ -3,17 +3,17 @@ package com.mainWeb.searchBang.user.model;
 import java.sql.Date;
 
 public class UserInfoVO {
-	private String memberMail;
+	private String memberEmail;
 	private String memberPw;
 	private String memberNickname;
 	private String memberPhone;
 	private Date memberReg;
 
-	public String getMemberMail() {
-		return memberMail;
+	public String getMemberEmail() {
+		return memberEmail;
 	}
-	public void setMemberMail(String memberMail) {
-		this.memberMail = memberMail;
+	public void setMemberEmail(String memberEmail) {
+		this.memberEmail = memberEmail;
 	}
 	public String getMemberPw() {
 		return memberPw;
@@ -41,8 +41,8 @@ public class UserInfoVO {
 	}
 	@Override
 	public String toString() {
-		return "UserInfoVO [memberMail=" + memberMail + ", memberPw=" + memberPw + ", memberNickname=" + memberNickname
-				+ ", memberPhone=" + memberPhone + ", memberReg=" + memberReg + "]";
+		return "UserInfoVO [memberEmail=" + memberEmail + ", memberPw=" + memberPw + ", memberNickname="
+				+ memberNickname + ", memberPhone=" + memberPhone + ", memberReg=" + memberReg + "]";
 	}
 	
 }

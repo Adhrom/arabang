@@ -36,10 +36,11 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public boolean loginUserService(String id, String password,HttpSession session) throws Exception {
+	public boolean loginUserService(String id, String password,HttpSession session , UserInfoVO vo) throws Exception {
 		System.out.println("service 진입 : " + id +" "+ password );
-		setMapping(id, password);
-		boolean result = dao.loginUserDAO(info);
+		vo.setMemberEmail(id);
+		vo.setMemberPw(sha.getSha256(password.getBytes()));
+		boolean result = dao.loginUserDAO(vo);
 		if(result){
 			session.setAttribute("id", id);
 			session.setAttribute("loginresult", "success");

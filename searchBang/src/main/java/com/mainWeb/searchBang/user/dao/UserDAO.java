@@ -13,7 +13,7 @@ public interface UserDAO {
 	public void insertUserDAO(UserVO vo);
 	
 	// 로그인 처리
-	public boolean loginUserDAO(Map<String, Object> info);
+	public boolean loginUserDAO(UserInfoVO vo);
 	
 	// 계정 가져오기
 	public UserInfoVO getUserInfoDAO(Map<String, Object> info);
