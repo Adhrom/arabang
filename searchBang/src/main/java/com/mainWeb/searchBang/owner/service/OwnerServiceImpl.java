@@ -1,11 +1,14 @@
 package com.mainWeb.searchBang.owner.service;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 
+import com.mainWeb.searchBang.admin.model.AdminNoticeVO;
 import com.mainWeb.searchBang.owner.dao.OwnerDAO;
 import com.mainWeb.searchBang.owner.model.AccomVO;
 import com.mainWeb.searchBang.owner.model.OwnerVO;
@@ -73,20 +76,101 @@ public class OwnerServiceImpl implements OwnerService {
 			accomVO.setOption_withAnimal("off");
 		if(accomVO.getOption_womenOnly()==null)
 			accomVO.setOption_womenOnly("off");
-		if(accomVO.getParking_free()==null)
-			accomVO.setParking_free("off");
-		if(accomVO.getParking_having()==null)
-			accomVO.setParking_having("no");
-		if(accomVO.getParking_inCharge()==null)
-			accomVO.setParking_inCharge("off");
 		if(accomVO.getParking_valet()==null)
 			accomVO.setParking_valet("off");
+		if(accomVO.getAccomimg1()==null)
+			accomVO.setAccomimg1("null");
+		if(accomVO.getAccomimg2()==null)
+			accomVO.setAccomimg2("null");
+		if(accomVO.getAccomimg3()==null)
+			accomVO.setAccomimg3("null");
+		if(accomVO.getAccomimg4()==null)
+			accomVO.setAccomimg4("null");
+		if(accomVO.getAccomimg5()==null)
+			accomVO.setAccomimg5("null");
+		if(accomVO.getAccomimg6()==null)
+			accomVO.setAccomimg6("null");
+		if(accomVO.getAccomimg7()==null)
+			accomVO.setAccomimg7("null");
+		if(accomVO.getAccomimg8()==null)
+			accomVO.setAccomimg8("null");
+		if(accomVO.getAccomimg9()==null)
+			accomVO.setAccomimg9("null");
 		dao.addedAccom(accomVO);
 	}
 
 	@Override
-	public void addedRoom(RoomVO roomVO) {
+	public void addedRoom(RoomVO roomVO , HttpSession session) {
+		if(roomVO.getRoomimg1()==null)
+			roomVO.setRoomimg1("null");
+		if(roomVO.getRoomimg2()==null)
+			roomVO.setRoomimg2("null");
+		if(roomVO.getRoomimg3()==null)
+			roomVO.setRoomimg3("null");
+		if(roomVO.getRoomimg4()==null)
+			roomVO.setRoomimg4("null");
+		if(roomVO.getRoomimg5()==null)
+			roomVO.setRoomimg5("null");
+		if(roomVO.getRoomimg6()==null)
+			roomVO.setRoomimg6("null");
+		if(roomVO.getRoomimg7()==null)
+			roomVO.setRoomimg7("null");
+		if(roomVO.getRoomimg8()==null)
+			roomVO.setRoomimg8("null");
+		if(roomVO.getRoomimg9()==null)
+			roomVO.setRoomimg9("null");
+		roomVO.setAccom_no(Integer.parseInt((String) session.getAttribute("accom_no")));
 		dao.addedRoom(roomVO);
+	}
+
+	@Override
+	public List<AdminNoticeVO> noticeList() {
+		return dao.noticeList();
+	}
+
+	@Override
+	public List<AccomVO> accomList(String loginId) {
+		return dao.accomList(loginId);
+	}
+
+	@Override
+	public AccomVO accomInfo(String accom_no) {
+		return dao.accomInfo(accom_no);
+	}
+
+	@Override
+	public List<RoomVO> roomList(String accom_no) {
+		return dao.roomList(accom_no);
+	}
+
+	@Override
+	public RoomVO roomInfo(String room_no) {
+		return dao.roomInfo(room_no);
+	}
+
+	@Override
+	public void deleteAccom(String accom_no) {
+		dao.deleteAccom(accom_no);
+	}
+
+	@Override
+	public void updateAccom(String accom_no) {
+		dao.updateAccom(accom_no);
+	}
+
+	@Override
+	public void deleteRoom(String room_no) {
+		dao.deleteRoom(room_no);
+	}
+
+	@Override
+	public void updateRoom(String room_no) {
+		dao.deleteRoom(room_no);
+	}
+
+	@Override
+	public void logout(HttpSession session) {
+		session.invalidate();
 	}
 
 }
