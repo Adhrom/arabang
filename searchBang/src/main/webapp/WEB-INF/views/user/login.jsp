@@ -10,15 +10,32 @@
    charset="utf-8"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script src="https://apis.google.com/js/api:client.js"></script>
-
+<script type="text/javascript">
+	function loginProc(){
+		var emailval = $("#login-userId").val();
+		var passwordval = $("#login-userPw").val();
+		document.getElementById("test11").innerHTML = emailval +"//"+ passwordval;
+		$.ajax({
+			data : {
+				email : emailval,
+				password : passwordval
+			},
+			type : "POST",
+			url : "loginProc.bang",
+			success : function(data){
+				document.getElementById("test22").innerHTML = data
+			},
+			error : function(request,status,error){
+				alert("code:"+request.status+"\n"+"message:"+request.responseText);
+			}
+		});
+	}
+</script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Login View</title>
 <!-- HTTPS required. HTTP will give a 403 forbidden response -->
-
-<link href="https://fonts.googleapis.com/css?family=Roboto"
-   rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="/searchBang/css/user/style.css" />
-
 </head>
 <body>
 
@@ -29,12 +46,12 @@
 
          <h4 class="input-txt">이메일</h4>
          <div id="input-box">
-            <input type="text" class="input-type" name="login-userId">
+            <input type="text" class="input-type" name="login-userId" id="login-userId">
          </div>
 
          <h4 class="input-txt">비밀번호</h4>
          <div id="input-box">
-            <input type="password" class="input-type" name="login-userPw">
+            <input type="password" class="input-type" name="login-userPw" id="login-userPw">
          </div>
 
          <input type="checkbox" id="divECI_ISDVSAVE" /><label
@@ -45,8 +62,8 @@
                <a href="#">비밀번호 찾기</a>
             </h4>
          </div>
-         <input id="login-btn" type="button" value="로그인"> <input
-            id="join-btn" type="button" value="회원가입"><br />
+         <input id="login-btn" type="button" value="로그인" onclick="loginProc();"> 
+         <input id="join-btn" type="button" value="회원가입" onclick="location.href='userReg.bang';"><br />
          <!--  -->
          <div id="kakao-login-btn"></div>
          <!-- naver -->
@@ -66,7 +83,8 @@
                <span class="icon" ></span> <span class="buttonText">Google 계정으로 로그인하기</span>
             </div>
          </div>
-
+		<div id="test11"></div>
+		<div id="test22"></div>
          <script>
       function signOut() {
         var auth2 = gapi.auth2.getAuthInstance();
@@ -279,7 +297,6 @@
         });
   }
 </script>
-
 <style type="text/css">
 #customBtn {
    display: inline-block;
@@ -320,5 +337,4 @@ span.buttonText {
    font-family: 'Roboto', sans-serif;
 }
 </style>
-
 </html>

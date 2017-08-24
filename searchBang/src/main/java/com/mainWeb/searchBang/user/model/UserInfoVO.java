@@ -1,11 +1,13 @@
 package com.mainWeb.searchBang.user.model;
 
-public class UserVO {
+import java.sql.Date;
 
+public class UserInfoVO {
 	private String memberMail;
 	private String memberPw;
 	private String memberNickname;
 	private String memberPhone;
+	private Date memberReg;
 
 	public String getMemberMail() {
 		return memberMail;
@@ -31,4 +33,16 @@ public class UserVO {
 	public void setMemberPhone(String memberPhone) {
 		this.memberPhone = memberPhone;
 	}
+	public Date getMemberReg() {
+		return memberReg;
+	}
+	public void setMemberReg(Date memberReg) {
+		this.memberReg = memberReg;
+	}
+	@Override
+	public String toString() {
+		return "UserInfoVO [memberMail=" + memberMail + ", memberPw=" + memberPw + ", memberNickname=" + memberNickname
+				+ ", memberPhone=" + memberPhone + ", memberReg=" + memberReg + "]";
+	}
+	
 }
