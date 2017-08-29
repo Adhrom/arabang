@@ -60,7 +60,7 @@ public interface OwnerService {
 
 	// QnA리스트
 	public List<QnAVO> QnAList(QnAVO vo);
-
+	
 	// QnA등록
 	public void QnAInsert(QnAVO vo);
 

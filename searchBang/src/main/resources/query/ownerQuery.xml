@@ -128,7 +128,7 @@
 	<update id="updateOwner">
 		update owner_reg set ownerpw = #{ownerPw} , ownerphone = #{ownerPhone} where owneremail = #{ownerEmail}
 	</update>
-
+	
 	<delete id="deleteOwner">
 		delete from owner_reg where owneremail = #{ownerEmail}
 	</delete>

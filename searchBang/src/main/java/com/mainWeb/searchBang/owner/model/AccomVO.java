@@ -47,6 +47,7 @@ public class AccomVO {
 	private String option_freeBlackfast;
 	private String option_snackBar;
 	private String parking_valet;
+	private String parking_inCharge;
 	private String parking_free;
 	private String parking_having;
 	private String ownerEmail;
@@ -404,6 +405,14 @@ public class AccomVO {
 		this.parking_valet = parking_valet;
 	}
 
+	public String getParking_inCharge() {
+		return parking_inCharge;
+	}
+
+	public void setParking_inCharge(String parking_inCharge) {
+		this.parking_inCharge = parking_inCharge;
+	}
+
 	public String getParking_free() {
 		return parking_free;
 	}
@@ -437,8 +446,9 @@ public class AccomVO {
 				+ ", option_kitchen=" + option_kitchen + ", option_hanok=" + option_hanok + ", option_glamping="
 				+ option_glamping + ", option_seminar=" + option_seminar + ", option_womenOnly=" + option_womenOnly
 				+ ", option_nokids=" + option_nokids + ", option_freeBlackfast=" + option_freeBlackfast
-				+ ", option_snackBar=" + option_snackBar + ", parking_valet=" + parking_valet + ", parking_free="
-				+ parking_free + ", parking_having=" + parking_having + ", ownerEmail=" + ownerEmail + "]";
+				+ ", option_snackBar=" + option_snackBar + ", parking_valet=" + parking_valet + ", parking_inCharge="
+				+ parking_inCharge + ", parking_free=" + parking_free + ", parking_having=" + parking_having
+				+ ", ownerEmail=" + ownerEmail + "]";
 	}
 
 }

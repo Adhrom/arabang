@@ -200,7 +200,7 @@ public class OwnerServiceImpl implements OwnerService {
 	public void updateOwner(OwnerVO vo) {
 		dao.updateOwner(vo);
 	}
-
+	
 	@Override
 	public void deleteOwner(String ownerEmail) {
 		dao.deleteOwner(ownerEmail);

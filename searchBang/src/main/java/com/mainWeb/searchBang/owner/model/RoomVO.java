@@ -27,20 +27,20 @@ public class RoomVO {
 	private String roomimg9;
 	private List<MultipartFile> uploadFile;
 
-	public String getRoomimg7() {
-		return roomimg7;
-	}
-
-	public void setRoomimg7(String roomimg7) {
-		this.roomimg7 = roomimg7;
-	}
-
 	public List<MultipartFile> getUploadFile() {
 		return uploadFile;
 	}
 
 	public void setUploadFile(List<MultipartFile> uploadFile) {
 		this.uploadFile = uploadFile;
+	}
+
+	public String getRoomimg7() {
+		return roomimg7;
+	}
+
+	public void setRoomimg7(String roomimg7) {
+		this.roomimg7 = roomimg7;
 	}
 
 	public int getRoom_no() {
@@ -202,9 +202,7 @@ public class RoomVO {
 				+ roomRent_Usetime + ", roomRent_Closingtime=" + roomRent_Closingtime + ", roomLodge=" + roomLodge
 				+ ", roomLodge_Checkin=" + roomLodge_Checkin + ", roomLodge_Checkout=" + roomLodge_Checkout
 				+ ", roomimg1=" + roomimg1 + ", roomimg2=" + roomimg2 + ", roomimg3=" + roomimg3 + ", roomimg4="
-				+ roomimg4 + ", roomimg5=" + roomimg5 + ", roomimg6=" + roomimg6 + ", roomimg7=" + roomimg7
-				+ ", roomimg8=" + roomimg8 + ", roomimg9=" + roomimg9 + ", uploadFile=" + uploadFile + "]";
+				+ roomimg4 + ", roomimg5=" + roomimg5 + ", roomimg6=" + roomimg6 + ", roomimg8=" + roomimg8
+				+ ", roomimg9=" + roomimg9 + "]";
 	}
-
-
 }

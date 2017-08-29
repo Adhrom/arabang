@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-public class AdminInterceptor extends HandlerInterceptorAdapter {
+public class Interceptor extends HandlerInterceptorAdapter {
 
 	@Override
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse res, Object oj) throws Exception {
