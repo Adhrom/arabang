@@ -33,6 +33,7 @@
 			<value>ara</value>
 		</property>
 	</bean>
+
 	<!-- Transaction 관리자 설정 -->
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
@@ -44,5 +45,10 @@
 	</bean>
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactoryBean" />
+	</bean>
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="1000000000000000000" />
+		<property name="maxInMemorySize" value="1000000" />
+		<property name="defaultEncoding" value="UTF-8" />
 	</bean>
 </beans>

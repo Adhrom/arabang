@@ -42,7 +42,6 @@ public class OwnerDAOImpl implements OwnerDAO {
 
 	@Override
 	public void addedRoom(RoomVO roomVO) {
-		System.out.println(roomVO);
 		sqlSessionTemplate.insert("owner.addedRoom",roomVO);
 	}
 
@@ -83,7 +82,7 @@ public class OwnerDAOImpl implements OwnerDAO {
 
 	@Override
 	public List<AccomVO> accomList(String loginId) {
-		return sqlSessionTemplate.selectList("owner.accomList");
+		return sqlSessionTemplate.selectList("owner.accomList" , loginId);
 	}
 
 	@Override

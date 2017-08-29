@@ -72,7 +72,6 @@ public class UserController {
 	@RequestMapping(value="/loginProc.bang", method={RequestMethod.POST,RequestMethod.GET})
 	public String loginProc(@RequestParam("email") String email,
 			@RequestParam("password") String password, HttpSession session, Model model) throws Exception{
-		System.out.println("컨트롤러 진입 :"+email + " / "+password);
 		UserInfoVO vo = new UserInfoVO();
 		boolean result = service.loginUserService(email, password, session , vo);
 

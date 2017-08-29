@@ -267,7 +267,7 @@
 					<td class="table-view">보기</td>
 				</tr>
 			</table>
-			<form>
+			<form method="post">
 				<table>
 					<c:forEach items="${list }" var="row" varStatus="number" begin="0"
 						step="1">
