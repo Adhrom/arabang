@@ -29,6 +29,11 @@
 		<h1>Company Approve</h1>
 		<hr />
 		<br />
+		<c:choose>
+		<c:when test="${size eq 0 }">
+		승인대기중인 사장님이 없습니다
+		</c:when>
+		<c:otherwise>
 		<form name="approve" method="post">
 			<input type="hidden" name="ownerEmail" id="hiddenOwnerEmail">
 			<table id="admintable">
@@ -57,6 +62,8 @@
 				</tr>
 			</table>
 		</form>
+		</c:otherwise>
+		</c:choose>
 	</div>
 </body>
 </html>

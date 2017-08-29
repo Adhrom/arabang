@@ -32,7 +32,7 @@
 	<!-- 헤더 -->
 
 	<jsp:include page="topmenu.jsp" flush="false"></jsp:include>
-	<div class="cd-main-content" style="width: 1000px; margin: 0 auto;">
+	<div class="cd-main-content" style="width: 1000px; margin: 50px auto;">
 		<div id="agree">
 			<h4 id="title-a">알아방 가족이 되어주세요</h4>
 			<b id="title-b">알아방 가족 신청 페이지</b>
@@ -61,8 +61,6 @@
 			<div id="paper">
 				<input type="checkbox" name="autoCheck" id="checkboxAuto"><label
 					for="checkboxAuto">서비스 이용 약관 동의(필수)</label>
-				<p />
-				<p />
 				<div class="agreeText" id="service">
 					제 1 장 총 칙<br> <br> 제 1 조 (목적) <br> 이 이용약관(이하 '약관'이라
 					합니다)은 ㈜야놀자(이하 '회사'라 합니다)와 이용 고객(이하 '회원'이라 합니다.)간에 회사가 제공하는 서비스(이하
@@ -327,6 +325,7 @@
 					10월 21일<br> - 시행일자 : 2015년 11월 1일<br> <br> * 부 칙<br>
 					<br> 1. 본 약관은 2017년 6월 26일부터 시행됩니다.<br>
 				</div>
+				<br/><br/><br/>
 				<!-- 개인정보 -->
 				<p />
 				<p />
@@ -401,7 +400,7 @@
 				</div>
 				<p />
 				<p />
-
+				<br/><br/><br/>
 				<input type="checkbox" name="autoCheck" id="checkboxAuto3"><label
 					for="checkboxAuto3">위치 정보 이용 약관 동의(선택)</label>
 				<div class="agreeText" id="location">

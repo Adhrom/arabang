@@ -35,7 +35,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
-	<context:component-scan base-package="com.mainWeb.searchBang.admin" />
+	<context:component-scan base-package="com.mainWeb.searchBang" />
 
 	<interceptors>
 		<interceptor>
@@ -48,6 +48,7 @@
 			<mapping path="/customerStats.admin" />
 			<mapping path="/salesStats.admin" />
 			<mapping path="/adminManagement.admin" />
+			<mapping path="/QnAReply.admin" />
 			<beans:bean class="com.mainWeb.searchBang.interceptor.AdminInterceptor" />
 		</interceptor>
 	</interceptors>

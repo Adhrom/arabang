@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ARA 가족신청</title>
-<link rel="stylesheet" href="/searchBang/css/owner/owner_style.css">
+<link rel="stylesheet" href="/searchBang/css/owner/owner_style.css?ver=1">
 <link rel="stylesheet" href="/searchBang/css/common/btstyle.css">
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
@@ -193,7 +193,7 @@
 	<jsp:include page="topmenu.jsp" flush="false"></jsp:include>
 
 	<!-- 메인콘텐츠 -->
-	<div class="cd-main-content" style="width: 1000px; margin: 0 auto;">
+	<div class="cd-main-content" style="width: 1000px; margin: 50px auto;">
 		<h4 id="title-a">알아방 가족이 되어주세요</h4>
 		<b id="title-b">알아방 가족 신청 페이지</b>
 
@@ -239,9 +239,9 @@
 							<td colspan="2" class="label">&nbsp;&nbsp;이메일</td>
 						</tr>
 						<tr>
-							<td style="width: 75%"><input type="email" class="frmdate"
+							<td style="width: 80%"><input type="email" class="frmdate"
 								id="ownerEmail" name="ownerEmail" readonly="readonly"></td>
-							<td style="width: 25%"><a
+							<td style="width: 20%"><a
 								class="initialism idchk_open btn btn-success"><button
 										id="approvalbt" class="button" style="font-size: 12px;">인증하기</button></a></td>
 						</tr>

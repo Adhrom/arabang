@@ -65,7 +65,7 @@
                <a href="#">비밀번호 찾기</a>
             </h4>
          </div>
-         <input id="login-btn" type="button" value="로그인" onclick="loginProc();"> 
+         <input id="login-btn" type="button" value="로그인" onclick="loginProc();">
          <input id="join-btn" type="button" value="회원가입" onclick="location.href='userReg.bang';"><br />
          <!--  -->
          <div id="kakao-login-btn"></div>
@@ -96,11 +96,11 @@
           document.getElementById('name').innerText = "";
           document.getElementById('id').innerText = "";
           document.getElementById('email').innerText = "";
-       
+
         });
-         
+
       }
-      
+
 
       </script>
          <script>startApp();</script>
@@ -193,7 +193,7 @@
          version : 'v2.1'
       });
 
-      // javascript sdk 를 초기화 했으니, FB.getLoginStatus() 를 호출 
+      // javascript sdk 를 초기화 했으니, FB.getLoginStatus() 를 호출
       // 이 함수는 이페이지의 사용자가 현재 로그인 되어있는 상태 3가지 중 하나를 콜백에 리턴함.
       // 그 3가지 상태는 아래와 같다.
 
@@ -219,7 +219,7 @@
       fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 
-   // 로그인이 성공한 다음에는 간단한 그래프 ㅇAPI를 호출, 
+   // 로그인이 성공한 다음에는 간단한 그래프 ㅇAPI를 호출,
    // 이 호출은 statusChangeCallback()에서 이루어짐..
 
    function testAPI() {
@@ -230,7 +230,7 @@
          var email = response.email;
          document.getElementById('test1').innerHTML = nickname + " : "
                + email; // 테스트 구문..
-         // 여기까지 이메일 & 이름 가져오는건 성공함. 
+         // 여기까지 이메일 & 이름 가져오는건 성공함.
          $.ajax({
             type : "POST",
             url : "getInfo.bang",
@@ -245,7 +245,7 @@
    }
 
    // Google login Script part..
-   
+
    var googleUser = {};
   var startApp = function() {
     gapi.load('auth2', function(){
@@ -262,21 +262,21 @@
 
   function attachSignin(element) {
     console.log(element.id);
-   
+
     auth2.attachClickHandler(element, {},
         function(googleUser) {
        var profile = googleUser.getBasicProfile();
       // The ID token you need to pass to your backend:
       var id_token = googleUser.getAuthResponse().id_token;
-   
+
       document.getElementById('name').innerText = "이름 : " +
         profile.getName()+"님 로그인을 환영합니다!";
        document.getElementById('id').innerText = "아이디 : " +
         profile.getId();
          document.getElementById('email').innerText = "이메일 : " +
        profile.getEmail();
-         
-         
+
+
       alert("로그인 성공");
       // w = location.href = 'http://localhost:8080/AjaxEx/room_information.jsp';
 
@@ -288,7 +288,7 @@
             //로그인 성공시 login.aspx에서 로그인 처리를 해 준 후 URL로 이동한다.
             alert("성공");
             location.href = 'http://localhost:8080/AjaxEx/room_information.jsp';
-            
+
          } else if (responsephp == "signup") {
             //회원의 정보(토큰,아이디,이름)은 쿠키나 파라미터로 넘겨서 회원가입 페이지에서 회원 정보를 이용해서 회원 등록을 진행한다.
             location.href = '회원 가입 URL';

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import com.mainWeb.searchBang.admin.model.AdminNoticeVO;
 import com.mainWeb.searchBang.admin.model.AdminVO;
 import com.mainWeb.searchBang.owner.model.OwnerVO;
+import com.mainWeb.searchBang.owner.model.QnAVO;
 
 public interface AdminDAO {
 	// 로그인
@@ -46,8 +47,14 @@ public interface AdminDAO {
 	public List<OwnerVO> companyApprove();
 
 	// 오너승인
-	public void approve(String approve,OwnerVO ownerVO);
+	public void approve(String approve, OwnerVO ownerVO);
 
 	// 오너리스트
 	public List<OwnerVO> companyList();
+
+	// QnA 리스트
+	public List<QnAVO> QnAList();
+
+	// QnA 답변달기
+	public void insertReply(QnAVO vo);
 }

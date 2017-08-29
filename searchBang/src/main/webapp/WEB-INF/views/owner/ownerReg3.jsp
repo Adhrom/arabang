@@ -13,7 +13,7 @@
 	<!-- 헤더 -->
 
 	<jsp:include page="topmenu.jsp" flush="false"></jsp:include>
-	<div class="cd-main-content" style="width: 1000px; margin: 0 auto;">
+	<div class="cd-main-content" style="width: 1000px; margin: 50px auto;">
 		<div id="welcomeFinish">
 			<h4 id="title-a">알아방 가족이 되어주세요</h4>
 			<b id="title-b">알아방 가족 신청 페이지</b>
@@ -42,8 +42,8 @@
 					<li class="text" id="success">가입이 성공적으로 완료되었습니다.</li>
 					<li class="text" id="family">알아방의 가족이 되신것을 환영합니다.</li>
 				</ul>
-				<div style="width: 100px; margin: 0 auto;">
-					<a href="index.owner"><button class="button" style="padding: 50px 0 50px 0;">홈으로</button></a>
+				<div style="width: 85px; margin: 0 auto;">
+					<a href="index.owner"><button class="button">홈으로</button></a>
 				</div>
 				<br />
 			</div>

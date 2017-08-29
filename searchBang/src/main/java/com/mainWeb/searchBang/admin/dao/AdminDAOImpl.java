@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.mainWeb.searchBang.admin.model.AdminNoticeVO;
 import com.mainWeb.searchBang.admin.model.AdminVO;
 import com.mainWeb.searchBang.owner.model.OwnerVO;
+import com.mainWeb.searchBang.owner.model.QnAVO;
 
 @Repository
 public class AdminDAOImpl implements AdminDAO {
@@ -89,6 +90,17 @@ public class AdminDAOImpl implements AdminDAO {
 	@Override
 	public List<OwnerVO> companyList() {
 		return sqlSession.selectList("admin.approveList");
+	}
+
+	@Override
+	public void insertReply(QnAVO vo) {
+		System.out.println(vo);
+		sqlSession.update("admin.insertReply" , vo);
+	}
+
+	@Override
+	public List<QnAVO> QnAList() {
+		return sqlSession.selectList("admin.QnAList");
 	}
 
 }

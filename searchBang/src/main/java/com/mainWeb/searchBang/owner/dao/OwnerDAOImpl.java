@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.mainWeb.searchBang.admin.model.AdminNoticeVO;
 import com.mainWeb.searchBang.owner.model.AccomVO;
 import com.mainWeb.searchBang.owner.model.OwnerVO;
+import com.mainWeb.searchBang.owner.model.QnAVO;
 import com.mainWeb.searchBang.owner.model.RoomVO;
 
 @Repository
@@ -88,5 +89,36 @@ public class OwnerDAOImpl implements OwnerDAO {
 	public void updateRoom(String room_no) {
 		sqlSessionTemplate.update("owner.updateRoom",room_no);
 	}
+
+	@Override
+	public List<QnAVO> QnAList(QnAVO vo) {
+		return sqlSessionTemplate.selectList("owner.QnAList",vo);
+	}
+
+	@Override
+	public void QnAInsert(QnAVO vo) {
+		sqlSessionTemplate.insert("owner.QnAInsert", vo);
+	}
+
+	@Override
+	public OwnerVO ownerInfo(String ownerEmail) {
+		return sqlSessionTemplate.selectOne("owner.ownerInfo", ownerEmail);
+	}
+
+	@Override
+	public void hotdeal(AccomVO vo) {
+		sqlSessionTemplate.update("owner.hotdeal" , vo);
+	}
+
+	@Override
+	public void updateOwner(OwnerVO vo) {
+		sqlSessionTemplate.update("owner.updateOwner", vo);
+	}
+
+	@Override
+	public void deleteOwner(String ownerEmail) {
+		sqlSessionTemplate.delete("owner.deleteOwner", ownerEmail);
+	}
+
 
 }

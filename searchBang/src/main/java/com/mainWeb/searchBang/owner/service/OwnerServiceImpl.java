@@ -12,6 +12,7 @@ import com.mainWeb.searchBang.admin.model.AdminNoticeVO;
 import com.mainWeb.searchBang.owner.dao.OwnerDAO;
 import com.mainWeb.searchBang.owner.model.AccomVO;
 import com.mainWeb.searchBang.owner.model.OwnerVO;
+import com.mainWeb.searchBang.owner.model.QnAVO;
 import com.mainWeb.searchBang.owner.model.RoomVO;
 
 @Service
@@ -78,6 +79,8 @@ public class OwnerServiceImpl implements OwnerService {
 			accomVO.setOption_womenOnly("off");
 		if(accomVO.getParking_valet()==null)
 			accomVO.setParking_valet("off");
+		if(accomVO.getParking_free()==null)
+			accomVO.setParking_free("off");
 		if(accomVO.getAccomimg1()==null)
 			accomVO.setAccomimg1("null");
 		if(accomVO.getAccomimg2()==null)
@@ -172,5 +175,36 @@ public class OwnerServiceImpl implements OwnerService {
 	public void logout(HttpSession session) {
 		session.invalidate();
 	}
+
+	@Override
+	public List<QnAVO> QnAList(QnAVO vo) {
+		return dao.QnAList(vo);
+	}
+
+	@Override
+	public void QnAInsert(QnAVO vo) {
+		dao.QnAInsert(vo);
+	}
+
+	@Override
+	public OwnerVO ownerInfo(String ownerEmail) {
+		return dao.ownerInfo(ownerEmail);
+	}
+
+	@Override
+	public void hotdeal(AccomVO vo) {
+		dao.hotdeal(vo);
+	}
+
+	@Override
+	public void updateOwner(OwnerVO vo) {
+		dao.updateOwner(vo);
+	}
+
+	@Override
+	public void deleteOwner(String ownerEmail) {
+		dao.deleteOwner(ownerEmail);
+	}
+
 
 }

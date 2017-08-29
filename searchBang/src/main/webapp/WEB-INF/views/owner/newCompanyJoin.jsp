@@ -12,7 +12,7 @@
 	<!-- 헤더 -->
 
 	<jsp:include page="topmenu.jsp" flush="false"></jsp:include>
-	<div class="cd-main-content" style="width: 1000px; margin: 0 auto;">
+	<div class="cd-main-content" style="width: 1000px; margin: 50px auto;">
 		<div id="welcomeJoin">
 			<h4 id="title-a">알아방 가족이 되어주세요</h4>
 			<b id="title-b">알아방 가족 신청 페이지</b>
@@ -23,8 +23,9 @@
 					<li class="joinMent">간편한 회원가입으로 내 업체 관리 바로바로 손쉽게!</li>
 					<li class="joinMent">리뷰관리, 서비스통계, 매출관리등의 다양한 혜택들을 살펴보세요.</li>
 				</ul>
-					<div style="width: 300px; margin: 0 auto;">
+					<div style="width: 100px; margin: 0 auto;">
 					<a href="ownerReg1.owner"><button class="button">가입하기</button></a>
+					<br/><br/><br/>
 					</div>
 			</div>
 		</div>

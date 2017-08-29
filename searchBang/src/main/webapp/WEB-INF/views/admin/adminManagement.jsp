@@ -128,12 +128,13 @@
 			<table id="admintable">
 				<tr class="admintr">
 					<th class="adminth" style="border-right: 2px solid white;">ID</th>
-					<th class="adminth" style="border-right: 2px solid white;">PW</th>
+					<th class="adminth" style="border-right: 2px solid white;"></th>
 					<th>&nbsp;</th>
 				</tr>
 				<c:forEach var="row" items="${list }">
 					<tr class="adminList">
 						<td class="admintd">${row.adminId}</td>
+						<td class="admintd"><c:if test="${row.adminId == sessionScope.loginId || sessionScope.loginId == 'master'}"><button class="button">비밀번호 변경</button></c:if></td>
 						<td class="admintd"><c:if test="${row.adminId != 'master' }">
 								<c:if test="${row.adminId != sessionScope.loginId}">
 									<button type="button" onclick="adminD('${row.adminId}')"

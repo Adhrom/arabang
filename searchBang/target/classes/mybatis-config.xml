@@ -5,5 +5,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-co
 	<mappers>
 		<mapper resource="query/adminQuery.xml" />
 		<mapper resource="query/ownerQuery.xml" />
+		<mapper resource="query/userQuery.xml" />
 	</mappers>
 </configuration>

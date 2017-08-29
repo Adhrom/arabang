@@ -107,7 +107,7 @@ b#title-b {
 }
 
 .frmdate {
-	height: 25px;
+	height: 30px;
 	width: 98%;
 }
 
@@ -116,6 +116,6 @@ table {
 }
 
 .frmtd {
-	margin-top: 5px;
-	margin-bottom: 15px;
+	margin-top: 10px;
+	margin-bottom: 25px;
 }

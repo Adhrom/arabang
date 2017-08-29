@@ -10,15 +10,25 @@
 <link
 	href='http://fonts.googleapis.com/css?family=Titillium+Web:400,600,700'
 	rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="/searchBang/css/admin/reset.css">
+<link rel="stylesheet" href="/searchBang/css/admin/reset.css?ver=1">
 <link rel="stylesheet" href="/searchBang/css/admin/adminstyle.css">
 <link rel="stylesheet" href="/searchBang/css/common/btstyle.css">
+<link rel="stylesheet" href="/searchBang/css/common/checkboxstyle.css">
 <!-- Resource style -->
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
 <script src="/searchBang/js/admin/main.js"></script>
 <script src="/searchBang/js/admin/jquery.popupoverlay.js"></script>
 <script src="/searchBang/js/owner/index.min.js"></script>
+<script src="/searchBang/js/owner/cookie.js"></script>
+<script src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#login').popup({
+			transition : 'all 0.3s',
+		});
+	});
+</script>
 <style type="text/css">
 .inputarea {
 	width: 100%;
@@ -59,7 +69,20 @@
 	<!-- 로그인실패 알터창 -->
 	<c:if test="${msg == 'failure'}">
 		<script type="text/javascript">
-			alert("아이디 혹은 비밀번호를 틀렸습니다. 다시 로그인 해주세요.");
+			alert("이메일 혹은 비밀번호를 틀렸습니다. 다시 로그인 해주세요.");
+			<%session.removeAttribute("msg");%>
+		</script>
+	</c:if>
+	<c:if test="${msg == 'notYet'}">
+		<script type="text/javascript">
+			alert("승인 대기중인 이메일 입니다. 잠시 후 다시 시도해 주세요.");
+			<%session.removeAttribute("msg");%>
+		</script>
+	</c:if>
+	<c:if test="${msg == 'no'}">
+		<script type="text/javascript">
+			alert("승인 거절된 이메일 입니다. 자세한 사항은 전화로 문의주세요.");
+			<%session.removeAttribute("msg");%>
 		</script>
 	</c:if>
 	<!-- 헤더  -->
@@ -70,7 +93,7 @@
 			<ul>
 				<li><c:choose>
 						<c:when test="${loginId==null }">
-							<a href="ownerLogin.owner">Login</a>
+							<a class="login_open">Login</a>
 						</c:when>
 						<c:otherwise>
 							<a href="logout.owner" id="logoutbtn">Logout</a>
@@ -85,11 +108,49 @@
 	<nav id="cd-lateral-nav">
 		<ul class="cd-navigation">
 			<li><a href="noticeList.owner">공지사항</a></li>
-			<li><a href="#0">마이페이지</a></li>
+			<li><a href="myPage.owner">마이페이지</a></li>
 			<li><a href="accomManagement.owner">숙소관리</a></li>
-			<li><a href="#">1:1문의</a></li>
+			<li><a href="QnA.owner">1:1문의</a></li>
 			<li><a href="#">이용가이드</a></li>
 		</ul>
 	</nav>
+
+	<div id="login"
+		style="background-color: white; padding: 30px; width: 330px; border: 3px solid #00a699; border-radius: 5px;"
+		class="checks etrans">
+		<form class="login-form" id="loginForm" name="loginForm"
+			action="loginProc.owner" method="post">
+
+			<p style="font-size: 35px; font-weight: bold;">사장님 로그인</p><br/>
+			<table style="width: 300px">
+				<tr>
+					<td style="font-size: 13px; padding-left: 20px;">이메일</td>
+				</tr>
+				<tr height="50px;">
+					<td colspan="2"><input type="text" class="input-type" name="loginEmail" style="width: 90%; height: 30px;"></td>
+				</tr>
+				<tr>
+					<td style="font-size: 13px; padding-left: 20px;">비밀번호</td>
+				</tr>
+				<tr height="50px;">
+					<td colspan="2"><input type="password" class="input-type" name="loginPass" style="width: 90%; height: 30px;"></td>
+				</tr>
+				<tr height="30px;">
+					<td style="padding-right: 10px;"><input type="checkbox" id="divECI_ISDVSAVE"
+						name="divECI_ISDVSAVE" /> <label for="divECI_ISDVSAVE">아이디
+							저장</label></td>
+					<td style="text-align: right; font-size: 13px; padding-right: 30px;"><a href="#">비밀번호 찾기</a></td>
+				</tr>
+				<tr height="30px;">
+					<td><input id="login-btn" type="button" value="로그인"
+						onclick="sendit()" class="button" style="width: 95%"></td>
+					<td style="padding-right: 30px; text-align: right;"><input id="join-btn" type="button" value="회원가입"
+						onclick="javascript:self.location='newCompanyJoin.owner';"
+						class="button" style="width: 95%"></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+
 </body>
 </html>

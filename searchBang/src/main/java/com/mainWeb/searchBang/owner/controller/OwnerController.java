@@ -27,6 +27,7 @@ import com.mainWeb.searchBang.admin.model.AdminNoticeVO;
 import com.mainWeb.searchBang.admin.service.AdminService;
 import com.mainWeb.searchBang.owner.model.AccomVO;
 import com.mainWeb.searchBang.owner.model.OwnerVO;
+import com.mainWeb.searchBang.owner.model.QnAVO;
 import com.mainWeb.searchBang.owner.model.RoomVO;
 import com.mainWeb.searchBang.owner.service.OwnerService;
 import com.mainWeb.searchBang.utils.CharMix;
@@ -92,19 +93,22 @@ public class OwnerController {
 		map.put("pass", cryptPass);
 
 		ModelAndView mv = new ModelAndView();
+		try {
+			if (service.loginOwner(map).equals("y")) {
+				session.setAttribute("loginId", id);
+				// 관리자 승인OK
+			}
 
-		if (service.loginOwner(map).equals("y")) {
-			session.setAttribute("loginId", id);
-			// 관리자 승인OK
-		}
+			else if (service.loginOwner(map).equals("n")) {
+				session.setAttribute("msg", "notYet");
+				// 관리자승인 아직.
+			}
 
-		else if (service.loginOwner(map).equals("n")) {
-			// 관리자승인 아직.
-		}
-
-		else if (service.loginOwner(map).equals("c")) {
-			// 관리자 승인 거절.
-		} else if (service.loginOwner(map).equals("")) {
+			else if (service.loginOwner(map).equals("c")) {
+				session.setAttribute("msg", "no");
+				// 관리자 승인 거절.
+			}
+		} catch (NullPointerException e) {
 			session.setAttribute("msg", "failure");
 		}
 		mv.setViewName("redirect:index.owner");
@@ -222,7 +226,7 @@ public class OwnerController {
 		}
 		accomVO.setOwnerEmail((String) session.getAttribute("loginId"));
 		service.addedAccom(accomVO);
-		return "index";
+		return "redirect:accomManagement.owner";
 	}
 
 	// 숙소삭제
@@ -233,7 +237,7 @@ public class OwnerController {
 	}
 
 	// 방관리
-	@RequestMapping("/roomManagement")
+	@RequestMapping("/roomManagement.owner")
 	public ModelAndView roomManagement(@RequestParam(value = "accom_no", required = false) String accom_no,
 			HttpServletRequest req) {
 		HttpSession session = req.getSession();
@@ -304,7 +308,7 @@ public class OwnerController {
 			}
 		}
 		service.addedRoom(roomVO, session);
-		return "index";
+		return "redirect:accomManagement.owner";
 	}
 
 	// 방삭제
@@ -321,17 +325,88 @@ public class OwnerController {
 		List<AdminNoticeVO> noticeList = adminService.NoticeList(noticeType);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("noticeList");
-		mv.addObject("noticeList",noticeList);
+		mv.addObject("noticeList", noticeList);
+		mv.addObject("size", noticeList.size());
 		return mv;
 	}
 
 	// 공지사항 읽기
 	@RequestMapping("/noticeRead.owner")
-	public ModelAndView noticeRead(@RequestParam(value="notice_no", required=true)String notice_no){
+	public ModelAndView noticeRead(@RequestParam(value = "notice_no", required = true) String notice_no) {
 		AdminNoticeVO noticeVO = adminService.noticeRead(notice_no);
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("noticeVO",noticeVO);
+		mv.addObject("noticeVO", noticeVO);
 		mv.setViewName("noticeRead");
 		return mv;
+	}
+
+	// QnA
+	@RequestMapping("/QnA.owner")
+	public ModelAndView QnA(@ModelAttribute QnAVO vo, HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		vo.setOwnerEmail((String) session.getAttribute("loginId"));
+		ModelAndView mv = new ModelAndView();
+		List<QnAVO> list = service.QnAList(vo);
+		mv.addObject("size", list.size());
+		mv.addObject("list", list);
+		mv.setViewName("QnA");
+		return mv;
+	}
+
+	// QnA인서트
+	@RequestMapping("/QnAInsert.owner")
+	public String QnAInsert(@ModelAttribute QnAVO vo, HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		vo.setOwnerEmail((String) session.getAttribute("loginId"));
+		service.QnAInsert(vo);
+		return "redirect:QnA.owner";
+	}
+
+	// 마이페이지
+	@RequestMapping("/myPage.owner")
+	public ModelAndView myPage(HttpServletRequest req) {
+		ModelAndView mv = new ModelAndView();
+		HttpSession session = req.getSession();
+		String ownerEmail = (String) session.getAttribute("loginId");
+		List<AccomVO> list = service.accomList(ownerEmail);
+		OwnerVO vo = service.ownerInfo(ownerEmail);
+		mv.addObject("list", list);
+		mv.addObject("size", list.size());
+		mv.addObject("vo", vo);
+		mv.setViewName("myPage");
+		return mv;
+	}
+
+	// 핫딜온오프
+	@RequestMapping("hotdeal.owner")
+	public @ResponseBody void hotdeal(@RequestParam(value = "accom_no", required = true) String accom_no,
+			@RequestParam(value = "accomHotdeal", required = true) String accomHotdeal,
+			@RequestParam(value = "accomHotdeal_DC", required = false) String accomHotdeal_DC) {
+		AccomVO vo = new AccomVO();
+		vo.setAccom_no(Integer.parseInt(accom_no));
+		vo.setAccomHotdeal(accomHotdeal);
+		if (accomHotdeal_DC == null)
+			vo.setAccomHotdeal_DC("0");
+		else
+			vo.setAccomHotdeal_DC(accomHotdeal_DC);
+		service.hotdeal(vo);
+	}
+
+	// 오너 업데이트
+	@RequestMapping("updateOwner.owner")
+	public String updateOwner(@ModelAttribute OwnerVO vo) throws Exception {
+		// 바인딩해서 받은 vo객체의 pw만 get해서 암호화된 문자열로 변환
+		String cryptStr = sha.getSha256(vo.getOwnerPw().getBytes());
+		// setters 이용
+		vo.setOwnerPw(cryptStr);
+		service.updateOwner(vo);
+		return "redirect:myPage.owner";
+	}
+
+	// 오너 삭제
+	@RequestMapping("deleteOwner.owner")
+	public String deleteOwner(@RequestParam(value = "ownerEmail", required = true) String ownerEmail) {
+		service.deleteOwner(ownerEmail);
+		return "redirect:index.owner";
 	}
 }

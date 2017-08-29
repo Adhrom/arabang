@@ -33,6 +33,7 @@
 			});
 		} else {
 			$('#login').popup({
+				color: 'white',
 				opacity : 1,
 				transition : '0.3s',
 				scrolllock : true
@@ -135,6 +136,7 @@
 					<li><a href="companyApprove.admin">업체승인/거절</a></li>
 					<li><a href="companyList.admin">업체리스트</a></li>
 					<li><a href="companyStats.admin">업체통계</a></li>
+					<li><a href="QnAReply.admin">1:1문의</a></li>
 				</ul></li>
 			<li class="item-has-children"><a href="#0">고객관리</a>
 				<ul class="sub-menu">

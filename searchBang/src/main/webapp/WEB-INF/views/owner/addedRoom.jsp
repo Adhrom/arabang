@@ -9,6 +9,7 @@
 <title>방 추가 페이지</title>
 <link rel="stylesheet" href="/searchBang/css/common/btstyle.css">
 <link rel="stylesheet" href="/searchBang/css/common/checkboxstyle.css">
+<link rel="stylesheet" href="/searchBang/css/owner/owner_mypage.css?ver=1">
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
 <style type="text/css">
@@ -241,15 +242,23 @@ input[type=file] {
 	<jsp:include page="topmenu.jsp" flush="false"></jsp:include>
 
 	<!-- 메인콘텐츠 -->
-	<div class="cd-main-content" style="width: 1000px; margin: 0 auto;">
+	<div class="cd-main-content" style="width: 1000px; margin: 50px auto;">
 		<h1>MY 룸 관리</h1>
+		<br/>
 		<hr />
+		<br/>
 		<form enctype="multipart/form-data" name="insertRoom" method="post">
 			<div id="imgUpload">
 				<div id="holder">
-					<br />파일 업로드 버튼을 눌러 이미지를 추가하세요<br />
-					<br />맨 첫번째 이미지가 대표이미지로 설정됩니다<br />
-					<br />사진은 최대 9장까지 등록이 가능합니다
+					<c:choose>
+						<c:when test="${vo.roomCount ne null}">
+						<br/>수정 시에는 사진을 다시 등록 해 주시기 바랍니다.
+						</c:when>
+						<c:otherwise>
+						<br />파일 업로드 버튼을 눌러 이미지를 추가하세요<br /> <br />맨 첫번째 이미지가 대표이미지로
+						설정됩니다<br /> <br />사진은 최대 9장까지 등록이 가능합니다
+						</c:otherwise>
+						</c:choose>
 				</div>
 				<div class="input_wrap">
 					<a href="javascript:" onclick="fileUploadAction();" class="button">파일

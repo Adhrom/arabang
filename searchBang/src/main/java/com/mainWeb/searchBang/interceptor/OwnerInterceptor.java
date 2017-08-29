@@ -14,7 +14,7 @@ public class OwnerInterceptor extends HandlerInterceptorAdapter {
 			HttpSession session = req.getSession(false);
 			String loginId = (String) session.getAttribute("loginId");
 			if (loginId==null) {
-				res.sendRedirect("ownerLogin.owner");
+				res.sendRedirect("index.owner");
 				return false;
 			}else{
 			}

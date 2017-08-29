@@ -11,6 +11,7 @@ import com.mainWeb.searchBang.admin.dao.AdminDAO;
 import com.mainWeb.searchBang.admin.model.AdminNoticeVO;
 import com.mainWeb.searchBang.admin.model.AdminVO;
 import com.mainWeb.searchBang.owner.model.OwnerVO;
+import com.mainWeb.searchBang.owner.model.QnAVO;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -92,6 +93,16 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<OwnerVO> companyList() {
 		return adminDAO.companyList();
+	}
+
+	@Override
+	public void insertReply(QnAVO vo) {
+		adminDAO.insertReply(vo);
+	}
+
+	@Override
+	public List<QnAVO> QnAList() {
+		return adminDAO.QnAList();
 	}
 
 }

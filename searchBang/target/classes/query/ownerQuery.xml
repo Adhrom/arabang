@@ -108,4 +108,28 @@
 	<update id="updateRoom">
 
 	</update>
+
+	<select id="QnAList" resultType="com.mainWeb.searchBang.owner.model.QnAVO">
+		select * from QnA where owneremail = #{ownerEmail}
+	</select>
+
+	<insert id="QnAInsert">
+		insert into qna(qna_no , subject , content,owneremail) values(qna_no_seq.nextval,#{subject},#{content},#{ownerEmail})
+	</insert>
+
+	<select id="ownerInfo" resultType="com.mainWeb.searchBang.owner.model.OwnerVO">
+		select * from owner_reg where owneremail = #{ownerEmail}
+	</select>
+
+	<update id="hotdeal">
+		update accom set accomhotdeal = #{accomHotdeal} , accomhotdeal_dc = #{accomHotdeal_DC} where accom_no = #{accom_no}
+	</update>
+
+	<update id="updateOwner">
+		update owner_reg set ownerpw = #{ownerPw} , ownerphone = #{ownerPhone} where owneremail = #{ownerEmail}
+	</update>
+
+	<delete id="deleteOwner">
+		delete from owner_reg where owneremail = #{ownerEmail}
+	</delete>
 </mapper>

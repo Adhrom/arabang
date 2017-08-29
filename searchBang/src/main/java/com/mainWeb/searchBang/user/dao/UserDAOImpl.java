@@ -22,14 +22,14 @@ public class UserDAOImpl implements UserDAO{
 	public void insertUserDAO(UserVO vo) {
 		sqlsession.insert("user.insertUser",vo);
 	}
-	
+
 	@Override
 	public boolean loginUserDAO(UserInfoVO vo) {
 		System.out.println("dao 진입 : " + vo.getMemberEmail() + " / "+ vo.getMemberPw() );
 		vo = sqlsession.selectOne("user.loginuser", vo);
 
 		System.out.println(vo.toString());
-		
+
 		return (vo.getMemberEmail() == null) ? false : true;
 	}
 
@@ -53,10 +53,12 @@ public class UserDAOImpl implements UserDAO{
 		sqlsession.update("user.updateInfo", info);
 	}
 
+
 	@Override
-	public List<AccomVO> accomList(String dong) {
-		return sqlsession.selectList("user.findAccom", dong);
+	public List<AccomVO> accomList(Map<String, Object> info) {
+		System.out.println(info.entrySet());
+		return sqlsession.selectList("user.accomList", info);
 	}
 
-	
+
 }

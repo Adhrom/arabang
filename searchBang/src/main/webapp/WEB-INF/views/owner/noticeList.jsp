@@ -7,8 +7,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="/searchBang/css/admin/tablestyle.css">
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css">
+<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#admintable").dataTable();
+	});
+</script>
 <title>Notice List</title>
 </head>
 <body>
@@ -19,18 +25,22 @@
 		<br />
 		<form name="conmpanyNoticeList" method="post" action="#">
 			<table id="admintable">
-				<tr class="admintr">
-					<th class="adminth " style="border-right: 2px solid white;"
-						width="100px;">NO.</th>
-					<th class="adminth ">제목</th>
-				</tr>
-				<c:forEach var="row" items="${noticeList }">
-					<tr>
-						<td class="admintd">${row.notice_no }</td>
-						<td class="admintd"><a
-							href="noticeRead.owner?notice_no=${row.notice_no }">${row.subject}</a></td>
+				<thead>
+					<tr class="admintr">
+						<th class="adminth " style="border-right: 2px solid white;"
+							width="100px;">NO.</th>
+						<th class="adminth ">제목</th>
 					</tr>
-				</c:forEach>
+				</thead>
+				<tbody>
+					<c:forEach var="row" items="${noticeList }">
+						<tr>
+							<td class="admintd">${row.notice_no }</td>
+							<td class="admintd"><a
+								href="noticeRead.owner?notice_no=${row.notice_no }">${row.subject}</a></td>
+						</tr>
+					</c:forEach>
+				</tbody>
 				<tr style="border-top: 2px solid #00a699;">
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>

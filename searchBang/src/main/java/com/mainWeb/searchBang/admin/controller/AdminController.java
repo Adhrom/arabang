@@ -15,6 +15,7 @@ import com.mainWeb.searchBang.admin.model.AdminNoticeVO;
 import com.mainWeb.searchBang.admin.model.AdminVO;
 import com.mainWeb.searchBang.admin.service.AdminService;
 import com.mainWeb.searchBang.owner.model.OwnerVO;
+import com.mainWeb.searchBang.owner.model.QnAVO;
 import com.mainWeb.searchBang.utils.SHA256;
 
 @Controller
@@ -62,6 +63,7 @@ public class AdminController {
 	public ModelAndView companyApprove() {
 		List<OwnerVO> list = adminService.companyApprove();
 		ModelAndView mv = new ModelAndView();
+		mv.addObject("size",list.size());
 		mv.addObject("list",list);
 		mv.setViewName("companyApprove");
 		return mv;
@@ -176,8 +178,8 @@ public class AdminController {
 			HttpSession session) throws Exception {
 
 //		로그인시 암호화해서 vo모델링
-//		String cryptPw = sha.getSha256(vo.getAdminPw().getBytes());
-//		vo.setAdminPw(cryptPw);
+		String cryptPw = sha.getSha256(vo.getAdminPw().getBytes());
+		vo.setAdminPw(cryptPw);
 
 		boolean result = adminService.loginCheck(vo, session);
 		ModelAndView mv = new ModelAndView();
@@ -197,4 +199,22 @@ public class AdminController {
 		adminService.logout(session);
 		return "index";
 	}
+
+	//QnA 리스트
+	@RequestMapping("/QnAReply.admin")
+	public ModelAndView QnAReply(){
+		ModelAndView mv = new ModelAndView();
+		List<QnAVO> list = adminService.QnAList();
+		mv.addObject("size", list.size());
+		mv.addObject("list", list);
+		mv.setViewName("QnAReply");
+		return mv;
+	}
+	//QnA 리플
+	@RequestMapping("/insertReply.admin")
+	public String insertReply(@ModelAttribute QnAVO vo){
+		adminService.insertReply(vo);
+		return "redirect:QnAReply.admin";
+	}
+
 }

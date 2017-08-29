@@ -15,7 +15,8 @@
 	src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
 <script src="/searchBang/js/user/mainPage.min.js"></script>
 <!-- <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" /> -->
-<link rel="stylesheet" type="text/css" href="/searchBang/css/user/searchNormalize.css" />
+<link rel="stylesheet" type="text/css"
+	href="/searchBang/css/user/searchNormalize.css" />
 <!-- css -->
 <link rel="stylesheet" href="/searchBang/css/user/search.css">
 <style>
@@ -33,6 +34,11 @@
 	height: 30px;
 }
 </style>
+<script type="text/javascript">
+	function goSearch() {
+		location.href = "searchView.bang?address="+$('#address').val()+"&date="+$('#daterange').val()+"&people="+$('#people').val();
+	}
+</script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
@@ -51,7 +57,7 @@
 				<tbody>
 					<tr>
 						<!-- 위치 -->
-						<td><textarea class="serachTd" rows="" cols=""></textarea></td>
+						<td><textarea class="serachTd" rows="" cols="" id="address"></textarea></td>
 						<!-- 날짜 -->
 						<td><input type="text" name="daterange" class="serachTd"
 							id="daterange" /> <script type="text/javascript"
@@ -71,18 +77,18 @@
 								});
 							</script></td>
 						<!-- 인원 -->
-						<td><select class="serachTd" id=people>
-								<option value="volvo">1 명</option>
-								<option value="saab">2 명</option>
-								<option value="mercedes">3 명</option>
-								<option value="audi">4 명</option>
-								<option value="audi">5 명</option>
-								<option value="audi">6 명</option>
-								<option value="audi">7 명</option>
+						<td><select class="serachTd" id='people'>
+								<option value="1">1 명</option>
+								<option value="2">2 명</option>
+								<option value="3">3 명</option>
+								<option value="4">4 명</option>
+								<option value="5">5 명</option>
+								<option value="6">6 명</option>
+								<option value="7">7 명</option>
 
 						</select></td>
 						<td>
-							<button class="serachTd" id=searchBt>검색</button>
+							<button class="serachTd" id=searchBt onclick="goSearch()">검색</button>
 						</td>
 			</table>
 		</div>

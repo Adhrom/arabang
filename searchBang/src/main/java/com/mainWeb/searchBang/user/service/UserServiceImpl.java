@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
 
 	@Inject
 	private UserDAO dao;
-	
+
 	SHA256 sha = SHA256.getInsatnce();
 	Map<String, Object> info = new HashMap<String, Object>();
 	public void setMapping(String id, String password) throws Exception{
@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
 		vo.setMemberPw(sha.getSha256(vo.getMemberPw().getBytes()));
 		dao.insertUserDAO(vo);
 	}
-	
+
 	@Override
 	public boolean loginUserService(String id, String password,HttpSession session , UserInfoVO vo) throws Exception {
 		System.out.println("service 진입 : " + id +" "+ password );
@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService {
 		}
 		return result;
 	}
-	
+
 	@Override
 	public UserInfoVO getUserInfoService(String id, String password) throws Exception {
 		setMapping(id, password);
@@ -76,7 +76,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<AccomVO> accomListService(String dong) {
-		return dao.accomList("%"+dong+"%");
+	public List<AccomVO> accomList(String address, String people) {
+		info.put("accomAddress", address);
+		info.put("roomUsingPeople", people);
+		return dao.accomList(info);
 	}
+
+
 }

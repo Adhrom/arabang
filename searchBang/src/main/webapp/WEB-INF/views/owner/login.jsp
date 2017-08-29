@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html> 
+<html>
 <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="/searchBang/js/owner/cookie.js"></script>
 <head>
@@ -12,10 +12,10 @@
 <link rel="stylesheet" href="/searchBang/css/owner/login.css" />
 <body>
 	<h1 class="title">회원가입</h1>
-	<form class="login-form" id="loginForm" name="loginForm" 
+	<form class="login-form" id="loginForm" name="loginForm"
 											action="loginProc.owner" method="post">
 		<div id="login-box">
-			<h3 class="login-title">회원로그인</h3>
+			<h3 class="login-title">사장님 로그인</h3>
 
 			<h4 class="input-txt">이메일</h4>
 			<div id="input-box">
@@ -35,7 +35,7 @@
 					<a href="#">비밀번호 찾기</a>
 				</h4>
 
-				<input id="login-btn" type="button" value="로그인" onclick="sendit()"> 
+				<input id="login-btn" type="button" value="로그인" onclick="sendit()">
 				<input id="join-btn" type="button" value="회원가입" onclick="javascript:self.location='ownerReg.owner';">
 
 			</div>

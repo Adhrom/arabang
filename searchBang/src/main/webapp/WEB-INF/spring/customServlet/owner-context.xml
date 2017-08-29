@@ -40,6 +40,11 @@
 	<interceptors>
 		<interceptor>
 			<mapping path="/accomManagement.owner" />
+			<mapping path="/addedAccom.owner" />
+			<mapping path="/roomManagement.owner" />
+			<mapping path="/addedRoom.owner" />
+			<mapping path="/QnA.owner" />
+			<mapping path="/myPage.owner" />
 			<beans:bean class="com.mainWeb.searchBang.interceptor.OwnerInterceptor" />
 		</interceptor>
 	</interceptors>
