@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <!-- CSS reset -->
 <link
 	href='http://fonts.googleapis.com/css?family=Titillium+Web:400,600,700'
@@ -18,6 +19,11 @@
 	src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
 <script src="/searchBang/js/admin/main.js"></script>
 <script src="/searchBang/js/admin/jquery.popupoverlay.js"></script>
+<!-- Paging Datatables -->
+<script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script src="/searchBang/js/common/jquery.datatables.min.js"></script>
+
+
 <script>
 	$(document).ready(function() {
 		//모달팝업
@@ -60,6 +66,7 @@
 		});
 	});
 </script>
+
 <style type="text/css">
 .inputarea {
 	width: 100%;
@@ -95,8 +102,11 @@
 }
 </style>
 <title></title>
+
 </head>
 <body>
+
+
 	<!-- 로그인실패 알터창 -->
 	<c:if test="${msg == 'failure'}">
 		<script type="text/javascript">

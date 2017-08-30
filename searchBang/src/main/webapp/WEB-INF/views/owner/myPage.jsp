@@ -94,6 +94,11 @@
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
 <script src="/searchBang/js/admin/jquery.popupoverlay.js"></script>
+	<!-- paging css -->
+<link rel="stylesheet" type="text/css"
+	href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="//cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.css"><!-- 이거 넣으면 datatable 검색과 목록간 밑단 픽셀 간격이 맞춰짐 -->
+<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <script type="text/javascript">
 	var accom_no2 = "";
 	var offId2 = new Object();
@@ -213,6 +218,28 @@
 		});
 	}
 </script>
+<!-- paging -->
+<script type="text/javascript">
+	$(function() {
+		$('#ownertable').dataTable({
+		"scrollY": 360,
+		"order": [[ 0, "desc" ]], //마지막 등록한 글이 위로가게 내림차순 정렬 
+		"bLengthChange": false, //페이지 등록글 갯수 메뉴 삭제
+		"pageLength": 4,//페이지 등록글 갯수 4개로 고정
+		"oLanguage": {
+			"sLoadingRecords": "데이터를 불러오는 중입니다.",
+			"sProcessing": "데이터를 처리중 입니다.",
+			"sEmptyTables": "데이터가 없습니다.",
+			"sSearch": "<span>검색</span> _INPUT_",//검색
+			"sZeroRecords": "검색 결과가 없습니다.",
+			"sLengthMenu" : "<span>페이징 갯수</span> _MENU_"
+		}
+       
+		});
+		
+	});
+	
+</script>
 </head>
 <body>
 	<jsp:include page="topmenu.jsp" flush="false"></jsp:include>
@@ -257,7 +284,8 @@
 		<div class="owner-list-box">내숙소 리스트</div>
 		<div
 			style="margin-top: 20px; width: 1000px; margin-left: auto; margin-right: auto;">
-			<table class="list-box-bar-company-list">
+			<table id="ownertable" class="list-box-bar-company-list">
+			<thead>
 				<tr class="owner-list-box-bar">
 					<td class="table-rank">등급</td>
 					<td class="table-company">숙소명</td>
@@ -266,9 +294,9 @@
 					<td class="table-hotdeal">핫딜 on/off</td>
 					<td class="table-view">보기</td>
 				</tr>
-			</table>
-			<form method="post">
-				<table>
+					</thead>
+
+				<tbody>
 					<c:forEach items="${list }" var="row" varStatus="number" begin="0"
 						step="1">
 						<tr>
@@ -320,8 +348,8 @@
 							</a></td>
 						</tr>
 					</c:forEach>
+					</tbody>
 				</table>
-			</form>
 		</div>
 	</div>
 	<footer>
