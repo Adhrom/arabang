@@ -3,6 +3,8 @@ package com.mainWeb.searchBang.user.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,6 +25,8 @@ import com.mainWeb.searchBang.owner.model.AccomVO;
 import com.mainWeb.searchBang.user.model.UserInfoVO;
 import com.mainWeb.searchBang.user.model.UserVO;
 import com.mainWeb.searchBang.user.service.UserService;
+import com.mainWeb.searchBang.utils.CharMix;
+import com.mainWeb.searchBang.utils.Mail;
 
 @Controller
 public class UserController {
@@ -94,6 +98,14 @@ public class UserController {
 			mv.setViewName("redirect:login.bang");
 		}
 		return mv;
+	}
+	
+	@RequestMapping(value = "/getCertificationNum.bang")
+	public @ResponseBody String CharMixxing(@RequestParam("idfield") String address)
+			throws AddressException, MessagingException {
+		String message = CharMix.getInstance().makeMessage();
+		new Mail(address, message); // Mail클래스가 메일전송을 대신하게,
+		return message;
 	}
 
 //	정보를 가져오는 과정

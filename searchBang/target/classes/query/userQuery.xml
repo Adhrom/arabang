@@ -4,14 +4,14 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="user">
-
 	<select id="loginuser"  resultType="com.mainWeb.searchBang.user.model.UserInfoVO">
 		select * from member_reg
 		where memberemail = #{memberEmail} and memberpw = #{memberPw}
 	</select>
-
+	
 	<select id="accomList" parameterType="java.util.HashMap" resultType="com.mainWeb.searchBang.owner.model.AccomVO">
 		select DISTINCT accom.* from accom ,room where accom.ACCOMADDRESS 
 		like '%'||#{accomAddress}||'%' and room.ROOMUSINGPEOPLE >= #{roomUsingPeople}
 	</select>
+	
 </mapper>
