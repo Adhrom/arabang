@@ -110,109 +110,163 @@ input[type=file] {
 	}
 
 	//등록
-	$(document)
-			.ready(
-					function() {
-						$('#insertRoomBT')
-								.click(
-										function() {
-											if (!$('#rent').is(":checked")) {
-												if (!$('#lodge').is(":checked")) {
-													alert("대실과 숙박중 하나는 선택을 해주세요");
+	$(document).ready(function() {
+		$('#insertRoomBT').click(function() {
+			if (!$('#rent').is(":checked")) {
+				if (!$('#lodge').is(":checked")) {
+						alert("대실과 숙박중 하나는 선택을 해주세요");
+						return false;
+					}
+				}
+				if (!$('#normalRoom').is(":checked")) {
+					if (!$('#normalTwinRoom').is(":checked")) {
+						if (!$('#sweetRoom').is(":checked")) {
+							if (!$('#sweetTwinRoom').is(":checked")) {
+								if (!$('#ondol').is(":checked")) {
+									if (!$('#specialRoom').is(":checked")) {
+										if (!$('#specialTwinRoom').is(":checked")) {
+											if (!$('#subspecialRoom').is(":checked")) {
+													alert("방 타입을 선택해 주세요");
 													return false;
 												}
 											}
-											if (!$('#normalRoom')
-													.is(":checked")) {
-												if (!$('#normalTwinRoom').is(
-														":checked")) {
-													if (!$('#sweetRoom').is(
-															":checked")) {
-														if (!$('#sweetTwinRoom')
-																.is(":checked")) {
-															if (!$('#ondol')
-																	.is(
-																			":checked")) {
-																if (!$(
-																		'#specialRoom')
-																		.is(
-																				":checked")) {
-																	if (!$(
-																			'#specialTwinRoom')
-																			.is(
-																					":checked")) {
-																		if (!$(
-																				'#subspecialRoom')
-																				.is(
-																						":checked")) {
-																			alert("방 타입을 선택해 주세요");
-																			return false;
-																		}
-																	}
-																}
-															}
-														}
-													}
+										}
+									}
+								}
+							}
+						}
+					}
+					if ($('#rent').is(":checked")) {
+						if ($('#roomRent_Closingtime').val() == "") {
+							alert("대실 마감시간을 적어주세요");
+							return;
+							}
+						if ($('#roomRent_Usetime').val() == "") {
+							alert("대실 이용시간을 적어주세요");
+							return;
+							}
+						if ($('#roomRent').val() == "") {
+							alert("대실 가격을 적어주세요");
+							return;
+							}
+						}
+					if ($('#lodge').is(":checked")) {
+						if ($('#roomLodge_Checkin').val() == "") {
+							alert("숙박 입실시간을 적어주세요");
+							return;
+							}
+						if ($('#roomLodge_Checkout').val() == "") {
+							alert("숙박 퇴실시간을 적어주세요");
+							return;
+							}
+						if ($('#roomLodge').val() == "") {
+							alert("숙박 가격을 적어주세요");
+							return;
+							}
+						}
+					if (!$('#rent').is(":checked")) {
+							$('#roomRent_Closingtime').val(0);
+							$('#roomRent_Usetime').val(0);
+							$('#roomRent').val(0);
+							}
+					if (!$('#lodge').is(":checked")) {
+							$('#roomLodge_Checkin').val(0);
+							$('#roomLodge_Checkout').val(0);
+							$('#roomLodge').val(0);
+							}
+					if ($('#roomCount').val() == "") {
+							alert("방 갯수를 적어주세요");
+							return;
+							}
+					if ($('#roomUsingPeople').val() == "") {
+							alert("방 이용가능 인원 수를 적어주세요");
+							return;
+							}
+					if ($('#input_imgs').val() == "") {
+							alert("사진을 최소 한장 등록해주세요");
+							return false;
+							}
+							document.insertRoom.action = "insertRoom.owner";
+							document.insertRoom.submit();
+						});
+		$('#updateRoomBT').click(function() {
+			if (!$('#rent').is(":checked")) {
+				if (!$('#lodge').is(":checked")) {
+						alert("대실과 숙박중 하나는 선택을 해주세요");
+						return false;
+					}
+				}
+				if (!$('#normalRoom').is(":checked")) {
+					if (!$('#normalTwinRoom').is(":checked")) {
+						if (!$('#sweetRoom').is(":checked")) {
+							if (!$('#sweetTwinRoom').is(":checked")) {
+								if (!$('#ondol').is(":checked")) {
+									if (!$('#specialRoom').is(":checked")) {
+										if (!$('#specialTwinRoom').is(":checked")) {
+											if (!$('#subspecialRoom').is(":checked")) {
+													alert("방 타입을 선택해 주세요");
+													return false;
 												}
 											}
-											if ($('#rent').is(":checked")) {
-												if ($('#roomRent_Closingtime')
-														.val() == "") {
-													alert("대실 마감시간을 적어주세요");
-													return;
-												}
-												if ($('#roomRent_Usetime')
-														.val() == "") {
-													alert("대실 이용시간을 적어주세요");
-													return;
-												}
-												if ($('#roomRent').val() == "") {
-													alert("대실 가격을 적어주세요");
-													return;
-												}
-											}
-											if ($('#lodge').is(":checked")) {
-												if ($('#roomLodge_Checkin')
-														.val() == "") {
-													alert("숙박 입실시간을 적어주세요");
-													return;
-												}
-												if ($('#roomLodge_Checkout')
-														.val() == "") {
-													alert("숙박 퇴실시간을 적어주세요");
-													return;
-												}
-												if ($('#roomLodge').val() == "") {
-													alert("숙박 가격을 적어주세요");
-													return;
-												}
-											}
-											if (!$('#rent').is(":checked")) {
-												$('#roomRent_Closingtime').val(
-														0);
-												$('#roomRent_Usetime').val(0);
-												$('#roomRent').val(0);
-											}
-											if (!$('#lodge').is(":checked")) {
-												$('#roomLodge_Checkin').val(0);
-												$('#roomLodge_Checkout').val(0);
-												$('#roomLodge').val(0);
-											}
-											if ($('#roomCount').val() == "") {
-												alert("방 갯수를 적어주세요");
-												return;
-											}
-											if ($('#roomUsingPeople').val() == "") {
-												alert("방 이용가능 인원 수를 적어주세요");
-												return;
-											}
-											if ($('#input_imgs').val() == "") {
-												alert("사진을 최소 한장 등록해주세요");
-												return false;
-											}
-											document.insertRoom.action = "insertRoom.owner";
-											document.insertRoom.submit();
-										});
+										}
+									}
+								}
+							}
+						}
+					}
+					if ($('#rent').is(":checked")) {
+						if ($('#roomRent_Closingtime').val() == "") {
+							alert("대실 마감시간을 적어주세요");
+							return;
+							}
+						if ($('#roomRent_Usetime').val() == "") {
+							alert("대실 이용시간을 적어주세요");
+							return;
+							}
+						if ($('#roomRent').val() == "") {
+							alert("대실 가격을 적어주세요");
+							return;
+							}
+						}
+					if ($('#lodge').is(":checked")) {
+						if ($('#roomLodge_Checkin').val() == "") {
+							alert("숙박 입실시간을 적어주세요");
+							return;
+							}
+						if ($('#roomLodge_Checkout').val() == "") {
+							alert("숙박 퇴실시간을 적어주세요");
+							return;
+							}
+						if ($('#roomLodge').val() == "") {
+							alert("숙박 가격을 적어주세요");
+							return;
+							}
+						}
+					if (!$('#rent').is(":checked")) {
+							$('#roomRent_Closingtime').val(0);
+							$('#roomRent_Usetime').val(0);
+							$('#roomRent').val(0);
+							}
+					if (!$('#lodge').is(":checked")) {
+							$('#roomLodge_Checkin').val(0);
+							$('#roomLodge_Checkout').val(0);
+							$('#roomLodge').val(0);
+							}
+					if ($('#roomCount').val() == "") {
+							alert("방 갯수를 적어주세요");
+							return;
+							}
+					if ($('#roomUsingPeople').val() == "") {
+							alert("방 이용가능 인원 수를 적어주세요");
+							return;
+							}
+					if ($('#input_imgs').val() == "") {
+							alert("사진을 최소 한장 등록해주세요");
+							return false;
+							}
+							document.insertRoom.action = "updateRoom.owner";
+							document.insertRoom.submit();
+						});
 						if ($('#H_roomType').val() == 'normalRoom')
 							$('#normalRoom').prop("checked", true);
 						if ($('#H_roomType').val() == 'normalTwinRoom')
@@ -312,9 +366,17 @@ input[type=file] {
 					value="${vo.roomLodge }">원
 			</div>
 			<div>
+				<c:choose>
+				<c:when test="${vo.roomType eq null }">
 				<input type="button" value="등록" class="button" id="insertRoomBT">
+				</c:when>
+				<c:otherwise>
+				<input type="button" value="수정" class="button" id="updateRoomBT">
+				</c:otherwise>
+				</c:choose>
 			</div>
 			<input type="hidden" value="${vo.roomType }" id="H_roomType">
+			<input type="hidden" value="${vo.room_no }" name="room_no">
 		</form>
 	</div>
 	<!-- 푸터 -->

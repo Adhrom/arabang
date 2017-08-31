@@ -21,7 +21,9 @@
 <script src="/searchBang/js/admin/jquery.popupoverlay.js"></script>
 <script src="/searchBang/js/owner/index.min.js"></script>
 <script src="/searchBang/js/owner/cookie.js"></script>
+<!-- paging Datatables -->
 <script src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+<script src="/searchBang/js/common/jquery.datatables.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#login').popup({
@@ -29,6 +31,8 @@
 		});
 	});
 </script>
+
+
 <style type="text/css">
 .inputarea {
 	width: 100%;

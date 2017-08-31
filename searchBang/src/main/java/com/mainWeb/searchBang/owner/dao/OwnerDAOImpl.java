@@ -103,11 +103,12 @@ public class OwnerDAOImpl implements OwnerDAO {
 	@Override
 	public void deleteAccom(String accom_no) {
 		sqlSessionTemplate.delete("owner.deleteAccom", accom_no);
+		
 	}
 
 	@Override
-	public void updateAccom(String accom_no) {
-		// TODO Auto-generated method stub
+	public void updateAccom(AccomVO accomVO) {
+		sqlSessionTemplate.update("owner.updateAccom" , accomVO);
 
 	}
 
@@ -117,10 +118,11 @@ public class OwnerDAOImpl implements OwnerDAO {
 	}
 
 	@Override
-	public void updateRoom(String room_no) {
-		// TODO Auto-generated method stub
-
+	public void updateRoom(RoomVO roomVO){
+		sqlSessionTemplate.update("owner.updateRoom" , roomVO);
 	}
+
+	
 
 
 }

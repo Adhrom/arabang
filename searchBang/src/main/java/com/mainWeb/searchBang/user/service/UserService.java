@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import com.mainWeb.searchBang.owner.model.AccomVO;
 import com.mainWeb.searchBang.user.model.ReservationVO;
 import com.mainWeb.searchBang.user.model.ReviewVO;
+import com.mainWeb.searchBang.owner.model.RoomVO;
 import com.mainWeb.searchBang.user.model.UserInfoVO;
 
 public interface UserService {
@@ -37,4 +38,11 @@ public interface UserService {
 
 	//리뷰등록
 	public void insertReview(ReviewVO vo);
+
+	// 숙소정보 불러오기
+	public AccomVO accomInfo(String accom_no);
+
+	// 방 정보 불러오기
+	public List<RoomVO> roomInfo(String accom_no);
+	
 }

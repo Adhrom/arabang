@@ -1,115 +1,116 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 
 <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript"
-   src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
-   charset="utf-8"></script>
+	src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
+	charset="utf-8"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script src="https://apis.google.com/js/api:client.js"></script>
+<script src="js/user/google.js"></script> 
 <script type="text/javascript">
 	function loginProc(){
 		var emailval = $("#login-userId").val();
 		var passwordval = $("#login-userPw").val();
-		document.getElementById("test11").innerHTML = emailval +"//"+ passwordval;
 		$.ajax({
 			data : {
 				email : emailval,
 				password : passwordval
 			},
 			type : "POST",
-			url : "loginProc.bang",
-			success : function(data){
-				document.getElementById("test22").innerHTML = data
-			},
-			error : function(request,status,error){
-				document.getElementById("test11").innerHTML
-						= "code:"+request.status+"\n"
-						+"message:"+request.responseText+"\n"
-						+"error:"+error;
-			}
+			url : "loginProc.bang"
 		});
 	}
+	
+$(document).ready(function(){
+	$("#login-userId").focus();
+	$("#login-userId").focus(function(){
+		$(this).css("background-color","#aaccff");
+	});
+	$("#login-userId").blur(function(){
+		$(this).css("background-color","white");
+	});
+	$("#login-userPw").focus(function(){
+		$(this).css("background-color","#aaccff");
+	});
+	$("#login-userPw").blur(function(){
+		$(this).css("background-color","white");
+	});
+});
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Login View</title>
 <!-- HTTPS required. HTTP will give a 403 forbidden response -->
-<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="/searchBang/css/user/style.css" />
+<link href="https://fonts.googleapis.com/css?family=Roboto"
+	rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="/searchBang/css/user/login_style.css" />
 </head>
 <body>
 
-   <h1 class="title">회원가입</h1>
-   <form class="login-form">
-      <div id="login-box">
-         <h3 class="login-title">회원로그인</h3>
+	<jsp:include page="topmenu.jsp" />
+			
+	<form class="login-form">
+	<h2	 class="login-title">회원로그인</h2>
+		<div id="login-box">
 
-         <h4 class="input-txt">이메일</h4>
-         <div id="input-box">
-            <input type="text" class="input-type" name="login-userId" id="login-userId">
-         </div>
+			<h4 class="input-txt" >이메일</h4>
+			<div id="input-box">
+				<input type="text" class="input-type" name="login-userId"
+					id="login-userId" required="required" placeholder="  이메일을 입력하세요.">
+			</div>
 
-         <h4 class="input-txt">비밀번호</h4>
-         <div id="input-box">
-            <input type="password" class="input-type" name="login-userPw" id="login-userPw">
-         </div>
+			<h4 class="input-txt" >비밀번호</h4>
+			<div id="input-box">
+				<input type="password" class="input-type" name="login-userPw"
+					id="login-userPw" required="required" placeholder="  비밀번호를 입력하세요.">
+			</div>
 
-         <input type="checkbox" id="divECI_ISDVSAVE" /><label
-            for="divECI_ISDVSAVE">아이디 저장</label>
+			<div>
+			<input type="checkbox" id="divECI_ISDVSAVE" /><label
+				for="divECI_ISDVSAVE">아이디 저장</label>
+			</div>
+			
+			<input id="login-btn" type="button" value="로그인"
+				onclick="loginProc();"> <input id="join-btn" type="button"
+				value="회원가입" onclick="location.href='userReg.bang';"><br />
+				
+			<div id="login_module" >
+			<!-- kakao -->
+			<div id="kakao-login-btn"></div>
+			<!-- naver -->
+			<div id="naver_id_login"></div>
+			
+			
+			<!-- google -->
+			<div id="gSignInWrapper">
+				<div id="customBtn" class="customGPlusSignIn">
+					<span class="icon"></span> <span class="buttonText">Google
+						계정으로 로그인하기</span>
+				</div>
+			</div>
+			<script>startApp();</script>
+			
+			<!-- facebook -->
+			<div id="fb-root"></div>
+			<div class="fb-login-button" data-max-rows="1" data-size="large"
+				data-button-type="login_with" data-show-faces="false"
+				data-auto-logout-link="false" data-use-continue-as="false"></div>
+			<!-- data-auto-logout-link  = false 로 해야 login / logout 체인지 x-->
+			</div>
 
-         <div id="remember-txt-sector">
-            <h4 id="pwd-search">
-               <a href="#">비밀번호 찾기</a>
-            </h4>
-         </div>
-         <input id="login-btn" type="button" value="로그인" onclick="loginProc();">
-         <input id="join-btn" type="button" value="회원가입" onclick="location.href='userReg.bang';"><br />
-         <!--  -->
-         <div id="kakao-login-btn"></div>
-         <!-- naver -->
-         <div id="naver_id_login"></div>
-         <!-- facebook -->
-         <div id="fb-root"></div>
-         <div class="fb-login-button" data-max-rows="1" data-size="large"
-            data-button-type="login_with" data-show-faces="false"
-            data-auto-logout-link="false" data-use-continue-as="false"></div>
-         <!-- data-auto-logout-link  = false 로 해야 login / logout 체인지 x-->
-         <div id="test1" style="display: none"></div>
-         <!-- 로그인 했을때 정보가 나오게 하는 div태그 지워도 상관 x -->
-         <!-- google -->
-         <div id="gSignInWrapper">
-            <span class="label" style="display:none">구글 연동:</span>
-            <div id="customBtn" class="customGPlusSignIn">
-               <span class="icon" ></span> <span class="buttonText">Google 계정으로 로그인하기</span>
-            </div>
-         </div>
-		<div id="test11"></div>
-		<div id="test22"></div>
-         <script>
-      function signOut() {
-        var auth2 = gapi.auth2.getAuthInstance();
-        auth2.signOut().then(function () {
-          console.log('User signed out.');
-          document.getElementById('name').innerText = "";
-          document.getElementById('id').innerText = "";
-          document.getElementById('email').innerText = "";
-
-        });
-
-      }
-
-
-      </script>
-         <script>startApp();</script>
-
-
-      </div>
-   </form>
+			<div id="remember-txt-sector">
+					<a href='findPassword.bang'>비밀번호 찾기</a>
+			</div>
+		</div>
+	</form>
+	<footer id = "login_footer">
+	<jsp:include page="footer.jsp" />
+	</footer>
 </body>
-<script type="text/javascript">
+<script>
    // Kakao Login Script part..
 
    Kakao.init("075f14a8a68560c031b7e0995d499666"); // (for kakao) 앱 생성해서 받은, javascript 키..
@@ -169,12 +170,12 @@
          testAPI();
       } else if (response.status === 'not_authorized') {
          // fb 로그인 했으나, 앱에는 로그인 되어있지 않음.
-         document.getElementById('test1').innerHTML = 'please log'
-               + 'into this app';
+        /* document.getElementById('test1').innerHTML = 'please log'
+               + 'into this app'; */
       } else {
          // fb 로그인 되어있찌 않음, 따라서 앱에 로그인 되어있는지 여부가 불확실
-         document.getElementById('test1').innerHTML = 'please log'
-               + 'into facebook';
+        /* document.getElementById('test1').innerHTML = 'please log'
+               + 'into facebook'; */
       }
    }
 
@@ -193,7 +194,7 @@
          version : 'v2.1'
       });
 
-      // javascript sdk 를 초기화 했으니, FB.getLoginStatus() 를 호출
+      // javascript sdk 를 초기화 했으니, FB.getLoginStatus() 를 호출 
       // 이 함수는 이페이지의 사용자가 현재 로그인 되어있는 상태 3가지 중 하나를 콜백에 리턴함.
       // 그 3가지 상태는 아래와 같다.
 
@@ -219,7 +220,7 @@
       fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 
-   // 로그인이 성공한 다음에는 간단한 그래프 ㅇAPI를 호출,
+   // 로그인이 성공한 다음에는 간단한 그래프 ㅇAPI를 호출, 
    // 이 호출은 statusChangeCallback()에서 이루어짐..
 
    function testAPI() {
@@ -228,9 +229,8 @@
       }, function(response) {
          var nickname = response.name;
          var email = response.email;
-         document.getElementById('test1').innerHTML = nickname + " : "
-               + email; // 테스트 구문..
-         // 여기까지 이메일 & 이름 가져오는건 성공함.
+       
+         // 여기까지 이메일 & 이름 가져오는건 성공함. 
          $.ajax({
             type : "POST",
             url : "getInfo.bang",
@@ -244,100 +244,7 @@
       });
    }
 
-   // Google login Script part..
-
-   var googleUser = {};
-  var startApp = function() {
-    gapi.load('auth2', function(){
-      // Retrieve the singleton for the GoogleAuth library and set up the client.
-      auth2 = gapi.auth2.init({
-        client_id: '524101724465-q405ponbf5i6ef0hdrcr52qcfm82njv2.apps.googleusercontent.com',
-        cookiepolicy: 'single_host_origin',
-        // Request scopes in addition to 'profile' and 'email'
-        //scope: 'additional_scope'
-      });
-      attachSignin(document.getElementById('customBtn'));
-    });
-  };
-
-  function attachSignin(element) {
-    console.log(element.id);
-
-    auth2.attachClickHandler(element, {},
-        function(googleUser) {
-       var profile = googleUser.getBasicProfile();
-      // The ID token you need to pass to your backend:
-      var id_token = googleUser.getAuthResponse().id_token;
-
-      document.getElementById('name').innerText = "이름 : " +
-        profile.getName()+"님 로그인을 환영합니다!";
-       document.getElementById('id').innerText = "아이디 : " +
-        profile.getId();
-         document.getElementById('email').innerText = "이메일 : " +
-       profile.getEmail();
-
-
-      alert("로그인 성공");
-      // w = location.href = 'http://localhost:8080/AjaxEx/room_information.jsp';
-
-      //googleUser은 사용자 정보가 담겨진 객체
-      //login.aspx 에서 googleUser로 받은 사용자 정보를 조회해서 가입이 되어 있으면 로그인, 가입이 되어 있지 않으면 회원가입 페이지로 이동한다, 그리고 토큰값에 대한 검증을 한다.
-      $.post("/response.jsp", { "userid": profile.getId(), "email": profile.getEmail(), "username": profile.getName(), "fbaccesstoken": id_token },
-      function (responsephp) {
-         if (responsephp == "login") {
-            //로그인 성공시 login.aspx에서 로그인 처리를 해 준 후 URL로 이동한다.
-            alert("성공");
-            location.href = 'http://localhost:8080/AjaxEx/room_information.jsp';
-
-         } else if (responsephp == "signup") {
-            //회원의 정보(토큰,아이디,이름)은 쿠키나 파라미터로 넘겨서 회원가입 페이지에서 회원 정보를 이용해서 회원 등록을 진행한다.
-            location.href = '회원 가입 URL';
-         }
-      });
-
-        }, function(error) {
-          alert(JSON.stringify(error, undefined, 2));
-        });
-  }
 </script>
-<style type="text/css">
-#customBtn {
-   display: inline-block;
-   background: white;
-   color: #444;
-   width: 250px;
-   border-radius: 5px;
-   border: thin solid #888;
-   box-shadow: 1px 1px 1px grey;
-   white-space: nowrap;
-}
 
-#customBtn:hover {
-   cursor: pointer;
-}
 
-span.label {
-   font-family: serif;
-   font-weight: normal;
-}
-
-span.icon {
-   background: url('/searchBang/img/user/commonKXZUNFVY.jpg') transparent 5px 50% no-repeat;
-   display: inline-block;
-   vertical-align: middle;
-   width: 42px;
-   height: 42px;
-}
-
-span.buttonText {
-   display: inline-block;
-   vertical-align: middle;
-   padding-left: 5px;
-   padding-right: 42px;
-   font-size: 14px;
-   font-weight: bold;
-   /* Use the Roboto font that is loaded in the <head> */
-   font-family: 'Roboto', sans-serif;
-}
-</style>
 </html>

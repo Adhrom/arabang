@@ -1,12 +1,20 @@
 @CHARSET "UTF-8";
 
 #welcomeFinish{
-	width: 1000px;
-	margin-left: auto;
-	margin-right: auto;
+	position : relative;
+	width: 600px;
+	margin: auto;
+	top: 100px;
+	
+
 }
-b#title-b {
-	font-size:40px;
+#title-a{
+	margin-left: 15px;	
+}
+#title-b{
+	padding: 0px;
+	margin:10px;
+	
 }
 .circle-wrapper {
 
@@ -86,15 +94,13 @@ b#title-b {
 #welcome{
 	border: 1px solid #989898;
 	border-radius:4px;
-
+	position:relative;
+	text-align: center;
 }
 
 #commemoration{
+	display: inline;
 	width:150px;
-	margin-left: 45%;
-	margin-bottom:3%;
-	margin-top:5%;
-
 }
 
 #welcome ul, il{
@@ -106,8 +112,8 @@ b#title-b {
 }
 
 #success{
-	font-size: 25px;
+	font-size: 20px;
 	color :#333;
-	margin-bottom: 0.5%;
+	
 }
 

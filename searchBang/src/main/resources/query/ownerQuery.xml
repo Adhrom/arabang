@@ -98,7 +98,51 @@
 	</delete>
 
 	<update id="updateAccom">
-
+		update accom set 
+		accomName = #{accomName}, 
+		accomAddress = #{accomAddress}, 
+		accomPhone = #{accomPhone}, 
+		accomInfo = #{accomInfo}, 
+		accomType = #{accomType},
+		accomGrade = 1 ,
+		accomGpa = 1.0,
+		ACCOMHOTDEAL = 'n',
+		ACCOMHOTDEAL_DC = 0 ,
+		accomimg1 = #{accomimg1},
+		accomimg2 = #{accomimg2},
+		accomimg3 = #{accomimg3},
+		accomimg4 = #{accomimg4},
+		accomimg5 = #{accomimg5},
+		accomimg6 = #{accomimg6},
+		accomimg7 = #{accomimg7},
+		accomimg8 = #{accomimg8},
+		accomimg9 = #{accomimg9},
+		option_couplePC = #{option_couplePC},
+		option_partyRoom = #{option_partyRoom},
+		option_noPeople = #{option_noPeople},
+		option_duplex = #{option_duplex},
+		option_spa = #{option_spa},
+		option_pickUp = #{option_pickUp},
+		option_withAnimal = #{option_withAnimal},
+		option_business = #{option_business},
+		option_noSmoking = #{option_noSmoking},
+		option_barbecue = #{option_barbecue},
+		option_cleanroom = #{option_cleanroom},
+		option_playGround = #{option_playGround},
+		option_kitchen = #{option_kitchen},
+		option_hanok = #{option_hanok},
+		option_glamping = #{option_glamping},
+		option_seminar = #{option_seminar},
+		option_womenOnly = #{option_womenOnly},
+		option_nokids = #{option_nokids},
+		option_freeBlackfast = #{option_freeBlackfast},
+		option_snackBar = #{option_snackBar},
+		parking_valet = #{parking_valet},
+		parking_free = #{parking_free},
+		parking_having = #{parking_having},
+		ownerEmail = #{ownerEmail},
+		accomAddress2 = #{accomAddress2}
+		where accom_no = #{accom_no}
 	</update>
 
 	<delete id="deleteRoom">
@@ -106,7 +150,26 @@
 	</delete>
 
 	<update id="updateRoom">
-
+		update room set 
+		roomType = #{roomType},
+		roomCount = #{roomCount},
+		roomUsingPeople = #{roomUsingPeople},
+		roomRent = #{roomRent},
+		roomRent_Usetime = #{roomRent_Usetime},
+		roomRent_Closingtime = #{roomRent_Closingtime},
+		roomLodge = #{roomLodge},
+		roomLodge_Checkin = #{roomLodge_Checkin},
+		roomLodge_Checkout = #{roomLodge_Checkout},
+		roomimg1 = #{roomimg1},
+		roomimg2 = #{roomimg2},
+		roomimg3 = #{roomimg3},
+		roomimg4 = #{roomimg4}, 
+		roomimg5 = #{roomimg5},
+		roomimg6 = #{roomimg6},
+		roomimg7 = #{roomimg7},
+		roomimg8 = #{roomimg8},
+		roomimg9 = #{roomimg9}
+		where room_no = #{room_no}
 	</update>
 
 	<select id="QnAList" resultType="com.mainWeb.searchBang.owner.model.QnAVO">

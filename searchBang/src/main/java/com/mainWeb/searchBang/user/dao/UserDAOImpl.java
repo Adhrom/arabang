@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.mainWeb.searchBang.owner.model.AccomVO;
+import com.mainWeb.searchBang.owner.model.RoomVO;
 import com.mainWeb.searchBang.user.model.ReservationVO;
 import com.mainWeb.searchBang.user.model.ReviewVO;
 import com.mainWeb.searchBang.user.model.UserInfoVO;
@@ -61,6 +62,11 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 	@Override
+	public AccomVO accomInfo(String accom_no) {
+		return sqlsession.selectOne("user.accomInfo", accom_no);
+	}
+
+	@Override
 	public void doReservation(ReservationVO vo, Map<String, Object> info) {
 		sqlsession.insert("user.doReservation" , vo);
 
@@ -82,5 +88,9 @@ public class UserDAOImpl implements UserDAO{
 		sqlsession.insert("user.insertReview", vo);
 	}
 
+	@Override
+	public List<RoomVO> roomInfo(String accom_no) {
+		return sqlsession.selectList("user.roomInfoList", accom_no);
+	}
 
 }
