@@ -16,8 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mainWeb.searchBang.owner.model.AccomVO;
+import com.mainWeb.searchBang.user.model.ReservationVO;
+import com.mainWeb.searchBang.user.model.ReviewVO;
 import com.mainWeb.searchBang.user.model.UserInfoVO;
-import com.mainWeb.searchBang.user.model.UserVO;
 import com.mainWeb.searchBang.user.service.UserService;
 
 @Controller
@@ -63,7 +64,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value="/resistUser.bang", method=RequestMethod.POST)
-	public String registInfo(@ModelAttribute UserVO vo) throws Exception{
+	public String registInfo(@ModelAttribute UserInfoVO vo) throws Exception{
 		service.insertUserService(vo);
 		return null;
 	}
@@ -120,7 +121,11 @@ public class UserController {
 //	}
 	//서치뷰
 	@RequestMapping(value = "/searchView.bang", method=RequestMethod.GET)
-	public ModelAndView searchView(@RequestParam(value="address")String address,@RequestParam(value="date")String date,@RequestParam(value="people")String people){
+	public ModelAndView searchView(@RequestParam(value="address")String address,@RequestParam(value="date")String date,@RequestParam(value="people")String people, HttpServletRequest req){
+		HttpSession session = req.getSession(false);
+		session.setAttribute("startDate", date.substring(0,10 ));
+		session.setAttribute("endDate", date.substring(13,23 ));
+		//session.setAttribute("room_no", vo.getRoom_no();
 		List<AccomVO> list = service.accomList(address, people);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("list", list);
@@ -128,5 +133,20 @@ public class UserController {
 		mv.setViewName("searchView");
 		return mv;
 	}
+	//예약하기
+	@RequestMapping("/doReservation.bang")
+	public String doReservation(@ModelAttribute ReservationVO vo , @RequestParam(value="point")String point , @RequestParam(value="memberEmail")String memberEmail){
+		service.doReservation(vo, point , memberEmail);
+		return "index";
+	}
+	//리뷰등록
+	@RequestMapping("/insertReview")
+	public String insertReview(HttpServletRequest req , @ModelAttribute ReviewVO vo){
+		HttpSession session = req.getSession();
+		String memberEmail = (String)session.getAttribute("email");
+		vo.setMemberEmail(memberEmail);
+		return null;
+	}
+
 
 }

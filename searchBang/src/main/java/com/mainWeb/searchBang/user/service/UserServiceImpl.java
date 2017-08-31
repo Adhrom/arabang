@@ -11,8 +11,9 @@ import org.springframework.stereotype.Service;
 
 import com.mainWeb.searchBang.owner.model.AccomVO;
 import com.mainWeb.searchBang.user.dao.UserDAO;
+import com.mainWeb.searchBang.user.model.ReservationVO;
+import com.mainWeb.searchBang.user.model.ReviewVO;
 import com.mainWeb.searchBang.user.model.UserInfoVO;
-import com.mainWeb.searchBang.user.model.UserVO;
 import com.mainWeb.searchBang.utils.SHA256;
 
 @Service
@@ -30,7 +31,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void insertUserService(UserVO vo) throws Exception {
+	public void insertUserService(UserInfoVO vo) throws Exception {
 		vo.setMemberPw(sha.getSha256(vo.getMemberPw().getBytes()));
 		dao.insertUserDAO(vo);
 	}
@@ -42,7 +43,7 @@ public class UserServiceImpl implements UserService {
 		vo.setMemberPw(sha.getSha256(password.getBytes()));
 		boolean result = dao.loginUserDAO(vo);
 		if(result){
-			session.setAttribute("id", id);
+			session.setAttribute("email", id);
 			session.setAttribute("loginresult", "success");
 		}
 		return result;
@@ -80,6 +81,18 @@ public class UserServiceImpl implements UserService {
 		info.put("accomAddress", address);
 		info.put("roomUsingPeople", people);
 		return dao.accomList(info);
+	}
+
+	@Override
+	public void doReservation(ReservationVO vo, String point ,String memberEmail) {
+		info.put("point", point);
+		info.put("memberEmail", memberEmail);
+		dao.doReservation(vo, info);
+	}
+
+	@Override
+	public void insertReview(ReviewVO vo) {
+		dao.insertReview(vo);
 	}
 
 
