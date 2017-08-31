@@ -61,7 +61,7 @@
 	</c:if>
 	<!-- 헤더  -->
 	<header>
-		<a id="cd-logo" href="index.admin"><img
+		<a id="cd-logo" href="index.bang"><img
 			src="/searchBang/img/admin/logo.png" alt="Homepage"></a>
 		<nav id="cd-top-nav">
 			<ul>

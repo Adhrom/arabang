@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mainWeb.searchBang.owner.model.AccomVO;
+import com.mainWeb.searchBang.owner.model.RoomVO;
 import com.mainWeb.searchBang.user.model.UserInfoVO;
 import com.mainWeb.searchBang.user.model.UserVO;
 import com.mainWeb.searchBang.user.service.UserService;
@@ -82,6 +83,19 @@ public class UserController {
 
 		return "redirect:login.bang";
 	}
+	
+	//업체내용과 방정보 불러오기
+	@RequestMapping("room_info.bang")
+	public ModelAndView accom_Information(@RequestParam("accom_no") String accom_no ){
+		ModelAndView mv = new ModelAndView();
+		AccomVO vo = service.accomInfo(accom_no);
+		List<RoomVO> list = service.roomInfo(accom_no);
+		mv.addObject("vo",vo);
+		mv.addObject("list",list);
+		mv.setViewName("room_info");
+		return mv;
+	}
+		
 
 //	정보를 가져오는 과정
 //	public String getInfo(Model model,@RequestParam("email") String id,
@@ -118,9 +132,11 @@ public class UserController {
 //		model.addAttribute("accomList",accomList);
 //		return null;
 //	}
+	
 	//서치뷰
 	@RequestMapping(value = "/searchView.bang", method=RequestMethod.GET)
 	public ModelAndView searchView(@RequestParam(value="address")String address,@RequestParam(value="date")String date,@RequestParam(value="people")String people){
+		
 		List<AccomVO> list = service.accomList(address, people);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("list", list);
@@ -128,5 +144,7 @@ public class UserController {
 		mv.setViewName("searchView");
 		return mv;
 	}
+	
+	
 
 }

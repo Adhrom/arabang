@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.mainWeb.searchBang.owner.model.AccomVO;
+import com.mainWeb.searchBang.owner.model.RoomVO;
 import com.mainWeb.searchBang.user.model.UserInfoVO;
 import com.mainWeb.searchBang.user.model.UserVO;
 
@@ -59,6 +60,15 @@ public class UserDAOImpl implements UserDAO{
 		System.out.println(info.entrySet());
 		return sqlsession.selectList("user.accomList", info);
 	}
+	
+	@Override
+	public AccomVO accomInfo(String accom_no) {
+		return sqlsession.selectOne("user.accomInfo", accom_no);
+	}
 
+	@Override
+	public List<RoomVO> roomInfo(String accom_no) {
+		return sqlsession.selectList("user.roomInfoList", accom_no);
+	}
 
 }

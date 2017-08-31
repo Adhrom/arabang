@@ -162,6 +162,7 @@ input[type=file] {
 
 	//등록
 	$(document).ready(function() {
+		
 		$('#parking_free').click(function() {
 			$('#parking_having_yes').prop("checked", true);
 			$('#parking_having_no').prop("checked", false);
@@ -229,6 +230,55 @@ input[type=file] {
 				}
 			}
 			document.insertAccom.action = "insertAccom.owner";
+			document.insertAccom.submit();
+		});
+		$('#updateAccomBT').click(function() {
+			var accomName = $("#accomName").val();
+			var accomAddress = $("#accomAddress").val();
+			var accomAddress2 = $('#accomAddress2').val();
+			var accomPhone = $('#accomPhone').val();
+			var regExp = /^\d{2,4}-\d{3,4}-\d{4}$/;
+			if (accomName == "") {
+				alert("숙소이름을 입력해주세요");
+				return false;
+			}
+			if (accomAddress == "") {
+				alert("주소를 입력해주세요");
+				return false;
+			}
+			if (accomAddress2 == "") {
+				alert("나머지 주소를 입력해주세요");
+				return false;
+			}
+			if (accomPhone == "") {
+				alert("숙소전화번호를 입력해주세요");
+				return false;
+			}
+			if (!regExp.test(accomPhone)) {
+				alert("'-'를 포함한 숫자만 이용하여 올바른 전화번호를 입력해주세요");
+				return false;
+			}
+			if(!$('#hotel').is(":checked")){
+				if(!$('#motel').is(":checked")){
+					if(!$('#pention').is(":checked")){
+						if(!$('#guesthouse').is(":checked")){
+							alert("숙소 타입을 선택해주세요.");
+							return false;
+						}
+					}
+				}
+			}
+			if ($('#input_imgs').val() == ""){
+				alert("사진을 최소 한장 등록해주세요");
+				return false;
+			}
+			if(!$('#parking_having_yes').is(":checked")){
+				if(!$('#parking_having_no').is(":checked")){
+					alert("주차시설 보유 유무를 선택해주세요.");
+					return false;
+				}
+			}
+			document.insertAccom.action = "updateAccom.owner";
 			document.insertAccom.submit();
 		});
 	});
@@ -340,6 +390,7 @@ input[type=file] {
 					<div id="holder">
 						<c:choose>
 						<c:when test="${vo.accomName ne null}">
+				
 						<br/>수정 시에는 사진을 다시 등록 해 주시기 바랍니다.
 						</c:when>
 						<c:otherwise>
@@ -468,32 +519,41 @@ input[type=file] {
 			</div>
 			<div
 				style="clear: both; width: 100px; margin: 0 auto; padding-right: 50px;">
+				<c:choose>
+				<c:when test="${vo.accomType eq null }">
 				<input type="button" value="등록" class="button" id="insertAccomBT">
+				</c:when>
+				<c:otherwise>
+				<input type="button" value="수정" class="button" id="updateAccomBT">
+				</c:otherwise>
+				</c:choose>
+				
 			</div>
-			<input type="hidden" value="${vo.accomType }" id="H_accomType">
-			<input type="hidden" value="${vo.option_couplePC }" id="H_option_couplePC">
-			<input type="hidden" value="${vo.option_partyRoom }" id="H_option_partyRoom">
-			<input type="hidden" value="${vo.option_noPeople }" id="H_option_noPeople">
-			<input type="hidden" value="${vo.option_duplex }" id="H_option_duplex">
-			<input type="hidden" value="${vo.option_spa }" id="H_option_spa">
-			<input type="hidden" value="${vo.option_pickUp }" id="H_option_pickUp">
-			<input type="hidden" value="${vo.option_withAnimal }" id="H_option_withAnimal">
-			<input type="hidden" value="${vo.option_business }" id="H_option_business">
-			<input type="hidden" value="${vo.option_noSmoking }" id="H_option_noSmoking">
-			<input type="hidden" value="${vo.option_barbecue }" id="H_option_barbecue">
-			<input type="hidden" value="${vo.option_kitchen }" id="H_option_kitchen">
-			<input type="hidden" value="${vo.option_cleanroom }" id="H_option_cleanroom">
-			<input type="hidden" value="${vo.option_playGround }" id="H_option_playGround">
-			<input type="hidden" value="${vo.option_hanok }" id="H_option_hanok">
-			<input type="hidden" value="${vo.option_glamping }" id="H_option_glamping">
-			<input type="hidden" value="${vo.option_seminar }" id="H_option_seminar">
+			<input type="hidden" value="${vo.accomType }" id="H_accomType" >
+			<input type="hidden" value="${vo.option_couplePC }" id="H_option_couplePC" >
+			<input type="hidden" value="${vo.option_partyRoom }" id="H_option_partyRoom" >
+			<input type="hidden" value="${vo.option_noPeople }" id="H_option_noPeople" >
+			<input type="hidden" value="${vo.option_duplex }" id="H_option_duplex" >
+			<input type="hidden" value="${vo.option_spa }" id="H_option_spa" >
+			<input type="hidden" value="${vo.option_pickUp }" id="H_option_pickUp" >
+			<input type="hidden" value="${vo.option_withAnimal }" id="H_option_withAnimal" >
+			<input type="hidden" value="${vo.option_business }" id="H_option_business" >
+			<input type="hidden" value="${vo.option_noSmoking }" id="H_option_noSmoking" >
+			<input type="hidden" value="${vo.option_barbecue }" id="H_option_barbecue" >
+			<input type="hidden" value="${vo.option_cleanroom }" id="H_option_cleanroom" >
+			<input type="hidden" value="${vo.option_playGround }" id="H_option_playGround" >
+			<input type="hidden" value="${vo.option_kitchen }" id="H_option_kitchen" >
+			<input type="hidden" value="${vo.option_hanok }" id="H_option_hanok" >
+			<input type="hidden" value="${vo.option_glamping }" id="H_option_glamping" >
+			<input type="hidden" value="${vo.option_seminar }" id="H_option_seminar" >
 			<input type="hidden" value="${vo.option_womenOnly }" id="H_option_womenOnly">
-			<input type="hidden" value="${vo.option_nokids }" id="H_option_nokids">
-			<input type="hidden" value="${vo.option_freeBlackfast }" id="H_option_freeBlackfast">
-			<input type="hidden" value="${vo.option_snackBar }" id="H_option_snackBar">
-			<input type="hidden" value="${vo.parking_valet }" id="H_parking_valet">
-			<input type="hidden" value="${vo.parking_free }" id="H_parking_free">
-			<input type="hidden" value="${vo.parking_having }" id="H_parking_having">
+			<input type="hidden" value="${vo.option_nokids }" id="H_option_nokids" >
+			<input type="hidden" value="${vo.option_freeBlackfast }" id="H_option_freeBlackfast" >
+			<input type="hidden" value="${vo.option_snackBar }" id="H_option_snackBar" >
+			<input type="hidden" value="${vo.parking_valet }" id="H_parking_valet" >
+			<input type="hidden" value="${vo.parking_free }" id="H_parking_free" >
+			<input type="hidden" value="${vo.parking_having }" id="H_parking_having" >
+			<input type="hidden" value="${vo.accom_no }" id="accom_no" name="accom_no">
 		</form>
 	</div>
 	<!-- 푸터 -->

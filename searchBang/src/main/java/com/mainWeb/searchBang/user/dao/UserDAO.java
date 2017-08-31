@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.mainWeb.searchBang.owner.model.AccomVO;
+import com.mainWeb.searchBang.owner.model.RoomVO;
 import com.mainWeb.searchBang.user.model.UserInfoVO;
 import com.mainWeb.searchBang.user.model.UserVO;
 
@@ -27,6 +28,12 @@ public interface UserDAO {
 	// 정보수정
 	public void updateInfo(Map<String, Object> info);
 
-	//숙소리스트
+	// 숙소리스트
 	public List<AccomVO> accomList(Map<String, Object> info);
+
+	// 숙소정보 불러오기
+	public AccomVO accomInfo(String accom_no);
+	
+	// 방정보 불러오기
+	public List<RoomVO> roomInfo(String accom_no);
 }

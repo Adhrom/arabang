@@ -125,6 +125,8 @@ public class OwnerServiceImpl implements OwnerService {
 		roomVO.setAccom_no(Integer.parseInt((String) session.getAttribute("accom_no")));
 		dao.addedRoom(roomVO);
 	}
+	
+	
 
 	@Override
 	public List<AdminNoticeVO> noticeList() {
@@ -157,8 +159,71 @@ public class OwnerServiceImpl implements OwnerService {
 	}
 
 	@Override
-	public void updateAccom(String accom_no) {
-		dao.updateAccom(accom_no);
+	public void updateAccom(AccomVO accomVO) {
+		if(accomVO.getOption_barbecue()==null)
+			accomVO.setOption_barbecue("off");
+		if(accomVO.getOption_business()==null)
+			accomVO.setOption_business("off");
+		if(accomVO.getOption_cleanroom()==null)
+			accomVO.setOption_cleanroom("off");
+		if(accomVO.getOption_couplePC()==null)
+			accomVO.setOption_couplePC("off");
+		if(accomVO.getOption_duplex()==null)
+			accomVO.setOption_duplex("off");
+		if(accomVO.getOption_freeBlackfast()==null)
+			accomVO.setOption_freeBlackfast("off");
+		if(accomVO.getOption_glamping()==null)
+			accomVO.setOption_glamping("off");
+		if(accomVO.getOption_hanok()==null)
+			accomVO.setOption_hanok("off");
+		if(accomVO.getOption_kitchen()==null)
+			accomVO.setOption_kitchen("off");
+		if(accomVO.getOption_nokids()==null)
+			accomVO.setOption_nokids("off");
+		if(accomVO.getOption_noPeople()==null)
+			accomVO.setOption_noPeople("off");
+		if(accomVO.getOption_noSmoking()==null)
+			accomVO.setOption_noSmoking("off");
+		if(accomVO.getOption_partyRoom()==null)
+			accomVO.setOption_partyRoom("off");
+		if(accomVO.getOption_pickUp()==null)
+			accomVO.setOption_pickUp("off");
+		if(accomVO.getOption_playGround()==null)
+			accomVO.setOption_playGround("off");
+		if(accomVO.getOption_seminar()==null)
+			accomVO.setOption_seminar("off");
+		if(accomVO.getOption_snackBar()==null)
+			accomVO.setOption_snackBar("off");
+		if(accomVO.getOption_spa()==null)
+			accomVO.setOption_spa("off");
+		if(accomVO.getOption_withAnimal()==null)
+			accomVO.setOption_withAnimal("off");
+		if(accomVO.getOption_womenOnly()==null)
+			accomVO.setOption_womenOnly("off");
+		if(accomVO.getParking_valet()==null)
+			accomVO.setParking_valet("off");
+		if(accomVO.getParking_free()==null)
+			accomVO.setParking_free("off");
+		if(accomVO.getAccomimg1()==null)
+			accomVO.setAccomimg1("null");
+		if(accomVO.getAccomimg2()==null)
+			accomVO.setAccomimg2("null");
+		if(accomVO.getAccomimg3()==null)
+			accomVO.setAccomimg3("null");
+		if(accomVO.getAccomimg4()==null)
+			accomVO.setAccomimg4("null");
+		if(accomVO.getAccomimg5()==null)
+			accomVO.setAccomimg5("null");
+		if(accomVO.getAccomimg6()==null)
+			accomVO.setAccomimg6("null");
+		if(accomVO.getAccomimg7()==null)
+			accomVO.setAccomimg7("null");
+		if(accomVO.getAccomimg8()==null)
+			accomVO.setAccomimg8("null");
+		if(accomVO.getAccomimg9()==null)
+			accomVO.setAccomimg9("null");
+		
+		dao.updateAccom(accomVO);
 	}
 
 	@Override
@@ -167,8 +232,26 @@ public class OwnerServiceImpl implements OwnerService {
 	}
 
 	@Override
-	public void updateRoom(String room_no) {
-		dao.deleteRoom(room_no);
+	public void updateRoom(RoomVO roomVO) {
+		if(roomVO.getRoomimg1()==null)
+			roomVO.setRoomimg1("null");
+		if(roomVO.getRoomimg2()==null)
+			roomVO.setRoomimg2("null");
+		if(roomVO.getRoomimg3()==null)
+			roomVO.setRoomimg3("null");
+		if(roomVO.getRoomimg4()==null)
+			roomVO.setRoomimg4("null");
+		if(roomVO.getRoomimg5()==null)
+			roomVO.setRoomimg5("null");
+		if(roomVO.getRoomimg6()==null)
+			roomVO.setRoomimg6("null");
+		if(roomVO.getRoomimg7()==null)
+			roomVO.setRoomimg7("null");
+		if(roomVO.getRoomimg8()==null)
+			roomVO.setRoomimg8("null");
+		if(roomVO.getRoomimg9()==null)
+			roomVO.setRoomimg9("null");
+		dao.updateRoom(roomVO);
 	}
 
 	@Override

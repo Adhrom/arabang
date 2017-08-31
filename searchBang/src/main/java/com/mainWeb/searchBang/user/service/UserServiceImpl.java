@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Service;
 
 import com.mainWeb.searchBang.owner.model.AccomVO;
+import com.mainWeb.searchBang.owner.model.RoomVO;
 import com.mainWeb.searchBang.user.dao.UserDAO;
 import com.mainWeb.searchBang.user.model.UserInfoVO;
 import com.mainWeb.searchBang.user.model.UserVO;
@@ -81,6 +82,17 @@ public class UserServiceImpl implements UserService {
 		info.put("roomUsingPeople", people);
 		return dao.accomList(info);
 	}
+
+	@Override
+	public AccomVO accomInfo(String accom_no) {
+		return dao.accomInfo(accom_no);
+	}
+
+	@Override
+	public List<RoomVO> roomInfo(String accom_no) {
+		return dao.roomInfo(accom_no);
+	}
+	
 
 
 }

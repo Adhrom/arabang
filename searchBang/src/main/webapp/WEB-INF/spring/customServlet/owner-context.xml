@@ -45,6 +45,7 @@
 			<mapping path="/addedRoom.owner" />
 			<mapping path="/QnA.owner" />
 			<mapping path="/myPage.owner" />
+		
 			<beans:bean class="com.mainWeb.searchBang.interceptor.OwnerInterceptor" />
 		</interceptor>
 	</interceptors>

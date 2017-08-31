@@ -1,0 +1,689 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>tab</title>
+
+<style>
+html {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	font-family: "Roboto", sans-serif;
+	font-size: 16px;
+	line-height: 1.6em;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+[ripple] {
+	z-index: 1;
+	position: relative;
+	overflow: hidden;
+}
+
+[ripple] .ripple {
+	position: absolute;
+	background: #FFFFFF;
+	width: 12px;
+	height: 12px;
+	border-radius: 100%;
+	-webkit-animation: ripple 1.6s;
+	animation: ripple 1.6s;
+}
+
+@
+-webkit-keyframes ripple { 0% {
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	opacity: 0.2;
+}
+
+100%
+{
+-webkit-transform
+:
+ 
+scale
+(40);
+
+            
+transform
+:
+ 
+scale
+(40);
+
+    
+opacity
+:
+ 
+0;
+}
+}
+@
+keyframes ripple { 0% {
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	opacity: 0.2;
+}
+
+100%
+{
+-webkit-transform
+:
+ 
+scale
+(40);
+
+            
+transform
+:
+ 
+scale
+(40);
+
+    
+opacity
+:
+ 
+0;
+}
+}
+.tabs {
+	z-index: 15px;
+	position: relative;
+	background: #FFFFFF;
+	width: 950px;
+	border-radius: 4px;
+	height: auto;
+	margin: 100px auto 10px;
+	overflow: hidden;
+}
+
+.tabs-header {
+	position: relative;
+	background: tabs-header;
+	overflow: hidden;
+	border-bottom: 1px solid #dfdfdf;
+}
+
+.tabs-header .border {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	background: #00a699;
+	width: auto;
+	height: 3px;
+	-webkit-transition: 0.3s ease;
+	transition: 0.3s ease;
+	
+}
+
+.tabs-header ul {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	-ms-flex-direction: row;
+	flex-direction: row;
+	-webkit-flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	width: calc(100% - 68px);
+}
+
+.tabs-header li {
+	-webkit-transition: 0.3s ease;
+	transition: 0.3s ease;
+}
+
+.tabs-header a {
+	z-index: 1;
+	display: block;
+	box-sizing: border-box;
+	padding: 15px 20px;
+	color: #00a699;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-weight: 600;
+	font-size : 1.2em;
+	
+	
+}
+
+.tabs-content {
+	position: relative;
+	padding: 15px 20px;
+	-webkit-transition: 0.3s ease;
+	transition: 0.3s ease;
+	overflow: hidden;
+	
+}
+
+.tabs-content:after {
+	content: '';
+	position: absolute;
+	bottom: -1px;
+	left: 0;
+	display: block;
+	width: 100%;
+	height: 1px;
+	box-shadow: 0 0 20px 10px #FFFFFF;
+}
+
+.tabs-content .tab {
+	display: none;
+}
+
+.tabs-content .tab.active {
+	display: block;
+}
+
+.pen-footer {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	-ms-flex-direction: row;
+	flex-direction: row;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	width: 600px;
+	margin: 20px auto 100px;
+}
+
+.pen-footer a {
+	color: #FFFFFF;
+	font-size: 12px;
+	text-decoration: none;
+	text-shadow: 1px 2px 0 rgba(0, 0, 0, 0.1);
+}
+
+.pen-footer a .material-icons {
+	width: 12px;
+	margin: 0 5px;
+	vertical-align: middle;
+	font-size: 12px;
+}
+
+.cp-fab {
+	background: #FFFFFF !important;
+	color: #4285F4 !important;
+}
+</style>
+
+
+
+
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script>
+$(document).ready(function () {
+
+  // Intial Border Position
+  var activePos = $('.tabs-header .active').position();
+
+  // Change Position
+  function changePos() {
+
+    // Update Position
+    activePos = $('.tabs-header .active').position();
+
+    // Change Position & Width
+    $('.border').stop().css({
+      left: activePos.left,
+      width: $('.tabs-header .active').width()
+    });
+  }
+
+  changePos();
+
+  // Intial Tab Height
+  var tabHeight = $('.tab.active').height();
+
+  // Animate Tab Height
+  function animateTabHeight() {
+
+    // Update Tab Height
+    tabHeight = $('.tab.active').height();
+
+    // Animate Height
+    $('.tabs-content').stop().css({
+      height: tabHeight + '-100px'
+    });
+  }
+
+  animateTabHeight();
+
+  // Change Tab
+  function changeTab() {
+    var getTabId = $('.tabs-header .active a').attr('tab-id');
+
+    // Remove Active State
+    $('.tab').stop().fadeOut(300, function () {
+      // Remove Class
+      $(this).removeClass('active');
+    }).hide();
+
+    $('.tab[tab-id=' + getTabId + ']').stop().fadeIn(300, function () {
+      // Add Class
+      $(this).addClass('active');
+
+      // Animate Height
+      animateTabHeight();
+    });
+  }
+
+  // Tabs
+  $('.tabs-header a').on('click', function (e) {
+    e.preventDefault();
+
+    // Tab Id
+    var tabId = $(this).attr('tab-id');
+
+    // Remove Active State
+    $('.tabs-header a').stop().parent().removeClass('active');
+
+    // Add Active State
+    $(this).stop().parent().addClass('active');
+
+    changePos();
+
+    // Update Current Itm
+    tabCurrentItem = tabItems.filter('.active');
+
+    // Remove Active State
+    $('.tab').stop().fadeOut(300, function () {
+      // Remove Class
+      $(this).removeClass('active');
+    }).hide();
+
+    // Add Active State
+    $('.tab[tab-id="' + tabId + '"]').stop().fadeIn(300, function () {
+      // Add Class
+      $(this).addClass('active');
+
+      // Animate Height
+      animateTabHeight();
+    });
+  });
+
+  // Tab Items
+  var tabItems = $('.tabs-header ul li');
+
+  // Tab Current Item
+  var tabCurrentItem = tabItems.filter('.active');
+
+  // Next Button
+  $('#next').on('click', function (e) {
+    e.preventDefault();
+
+    var nextItem = tabCurrentItem.next();
+
+    tabCurrentItem.removeClass('active');
+
+    if (nextItem.length) {
+      tabCurrentItem = nextItem.addClass('active');
+    } else {
+      tabCurrentItem = tabItems.first().addClass('active');
+    }
+
+    changePos();
+    changeTab();
+  });
+
+  // Prev Button
+  $('#prev').on('click', function (e) {
+    e.preventDefault();
+
+    var prevItem = tabCurrentItem.prev();
+
+    tabCurrentItem.removeClass('active');
+
+    if (prevItem.length) {
+      tabCurrentItem = prevItem.addClass('active');
+    } else {
+      tabCurrentItem = tabItems.last().addClass('active');
+    }
+
+    changePos();
+    changeTab();
+  });
+
+  // Ripple(잔물결)
+  $('[ripple]').on('click', function (e) {
+    var rippleDiv = $('<div class="ripple" ></div>'),
+      rippleOffset = $(this).offset(),
+      rippleY = e.pageY - rippleOffset.top,
+      rippleX = e.pageX - rippleOffset.left,
+      ripple = $('.ripple');
+
+    rippleDiv.css({
+      top: rippleY - (ripple.height() / 2),
+      left: rippleX - (ripple.width() / 2),
+      background: $(this).attr("ripple-color")
+    }).appendTo($(this));
+
+    window.setTimeout(function () {
+      rippleDiv.remove();
+    }, 1500);
+  });
+});
+</script>
+
+
+<style>
+.room_info img {
+	position: relative;
+	top: 10px;
+	padding: 0px;
+	width: 320px;
+	height: 240px;
+	margin-right: 10px;
+}
+
+.room_info {
+	border: 2px solid #dfdfdf;
+	padding: 0px 10px;
+	margin: 20px 0 ; 
+}
+
+.info {
+	display: inline-block;
+	margin: 0px 0px;
+	padding: 1px 0px;
+}
+
+.info .half {
+	margin: 0px;
+	display: inline-block;
+	padding: 10px;
+	width: 250px;
+	
+}
+
+.info .title {
+	display: block;
+	font-weight: bold;
+	font-size: 1.2em;
+}
+
+/*@media all and (min-width:1024px)*/
+.room_info .info button {
+	display: block;
+	width: 100%;
+	height: 40px;
+	border: none;
+	border-radius: 4px;
+	font-size: 16px;
+	font-weight: normal;
+	color: #fff;
+	text-align: center;
+}
+
+.gra_left_right_red {
+	background: #00a699;
+}
+
+button {
+	cursor: pointer;
+}
+
+textarea, button, input, select {
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	border-radius: 0;
+	font-family: "Apple SD Gothic Neo", "맑은 고딕", "맑은고딕", "Malgun Gothic",
+		sans-serif;
+}
+
+a, input, button, div, li, textarea, form, label, select {
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.room_info .info .price .price_info{
+border-bottom: 1px solid #dfdfdf;
+}
+.reserve-line {
+text-align : right;
+
+}
+
+
+/*@media all and (min-width:1024px)*/
+.room_info .info .price div p span {
+	display: inline-block;
+	position: relative;
+	top: -2px;
+	margin-right: 4px;
+	padding: 2px 2px 1px 2px;
+	background: #00a699;
+	font-size: 14px;
+	line-height: normal;
+	border-radius: 3px;
+	color: #fff;
+}
+
+.room_info .info .price ul {
+	
+	list-style: none;
+	padding: 0px;
+	
+}
+
+.room_info .info .price ul li {
+	text-align: left;
+}
+
+.price strong {
+font-size: 1em;
+}
+
+.span_label{
+float:left;
+width: 150px;
+}
+
+#tab2_div{
+padding : 5px 30px;
+background-color: #dfdfdf;
+width:auto;
+border-radius: 4px;
+}
+</style>
+
+
+<link rel="stylesheet" href="css/user/tab_star_style.css" />
+</head>
+<body>
+
+
+	<div class="tabs">
+		<div class="tabs-header">
+			<div class="border"></div>
+			<ul>
+				<li class="active"><a href="#tab-1" tab-id="1" ripple="ripple"
+					ripple-color="yellow">객실안내/예약</a></li>
+				<li><a href="#tab-2" tab-id="2" ripple="ripple"
+					ripple-color="lightgreen">숙소정보</a></li>
+				<li><a href="#tab-3" tab-id="3" ripple="ripple"
+					ripple-color="aqua">리뷰</a></li>
+
+			</ul>
+
+		</div>
+		<div class="tabs-content">
+			<div tab-id="1" class="tab active">
+			
+			<c:forEach var="list" items="${list}"  >
+				<div class="room_info">
+				
+					<img src="${list.roomimg1 }" />
+
+					<div class="info">
+						<strong class="title">${list.roomType }</strong>
+						<div class="half">
+							<div class="price">
+								<strong> 대실 </strong>
+								<div class="price_info">
+								<br/>
+
+									<p class="reserve-line">
+										<span>예약</span> <b style="color: rgba(0, 0, 0, 1)">${list.roomRent }원</b>
+										<!-- 표시금액 -->
+									</p>
+
+								</div>
+									
+
+								<ul>
+									<li><span class="span_label">마감시간</span>${list.roomRent_Closingtime }시까지</li>
+									<li><span class="span_label">이용시간</span>최대 ${list.roomRent_Usetime }시간</li>
+								</ul>
+
+							</div>
+
+							<button type="button"
+								onclick="location.href='/reservation?adcno=1&amp;ano=1667&amp;armgno=19538&amp;checkin_type=1&amp;checkin_date=2017-07-31&amp;checkout_date=2017-08-01';"
+								class="gra_left_right_red">대실 예약</button>
+						</div>
+						<div class="half">
+							<div class="price">
+								<strong> 숙박빠른입실 </strong>
+								<div class="price_info">
+									<br>
+									<p class="reserve-line">
+										 <span>예약</span>  <b style="color: rgba(0, 0, 0, 1)">${list.roomLodge }원</b>
+										<!-- 표시금액 -->
+									</p>
+								
+									
+								</div>
+									
+								<ul>
+									<li><span class="span_label">입실시간</span>${list.roomLodge_Checkin }시부터</li>
+									<li><span class="span_label">퇴실시간</span>익일 ${list.roomLodge_Checkout }시</li>
+								</ul>
+
+							</div>
+
+							<button type="button"
+								onclick="location.href='/reservation?adcno=1&amp;ano=1667&amp;armgno=19538&amp;checkin_type=2&amp;checkin_date=2017-07-31&amp;checkout_date=2017-08-01';"
+								class="gra_left_right_red">숙박 예약</button>
+						</div>
+
+					</div>
+				</div>
+
+	</c:forEach>
+	
+			</div>
+		
+			
+			<div tab-id="2" id="tab1" class="tab">
+				<div id=tab2_div>
+				
+				<h2>혜택안내</h2>
+				<ul>
+<c:if test="vo.option_couplePC != 'null'">
+
+</c:if>
+					<li>요금할인</li>
+					<li>객실문에 부착된 여기어때 혜택마크를 찾아 QR코드로</li>
+					<li>무료초대권</li>
+					<li>혜택존 첫방문+첫 리억리뷰 2,000원 적립</li>
+				</ul>
+				
+
+				
+				<h2>주차장 정보</h2>
+				<ul>
+					<li>주차 불가</li>
+					<li>주차장 미보유 숙소입니다. 도보로 이용해 주세요.</li>
+				</ul>
+				
+				
+				<h2>지하철 정보</h2>
+				<ul>
+					<li>1호전 종로3가역</li>
+				</ul>
+				
+
+				
+				<h2>프런트 및 그 외 시설</h2>
+				<ul>
+					<li>주종 10시이후 입실시 18시까지 이용가능</li>
+					<li>자체 마일리지 적립 이벤트</li>
+					<li>프론트 스낵바 무료이용</li>
+				</ul>
+				
+
+				
+				<h2>추가 안내사항</h2>
+				<ul>
+					<li>숙박 이용시 기준 인원은 2인 1실 입니다.</li>
+
+				</ul>
+				
+
+				
+				<h2>예약안내</h2>
+				<ul>
+					<li>6~7일:전액 환불가능</li>
+					<li>4~5일:80% 환불가능</li>
+					<li>2~3일:70% 환불가능</li>
+				</ul>
+			
+				</div>
+			</div>
+
+			<div tab-id="3" class="tab">
+				<fieldset class="rating">
+					<legend> 별점을 주세요: </legend>
+
+					<!--선택버튼을 이용해 별표 모양의  체크박스를 만들어주는 영역입니다. -->
+					<input type="radio" id="star5" name="rating" value="5"> <label
+						for="star5" title="Rocks!">5 stars</label> <input type="radio"
+						id="star4" name="rating" value="4"> <label for="star4"
+						title="Pretty good">4 stars</label> <input type="radio" id="star3"
+						name="rating" value="3"> <label for="star3" title="Meh">3
+						stars</label> <input type="radio" id="star2" name="rating" value="2">
+					<label for="star2" title="Kinda bad">2 stars</label> <input
+						type="radio" id="star1" name="rating" value="1"> <label
+						for="star1" title="Sucks big time">1 star</label>
+				</fieldset>
+
+		
+				
+
+
+
+			</div>
+
+		</div>
+	</div>
+
+
+</body>
+</html>

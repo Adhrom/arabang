@@ -14,5 +14,14 @@
 	<select id="accomList" parameterType="java.util.HashMap" resultType="com.mainWeb.searchBang.owner.model.AccomVO">
 		select DISTINCT accom.* from accom ,room where accom.ACCOMADDRESS like '%'||#{accomAddress}||'%' and room.ROOMUSINGPEOPLE >= #{roomUsingPeople}
 	</select>
+	
+	<select id="accomInfo" resultType="com.mainWeb.searchBang.owner.model.AccomVO">
+		select * from accom where accom_no = #{accom_no}
+	</select>
+	
+	<select id="roomInfoList" resultType="com.mainWeb.searchBang.owner.model.RoomVO">
+		select * from room where accom_no = #{accom_no}
+	</select>
+	
 
 </mapper>
