@@ -60,5 +60,18 @@ public class UserDAOImpl implements UserDAO{
 		return sqlsession.selectList("user.accomList", info);
 	}
 
+	@Override
+	public void addFavorite(Map<String, Object> favorite) {
+		sqlsession.insert("user.insertFavorite", favorite);
+	}
 
+	@Override
+	public List<AccomVO> getFavoriteList(String email) {
+		return sqlsession.selectList("user.favoriteList",email);
+	}
+
+	@Override
+	public void deleteFavorite(int accomNo) {
+		sqlsession.delete("user.deleteAccom", accomNo);
+	}
 }

@@ -11,116 +11,24 @@
 	<c:forEach items="${list }" var="row">
 		<table>
 			<tr>
-				<td rowspan="4" style="vertical-align: bottom;"><a
-					href="roomManagement.owner?accom_no=${row.accom_no }"><img
-						src="${row.accomimg1 }" height="250" width="350px"></a></td>
-				<td
-					style="height: 50px; vertical-align: middle; padding-left: 10px; font-size: 1.6em; font-weight: bold;">${row.accomName }</td>
+				<td rowspan="4" style="vertical-align: bottom;">
+				<a href="roomManagement.owner?accom_no=${row.accom_no}">
+				<img src="${row.accomimg1 }" height="330" width="466px"></a></td>
+				<td style="height: 50px; vertical-align: middle; padding-left: 10px; font-size: 1.6em; font-weight: bold;">${row.accomName }</td>
 			</tr>
 			<tr>
-				<td
-					style="height: 50px; vertical-align: middle; padding-left: 10px;">${row.accomAddress}&nbsp;${row.accomAddress2}</td>
+				<td style="height: 50px; vertical-align: middle; padding-left: 10px;">${row.accomAddress}&nbsp;${row.accomAddress2}</td>
 			</tr>
 			<tr>
-				<td
-					style="height: 50px; vertical-align: middle; padding-left: 10px;">${row.accomPhone }</td>
+				<td style="height: 50px; vertical-align: middle; padding-left: 10px;">${row.accomPhone }</td>
 			</tr>
 			<tr>
-				<td style="height: 50px; vertical-align: middle; padding-left: 5px;"><button
-						type="button" onclick="accomU('${row.accom_no}')" class="button">수정</button>
-					<button type="button" onclick="accomD('${row.accom_no}')"
-						class="button">삭제</button></td>
+				<td style="height: 50px; vertical-align: middle; padding-left: 5px;">
+				<button type="button" onclick="accomU('${row.accom_no}')" class="button">수정</button>
+				<button type="button" onclick="accomD('${row.accom_no}')" class="button">삭제</button></td>
 			</tr>
 		</table>
 		<br />
 	</c:forEach>
-	<!--
-<ul>
-	<li>
-			<div class="entry">
-				<div class="txt-bg">현장 방문 시, 오픈 특가 적용</div>
-				<div class="banner-txt-b">종로 부티크 호텔K</div>
-				<div class="banner-txt-c">9.6 최고에요 (934)</div>
-				<div class="banner-txt-d">종로구 관철동</div>
-				<div class="banner-price-a">대실 20,000원</div>
-				<div class="banner-price-b">숙박</div>
-				<div id="reserve">예약</div>
-				<div class="banner-price-c">50,000원</div>
-		</div>
-	</li>
-	<li>
-			<div class="entry">
-				<div class="txt-bg">현장 방문 시, 오픈 특가 적용</div>
-				<div class="banner-txt-b">종로 부티크 호텔K</div>
-				<div class="banner-txt-c">9.6 최고에요 (934)</div>
-				<div class="banner-txt-d">종로구 관철동</div>
-				<div class="banner-price-a">대실 20,000원</div>
-				<div class="banner-price-b">숙박</div>
-				<div id="reserve">예약</div>
-				<div class="banner-price-c">50,000원</div>
-		</div>
-	</li>
-	<li>
-			<div class="entry">
-				<div class="txt-bg">현장 방문 시, 오픈 특가 적용</div>
-				<div class="banner-txt-b">종로 부티크 호텔K</div>
-				<div class="banner-txt-c">9.6 최고에요 (934)</div>
-				<div class="banner-txt-d">종로구 관철동</div>
-				<div class="banner-price-a">대실 20,000원</div>
-				<div class="banner-price-b">숙박</div>
-				<div id="reserve">예약</div>
-				<div class="banner-price-c">50,000원</div>
-		</div>
-	</li>
-	<li>
-			<div class="entry">
-				<div class="txt-bg">현장 방문 시, 오픈 특가 적용</div>
-				<div class="banner-txt-b">종로 부티크 호텔K</div>
-				<div class="banner-txt-c">9.6 최고에요 (934)</div>
-				<div class="banner-txt-d">종로구 관철동</div>
-				<div class="banner-price-a">대실 20,000원</div>
-				<div class="banner-price-b">숙박</div>
-				<div id="reserve">예약</div>
-				<div class="banner-price-c">50,000원</div>
-		</div>
-	</li>
-	<li>
-			<div class="entry">
-				<div class="txt-bg">현장 방문 시, 오픈 특가 적용</div>
-				<div class="banner-txt-b">종로 부티크 호텔K</div>
-				<div class="banner-txt-c">9.6 최고에요 (934)</div>
-				<div class="banner-txt-d">종로구 관철동</div>
-				<div class="banner-price-a">대실 20,000원</div>
-				<div class="banner-price-b">숙박</div>
-				<div id="reserve">예약</div>
-				<div class="banner-price-c">50,000원</div>
-		</div>
-	</li>
-	<li>
-			<div class="entry">
-				<div class="txt-bg">현장 방문 시, 오픈 특가 적용</div>
-				<div class="banner-txt-b">종로 부티크 호텔K</div>
-				<div class="banner-txt-c">9.6 최고에요 (934)</div>
-				<div class="banner-txt-d">종로구 관철동</div>
-				<div class="banner-price-a">대실 20,000원</div>
-				<div class="banner-price-b">숙박</div>
-				<div id="reserve">예약</div>
-				<div class="banner-price-c">50,000원</div>
-		</div>
-	</li>
-	<li>
-			<div class="entry">
-				<div class="txt-bg">현장 방문 시, 오픈 특가 적용</div>
-				<div class="banner-txt-b">종로 부티크 호텔K</div>
-				<div class="banner-txt-c">9.6 최고에요 (934)</div>
-				<div class="banner-txt-d">종로구 관철동</div>
-				<div class="banner-price-a">대실 20,000원</div>
-				<div class="banner-price-b">숙박</div>
-				<div id="reserve">예약</div>
-				<div class="banner-price-c">50,000원</div>
-		</div>
-	</li>
-</ul>
- -->
 </body>
 </html>

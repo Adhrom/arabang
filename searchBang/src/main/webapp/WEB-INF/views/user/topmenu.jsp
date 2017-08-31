@@ -73,7 +73,8 @@
 						<c:otherwise>
 							<a href="logout.admin" id="logoutbtn">Logout</a>
 						</c:otherwise>
-					</c:choose></li>
+					</c:choose>
+				</li>
 			</ul>
 		</nav>
 		<a id="cd-menu-trigger" href="#0"><span class="cd-menu-text">Menu</span><span

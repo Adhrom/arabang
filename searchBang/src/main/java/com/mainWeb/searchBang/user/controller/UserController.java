@@ -3,17 +3,21 @@ package com.mainWeb.searchBang.user.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.CookieGenerator;
 
 import com.mainWeb.searchBang.owner.model.AccomVO;
 import com.mainWeb.searchBang.user.model.UserInfoVO;
@@ -46,6 +50,11 @@ public class UserController {
 	public String naverLoginProc(){
 		return "naverLoginProc";
 	}
+	
+	@RequestMapping("/findPw.bang")
+	public String findPassword(){
+		return "findPw";
+	}
 
 	@RequestMapping(value="/getInfo.bang", method={RequestMethod.GET , RequestMethod.POST})
 	public @ResponseBody void setKakaoInfo(HttpServletRequest request, Model model){
@@ -70,17 +79,21 @@ public class UserController {
 
 
 	@RequestMapping(value="/loginProc.bang", method={RequestMethod.POST,RequestMethod.GET})
-	public String loginProc(@RequestParam("email") String email,
+	public ModelAndView loginProc(@RequestParam("email") String email,
 			@RequestParam("password") String password, HttpSession session, Model model) throws Exception{
+		ModelAndView mv = new ModelAndView();
 		UserInfoVO vo = new UserInfoVO();
 		boolean result = service.loginUserService(email, password, session , vo);
-
-		if(result)
-			model.addAttribute("msg","success");
-		else
-			model.addAttribute("msg","fail");
-
-		return "redirect:login.bang";
+		
+		if(result){
+			mv.addObject("msg","success");
+			mv.setViewName("redirect:index.bang");
+		}
+		else{
+			mv.addObject("msg","fail");
+			mv.setViewName("redirect:login.bang");
+		}
+		return mv;
 	}
 
 //	정보를 가져오는 과정
@@ -98,29 +111,18 @@ public class UserController {
 //	return null;
 //	}
 
-//	비밀번호 변경
-//	public String changePassword(Model model, @RequestParam("email") String id,
-//			@RequestParam("password") String password) throws Exception{
-//		service.changePasswordService(id, password);
-//		return null;
-//	}
+	// 정보 변경
+	@RequestMapping(value="/updateInfo.bang", method=RequestMethod.POST)
+	public String updateInfo(Model model, @RequestParam("email") String id,  @RequestParam("password") String password,
+			@RequestParam("nickname") String nickname, @RequestParam("phone") String phone) throws Exception{
+		service.updateInfoService(id, password, nickname, phone);
+		return null;
+	}
 
-//	정보수정
-//	public String updateInfo(Model model, @RequestParam("email") String id,  @RequestParam("password") String password,
-//			@RequestParam("nickname") String nickname, @RequestParam("phone") String phone) throws Exception{
-//		service.updateInfoService(id, password, nickname, phone);
-//		return null;
-//	}
-
-//	숙소정보 받아오기
-//	public String getAccomList(Model model, @RequestParam("dong") String dong){
-//		List<AccomVO> accomList = service.accomListService(dong);
-//		model.addAttribute("accomList",accomList);
-//		return null;
-//	}
 	//서치뷰
 	@RequestMapping(value = "/searchView.bang", method=RequestMethod.GET)
-	public ModelAndView searchView(@RequestParam(value="address")String address,@RequestParam(value="date")String date,@RequestParam(value="people")String people){
+	public ModelAndView searchView(@RequestParam(value="address")String address,@RequestParam(value="date")String date,
+			@RequestParam(value="people")String people){
 		List<AccomVO> list = service.accomList(address, people);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("list", list);
@@ -128,5 +130,4 @@ public class UserController {
 		mv.setViewName("searchView");
 		return mv;
 	}
-
 }

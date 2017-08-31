@@ -9,18 +9,18 @@
 <body>
 	<form name="IDcertify" id="IDcertify" method="post">
 		<table border="1">
-			<tr>
+			<tr align="center">
 				<td colspan="2"><input type="text" name="idfield" id="idfield"
 					size="25" maxlength="40" oninput="checkID()"
 					placeholder="이메일을 입력해 주세요"></td>
 				<td rowspan="2" align="center"><input type="button"
 					value="인증하기" onclick="Start()" class="button"></td>
 			</tr>
-			<tr>
+			<tr align="center">
 				<td colspan="2"><div id="idCheckfield">&nbsp;</div></td>
 
 			</tr>
-			<tr>
+			<tr align="center">
 				<td><input type="text" name="certify" id="certify" size="25"
 					placeholder="인증번호를 입력해 주세요" value=""></td>
 				<td><div id="ViewTimer"></div>
@@ -28,8 +28,8 @@
 					id="approval" class="button" style="padding: 5px 32px;"></td>
 			</tr>
 		</table>
-		<input type="hidden" name="secret_ceritify" id="secret_ceritify"
-			value="">
+		<input type="hidden" name="secret_ceritify" id="secret_ceritify"value="">
+		<input type="button" value="닫기" onabort="self.close()" >
 	</form>
 </body>
 </html>

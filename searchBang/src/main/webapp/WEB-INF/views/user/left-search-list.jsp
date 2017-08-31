@@ -21,14 +21,10 @@
 		<input id="btn-submit" type="submit" value="적용">
 	<!-- aside left-detail-condition-btn 끝 -->
 
-
-
 			<div id="aside-left-list">
 			<input type="checkbox" name="reservations">예약 가능<br/>
-				<input type="checkbox" name="promotion">프로모션
-
+			<input type="checkbox" name="promotion">프로모션
 			</div>
-
 
 			<div id="aside-left-list">
 			<h3 id="left-title-b">호텔·리조트 유형</h3>
@@ -39,8 +35,6 @@
 			<input type="checkbox" name="businese">비지니스<br/>
 			<input type="checkbox" name="residence">레지던스<br/>
 			<input type="checkbox" name="resort">리조트<br/>
-
-
 
 			<div id="aside-left-list-split-l">
 			<h3 id="left-title-b">공용시설</h3>

@@ -27,6 +27,15 @@ public interface UserDAO {
 	// 정보수정
 	public void updateInfo(Map<String, Object> info);
 
-	//숙소리스트
+	// 숙소리스트
 	public List<AccomVO> accomList(Map<String, Object> info);
+	
+	// 즐겨찾기 추가
+	public void addFavorite(Map<String, Object> favorite);
+	
+	// 즐겨찾기 리스트 보기
+	public List<AccomVO> getFavoriteList(String email);
+	
+	// 즐겨찾기 삭제
+	public void deleteFavorite(int accomNo);
 }

@@ -23,6 +23,7 @@ public class UserServiceImpl implements UserService {
 
 	SHA256 sha = SHA256.getInsatnce();
 	Map<String, Object> info = new HashMap<String, Object>();
+	
 	public void setMapping(String id, String password) throws Exception{
 		info.clear();
 		info.put("id", id);
@@ -82,5 +83,23 @@ public class UserServiceImpl implements UserService {
 		return dao.accomList(info);
 	}
 
+	@Override
+	public void addFavorite(int accomNo, HttpSession session) {
+		String email = (String) session.getAttribute("email");
+		Map<String, Object> favorite  = new HashMap<String, Object>();
+		favorite.put("accomNo", accomNo);
+		favorite.put("email", email);
+		dao.addFavorite(favorite);
+	}
 
+	@Override
+	public List<AccomVO> getFavoriteList(HttpSession session) {
+		String email = (String)session.getAttribute("email");
+		return dao.getFavoriteList(email);
+	}
+
+	@Override
+	public void deleteFavorite(int accomNo) {
+		dao.deleteFavorite(accomNo);
+	}
 }
