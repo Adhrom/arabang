@@ -4,13 +4,15 @@ import java.util.List;
 import java.util.Map;
 
 import com.mainWeb.searchBang.owner.model.AccomVO;
+import com.mainWeb.searchBang.owner.model.RoomVO;
+import com.mainWeb.searchBang.user.model.ReservationVO;
+import com.mainWeb.searchBang.user.model.ReviewVO;
 import com.mainWeb.searchBang.user.model.UserInfoVO;
-import com.mainWeb.searchBang.user.model.UserVO;
 
 public interface UserDAO {
 
 	// 계정 등록
-	public void insertUserDAO(UserVO vo);
+	public void insertUserDAO(UserInfoVO vo);
 
 	// 로그인 처리
 	public boolean loginUserDAO(UserInfoVO vo);
@@ -40,5 +42,21 @@ public interface UserDAO {
 	public void deleteFavorite(int accomNo);
 	
 	// 수정용 정보가져오기
-	public UserVO getInfo(Map<String, Object> map);
+	public UserInfoVO getInfo(Map<String, Object> map);
+
+	// 예약하기
+	public void doReservation(ReservationVO vo, Map<String, Object> info);
+
+	// 예약인터셉터
+	public boolean reservationInterceptor(int room_no, Map<String, Object> info);
+
+	// 리뷰등록
+	public void insertReview(ReviewVO vo);
+
+	// 숙소정보 불러오기
+	public AccomVO accomInfo(String accom_no);
+
+	// 방정보 불러오기
+	public List<RoomVO> roomInfo(String accom_no);
+
 }

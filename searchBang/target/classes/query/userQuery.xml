@@ -4,12 +4,13 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="user">
-	
+
+
 	<select id="loginuser"  resultType="com.mainWeb.searchBang.user.model.UserInfoVO">
 		select * from member_reg
 		where memberemail = #{memberEmail} and memberpw = #{memberPw}
 	</select>
-	
+
 	<select id="accomList" parameterType="java.util.HashMap" resultType="com.mainWeb.searchBang.owner.model.AccomVO">
 		select DISTINCT accom.* from accom ,room where accom.ACCOMADDRESS 
 		like '%'||#{accomAddress}||'%' and room.ROOMUSINGPEOPLE >= #{roomUsingPeople}
@@ -34,8 +35,36 @@
 		AND FAVORITE.ACCOMNUM = ACCOM.ACCOM_NO
 	</select>
 	
+	<select id="accomInfo" resultType="com.mainWeb.searchBang.owner.model.AccomVO">
+		select * from accom where accom_no = #{accom_no}
+	</select>
+	
+	<select id="roomInfoList" resultType="com.mainWeb.searchBang.owner.model.RoomVO">
+		select * from room where accom_no = #{accom_no}
+	</select>
+	
+
+	<insert id="doReservation">
+		insert into reservation values(reservation_no_seq.nextval , #{memberemail} , #{accom_no} , #{room_no} , to_date(#{checkIn},'YYYY-MM-DD') , to_date(#{checkOut},'YYYY-MM-DD') , 'n' , #{price})
+	</insert>
+
+	<update id="pointUpdate">
+		update member_reg set point = #{point} where memberemail = #{memberEmail}
+	</update>
+
+	<select id="roomCount" resultType="java.lang.Integer">
+		select roomcount from room where room_no = #{room_no};
+	</select>
+
+	<select id="reservationCount" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+		select distinct count(reservation.RESERVATION_NO) from reservation, room where reservation.checkin <![CDATA[ >= ]]> to_date(#{startDate},'YYYY-MM-DD') and reservation.checkout <![CDATA[ <= ]]> to_date(#{endDate},'YYYY-MM-DD') and room.room_no=#{room_no};
+	</select>
+	
 	<delete id="deleteFavorite" parameterType="java.lang.String">
 		DELETE FROM favorite WHERE ACCOMNO = #{accomNo}
 	</delete>
 	
+	<insert id="insertReview">
+		insert into review values(review_no_seq , #{memberEmail} , #{accom_no} , #{reviewGrade} , #{content} , sysdate)
+	</insert>
 </mapper>

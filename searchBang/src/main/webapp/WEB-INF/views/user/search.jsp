@@ -63,16 +63,22 @@
 								id="DateRangePicker">
 								$(function() {
 									$('input[name="daterange"]')
-											.daterangepicker(
-													{
-														weekStart : 1,
-														"autoApply" : true,
-														"opens" : "center"
-													},
-													function(start, end, label) {
-														console
-																.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
-													});
+											.daterangepicker({
+												locale: {
+											      format: 'YYYY-MM-DD'
+										    },
+										    	minDate: moment().toDate(),
+										    	"dateLimit":{
+										             "days":30
+										          },
+												weekStart : 1,
+												"autoApply" : true,
+												"opens" : "center",
+											},
+											function(start, end, label) {
+												console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
+											}
+											);
 								});
 							</script></td>
 						<!-- 인원 -->

@@ -9,8 +9,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.mainWeb.searchBang.owner.model.AccomVO;
+import com.mainWeb.searchBang.owner.model.RoomVO;
+import com.mainWeb.searchBang.user.model.ReservationVO;
+import com.mainWeb.searchBang.user.model.ReviewVO;
 import com.mainWeb.searchBang.user.model.UserInfoVO;
-import com.mainWeb.searchBang.user.model.UserVO;
 
 @Repository
 public class UserDAOImpl implements UserDAO{
@@ -19,7 +21,7 @@ public class UserDAOImpl implements UserDAO{
 	private SqlSession sqlsession;
 
 	@Override
-	public void insertUserDAO(UserVO vo) {
+	public void insertUserDAO(UserInfoVO vo) {
 		sqlsession.insert("user.insertUser",vo);
 	}
 
@@ -69,6 +71,37 @@ public class UserDAOImpl implements UserDAO{
 	public List<AccomVO> getFavoriteList(String email) {
 		return sqlsession.selectList("user.favoriteList",email);
 	}
+	@Override
+	public AccomVO accomInfo(String accom_no) {
+		return sqlsession.selectOne("user.accomInfo", accom_no);
+	}
+
+	@Override
+	public void doReservation(ReservationVO vo, Map<String, Object> info) {
+		sqlsession.insert("user.doReservation" , vo);
+
+			//sqlsession.update("user.pointUpdate", info);
+	}
+
+	@Override
+	public boolean reservationInterceptor(int room_no, Map<String, Object> info) {
+		int roomCount = sqlsession.selectOne("user.roomCount", room_no);
+		int reservationCount = sqlsession.selectOne("user.reservationCount", info);
+		if(roomCount>reservationCount )
+			return true;
+		else
+			return false;
+	}
+
+	@Override
+	public void insertReview(ReviewVO vo) {
+		sqlsession.insert("user.insertReview", vo);
+	}
+
+	@Override
+	public List<RoomVO> roomInfo(String accom_no) {
+		return sqlsession.selectList("user.roomInfoList", accom_no);
+	}
 
 	@Override
 	public void deleteFavorite(int accomNo) {
@@ -76,7 +109,7 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 	@Override
-	public UserVO getInfo(Map<String, Object> map) {
+	public UserInfoVO getInfo(Map<String, Object> map) {
 		return sqlsession.selectOne("user.getInfo", map);
 	}
 }

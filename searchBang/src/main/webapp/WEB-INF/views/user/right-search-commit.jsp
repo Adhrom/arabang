@@ -46,6 +46,10 @@ function addfavorite(accomvalue){
 				<button type="button" onclick="accomU('${row.accom_no}')" class="button">수정</button>
 				<button type="button" onclick="accomD('${row.accom_no}')" class="button">삭제</button></td>
 			</tr>
+			<tbody>
+				<tr>
+				</tr>
+			</tbody>
 		</table>
 		<br />
 	</c:forEach>

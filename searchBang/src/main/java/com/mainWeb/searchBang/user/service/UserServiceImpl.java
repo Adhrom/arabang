@@ -10,9 +10,11 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Service;
 
 import com.mainWeb.searchBang.owner.model.AccomVO;
+import com.mainWeb.searchBang.owner.model.RoomVO;
 import com.mainWeb.searchBang.user.dao.UserDAO;
+import com.mainWeb.searchBang.user.model.ReservationVO;
+import com.mainWeb.searchBang.user.model.ReviewVO;
 import com.mainWeb.searchBang.user.model.UserInfoVO;
-import com.mainWeb.searchBang.user.model.UserVO;
 import com.mainWeb.searchBang.utils.SHA256;
 
 @Service
@@ -30,7 +32,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void insertUserService(UserVO vo) throws Exception {
+	public void insertUserService(UserInfoVO vo) throws Exception {
 		vo.setMemberPw(sha.getSha256(vo.getMemberPw().getBytes()));
 		dao.insertUserDAO(vo);
 	}
@@ -97,6 +99,29 @@ public class UserServiceImpl implements UserService {
 		String email = (String)session.getAttribute("email");
 		return dao.getFavoriteList(email);
 	}
+	@Override
+	public void doReservation(ReservationVO vo, String point ,String memberEmail) {
+		info.put("point", point);
+		info.put("memberEmail", memberEmail);
+		dao.doReservation(vo, info);
+	}
+
+	@Override
+	public void insertReview(ReviewVO vo) {
+		dao.insertReview(vo);
+	}
+
+	@Override
+	public AccomVO accomInfo(String accom_no) {
+		return dao.accomInfo(accom_no);
+	}
+
+	@Override
+	public List<RoomVO> roomInfo(String accom_no) {
+		return dao.roomInfo(accom_no);
+	}
+	
+
 
 	@Override
 	public void deleteFavorite(int accomNo) {
@@ -104,10 +129,10 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserVO getInfo(String email, String name) throws Exception {
+	public UserInfoVO getInfo(String email, String name) throws Exception {
 		info.put("email", email);
 		info.put("name", name);
-		UserVO vo =  dao.getInfo(info);
+		UserInfoVO vo =  dao.getInfo(info);
 		vo.setMemberPw("");
 		return vo;
 	}

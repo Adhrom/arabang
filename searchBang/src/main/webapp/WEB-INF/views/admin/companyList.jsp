@@ -9,6 +9,17 @@
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
 <link rel="stylesheet" href="/searchBang/css/admin/tablestyle.css">
+<!-- Paging Datatables -->
+<link rel="stylesheet" type="text/css"
+	href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css">
+<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#admintable").dataTable();
+
+
+	});
+</script>
 <title>Company List</title>
 </head>
 <body>
@@ -20,12 +31,15 @@
 		<form name="approve" method="post">
 			<input type="hidden" name="ownerEmail" id="hiddenOwnerEmail">
 			<table id="admintable">
+				<thead>
 				<tr class="admintr">
 					<th class="adminth" style="border-right: 2px solid white;">EMAIL</th>
 					<th class="adminth" style="border-right: 2px solid white;">이름</th>
 					<th class="adminth" style="border-right: 2px solid white;">전화번호</th>
 					<th>&nbsp;</th>
 				</tr>
+				</thead>
+				<tbody>
 				<c:forEach var="row" items="${list }">
 					<tr class="adminList">
 						<td class="admintd">${row.ownerEmail}</td>
@@ -40,6 +54,7 @@
 					<td>&nbsp;</td>
 					<td>&nbsp;</td>
 				</tr>
+				</tbody>
 			</table>
 		</form>
 	</div>
