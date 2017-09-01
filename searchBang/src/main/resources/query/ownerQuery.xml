@@ -217,7 +217,7 @@
 		update owner_reg set ownerpw = #{ownerPw} ,
 		ownerphone = #{ownerPhone} where owneremail = #{ownerEmail}
 	</update>
-	
+
 	<delete id="deleteOwner">
 		delete from owner_reg where owneremail =
 		#{ownerEmail}
@@ -242,7 +242,7 @@
 		(sales_date,'RRRR-MM-DD'),'RRRR-MM-DD');
 	</select>
 
-	<select id="reviewCount" resultType="com.mainWeb.searchBang.owner.model.reviewCountVO">
+	<select id="reviewCount" resultType="com.mainWeb.searchBang.owner.model.ReviewCountVO">
 		select distinct
 		(select count(reviewgrade) from review where reviewgrade=1 and accom_no=117)
 		as "1",

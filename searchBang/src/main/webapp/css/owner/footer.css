@@ -1,74 +1,95 @@
 @CHARSET "UTF-8";
 /* Footer */
 #footer {
-	
-	padding: 30px;
-	margin-top: 50px;
-	background: #f6f6f6;
-	color: #aaa;
+
+   padding: 30px;
+   margin-top: 50px;
+   background: #f6f6f6;
+   color: #aaa;
+
+}
+#footerall{
+   width: 1000px;
+   margin: auto;
+
+
 }
 
 #footer ul li{
-	list-style : none;
-	display: inline;
-	letter-spacing: 0.09px; /*자간*/
-	word-spacing : -5px;/*어간*/
+   list-style : none;
+   display: inline;
+   letter-spacing: 0.09px; /*자간*/
+   word-spacing : -5px;/*어간*/
 }
 
 #footer a {
-	-moz-transition: color 0.2s ease-in-out;
-	-webkit-transition: color 0.2s ease-in-out;
-	-ms-transition: color 0.2s ease-in-out;
-	transition: color 0.2s ease-in-out;
-	color: #aaa;
-	text-decoration: none;
+   -moz-transition: color 0.2s ease-in-out;
+   -webkit-transition: color 0.2s ease-in-out;
+   -ms-transition: color 0.2s ease-in-out;
+   transition: color 0.2s ease-in-out;
+   color: #aaa;
+   text-decoration: none;
 }
 
 #footer a:active, #footer a:hover {
-	color: #666;
+   color: #666;
 }
+
 
 /*하단 아이콘*/
 #footer .icons {
-	font-size: 1em;
+   font-size: 1em;
 }
 
 #footer .icons li:last-child {
-	padding-right: 0;
+   padding-right: 0;
 }
 
 #footer .icons img {
-	padding-right :0.1em;
-	float : inline;
-	opacity: 0.3;
-	width: 28px;
+   padding-right :0.1em;
+   float : inline;
+   opacity: 0.3;
+   width: 28px;
 
 }
 /*
 @media screen and (max-width: 1024px) {
-	#footer {
-	/*	padding: 6em 0 4em 0; */
-	}
+   #footer {
+   /*   padding: 6em 0 4em 0; */
+   }
 }
 
 @media screen and (max-width: 600px) {
-	#footer {
-	/*  padding: 3em 0 2em 0; */
-	}
-	#footer .icons {
-		font-size: 1em;
-	}
+   #footer {
+   /*  padding: 3em 0 2em 0; */
+   }
+   #footer .icons {
+      font-size: 1em;
+   }
 }
 
 @media screen and (max-width: 480px) {
-	#footer {
-	/*	padding: 3em 0 1em 0; */
-	}
-	#footer .icons li {
-		border-left: 0;
-		display: block;
-		margin: 0;
-		padding: 0;
-	}
+   #footer {
+   /*   padding: 3em 0 1em 0; */
+   }
+   #footer .icons li {
+      border-left: 0;
+      display: block;
+      margin: 0;
+      padding: 0;
+   }
 }
 */
+
+.icons i{
+	border: 1px solid #aaa;
+	padding : 10px;
+	border-radius:30px;
+
+}
+
+
+.icons i:HOVER{
+	background-color: rgba(255,255,255,1);;
+
+}

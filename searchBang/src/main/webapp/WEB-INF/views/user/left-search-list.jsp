@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>상세조건</title>
 <link rel="stylesheet" href="/searchBang/css/user/searchViewSt.css" />
-<link rel="stylesheet" href="css/common/btstyle.css">
 </head>
 <body>
 
@@ -18,10 +17,10 @@
 
 
 	<div id="aside-btn">
-		
+
 		<input id="btn-reset" type="reset" value="초기화">
 		<input id="btn-submit" type="submit" value="적용">
-	
+
 	<!-- aside left-detail-condition-btn 끝 -->
 	</div>
 

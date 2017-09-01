@@ -45,21 +45,21 @@ body {
 {
 -webkit-transform
 :
- 
+
 scale
 (40);
 
-            
+
 transform
 :
- 
+
 scale
 (40);
 
-    
+
 opacity
 :
- 
+
 0;
 }
 }
@@ -74,21 +74,21 @@ keyframes ripple { 0% {
 {
 -webkit-transform
 :
- 
+
 scale
 (40);
 
-            
+
 transform
 :
- 
+
 scale
 (40);
 
-    
+
 opacity
 :
- 
+
 0;
 }
 }
@@ -119,7 +119,7 @@ opacity
 	height: 3px;
 	-webkit-transition: 0.3s ease;
 	transition: 0.3s ease;
-	
+
 }
 
 .tabs-header ul {
@@ -147,7 +147,7 @@ opacity
 }
 
 .tabs-header a {
-	
+
 	display: block;
 	box-sizing: border-box;
 	padding: 15px 20px;
@@ -156,8 +156,8 @@ opacity
 	text-transform: uppercase;
 	font-weight: 600;
 	font-size : 1.2em;
-	
-	
+
+
 }
 
 .tabs-content {
@@ -166,7 +166,7 @@ opacity
 	-webkit-transition: 0.3s ease;
 	transition: 0.3s ease;
 	overflow: hidden;
-	
+
 }
 
 .tabs-content:after {
@@ -365,7 +365,7 @@ $(document).ready(function () {
     changePos();
     changeTab();
   });
-/* 
+/*
   // Ripple(잔물결)
   $('[ripple]').on('click', function (e) {
     var rippleDiv = $('<div class="ripple" ></div>'),
@@ -384,7 +384,7 @@ $(document).ready(function () {
       rippleDiv.remove();
     }, 1500);
   });
-  
+
   */
 });
 </script>
@@ -403,7 +403,7 @@ $(document).ready(function () {
 .room_info {
 	border: 2px solid #dfdfdf;
 	padding: 0px 10px;
-	margin: 20px 0 ; 
+	margin: 20px 0 ;
 }
 
 .info {
@@ -417,7 +417,7 @@ $(document).ready(function () {
 	display: inline-block;
 	padding: 10px;
 	width: 250px;
-	
+
 }
 
 .info .title {
@@ -484,10 +484,10 @@ text-align : right;
 }
 
 .room_info .info .price ul {
-	
+
 	list-style: none;
 	padding: 0px;
-	
+
 }
 
 .room_info .info .price ul li {
@@ -551,10 +551,10 @@ margin-left: 5px;
 		</div>
 		<div class="tabs-content">
 			<div tab-id="1" class="tab active">
-			
+
 			<c:forEach var="list" items="${list}"  >
 				<div class="room_info">
-				
+
 					<img src="${list.roomimg1 }" />
 
 					<div class="info">
@@ -571,7 +571,7 @@ margin-left: 5px;
 									</p>
 
 								</div>
-									
+
 
 								<ul>
 									<li><span class="span_label">마감시간</span>${list.roomRent_Closingtime }시까지</li>
@@ -593,10 +593,10 @@ margin-left: 5px;
 										 <span>예약</span>  <b style="color: rgba(0, 0, 0, 1)">${list.roomLodge }원</b>
 										<!-- 표시금액 -->
 									</p>
-								
-									
+
+
 								</div>
-									
+
 								<ul>
 									<li><span class="span_label">입실시간</span>${list.roomLodge_Checkin }시부터</li>
 									<li><span class="span_label">퇴실시간</span>익일 ${list.roomLodge_Checkout }시</li>
@@ -613,10 +613,10 @@ margin-left: 5px;
 				</div>
 
 	</c:forEach>
-	
+
 			</div>
-		
-			
+
+
 			<div tab-id="2" id="tab1" class="tab">
 				<div id=tab2_div>
 
@@ -642,9 +642,9 @@ margin-left: 5px;
 				<c:if test="${vo.option_snackBar != 'off'}"><dd>무료 조식 제공</dd></c:if>
 				<c:if test="${vo.option_freeBlackfast != 'off'}"><dd>프론트 스낵바 무료이용</dd></c:if>
 				</dl>
-				
+
 				<dl class="tab2_dl"><dt class="tab2_dt">주차장 정보</dt>
-				
+
 				<c:choose>
 				<c:when test="${vo.parking_having == 'yes'}">
 				<c:if test="${vo.parking_valet == 'on'}"><dd>무료 발렛 파킹</dd></c:if>
@@ -662,7 +662,7 @@ margin-left: 5px;
 				<dd>${vo.accomInfo }</dd>
 				</c:if>
 				</dl>
-			
+
 				</div>
 			</div>
 
@@ -682,8 +682,8 @@ margin-left: 5px;
 						for="star1" title="Sucks big time">1 star</label>
 				</fieldset>
 
-		
-				
+
+
 
 
 

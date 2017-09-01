@@ -21,9 +21,9 @@
 		<tbody>
 			<c:forEach var="row" items="${list }">
 				<tr>
-					<td>숙소번호${row.acoom_no }</td>
+					<td>숙소번호${row.accom_no }</td>
 					<td>글쓴이${row.memberEmail }</td>
-					<td><a href="deleteReview.admin?review_no=${row.rewvie_no }&declration=${param.declration}"><button>삭제</button></a>
+					<td><a href="deleteReview.admin?review_no=${row.review_no }&declration=${param.declration}"><button>삭제</button></a>
 					<c:if test="${param.declration =='y' }">
 							<a href="cancelReview.admin?review_no=${row.review_no }&declration=${param.declration}"><button>취소</button></a>
 						</c:if></td>
