@@ -17,14 +17,13 @@
 		<div id="explain">
 			<p class="pw-title" align="center">비밀번호 찾기</p>
 		</div>
-		<form action="existAccount.bang" method="post">
+		<form method="post" id="certiform" name="certiform">
 			<div class="input-box">
-				<input class="input-style" type="text" id="Find-id" name="Find-id"
-					placeholder="이메일 인증을 먼저 해주세요" readonly="readonly"> <input
-					class="btn-style certify_open" type="button" id="sendEmail"
-					value="이메일 인증"> <input class="input-style" type="text"
-					id="Find-name" name="Find-name" placeholder="이름을 입력해 주세요">
-				<input class="btn-style" type="submit" id="Find-pw" value="다음">
+				<input class="input-style" type="text" id="Find-id" name="Find-id" placeholder="이메일 인증을 먼저 해주세요" readonly="readonly"> 
+				<input class="btn-style certify_open" type="button" id="sendEmail" value="이메일 인증">
+				<input class="input-style" type="text" id="Find-name" name="Find-name" placeholder="이름을 입력해 주세요">
+				<input class="btn-style" type="button" id="Find-pw" value="다음" onclick="certifyCheck()">
+				<input type="hidden" name="secret_certify_num" id="secret_certify_num" value="">
 			</div>
 		</form>
 	</div>
@@ -44,9 +43,11 @@
             transition : 'all 0.3s'
          });
       });
+      
       $('#approval').click(function() {
-			var v1 = $("#certify").val();
+			var v1 =  $('input[id="certify"]').parent().parent().find('input[type="text"]').val(); // 값이 안넘어와서 좀복잡하게 처리
 			var v2 = $("#secret_ceritify").val();
+			
 			var email = $('#idfield').val();
 			if (email == "") {
 				alert("이메일을 입력해 주세요.");
@@ -56,11 +57,33 @@
 				alert("인증번호가 다릅니다 올바른 인증번호를 입력해주세요.");
 				return false;
 			}
-			$('#ownerEmail').val($('#idfield').val());
-			var bt = document.getElementById('approvalbt');
-			bt.disabled = 'disabled';
-			$('#idchk').popup('hide');
+			else {
+				alert("인증이 성공되었습니다");
+				$('#secret_certify_num').val(1); // 인증여부확인 변수 체크, 
+				$('#Find-id').val($('#idfield').val());
+				var bt = document.getElementById('approval');
+				bt.disabled = 'disabled';
+				$('#certify').popup('hide');
+			}
 		});
+      
+      // 인증여부 확인 & 닉네임 입력 안했을때
+      function certifyCheck(){
+    	  if($("#Find-name").val() == ""){
+         	 alert("이름/닉네임을 입력해 주세요");
+         	 $("#Find-name").focus();
+         	 return ;
+          }
+    	  
+    	  else if($("#secret_certify_num").val() != 1){
+    		  alert("인증이 되지 않았습니다. 다시 시행해 주세요");
+    		  return ;
+    	  }
+    	  else{
+    		  document.certiform.action = "existAccount.bang"
+    		  document.certiform.submit();
+    	  }
+      }
    </script>
 </body>
 </html>

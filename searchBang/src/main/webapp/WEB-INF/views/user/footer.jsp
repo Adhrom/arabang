@@ -14,7 +14,7 @@
          <ul>
             <li><a href="#">회사소개 </a> |</li>
             <li><a href="#" rel="#">이용약관 </a> |</li>
-            <li><a href="#" rel="#">제휴신청 </a></li>
+            <li><a href="#" rel="#">제휴신청 </a></li>             
          </ul>
 
          <ul>

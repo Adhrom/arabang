@@ -15,8 +15,7 @@
 	src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
 <script src="/searchBang/js/user/mainPage.min.js"></script>
 <!-- <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" /> -->
-<link rel="stylesheet" type="text/css"
-	href="/searchBang/css/user/searchNormalize.css" />
+<link rel="stylesheet" type="text/css" href="/searchBang/css/user/searchNormalize.css" />
 <!-- css -->
 <link rel="stylesheet" href="/searchBang/css/user/search.css">
 <style>
@@ -57,7 +56,7 @@
 				<tbody>
 					<tr>
 						<!-- 위치 -->
-						<td><textarea class="serachTd" rows="" cols="" id="address"></textarea></td>
+						<td><input type="text" class="serachTd" id="address" maxlength="40" size="30"></td>
 						<!-- 날짜 -->
 						<td><input type="text" name="daterange" class="serachTd"
 							id="daterange" /> <script type="text/javascript"
@@ -85,7 +84,6 @@
 								<option value="5">5 명</option>
 								<option value="6">6 명</option>
 								<option value="7">7 명</option>
-
 						</select></td>
 						<td>
 							<button class="serachTd" id=searchBt onclick="goSearch()">검색</button>

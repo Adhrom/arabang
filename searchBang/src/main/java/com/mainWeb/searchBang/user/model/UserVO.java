@@ -2,16 +2,16 @@ package com.mainWeb.searchBang.user.model;
 
 public class UserVO {
 
-	private String memberMail;
+	private String memberEmail;
 	private String memberPw;
 	private String memberNickname;
 	private String memberPhone;
 
-	public String getMemberMail() {
-		return memberMail;
+	public String getMemberEmail() {
+		return memberEmail;
 	}
-	public void setMemberMail(String memberMail) {
-		this.memberMail = memberMail;
+	public void setMemberEmail(String memberEmail) {
+		this.memberEmail = memberEmail;
 	}
 	public String getMemberPw() {
 		return memberPw;
@@ -30,5 +30,10 @@ public class UserVO {
 	}
 	public void setMemberPhone(String memberPhone) {
 		this.memberPhone = memberPhone;
+	}
+	@Override
+	public String toString() {
+		return "UserVO [memberEmail=" + memberEmail + ", memberPw=" + memberPw + ", memberNickname=" + memberNickname
+				+ ", memberPhone=" + memberPhone + "]";
 	}
 }

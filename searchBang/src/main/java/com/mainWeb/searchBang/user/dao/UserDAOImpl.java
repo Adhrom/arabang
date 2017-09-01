@@ -74,4 +74,9 @@ public class UserDAOImpl implements UserDAO{
 	public void deleteFavorite(int accomNo) {
 		sqlsession.delete("user.deleteAccom", accomNo);
 	}
+
+	@Override
+	public UserVO getInfo(Map<String, Object> map) {
+		return sqlsession.selectOne("user.getInfo", map);
+	}
 }

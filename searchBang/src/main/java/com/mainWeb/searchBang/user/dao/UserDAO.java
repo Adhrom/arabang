@@ -38,4 +38,7 @@ public interface UserDAO {
 	
 	// 즐겨찾기 삭제
 	public void deleteFavorite(int accomNo);
+	
+	// 수정용 정보가져오기
+	public UserVO getInfo(Map<String, Object> map);
 }

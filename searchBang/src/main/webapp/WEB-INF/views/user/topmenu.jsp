@@ -61,14 +61,13 @@
 	</c:if>
 	<!-- 헤더  -->
 	<header>
-		<a id="cd-logo" href="index.bang"><img
-			src="/searchBang/img/admin/logo.png" alt="Homepage"></a>
+		<a id="cd-logo" href="index.bang">
+		<img src="/searchBang/img/admin/logo.png" alt="Homepage"></a>
 		<nav id="cd-top-nav">
 			<ul>
 				<li><c:choose>
 						<c:when test="${loginId==null }">
-							<a class="initialism login_open btn btn-success"
-								href="login.admin">Login</a>
+							<a class="initialism login_open btn btn-success" href="login.admin">Login</a>
 						</c:when>
 						<c:otherwise>
 							<a href="logout.admin" id="logoutbtn">Logout</a>

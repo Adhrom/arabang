@@ -241,9 +241,9 @@
 						<tr>
 							<td style="width: 80%"><input type="email" class="frmdate"
 								id="ownerEmail" name="ownerEmail" readonly="readonly"></td>
-							<td style="width: 20%"><a
-								class="initialism idchk_open btn btn-success"><button
-										id="approvalbt" class="button" style="font-size: 12px;">인증하기</button></a></td>
+							<td style="width: 20%">
+							<a class="initialism idchk_open btn btn-success">
+							<button id="approvalbt" class="button" style="font-size: 12px;">인증하기</button></a></td>
 						</tr>
 						<tr>
 							<td colspan="2" id="ownerEmailP" class="label">&nbsp;</td>

@@ -1,26 +1,22 @@
 package com.mainWeb.searchBang.user.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.util.CookieGenerator;
-
 import com.mainWeb.searchBang.owner.model.AccomVO;
 import com.mainWeb.searchBang.user.model.UserInfoVO;
 import com.mainWeb.searchBang.user.model.UserVO;
@@ -35,7 +31,7 @@ public class UserController {
 	private UserService service;
 
 	// 메인인덱스
-	@RequestMapping("index.bang")
+	@RequestMapping("/index.bang")
 	public String index(){
 		return "index";
 	}
@@ -107,14 +103,15 @@ public class UserController {
 		new Mail(address, message); // Mail클래스가 메일전송을 대신하게,
 		return message;
 	}
-
-//	정보를 가져오는 과정
-//	public String getInfo(Model model,@RequestParam("email") String id,
-//			@RequestParam("password") String password) throws Exception{
-//		UserVO info = service.getUserInfoService(id, password);
-//		model.addAttribute("info",info);
-//		return null;
-//	}
+	
+	@RequestMapping(value="existAccount.bang", method=RequestMethod.POST)
+	public ModelAndView getInfo(@RequestParam("Find-id") String email, 
+			@RequestParam("Find-name") String name) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("uservo",service.getInfo(email, name));
+		mv.setViewName("updateInfo");
+		return mv;
+	}
 
 //	 정보 삭제 과정
 //	public String deleteInfo(Model model, @RequestParam("email") String id,
@@ -123,12 +120,11 @@ public class UserController {
 //	return null;
 //	}
 
-	// 정보 변경
 	@RequestMapping(value="/updateInfo.bang", method=RequestMethod.POST)
-	public String updateInfo(Model model, @RequestParam("email") String id,  @RequestParam("password") String password,
-			@RequestParam("nickname") String nickname, @RequestParam("phone") String phone) throws Exception{
-		service.updateInfoService(id, password, nickname, phone);
-		return null;
+	public String updateInfo(@RequestParam("updateForm-id") String email,  @RequestParam("updateForm-password") String password,
+			@RequestParam("updateForm-nickname") String nickname, @RequestParam("updateForm-phone") String phone) throws Exception{
+		service.updateInfoService(email, password, nickname, phone);
+		return "updateFin";
 	}
 
 	//서치뷰
@@ -141,5 +137,25 @@ public class UserController {
 		mv.addObject("date", date);
 		mv.setViewName("searchView");
 		return mv;
+	}
+	
+	// 즐겨찾기 추가
+	@RequestMapping(value="/addFavorite.bang", method=RequestMethod.GET)
+	public @ResponseBody void addfavorite(@RequestParam("accomNo") int accomNo, HttpSession session){
+		service.addFavorite(accomNo, session);
+	}
+	// 즐겨찾기 리스트
+	@RequestMapping(value="/abc.bang")
+	public ModelAndView getFavoriteList(HttpSession session){
+		List<AccomVO> list = new ArrayList<AccomVO>();
+		list = service.getFavoriteList(session);
+		
+		ModelAndView mv = new ModelAndView();
+		
+		return mv;
+	}
+	// 즐겨찾기 삭제
+	public @ResponseBody void deleteFavorite(@RequestParam("accomNo") int accomNo){
+		service.deleteFavorite(accomNo);
 	}
 }

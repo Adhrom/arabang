@@ -4,6 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="user">
+	
 	<select id="loginuser"  resultType="com.mainWeb.searchBang.user.model.UserInfoVO">
 		select * from member_reg
 		where memberemail = #{memberEmail} and memberpw = #{memberPw}
@@ -13,5 +14,28 @@
 		select DISTINCT accom.* from accom ,room where accom.ACCOMADDRESS 
 		like '%'||#{accomAddress}||'%' and room.ROOMUSINGPEOPLE >= #{roomUsingPeople}
 	</select>
+	
+	<select id="getInfo" parameterType="java.util.HashMap" resultType="com.mainWeb.searchBang.user.model.UserVO">
+		SELECT * FROM MEMBER_REG
+		WHERE memberemail = #{email} AND membernickname = #{name}
+	</select>
+	
+	<update id="updateInfo" parameterType="java.util.HashMap">
+		UPDATE MEMBER_REG SET MEMBERPW = #{password}, MEMBERNICKNAME = #{nickname}, MEMBERPHONE = #{phone}
+		WHERE MEMBEREMAIL = #{email}
+	</update>
+	
+	<insert id="insertFavorite" parameterType="java.util.HashMap">
+		INSERT INTO FAVORITE VALUES (#{email}, #{accomNo}) 
+	</insert>
+	
+	<select id="favoriteList" parameterType="java.lang.String" resultType="com.mainWeb.searchBang.owner.model.AccomVO">
+		select DISTINCT accom.* from accom,favorite where favorite.email = #{email} 
+		AND FAVORITE.ACCOMNUM = ACCOM.ACCOM_NO
+	</select>
+	
+	<delete id="deleteFavorite" parameterType="java.lang.String">
+		DELETE FROM favorite WHERE ACCOMNO = #{accomNo}
+	</delete>
 	
 </mapper>

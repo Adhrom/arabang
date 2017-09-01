@@ -26,7 +26,7 @@ public interface UserService {
 	public void changePasswordService(String id, String password) throws Exception;
 
 	// 정보변경
-	public void updateInfoService(String id, String password, String nickname, String phone) throws Exception;
+	public void updateInfoService(String email, String password, String nickname, String phone) throws Exception;
 
 	//숙소리스트
 	public List<AccomVO> accomList(String address , String people);
@@ -39,4 +39,7 @@ public interface UserService {
 	
 	// 즐겨찾기 삭제
 	public void deleteFavorite(int accomNo);
+	
+	// 수정용 계정정보 가져오기
+	public UserVO getInfo(String email, String name) throws Exception;
 }
