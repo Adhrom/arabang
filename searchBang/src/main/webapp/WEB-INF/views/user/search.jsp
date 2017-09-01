@@ -36,6 +36,7 @@
 </style>
 <script type="text/javascript">
 	function goSearch() {
+		alert('주소 : ' + $('#address').val()+'날짜기간 : ' +$('#daterange').val()+'사람수 : ' + $('#people').val());
 		location.href = "searchView.bang?address="+$('#address').val()+"&date="+$('#daterange').val()+"&people="+$('#people').val();
 	}
 </script>

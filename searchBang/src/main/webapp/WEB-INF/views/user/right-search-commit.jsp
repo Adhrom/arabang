@@ -5,32 +5,36 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <title>검색완료리스트</title>
 </head>
 <body>
 	<c:forEach items="${list }" var="row">
 		<table>
 			<tr>
-				<td rowspan="4" style="vertical-align: bottom;"><a
-					href="roomManagement.owner?accom_no=${row.accom_no }"><img
-						src="${row.accomimg1 }" height="250" width="350px"></a></td>
+				<td rowspan="5" style="vertical-align: bottom;"><a
+					href="room_info.bang?accom_no=${row.accom_no }"><img
+						src="${row.accomimg1 }" height="250px" width="350px"></a></td>
 				<td
-					style="height: 50px; vertical-align: middle; padding-left: 10px; font-size: 1.6em; font-weight: bold;">${row.accomName }</td>
+					style="height: 10px; vertical-align: middle; padding-left: 10px; font-size: 1.6em; font-weight: bold;">${row.accomName }</td>
 			</tr>
 			<tr>
 				<td
-					style="height: 50px; vertical-align: middle; padding-left: 10px;">${row.accomAddress}&nbsp;${row.accomAddress2}</td>
+					style="height: 10px; vertical-align: middle; padding-left: 10px;">${row.accomAddress}&nbsp;${row.accomAddress2}</td>
 			</tr>
 			<tr>
 				<td
-					style="height: 50px; vertical-align: middle; padding-left: 10px;">${row.accomPhone }</td>
+					style="height: 10px; vertical-align: middle; padding-left: 10px;">${row.accomPhone }</td>
 			</tr>
 			<tr>
-				<td style="height: 50px; vertical-align: middle; padding-left: 5px;"><button
-						type="button" onclick="accomU('${row.accom_no}')" class="button">수정</button>
-					<button type="button" onclick="accomD('${row.accom_no}')"
-						class="button">삭제</button></td>
+				<td
+					style="height: 10px; vertical-align: middle; padding-left: 10px;">대실 : ${row. }</td>
 			</tr>
+			<tr>
+				<td
+					style="height: 10px; vertical-align: middle; padding-left: 10px;">숙박 : ${row.accomPhone }</td>
+			</tr>
+		
 		</table>
 		<br />
 	</c:forEach>
