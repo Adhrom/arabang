@@ -2,7 +2,7 @@ ul li{
 		list-style: none;
 }
 
-/* ¹è³Ê»çÀÌÁî¿Í À§Ä¡ */
+/* ï¿½ï¿½Ê»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ */
 #s_banner_wrap {
 	width:1000px; 
 	height:auto; 
@@ -11,7 +11,17 @@ ul li{
     margin-right: auto;
 
 	}
-
+.menu-bar {
+	z-index: 8;
+}
+.search-bar {
+	margin-top:100px;
+}
+.index-bang{
+	margin:100px auto;
+	width:1000px;
+	z-index:1;
+}
 /** RESET AND LAYOUT
 ===================================*/
 
@@ -72,7 +82,7 @@ ul li{
 .bx-wrapper .bx-caption {position: absolute;bottom: 0;	left: 0;background: #666\9;	background: rgba(80, 80, 80, 0.75);width: 100%;}
 .bx-wrapper .bx-caption span {color: #fff;font-family: Arial;display: block;font-size: .85em;	padding: 10px;}
 
-/* ÇÏ¿ì½º ¹öÆ° */
+/* ï¿½Ï¿ì½º ï¿½ï¿½Æ° */
 #houseButton{
 	text-align: center;
 }
@@ -87,7 +97,7 @@ margin-bottom: 3%;
 }
 
 
-/*ÇÖµô*/
+/*ï¿½Öµï¿½*/
 #hotdeal{
 	width: 1000px;
 	margin: 0 auto;
@@ -95,6 +105,11 @@ margin-bottom: 3%;
 }
 
 /* Style the tab buttons */
+
+.tab {
+	width: 1000px;
+	margin: 0 auto;
+}
 .tablink {
 
     background-color: #ffffff;

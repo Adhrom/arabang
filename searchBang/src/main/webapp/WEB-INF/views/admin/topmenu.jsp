@@ -6,11 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <!-- CSS reset -->
-<link
-	href='http://fonts.googleapis.com/css?family=Titillium+Web:400,600,700'
-	rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,600,700' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="/searchBang/css/admin/reset.css">
 <link rel="stylesheet" href="/searchBang/css/admin/adminstyle.css">
 <link rel="stylesheet" href="/searchBang/css/common/btstyle.css">
@@ -113,10 +110,12 @@
 			alert("아이디 혹은 비밀번호를 틀렸습니다. 다시 로그인 해주세요.");
 		</script>
 	</c:if>
+<div class="logo-header"> <!-- 50% 잘린 헤더 좌측에 고정될 로고 메뉴클릭시 로고 고정용 -->
+	<a id="cd-logo" href="index.admin"><img src="/searchBang/img/admin/logo.png" alt="Homepage"></a>
+</div>
 	<!-- 헤더  -->
 	<header>
-		<a id="cd-logo" href="index.admin"><img
-			src="/searchBang/img/admin/logo.png" alt="Homepage"></a>
+		
 		<nav id="cd-top-nav">
 			<ul>
 				<li><c:choose>

@@ -1,0 +1,22 @@
+@CHARSET "UTF-8";
+
+*{
+	margin: 0;
+	padding: 0;
+}
+
+.menu-bar {
+	z-index: 8;
+}
+.search-bar {
+	margin-top:100px;
+}
+.index-bang{
+	margin:100px auto;
+	width:1000px;
+	z-index:1;
+}
+
+.s_banner_wrap {
+	z-index:1;
+}

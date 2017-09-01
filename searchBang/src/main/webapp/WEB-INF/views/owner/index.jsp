@@ -38,7 +38,7 @@
 </head>
 <body>
 	<jsp:include page="topmenu.jsp" flush="false"></jsp:include>
-	<div class="cd-main-content" style="width: 1000px; margin: 0 auto;">
+	<div class="cd-main-content">
 		<div id="s_banner_wrap">
 			<div style="background-image: url('/searchBang/img/owner/main.jpg'); width: 1000px; height: 392px;">
 				<div style="width: 630px; margin: 0 auto; padding: 60px 0px;">

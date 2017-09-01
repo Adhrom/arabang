@@ -19,6 +19,7 @@
 <script type="text/javascript">
 	$(function() {
 		$('#admintable').dataTable({
+		"info":false,
 		"scrollY": 360,
 		"order": [[ 0, "desc" ]], //마지막 등록한 글이 위로가게 내림차순 정렬 
 		"lengthMenu": [ 10, 25, 50], //기본 Data 10개 25개 50개 "All" 모두
