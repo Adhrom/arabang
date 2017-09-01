@@ -51,7 +51,7 @@ public class UserController {
 	public String naverLoginProc(){
 		return "naverLoginProc";
 	}
-	
+
 	@RequestMapping("/findPw.bang")
 	public String findPassword(){
 		return "findPw";
@@ -73,12 +73,12 @@ public class UserController {
 	}
 
 	@RequestMapping(value="/resistUser.bang", method=RequestMethod.POST)
-	public String registInfo(@ModelAttribute UserInfoVO vo) throws Exception{
-		service.insertUserService(vo);
-		return null;
+	public String registInfo(@RequestParam("userName") String nickname, @RequestParam("userEmail") String email
+			, @RequestParam("userPw") String password, @RequestParam("userPhone") String phone) throws Exception{
+		service.insertUserService(email, password, nickname, phone);
+		return "index";
 	}
-
-
+ 
 	@RequestMapping(value="/loginProc.bang", method={RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView loginProc(@RequestParam("email") String email,
 			@RequestParam("password") String password, HttpSession session, Model model) throws Exception{
@@ -94,12 +94,12 @@ public class UserController {
 		return mv;
 	}
 
-//	 정보 삭제 과정
-//	public String deleteInfo(Model model, @RequestParam("email") String id,
-//			@RequestParam("password") String password) throws Exception{
-//		service.deleteUserInfoService(id, password);
-//	return null;
-//	}
+	//	 정보 삭제 과정
+	//	public String deleteInfo(Model model, @RequestParam("email") String id,
+	//			@RequestParam("password") String password) throws Exception{
+	//		service.deleteUserInfoService(id, password);
+	//	return null;
+	//	}
 
 	@RequestMapping(value="/updateInfo.bang", method=RequestMethod.POST)
 	public String updateInfo(@RequestParam("updateForm-id") String email,  @RequestParam("updateForm-password") String password,
@@ -136,24 +136,44 @@ public class UserController {
 		return null;
 	}
 
-	
 	// 즐겨찾기 추가
 	@RequestMapping(value="/addFavorite.bang", method=RequestMethod.GET)
 	public @ResponseBody void addfavorite(@RequestParam("accomNo") int accomNo, HttpSession session){
 		service.addFavorite(accomNo, session);
 	}
+
 	// 즐겨찾기 리스트
 	@RequestMapping(value="/abc.bang")
 	public ModelAndView getFavoriteList(HttpSession session){
 		List<AccomVO> list = new ArrayList<AccomVO>();
 		list = service.getFavoriteList(session);
-		
+
 		ModelAndView mv = new ModelAndView();
-		
+
 		return mv;
 	}
+
 	// 즐겨찾기 삭제
 	public @ResponseBody void deleteFavorite(@RequestParam("accomNo") int accomNo){
 		service.deleteFavorite(accomNo);
+	}
+
+	// 버튼클릭시, 이메일로 인증번호를 보내는 ,,(?)
+	@RequestMapping(value = "/getCertificationNum.bang")
+	public @ResponseBody String CharMixxing(@RequestParam("idfield") String address)
+			throws AddressException, MessagingException {
+		String message = CharMix.getInstance().makeMessage();
+		new Mail(address, message); // Mail클래스가 메일전송을 대신하게,
+		return message;
+	}
+
+	// 정보를 가져오는..
+	@RequestMapping(value="existAccount.bang", method=RequestMethod.POST)
+	public ModelAndView getInfo(@RequestParam("Find-id") String email, 
+			@RequestParam("Find-name") String name) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("uservo",service.getInfo(email, name));
+		mv.setViewName("updateInfo");
+		return mv;
 	}
 }

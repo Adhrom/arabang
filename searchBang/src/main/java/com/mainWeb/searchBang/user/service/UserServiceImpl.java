@@ -32,9 +32,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void insertUserService(UserInfoVO vo) throws Exception {
-		vo.setMemberPw(sha.getSha256(vo.getMemberPw().getBytes()));
-		dao.insertUserDAO(vo);
+	public void insertUserService(String email, String password, String nickname, String phone) throws Exception {
+		info.put("email", email);
+		info.put("password", sha.getSha256(password.getBytes()));
+		info.put("nickname", nickname);
+		info.put("phone", phone);
+		dao.insertUserDAO(info);
+		info.clear();
 	}
 
 	@Override

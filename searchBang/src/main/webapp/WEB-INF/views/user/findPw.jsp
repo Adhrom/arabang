@@ -13,7 +13,6 @@
 		<jsp:include page="topmenu.jsp" flush="false"></jsp:include>
 	</header>
 	<div class="findpw-page-section">
-		<input type="hidden" id="checkVal" name="checkVal" value="0">
 		<div id="explain">
 			<p class="pw-title" align="center">비밀번호 찾기</p>
 		</div>

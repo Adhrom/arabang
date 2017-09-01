@@ -73,7 +73,7 @@
          </div>
 
          <div id="remember-txt-sector">
-               <a href='findPassword.bang'>비밀번호 찾기</a>
+               <a href='findPw.bang'>비밀번호 찾기</a>
          </div>
       </div>
    </form>

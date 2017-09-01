@@ -50,7 +50,7 @@ function Start() {
 		}, // key : value
 		url : "getCertificationNum.bang",
 		success : function(data) {
-			document.getElementById("secret_ceritify").value = data; // hidden 태그의 인증번호 셋팅
+			$('#secret_ceritify').val(data); // hidden 태그의 인증번호 셋팅
 			$('#secret_certify_num').val(1);
 		}
 	});

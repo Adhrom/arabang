@@ -13,7 +13,7 @@ import com.mainWeb.searchBang.user.model.UserInfoVO;
 public interface UserService {
 
 	// 계정 추가
-	public void insertUserService(UserInfoVO vo) throws Exception;
+	public void insertUserService(String email, String password, String nickname, String phone) throws Exception;
 
 	//로그인
 	public boolean loginUserService(String id, String pass, HttpSession session , UserInfoVO vo) throws Exception;

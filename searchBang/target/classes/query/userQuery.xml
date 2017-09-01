@@ -5,6 +5,10 @@
 
 <mapper namespace="user">
 
+	<insert id="insertUser" parameterType="java.util.HashMap">
+		INSERT INTO MEMBER_REG(MEMBEREMAIL, MEMBERPW, MEMBERNICKNAME, MEMBERPHONE) VALUES 
+		(#{email}, #{password}, #{nickname}, #{phone})
+	</insert>
 
 	<select id="loginuser"  resultType="com.mainWeb.searchBang.user.model.UserInfoVO">
 		select * from member_reg
@@ -16,7 +20,7 @@
 		like '%'||#{accomAddress}||'%' and room.ROOMUSINGPEOPLE >= #{roomUsingPeople}
 	</select>
 	
-	<select id="getInfo" parameterType="java.util.HashMap" resultType="com.mainWeb.searchBang.user.model.UserVO">
+	<select id="getInfo" parameterType="java.util.HashMap" resultType="com.mainWeb.searchBang.user.model.UserInfoVO">
 		SELECT * FROM MEMBER_REG
 		WHERE memberemail = #{email} AND membernickname = #{name}
 	</select>
@@ -43,9 +47,9 @@
 		select * from room where accom_no = #{accom_no}
 	</select>
 	
-
 	<insert id="doReservation">
-		insert into reservation values(reservation_no_seq.nextval , #{memberemail} , #{accom_no} , #{room_no} , to_date(#{checkIn},'YYYY-MM-DD') , to_date(#{checkOut},'YYYY-MM-DD') , 'n' , #{price})
+		insert into reservation values(reservation_no_seq.nextval , #{memberemail} , #{accom_no} , #{room_no} , to_date(#{checkIn},'YYYY-MM-DD') , 
+		to_date(#{checkOut},'YYYY-MM-DD') , 'n' , #{price})
 	</insert>
 
 	<update id="pointUpdate">

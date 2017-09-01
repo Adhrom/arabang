@@ -15,10 +15,9 @@ public class Mail {
 	public Mail(String address, String message) throws MessagingException{
 		String host = "smtp.naver.com";
 
-		final String username = "swift779"; // 네이버 아이디
-		final String password = "wjdtntn779@"; // 네이버 비밀번호
+		final String username = "arabangmanager"; // 네이버 아이디
+		final String password = "arabang123@"; // 네이버 비밀번호
 		int port = 465;
-
 
 		String recipient = address;
 		String subject = "Arabang에서 인증번호를 보냅니다"; // 메일의 제목
@@ -45,7 +44,7 @@ public class Mail {
 		session.setDebug(true);
 
 		Message mimeMessage = new MimeMessage(session);
-		mimeMessage.setFrom(new InternetAddress("swift779@naver.com")); // 보내는이 아이디 + 메일주소 까지 통째로 ex) aaa0101@naver.com 이런식..
+		mimeMessage.setFrom(new InternetAddress("arabangmanager@naver.com")); // 보내는이 아이디 + 메일주소 까지 통째로 ex) aaa0101@naver.com 이런식..
 		mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
 
 		mimeMessage.setSubject(subject);

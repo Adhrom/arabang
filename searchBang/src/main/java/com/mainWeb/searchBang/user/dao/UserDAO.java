@@ -12,7 +12,7 @@ import com.mainWeb.searchBang.user.model.UserInfoVO;
 public interface UserDAO {
 
 	// 계정 등록
-	public void insertUserDAO(UserInfoVO vo);
+	public void insertUserDAO(Map<String, Object> info);
 
 	// 로그인 처리
 	public boolean loginUserDAO(UserInfoVO vo);

@@ -13,7 +13,7 @@
 			<tr align="center">
 				
 				<td colspan="2">
-					<input type="text" name="idfield" id="idfield" size="25" maxlength="40"  placeholder="이메일을 입력해 주세요">
+					<input type="text" name="idfield" id="idfield" size="25" maxlength="40" value="${email }" placeholder="이메일을 입력해 주세요">
 				</td>
 				<td rowspan="2" align="center">
 					<input type="button" value="인증하기" onclick="Start()" class="button">
