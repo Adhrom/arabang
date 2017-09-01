@@ -32,19 +32,23 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void insertUserService(UserInfoVO vo) throws Exception {
-		vo.setMemberPw(sha.getSha256(vo.getMemberPw().getBytes()));
-		dao.insertUserDAO(vo);
+	public void insertUserService(String email, String password, String nickname, String phone) throws Exception {
+		info.put("email", email);
+		info.put("password", sha.getSha256(password.getBytes()));
+		info.put("nickname", nickname);
+		info.put("phone", phone);
+		dao.insertUserDAO(info);
+		info.clear();
 	}
 
 	@Override
-	public boolean loginUserService(String id, String password,HttpSession session , UserInfoVO vo) throws Exception {
-		System.out.println("service 진입 : " + id +" "+ password );
-		vo.setMemberEmail(id);
+	public boolean loginUserService(String email, String password,HttpSession session , UserInfoVO vo) throws Exception {
+		System.out.println("service 진입 : " + email +" "+ password );
+		vo.setMemberEmail(email);
 		vo.setMemberPw(sha.getSha256(password.getBytes()));
 		boolean result = dao.loginUserDAO(vo);
 		if(result){
-			session.setAttribute("email", id);
+			session.setAttribute("email", email);
 			session.setAttribute("loginresult", "success");
 		}
 		return result;
@@ -69,11 +73,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void updateInfoService(String id, String password, String nickname, String phone) throws Exception {
-		info.put("memberEmail", id);
-		info.put("memberPw", sha.getSha256(password.getBytes()));
-		info.put("memberNickname", nickname);
-		info.put("memberPhone", phone);
+	public void updateInfoService(String email, String password, String nickname, String phone) throws Exception {
+		info.put("email", email);
+		info.put("password", sha.getSha256(password.getBytes()));
+		info.put("nickname", nickname);
+		info.put("phone", phone);
 		dao.updateInfo(info);
 	}
 
@@ -83,7 +87,29 @@ public class UserServiceImpl implements UserService {
 		info.put("roomUsingPeople", people);
 		return dao.accomList(info);
 	}
+	
+	@Override
+	public List<RoomVO> roomList(String address, String people) {
+		info.put("accomAddress", address);
+		info.put("roomUsingPeople", people);
+		return dao.roomList(info);
+	}
 
+	@Override
+	public void addFavorite(int accomNo, HttpSession session) {
+//		String email = (String) session.getAttribute("email"); // 세션에서 email이 저장안되는듯 ...,
+		String email = "swift779@naver.com";
+		Map<String, Object> favorite  = new HashMap<String, Object>();
+		favorite.put("accomNo", accomNo);
+		favorite.put("email", email);
+		dao.addFavorite(favorite);
+	}
+
+	@Override
+	public List<AccomVO> getFavoriteList(HttpSession session) {
+		String email = (String)session.getAttribute("email");
+		return dao.getFavoriteList(email);
+	}
 	@Override
 	public void doReservation(ReservationVO vo, String point ,String memberEmail) {
 		info.put("point", point);
@@ -122,4 +148,19 @@ public class UserServiceImpl implements UserService {
 		return dao.accomInfoForReservation(room_no);
 	}
 
+	@Override
+	public void deleteFavorite(int accomNo) {
+		dao.deleteFavorite(accomNo);
+	}
+
+	@Override
+	public UserInfoVO getInfo(String email, String name) throws Exception {
+		info.put("email", email);
+		info.put("name", name);
+		UserInfoVO vo =  dao.getInfo(info);
+		vo.setMemberPw("");
+		return vo;
+	}
+
+	
 }

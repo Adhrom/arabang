@@ -22,8 +22,9 @@
 <script src="/searchBang/js/owner/index.min.js"></script>
 <script src="/searchBang/js/owner/cookie.js"></script>
 <!-- paging Datatables -->
-<script src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.min.js"></script>
+<script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 <script src="/searchBang/js/common/jquery.datatables.min.js"></script>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#login').popup({
@@ -89,10 +90,12 @@
 			<%session.removeAttribute("msg");%>
 		</script>
 	</c:if>
+	<div class="logo-header"> <!-- 50% 잘린 헤더 좌측에 고정될 로고 메뉴클릭시 로고 고정용 -->
+	<a id="cd-logo" href="index.owner"><img src="/searchBang/img/admin/logo.png" alt="Homepage"></a>
+	</div>
 	<!-- 헤더  -->
 	<header>
-		<a id="cd-logo" href="index.owner"><img
-			src="/searchBang/img/admin/logo.png" alt="Homepage"></a>
+		
 		<nav id="cd-top-nav">
 			<ul>
 				<li><c:choose>

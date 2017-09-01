@@ -5,7 +5,7 @@ public class ReviewVO {
 	private String memberEmail;
 	private int accom_no;
 	private int reviewGrade;
-	private String content;
+	private String content; 
 	private String reviewDate;
 	private String decalration;
 

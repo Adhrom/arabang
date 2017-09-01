@@ -95,7 +95,7 @@
 								<option value="7">7 명</option>
 
 						</select></td>
-			</table>
+			</table> 
 		</div>
 		<button id=searchBt onclick="goSearch()">검색</button>
 

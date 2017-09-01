@@ -35,7 +35,7 @@
 <body>
 	<!-- 헤더 -->
 	<jsp:include page="topmenu.jsp" flush="false"></jsp:include>
-	<div class="cd-main-content" style="width: 1000px; margin: 50px auto;">
+	<div class="cd-main-content">
 	<h1 id="owner-mypage-title1">&nbsp;1 : 1 문의</h1>
 		<div id="question-mark">?</div>
 		<h4 id="owner-mypage-title2">궁금하신 내용을 관리자에게 직접 물어보세요</h4>

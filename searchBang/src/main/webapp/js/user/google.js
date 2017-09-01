@@ -38,7 +38,7 @@
             location.href = '회원 가입 URL';
          }
       });
-
+ 
         }, function(error) {
           alert(JSON.stringify(error, undefined, 2));
         });

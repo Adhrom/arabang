@@ -21,8 +21,8 @@ public class UserDAOImpl implements UserDAO {
 	private SqlSession sqlsession;
 
 	@Override
-	public void insertUserDAO(UserInfoVO vo) {
-		sqlsession.insert("user.insertUser", vo);
+	public void insertUserDAO(Map<String, Object> info) {
+		sqlsession.insert("user.insertUser",info);
 	}
 
 	@Override
@@ -61,14 +61,25 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
+	public List<RoomVO> roomList(Map<String, Object> info) {
+		System.out.println(info.entrySet());
+		return sqlsession.selectList("user.roomList", info);
+	}
+
+	@Override
+	public void addFavorite(Map<String, Object> favorite) {
+		sqlsession.insert("user.insertFavorite", favorite);
+	}
+
+	@Override
+	public List<AccomVO> getFavoriteList(String email) {
+		return sqlsession.selectList("user.favoriteList",email);
+	}
+	@Override
 	public AccomVO accomInfo(String accom_no) {
 		return sqlsession.selectOne("user.accomInfo", accom_no);
 	}
 
-	@Override
-	public List<RoomVO> roomInfo(String accom_no) {
-		return sqlsession.selectList("user.roomInfoList", accom_no);
-	}
 
 	@Override
 	public void doReservation(ReservationVO vo, Map<String, Object> info) {
@@ -101,9 +112,24 @@ public class UserDAOImpl implements UserDAO {
 	public RoomVO roomInfoForReservation(String room_no) {
 		return sqlsession.selectOne("user.roomInfoForReservation", room_no);
 	}
+	@Override
+	public List<RoomVO> roomInfo(String accom_no) {
+		return sqlsession.selectList("user.roomInfoList", accom_no);
+	}
 
 	@Override
 	public AccomVO accomInfoForReservation(String room_no) {
 		return sqlsession.selectOne("user.accomInfoForReservation", room_no);
 	}
+	@Override
+	public void deleteFavorite(int accomNo) {
+		sqlsession.delete("user.deleteAccom", accomNo);
+	}
+
+	@Override
+	public UserInfoVO getInfo(Map<String, Object> map) {
+		return sqlsession.selectOne("user.getInfo", map);
+	}
+
+
 }

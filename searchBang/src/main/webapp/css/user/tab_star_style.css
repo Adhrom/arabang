@@ -63,6 +63,6 @@ label {
 /*label부분에 마우스로 클릭했을 경우 발생하는 스타일입니다.*/
 .rating > label:active {
 	position: relative;
-	top: 2px;
+	top: 2px; 
 	left: 2px;
 }

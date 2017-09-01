@@ -96,7 +96,7 @@
 <script src="/searchBang/js/admin/jquery.popupoverlay.js"></script>
 	<!-- paging css -->
 <link rel="stylesheet" type="text/css"
-	href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css">
+	href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="//cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.css"><!-- 이거 넣으면 datatable 검색과 목록간 밑단 픽셀 간격이 맞춰짐 -->
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <script type="text/javascript">
@@ -344,7 +344,7 @@
 							</td>
 							<td class="table-view2"><a href="/searchBang/ownerManagement.owner?accom_no=${row.accom_no }" class="list-view-btn">
 									<img src="/searchBang/img/owner/magnifier.png" width="20"
-									height="20" style="position: relative; left: 5px;">
+									height="20">
 							</a></td>
 						</tr>
 					</c:forEach>

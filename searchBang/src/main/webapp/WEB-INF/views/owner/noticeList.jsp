@@ -12,11 +12,15 @@
 	<!-- paging css -->
 <link rel="stylesheet" href="//cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.css"><!-- 이거 넣으면 datatable 검색과 목록간 밑단 픽셀 간격이 맞춰짐 -->
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+<script src="/searchBang/js/common/jquery.datatables.min.js"></script>
 
 <!-- paging -->
 <script type="text/javascript">
 	$(function() {
-		$('#ownertable').dataTable({
+		$('#admintable').dataTable({
+		"info":false,
 		"scrollY": 360,
 		"order": [[ 0, "desc" ]], //마지막 등록한 글이 위로가게 내림차순 정렬 
 		"lengthMenu": [ 10, 25, 50], //기본 Data 10개 25개 50개 "All" 모두
@@ -26,7 +30,7 @@
 			"sEmptyTables": "데이터가 없습니다.",
 			"sSearch": "<span>검색</span> _INPUT_",//검색
 			"sZeroRecords": "검색 결과가 없습니다.",
-			"sLengthMenu" : "<span>페이징 갯수</span> _MENU_"
+			"sLengthMenu" : "<span>페이지 갯수</span> _MENU_"
 		}
        
 		});
@@ -38,12 +42,12 @@
 </head>
 <body>
 	<jsp:include page="topmenu.jsp" flush="false"></jsp:include>
-	<div class="cd-main-content" style="width: 800px; margin: 0 auto;">
+	<div class="cd-main-content">
 		<h1>Notice List</h1>
 		<hr />
 		<br />
 		<form name="conmpanyNoticeList" method="post" action="#">
-			<table id="ownertable">
+			<table id="admintable">
 				<thead>
 					<tr class="admintr">
 						<th class="adminth " style="border-right: 2px solid white;"
@@ -66,6 +70,7 @@
 				</tr>
 			</table>
 		</form>
+		
 	</div>
 	<footer>
 		<jsp:include page="footer.jsp" flush="false"></jsp:include>

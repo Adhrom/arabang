@@ -16,6 +16,53 @@
 	src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
 <script src="/searchBang/js/admin/main.js"></script>
 <script src="/searchBang/js/admin/jquery.popupoverlay.js"></script>
+<!-- Paging Datatables -->
+<script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script src="/searchBang/js/common/jquery.datatables.min.js"></script>
+
+
+<script>
+	$(document).ready(function() {
+		//모달팝업
+		var loginCheck = "<%=(String) session.getAttribute("loginUserService")%>";
+
+		if (loginCheck == "failure") {
+			$('#login').popup({
+				color : 'white',
+				opacity : 1,
+				transition : '0.3s',
+				scrolllock : true,
+				autoopen : true
+			});
+		} else {
+			$('#login').popup({
+				color: 'white',
+				opacity : 1,
+				transition : '0.3s',
+				scrolllock : true
+			});
+		}
+		// 로그인
+		$("#btnLogin").click(function() {
+			var adminId = $("#memberEmail").val();
+			var adminPw = $("#memberPw").val();
+			if (adminId == "") {
+				alert("아이디를 입력하세요.");
+				$("#memberEmail").focus();
+				return;
+			}
+			if (adminPw == "") {
+				alert("비밀번호를 입력하세요.");
+				$("#memberPw").focus();
+				return;
+			}
+			// 폼 내부의 데이터를 전송할 주소
+			document.loginform.action = "login.bang"
+			// 제출
+			document.loginform.submit();
+		});
+	});
+</script>
 
 <style type="text/css">
 .inputarea {
@@ -60,19 +107,22 @@
 			alert("아이디 혹은 비밀번호를 틀렸습니다. 다시 로그인 해주세요.");
 		</script>
 	</c:if>
+	<div class="logo-header">
+	<a id="cd-logo" href="index.bang"><img
+			src="/searchBang/img/admin/logo.png" alt="Homepage"></a>
+	</div>
 	<!-- 헤더  -->
 	<header>
-		<a id="cd-logo" href="index.bang"><img
-			src="/searchBang/img/admin/logo.png" alt="Homepage"></a>
+		
 		<nav id="cd-top-nav">
 			<ul>
 				<li><c:choose>
-						<c:when test="${loginId==null }">
+						<c:when test="${memberEmail==null }">
 							<a class="initialism login_open btn btn-success"
 								href="login.bang">Login</a>
 						</c:when>
 						<c:otherwise>
-							<a href="logout.admin" id="logoutbtn">Logout</a>
+							<a href="logout.bang" id="logoutbtn">Logout</a>
 						</c:otherwise>
 					</c:choose></li>
 			</ul>
