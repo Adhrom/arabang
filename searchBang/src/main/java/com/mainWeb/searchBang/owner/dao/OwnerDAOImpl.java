@@ -13,6 +13,8 @@ import com.mainWeb.searchBang.owner.model.AccomVO;
 import com.mainWeb.searchBang.owner.model.OwnerVO;
 import com.mainWeb.searchBang.owner.model.QnAVO;
 import com.mainWeb.searchBang.owner.model.RoomVO;
+import com.mainWeb.searchBang.owner.model.SalesVO;
+import com.mainWeb.searchBang.user.model.ReviewVO;
 
 @Repository
 public class OwnerDAOImpl implements OwnerDAO {
@@ -103,7 +105,7 @@ public class OwnerDAOImpl implements OwnerDAO {
 	@Override
 	public void deleteAccom(String accom_no) {
 		sqlSessionTemplate.delete("owner.deleteAccom", accom_no);
-		
+
 	}
 
 	@Override
@@ -122,7 +124,19 @@ public class OwnerDAOImpl implements OwnerDAO {
 		sqlSessionTemplate.update("owner.updateRoom" , roomVO);
 	}
 
-	
+	@Override
+	public List<ReviewVO> reviewList(String accom_no) {
+		return sqlSessionTemplate.selectList("owner.reviewList", accom_no);
+	}
 
+	@Override
+	public void reviewDeclration(String review_no) {
+		sqlSessionTemplate.delete("owner.reviewDeclration", review_no);
+	}
+
+	@Override
+	public List<SalesVO> sales(String accom_no) {
+		return sqlSessionTemplate.selectList("owner.sales", accom_no);
+	}
 
 }

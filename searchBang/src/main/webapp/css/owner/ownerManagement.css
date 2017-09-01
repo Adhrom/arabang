@@ -1,0 +1,148 @@
+@CHARSET "UTF-8";
+body, h1, h2, h3, h4, h5, h6, input, textarea, select, button, table {
+    font-family: "Apple SD Gothic Neo", "Nanum Barun Gothic", "NanumBarunGothic", sans-serif !important;
+    color: #666666;
+    font-size: 14px;
+    -webkit-text-size-adjust: none;
+    -ms-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+	margin:0;
+	padding:0;
+}
+body{
+
+	width:1000px;
+	margin:0;
+	padding:0;
+	margin-left: auto;
+	margin-right: auto;
+	
+}
+ul{
+	list-style: none;
+	margin:0;
+	padding:0;
+}
+/*************************************/
+/*상단 타이틀*/
+/*************************************/
+#management li{
+	margin-top:3%;
+	display: inline-block;
+	vertical-align: middle;
+}
+#companyTitle{
+	font-size:2.5em;
+	font-weight: bold;
+}
+#companyText{
+	color: #d2d2d2;
+	margin-left:2%;
+}
+#topLine{
+	margin-top:2%;
+	margin-bottom:3%;
+	border-bottom: 2px solid #989898;
+}
+/*업체정보*/
+#companyInfoContainer div{
+	display: inline-block;
+	vertical-align: middle;
+}
+
+#human_icon{
+	width:100px;
+	margin-left: 3%;
+	margin-right:2%;
+	
+}
+/*************************************/
+/*상단 인포*/
+/*************************************/
+.companyInfo{
+	margin-right:1.5%;
+}
+.companyInfomation{
+	margin-right:8%;
+	width:17em;
+}
+
+#companyInfoName{
+	font-size:1.5em;
+	margin-bottom: 5%;
+}
+/*************************************/
+/*투데이, 새리뷰, 평점*/
+/*************************************/
+.companyInfoDB li{
+	text-align: center;
+}
+.companyInfoDB{
+	border:solid 1px #ddd;
+	width:150px;
+}
+.companyInfoDB li{
+	text-align:center; 
+	padding:5px 10px; 
+	margin:0 10px; 
+	line-height:25px;
+}
+.companyInfosubject{
+	font-weight: bold;
+	fint-size:1.2em;
+	color: #d2d2de;
+}
+/*************************************/
+/*객실 현황 및 차트*/
+/*************************************/
+.roomAndChart{
+	margin-top:3%;
+}
+/*************************************/
+/*객실현황*/
+/*************************************/
+#roomNow{	
+	width:37%;
+	height:60px;
+	float:left;
+	margin-left:auto;
+	margin-right: auto;
+
+}
+#roomNowName{
+  overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+      padding: 14px 16px;
+  
+}
+.roomInfo{
+	border: 1px solid #ccc;
+	border-top:none;
+	height:20.7em;
+	
+}
+.roomInfo div{
+	display: inline-block;
+	margin-right: 20%;
+	margin-top:3%;
+}
+.roomInfo div:FIRST-CHILD{
+	margin-left:8%;
+}
+
+#soldoutBt{
+	background-color:white;
+	border: solid 1px #00a699;
+	color:#00a699;
+}
+/*************************************/
+/*차트*/
+/*************************************/
+#visitChart{
+
+	float:right;
+	width:60%;
+	height: 60px;
+
+}

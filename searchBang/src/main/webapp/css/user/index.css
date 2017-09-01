@@ -1,21 +1,33 @@
-ul li{
-		list-style: none;
+body, h1, h2, h3, h4, h5, h6, input, textarea, select, button, table {
+    font-family: "Apple SD Gothic Neo", "Nanum Barun Gothic", "NanumBarunGothic", sans-serif !important;
+    color: #666666;
+    font-size: 14px;
+    -webkit-text-size-adjust: none;
+    -ms-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
 }
 
-/* ¹è³Ê»çÀÌÁî¿Í À§Ä¡ */
+
+ul li{
+		list-style: none;
+		margin:0;
+		padding:0;
+}
+
+/* ï¿½ï¿½Ê»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ */
 #s_banner_wrap {
-	width:1000px; 
-	height:auto; 
+	width:1000px;
+	height:auto;
 	position: relative;
 	 margin-left: auto;
     margin-right: auto;
 
-	}
+   }
 
 /** RESET AND LAYOUT
 ===================================*/
 
-.bx-wrapper {position: relative;margin: 0 auto 60px;padding: 0;	*zoom: 1;}
+.bx-wrapper {position: relative;margin: 0 auto 30px;padding: 0;	*zoom: 1;}
 .bx-wrapper img {max-width: 100%;display: block;}
 
 /** THEME
@@ -72,77 +84,63 @@ ul li{
 .bx-wrapper .bx-caption {position: absolute;bottom: 0;	left: 0;background: #666\9;	background: rgba(80, 80, 80, 0.75);width: 100%;}
 .bx-wrapper .bx-caption span {color: #fff;font-family: Arial;display: block;font-size: .85em;	padding: 10px;}
 
-/* ÇÏ¿ì½º ¹öÆ° */
+/* ï¿½Ï¿ì½º ï¿½ï¿½Æ° */
 #houseButton{
 	text-align: center;
 }
 .houseButton{
 	list-style: none;
-	display: inline-block;	
-}
-.line{
-border-top: 1px solid #d2d2d2;
-width:1000px;
-margin-bottom: 3%;
+	display: inline-block;
 }
 
+/*í•«ë”œ*/
 
-/*ÇÖµô*/
-#hotdeal{
-	width: 1000px;
-	margin: 0 auto;
-
+/* Style the tab */
+div.tab {
+   width:1000px;
+   margin-left:auto;
+   margin-right:auto;
+   margin-top:4%;
+   border-top:1px solid #ccc;
+    /*overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+*/
 }
 
-/* Style the tab buttons */
-.tablink {
 
-    background-color: #ffffff;
-    color: #333;
+/* Style the buttons inside the tab */
+div.tab button {
+    background-color: inherit;
     float: left;
     border: none;
     outline: none;
     cursor: pointer;
-    padding: 0px 12px;
-    font-size: 14px;
- 
-    
+    padding: 2px 16px;
+    transition: 0.3s;
+    font-size: 17px;
 }
 
-#defaultOpen{
-	color:red;
+/* Change background color of buttons on hover
+div.tab button:hover {
+    background-color: #ddd;
+}
+ */
+
+/* Create an active/current tablink class */
+div.tab button.active {
+    color: #00a699;
 }
 
-/* Change background color of buttons on hover */
-.tablink:hover {
-   
-   color: red;
-   /*display: block;
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    height: 5px;
-    background: cadetblue;
-    -webkit-transition: all 0.5s;
-    transition: all 0.5s;
-    border-radius: 4px;
-   */
-}
-
-/* Set default styles for tab content */
+/* Style the tab content */
 .tabcontent {
-    color: #ff0000;
+   width:1000px;
+   margin-left:auto;
+   margin-right:auto;
     display: none;
-    padding: 10px;
-    text-align: center;
-
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
 }
-
-/* Style each tab content individually */ 
-#London {background-color:red;}
-#Paris {background-color:green;}
- #Tokyo {background-color:blue;}
-#Oslo {background-color:orange;}
-
 
 

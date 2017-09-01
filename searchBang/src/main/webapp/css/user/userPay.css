@@ -1,0 +1,284 @@
+@CHARSET "UTF-8";
+
+body, h1, h2, h3, h4, h5, h6, input, textarea, select, button, table {
+    font-family: "Apple SD Gothic Neo", "Nanum Barun Gothic", "NanumBarunGothic", sans-serif !important;
+    color: #666666;
+    font-size: 14px;
+    -webkit-text-size-adjust: none;
+    -ms-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+}
+
+#pageForPay{
+	width:1000px;
+	margin-left: auto;
+    margin-right: auto;
+	
+}
+/****************상단에 이미지, 내용********************/
+.payRoomInfo{
+	float:left;
+	width:57%;
+	margin-left:10px;
+}
+
+#roomImage{
+	float: left;
+}
+#roomInfo{
+	float: right;
+	padding-left: 10em;
+}
+
+/**********필수입력사항***************/
+.pay{
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+#celphoeInput{
+	list-top:-6px;
+}
+
+.bigTitle{
+	font-size: 1.3em;
+	margin-top:1em;
+}
+.discount,.surelyInput, .celphoneInput, .parking, .choiceRadio {
+	display: inline-block;
+	margin-left:1.1em;
+	margin-top:0.3em;
+}
+
+#payPage{
+	float:left;
+	width:57%;
+	margin-left:10px;
+
+}
+
+#visitRadio{
+	border:1px solid #FF0000;
+}
+.pay .discount .discountBt{
+	background-color:white;
+	border: solid 1px #00a699;
+	color:#00a699;
+
+}
+
+
+/*취소약관*/
+
+.agreeText table,.agreeText1 table  {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.agreeText {
+    border-top: 0 none;
+    height:180px;
+     padding: 3%;
+    border: 1px solid #ddd;
+}
+
+.agreeText1 {
+    border-top: 0 none;
+    height: 300px;
+     padding: 3%;
+    border: 1px solid #ddd;
+}
+
+.choice_tbl th {
+    font-weight: bold;
+    text-align: center;
+}
+.choice_tbl th, .choice_tbl td {
+    font-size: 12px;
+    padding: 10px;
+    border-left: solid 1px #444;
+    border-right: solid 1px #444;
+    border-top: solid 1px #444;
+    border-bottom: solid 1px #444;
+    text-align: center;
+}
+.choice_tbl th {
+    font-weight: bold;
+    text-align: -internal-center;
+}
+.choice_tbl td, .choice_tbl th {
+    display: table-cell;
+    vertical-align: inherit ; 
+}
+
+/*결제페이지*/
+.infoBox ul{
+	
+	list-style: none;
+	margin:0;
+	padding:0;
+}
+
+.PayPanel li{
+	padding-left: 15px;
+	padding-right: 15px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+
+}
+/*********체크인 체크아웃*********/
+#DateRangePickerTop{
+	margin:15px;
+	margin-bottom: 15px;
+}
+#DateRangePickerTop{
+	font-size: 1.3em;
+
+}
+
+/****글씨 좌측정렬*******/
+.datepickerCheckIn{
+    float:left;
+}
+.datepickerCheckOut{
+    float:right;
+}
+
+.f-left{
+	float:left;
+}
+
+.f-right{
+	float:right;
+	font-size: 20px;
+}
+/********선********/
+
+.PayPanel{
+
+	border: 1px solid #ddd;
+  	position:fixed; 
+ 	 z-index:-1;
+    width:25%;
+    right:15%; 
+    top:3%;
+    background-color: transparent;
+}
+.totalPay{
+	border-top: 1px solid #ddd;
+    font-size: 13px;
+    padding: 60px 0;
+    margin: 0 20px;
+}
+/****** 결제버튼************/
+
+
+#btnPayment{
+	width:100%;
+	height:50px;
+	background-color:white;
+	border: solid 1px #00a699;
+	color:#00a699;
+	font-size: 14pt;
+	font-weight: bold;
+}
+
+
+.txt-tip{
+	font-size:12px;
+}
+
+/******날짜***********/
+
+.DateRangePicker {
+    position: relative;
+    display: inline-block;
+}
+.payment-sidecontent .side-topcont .DateRangePicker {
+    margin-bottom: 5px;
+}
+
+.side-topcont .DateRangePicker {
+    box-sizing: border-box;
+    margin: 10px 0 10px;
+    padding: 0 10px;
+    width: 100%;
+}
+
+.DateInput--disabled {
+    background: #cacccd;
+}
+
+.DateInput {
+    font-weight: 200;
+    font-size: 18px;
+    line-height: 24px;
+    color: #757575;
+    margin: 0;
+    padding: 8px;
+    background: #fff;
+    position: relative;
+    display: inline-block;
+    width: 130px;
+    vertical-align: middle;
+    
+}
+.DateInput__input {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.DateInput--disabled{
+	float: left;
+	margin-bottom: 7%;
+	border-bottom: 1px solid #ddd;
+}
+
+.DateInput--disabled{
+	float: right;
+	margin-bottom: 7%;
+	border-bottom: 1px solid #ddd;
+}
+
+
+/*********값 받아오는 날짜 숨김************/
+.DateRangePicker input {
+    -webkit-appearance: textfield;
+    background-color: white;
+    -webkit-rtl-ordering: logical;
+    user-select: text;
+    cursor: auto;
+    padding: 1px;
+    border-width: 2px;
+    border-style: inset;
+    border-color: initial;
+    border-image: initial;
+}
+
+.DateRangePicker input {
+
+    vertical-align: middle;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+
+.DateRangePicker input {
+    text-rendering: auto;
+    color: initial;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    margin: 0em;
+    font: 13.3333px Arial;

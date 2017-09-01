@@ -69,7 +69,7 @@
 				<li><c:choose>
 						<c:when test="${loginId==null }">
 							<a class="initialism login_open btn btn-success"
-								href="login.admin">Login</a>
+								href="login.bang">Login</a>
 						</c:when>
 						<c:otherwise>
 							<a href="logout.admin" id="logoutbtn">Logout</a>

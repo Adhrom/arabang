@@ -1,6 +1,7 @@
 package com.mainWeb.searchBang.admin.controller;
 
 import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -16,6 +17,8 @@ import com.mainWeb.searchBang.admin.model.AdminVO;
 import com.mainWeb.searchBang.admin.service.AdminService;
 import com.mainWeb.searchBang.owner.model.OwnerVO;
 import com.mainWeb.searchBang.owner.model.QnAVO;
+import com.mainWeb.searchBang.user.model.ReviewVO;
+import com.mainWeb.searchBang.user.model.UserInfoVO;
 import com.mainWeb.searchBang.utils.SHA256;
 
 @Controller
@@ -23,7 +26,7 @@ public class AdminController {
 
 	@Inject
 	AdminService adminService;
-	SHA256 sha = SHA256.getInsatnce(); //sha 객체 할당
+	SHA256 sha = SHA256.getInsatnce(); // sha 객체 할당
 
 	// index
 	@RequestMapping("/index.admin")
@@ -45,7 +48,8 @@ public class AdminController {
 	@RequestMapping("/regAdmin.admin")
 	public String regAdmin(@ModelAttribute AdminVO vo) throws Exception {
 
-		String cryptStr = sha.getSha256(vo.getAdminPw().getBytes());  //비밀번호 세팅과정
+		String cryptStr = sha.getSha256(vo.getAdminPw().getBytes()); // 비밀번호
+																		// 세팅과정
 		vo.setAdminPw(cryptStr);
 		adminService.insertAdmin(vo);
 		return "redirect:adminManagement.admin";
@@ -63,13 +67,15 @@ public class AdminController {
 	public ModelAndView companyApprove() {
 		List<OwnerVO> list = adminService.companyApprove();
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("size",list.size());
-		mv.addObject("list",list);
+		mv.addObject("size", list.size());
+		mv.addObject("list", list);
 		mv.setViewName("companyApprove");
 		return mv;
 	}
+
 	@RequestMapping("/approve.admin")
-	public String approve(@RequestParam(value="approve", required=true)String approve , @ModelAttribute OwnerVO ownerVO){
+	public String approve(@RequestParam(value = "approve", required = true) String approve,
+			@ModelAttribute OwnerVO ownerVO) {
 		adminService.approve(approve, ownerVO);
 		return "redirect:companyApprove.admin";
 	}
@@ -79,7 +85,7 @@ public class AdminController {
 	public ModelAndView companyList() {
 		List<OwnerVO> list = adminService.companyList();
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("list",list);
+		mv.addObject("list", list);
 		mv.setViewName("companyList");
 		return mv;
 	}
@@ -91,7 +97,7 @@ public class AdminController {
 		List<AdminNoticeVO> noticeList = adminService.NoticeList(noticeType);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("companyNoticeList");
-		mv.addObject("noticeList",noticeList);
+		mv.addObject("noticeList", noticeList);
 		return mv;
 	}
 
@@ -103,8 +109,12 @@ public class AdminController {
 
 	// customerList
 	@RequestMapping("/customerList.admin")
-	public String customerList() {
-		return "customerList";
+	public ModelAndView customerList() {
+		List<UserInfoVO> list = adminService.userList();
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("customerList");
+		mv.addObject("list", list);
+		return mv;
 	}
 
 	// customerNoticeList
@@ -114,10 +124,9 @@ public class AdminController {
 		List<AdminNoticeVO> noticeList = adminService.NoticeList(noticeType);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("customerNoticeList");
-		mv.addObject("noticeList",noticeList);
+		mv.addObject("noticeList", noticeList);
 		return mv;
 	}
-
 	// customerStats
 	@RequestMapping("/customerStats.admin")
 	public String customerStats() {
@@ -125,46 +134,51 @@ public class AdminController {
 	}
 
 	// noticeWrite
-	@RequestMapping(value="/noticeWrite.admin" , method=RequestMethod.GET)
+	@RequestMapping(value = "/noticeWrite.admin", method = RequestMethod.GET)
 	public String noticeWrite() {
 		return "noticeWrite";
 	}
-	@RequestMapping(value="/noticeWrite.admin" , method=RequestMethod.POST)
+
+	@RequestMapping(value = "/noticeWrite.admin", method = RequestMethod.POST)
 	public ModelAndView noticeModify(@ModelAttribute AdminNoticeVO noticeVO) {
 		ModelAndView mv = new ModelAndView();
-		 mv.addObject("noticeVO",noticeVO);
-		 mv.setViewName("noticeWrite");
+		mv.addObject("noticeVO", noticeVO);
+		mv.setViewName("noticeWrite");
 		return mv;
 	}
 
 	@RequestMapping("/insertNotice.admin")
-	public String insertNotice(@ModelAttribute AdminNoticeVO noticeVO){
+	public String insertNotice(@ModelAttribute AdminNoticeVO noticeVO) {
 		System.out.println(noticeVO);
 		adminService.insertNotice(noticeVO);
-		return "redirect:"+noticeVO.getNoticeType()+"NoticeList.admin";
+		return "redirect:" + noticeVO.getNoticeType() + "NoticeList.admin";
 	}
+
 	// noticeRead
 	@RequestMapping("/noticeRead.admin")
-	public ModelAndView noticeRead(@RequestParam(value="notice_no", required=true)String notice_no){
+	public ModelAndView noticeRead(@RequestParam(value = "notice_no", required = true) String notice_no) {
 		AdminNoticeVO noticeVO = adminService.noticeRead(notice_no);
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("noticeVO",noticeVO);
+		mv.addObject("noticeVO", noticeVO);
 		mv.setViewName("noticeRead");
 		return mv;
 	}
+
 	// noticeDel
 	@RequestMapping("/noticeDel.admin")
-	public String noticeDel(@ModelAttribute AdminNoticeVO noticeVO){
+	public String noticeDel(@ModelAttribute AdminNoticeVO noticeVO) {
 		String notice_no = String.valueOf(noticeVO.getNotice_no());
 		adminService.noticeDel(notice_no);
-		return "redirect:"+noticeVO.getNoticeType()+"NoticeList.admin";
+		return "redirect:" + noticeVO.getNoticeType() + "NoticeList.admin";
 	}
+
 	// noticeUpdate
-	@RequestMapping(value="/noticeUpdate.admin" , method=RequestMethod.POST)
-	public String noticeUpdate(@ModelAttribute AdminNoticeVO noticeVO){
+	@RequestMapping(value = "/noticeUpdate.admin", method = RequestMethod.POST)
+	public String noticeUpdate(@ModelAttribute AdminNoticeVO noticeVO) {
 		adminService.noticeUpdate(noticeVO);
-		return "redirect:"+noticeVO.getNoticeType()+"NoticeList.admin";
+		return "redirect:" + noticeVO.getNoticeType() + "NoticeList.admin";
 	}
+
 	// salesStats
 	@RequestMapping("/salesStats.admin")
 	public String salesStats() {
@@ -174,10 +188,9 @@ public class AdminController {
 	// login
 
 	@RequestMapping("/login.admin")
-	public ModelAndView login(@ModelAttribute AdminVO vo,
-			HttpSession session) throws Exception {
+	public ModelAndView login(@ModelAttribute AdminVO vo, HttpSession session) throws Exception {
 
-//		로그인시 암호화해서 vo모델링
+		// 로그인시 암호화해서 vo모델링
 		String cryptPw = sha.getSha256(vo.getAdminPw().getBytes());
 		vo.setAdminPw(cryptPw);
 
@@ -200,9 +213,9 @@ public class AdminController {
 		return "index";
 	}
 
-	//QnA 리스트
+	// QnA 리스트
 	@RequestMapping("/QnAReply.admin")
-	public ModelAndView QnAReply(){
+	public ModelAndView QnAReply() {
 		ModelAndView mv = new ModelAndView();
 		List<QnAVO> list = adminService.QnAList();
 		mv.addObject("size", list.size());
@@ -210,11 +223,45 @@ public class AdminController {
 		mv.setViewName("QnAReply");
 		return mv;
 	}
-	//QnA 리플
+
+	// QnA 리플
 	@RequestMapping("/insertReply.admin")
-	public String insertReply(@ModelAttribute QnAVO vo){
+	public String insertReply(@ModelAttribute QnAVO vo) {
 		adminService.insertReply(vo);
 		return "redirect:QnAReply.admin";
+	}
+
+	@RequestMapping("/review.admin")
+	public ModelAndView reviewList(@RequestParam(value = "declration") String declration) {
+		ModelAndView mv = new ModelAndView();
+		List<ReviewVO> list;
+		if (declration.equals('y'))
+			list = adminService.declrationReviewList();
+		else
+			list = adminService.reviewList();
+		mv.setViewName("review");
+		mv.addObject("list", list);
+		return mv;
+	}
+
+	@RequestMapping("/deleteReview.admin")
+	public String deleteReview(@RequestParam(value = "review_no") String review_no,
+			@RequestParam(value = "declration") String declration) {
+		adminService.deleteReview(review_no);
+		if (declration.equals('y'))
+			return "redirect:review.admin?declration=y";
+		else
+			return "redirect:review.admin?declration=n";
+	}
+
+	@RequestMapping("/cancelReview.admin")
+	public String cancelReview(@RequestParam(value = "review_no") String review_no,
+			@RequestParam(value = "declration") String declration) {
+		adminService.cancelReview(review_no);
+		if (declration.equals('y'))
+			return "redirect:review.admin?declration=y";
+		else
+			return "redirect:review.admin?declration=n";
 	}
 
 }

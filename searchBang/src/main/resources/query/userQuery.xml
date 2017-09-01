@@ -14,18 +14,17 @@
 	<select id="accomList" parameterType="java.util.HashMap" resultType="com.mainWeb.searchBang.owner.model.AccomVO">
 		select DISTINCT accom.* from accom ,room where accom.ACCOMADDRESS like '%'||#{accomAddress}||'%' and room.ROOMUSINGPEOPLE >= #{roomUsingPeople}
 	</select>
-	
+
 	<select id="accomInfo" resultType="com.mainWeb.searchBang.owner.model.AccomVO">
 		select * from accom where accom_no = #{accom_no}
 	</select>
-	
+
 	<select id="roomInfoList" resultType="com.mainWeb.searchBang.owner.model.RoomVO">
 		select * from room where accom_no = #{accom_no}
 	</select>
-	
 
 	<insert id="doReservation">
-		insert into reservation values(reservation_no_seq.nextval , #{memberemail} , #{accom_no} , #{room_no} , to_date(#{checkIn},'YYYY-MM-DD') , to_date(#{checkOut},'YYYY-MM-DD') , 'n' , #{price})
+		insert into reservation values(reservation_no_seq.nextval , #{memberEmail} , #{accom_no} , #{room_no} , to_date(#{checkIn},'YYYY-MM-DD') , to_date(#{checkOut},'YYYY-MM-DD') , 'n' , #{price})
 	</insert>
 
 	<update id="pointUpdate">
@@ -41,6 +40,18 @@
 	</select>
 
 	<insert id="insertReview">
-		insert into review values(review_no_seq , #{memberEmail} , #{accom_no} , #{reviewGrade} , #{content} , sysdate)
+		insert into review values(review_no_seq , #{memberEmail} , #{accom_no} , #{reviewGrade} , #{content} , sysdate , 'n')
 	</insert>
+
+	<select id="getUserInfo" resultType="com.mainWeb.searchBang.user.model.UserInfoVO">
+		select * from member_reg where memberemail = #{memberEmail}
+	</select>
+
+	<select id="roomInfoForReservation" parameterType="java.util.HashMap" resultType="com.mainWeb.searchBang.owner.model.RoomVO">
+		select * from room where room_no = #{room_no}
+	</select>
+
+	<select id="accomInfoForReservation" resultType="com.mainWeb.searchBang.owner.model.AccomVO">
+		select * from accom where accom_no = (select accom_no from room where room_no = #{room_no})
+	</select>
 </mapper>

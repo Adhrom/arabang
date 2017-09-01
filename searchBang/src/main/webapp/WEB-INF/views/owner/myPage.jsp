@@ -222,8 +222,8 @@
 <script type="text/javascript">
 	$(function() {
 		$('#ownertable').dataTable({
-		"scrollY": 360,
-		"order": [[ 0, "desc" ]], //마지막 등록한 글이 위로가게 내림차순 정렬 
+		"scrollY": 335,
+		"order": [[ 0, "desc" ]], //마지막 등록한 글이 위로가게 내림차순 정렬
 		"bLengthChange": false, //페이지 등록글 갯수 메뉴 삭제
 		"pageLength": 4,//페이지 등록글 갯수 4개로 고정
 		"oLanguage": {
@@ -234,11 +234,11 @@
 			"sZeroRecords": "검색 결과가 없습니다.",
 			"sLengthMenu" : "<span>페이징 갯수</span> _MENU_"
 		}
-       
+
 		});
-		
+
 	});
-	
+
 </script>
 </head>
 <body>
@@ -342,9 +342,9 @@
 									</c:choose>
 								</div>
 							</td>
-							<td class="table-view2"><a href="#" class="list-view-btn">
+							<td class="table-view2"><a href="/searchBang/ownerManagement.owner?accom_no=${row.accom_no }" class="list-view-btn">
 									<img src="/searchBang/img/owner/magnifier.png" width="20"
-									height="20" style="position: relative; top: 23px; left: 5px;">
+									height="20" style="position: relative; left: 5px;">
 							</a></td>
 						</tr>
 					</c:forEach>

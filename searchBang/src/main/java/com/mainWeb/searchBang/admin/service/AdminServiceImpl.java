@@ -12,6 +12,8 @@ import com.mainWeb.searchBang.admin.model.AdminNoticeVO;
 import com.mainWeb.searchBang.admin.model.AdminVO;
 import com.mainWeb.searchBang.owner.model.OwnerVO;
 import com.mainWeb.searchBang.owner.model.QnAVO;
+import com.mainWeb.searchBang.user.model.ReviewVO;
+import com.mainWeb.searchBang.user.model.UserInfoVO;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -103,6 +105,31 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<QnAVO> QnAList() {
 		return adminDAO.QnAList();
+	}
+
+	@Override
+	public List<ReviewVO> reviewList() {
+		return adminDAO.reviewList();
+	}
+
+	@Override
+	public List<ReviewVO> declrationReviewList() {
+		return adminDAO.declrationReviewList();
+	}
+
+	@Override
+	public void deleteReview(String review_no) {
+		adminDAO.deleteReview(review_no);
+	}
+
+	@Override
+	public void cancelReview(String review_no) {
+		adminDAO.cancelReview(review_no);
+	}
+
+	@Override
+	public List<UserInfoVO> userList() {
+		return adminDAO.userList();
 	}
 
 }

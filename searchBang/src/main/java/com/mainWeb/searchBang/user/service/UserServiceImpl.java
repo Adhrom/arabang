@@ -88,6 +88,7 @@ public class UserServiceImpl implements UserService {
 	public void doReservation(ReservationVO vo, String point ,String memberEmail) {
 		info.put("point", point);
 		info.put("memberEmail", memberEmail);
+		vo.setMemberEmail(memberEmail);
 		dao.doReservation(vo, info);
 	}
 
@@ -105,7 +106,20 @@ public class UserServiceImpl implements UserService {
 	public List<RoomVO> roomInfo(String accom_no) {
 		return dao.roomInfo(accom_no);
 	}
-	
 
+	@Override
+	public UserInfoVO getUserInfo(String memberEmail) {
+		return dao.getUserInfo(memberEmail);
+	}
+
+	@Override
+	public RoomVO roomInfoForReservation(String room_no) {
+		return dao.roomInfoForReservation(room_no);
+	}
+
+	@Override
+	public AccomVO accomInfoForReservation(String room_no) {
+		return dao.accomInfoForReservation(room_no);
+	}
 
 }

@@ -1,0 +1,105 @@
+@CHARSET "UTF-8";
+
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
+* {
+	font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
+	
+}
+body {
+margin:100px auto;
+width:1000px;
+height:1920px;
+border: solid 1px white;
+}
+
+.top #t_left{
+	float:left;
+	border: solid 1px white;
+}
+
+#banner-a {
+	position:absolute;
+	float:right;
+	margin-top:20px;
+	margin-left: 550px;
+	width:450px;
+	height:200px;
+	border:solid 1px white;
+}
+ 
+.star
+{
+  /* normal state */
+  color: black;
+  border:solid 1px gray;
+  background-color:pink;
+}
+
+h1#txt-bg-a {
+	width:32px;
+	background-color:#28288C;
+	font-weight: lighter;
+	font-size:12pt;
+	text-align:center;
+	line-height:25px;
+	color:white;
+}
+#txt-title{
+	margin-top:-42px;
+	margin-left:35px;
+	line-height:29px;
+	font-size : 1.8em;
+	color:black;
+	border:solid 1px white;
+}
+h5#txt-bg-b{
+	
+	width:25px;
+	border-radius:5px;
+	line-height:18px;
+	background:orange;
+	text-align: center;
+	font-size : 10px;
+	color:white;
+	border: solid 1px white;
+	
+}
+h3#txt-bg-b-txt {
+	margin-top:-22px;
+	margin-left:35px;
+	color:orange;
+	border: solid 1px white;
+	font-size: 14px
+}
+.txt-info{
+	line-height: 25px;
+}
+.txt-info label {
+	width: 100px;
+	float:left;
+	font-weight: 500;
+}
+.txt-info p{
+	font-weight: 300;
+}
+#map {	
+	width: 440px;
+	height:260px;
+}
+#bottom_tap {
+	clear:both;
+	padding-top:-50px;
+	border:solid 1px white;
+
+}
+#centerbtn{
+	color: #dfdfdf;
+}
+
+footer{
+	
+	width:100%;
+	position:fixed;
+	left:0px;
+	bottom: 0px;
+}

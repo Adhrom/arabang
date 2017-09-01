@@ -8,6 +8,8 @@ import com.mainWeb.searchBang.owner.model.AccomVO;
 import com.mainWeb.searchBang.owner.model.OwnerVO;
 import com.mainWeb.searchBang.owner.model.QnAVO;
 import com.mainWeb.searchBang.owner.model.RoomVO;
+import com.mainWeb.searchBang.owner.model.SalesVO;
+import com.mainWeb.searchBang.user.model.ReviewVO;
 
 public interface OwnerDAO {
 
@@ -71,5 +73,13 @@ public interface OwnerDAO {
 	// 오너 삭제
 	public void deleteOwner(String ownerEmail);
 
-	
+	// 리뷰 리스트
+	public List<ReviewVO> reviewList(String accom_no);
+
+	// 리뷰 신고하기
+	public void reviewDeclration(String review_no);
+
+	// 매출통계
+	public List<SalesVO> sales(String accom_no);
+
 }

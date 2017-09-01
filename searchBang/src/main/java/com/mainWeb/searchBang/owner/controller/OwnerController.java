@@ -2,6 +2,7 @@ package com.mainWeb.searchBang.owner.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,7 +30,9 @@ import com.mainWeb.searchBang.owner.model.AccomVO;
 import com.mainWeb.searchBang.owner.model.OwnerVO;
 import com.mainWeb.searchBang.owner.model.QnAVO;
 import com.mainWeb.searchBang.owner.model.RoomVO;
+import com.mainWeb.searchBang.owner.model.SalesVO;
 import com.mainWeb.searchBang.owner.service.OwnerService;
+import com.mainWeb.searchBang.user.model.ReviewVO;
 import com.mainWeb.searchBang.utils.CharMix;
 import com.mainWeb.searchBang.utils.Mail;
 import com.mainWeb.searchBang.utils.SHA256;
@@ -186,7 +189,7 @@ public class OwnerController {
 	@RequestMapping(value = "/insertAccom.owner", method = RequestMethod.POST)
 	public String insertAccom(@ModelAttribute AccomVO accomVO, MultipartHttpServletRequest req)
 			throws IllegalStateException, IOException {
-		
+
 		HttpSession session = req.getSession(false);
 		List<MultipartFile> files = accomVO.getUploadFile(); // MultipartFile타입의
 															// 리스트
@@ -229,36 +232,36 @@ public class OwnerController {
 		service.addedAccom(accomVO);
 		return "redirect:accomManagement.owner";
 	}
-	
+
 	//숙소수정
 	@RequestMapping(value = "/updateAccom.owner", method = RequestMethod.POST)
 	public String updateAccom(@ModelAttribute AccomVO accomVO, MultipartHttpServletRequest req)
 			throws IllegalStateException, IOException {
-	
-	
+
+
 		HttpSession session = req.getSession(false);
 		List<MultipartFile> files = accomVO.getUploadFile(); // MultipartFile타입의
 																// 리스트
 		String fileName[] = new String[files.size()]; //파일 이름을 닮을 배열
-		
-		
+
+
 		String root_path = session.getServletContext().getRealPath("/"); // 루트
 		//경로
-		
+
 		String real_path = "img/owner/Accom/"; // 상대경로
 		String path = root_path + real_path; // 전체경로\
 		File Dir = new File(path); // 폴더가 없으면 만들기 위해서
 		if (!Dir.exists())
 			Dir.mkdirs();
-	
-		
+
+
 		if (!files.isEmpty()) // 업로드파일이 비어 있지 않다면
 		{
 			for (int i = 0; i < files.size(); i++) {
 				UUID uuid = UUID.randomUUID();
 				fileName[i] = files.get(i).getOriginalFilename();
 				String saveName = uuid.toString() + "_" + fileName[i];
-				
+
 				files.get(i).transferTo(new File(path + saveName));
 				if (i == 0)
 					accomVO.setAccomimg1("/searchBang/" + real_path + saveName);
@@ -281,12 +284,12 @@ public class OwnerController {
 			}
 		}
 		accomVO.setOwnerEmail((String) session.getAttribute("loginId"));
-		
+
 		service.updateAccom(accomVO);
-		
+
 		return "redirect:accomManagement.owner";
 	}
-	
+
 
 	// 숙소삭제
 	@RequestMapping("/deleteAccom.owner")
@@ -300,7 +303,7 @@ public class OwnerController {
 	@RequestMapping("/roomManagement.owner")
 	public ModelAndView roomManagement(@RequestParam(value = "accom_no", required = false) String accom_no,
 			HttpServletRequest req) {
-		HttpSession session = req.getSession();
+		HttpSession session = req.getSession(false);
 		session.setAttribute("accom_no", accom_no);
 		ModelAndView mv = new ModelAndView();
 		List<RoomVO> list = service.roomList(accom_no);
@@ -370,7 +373,7 @@ public class OwnerController {
 		service.addedRoom(roomVO, session);
 		return "redirect:accomManagement.owner";
 	}
-	
+
 	// 방수정
 		@RequestMapping(value = "/updateRoom.owner", method = RequestMethod.POST)
 		public String updateRoom(MultipartHttpServletRequest req, @ModelAttribute RoomVO roomVO)
@@ -418,7 +421,7 @@ public class OwnerController {
 			return "redirect:accomManagement.owner";
 		}
 
-	
+
 
 	// 방삭제
 	@RequestMapping("/deleteRoom.owner")
@@ -517,5 +520,30 @@ public class OwnerController {
 	public String deleteOwner(@RequestParam(value = "ownerEmail", required = true) String ownerEmail) {
 		service.deleteOwner(ownerEmail);
 		return "redirect:index.owner";
+	}
+
+	//오너 매니지먼트페이지
+	@RequestMapping("/ownerManagement.owner")
+	public ModelAndView ownerManagement(@RequestParam(value="accom_no")String accom_no , HttpServletRequest req){
+		HttpSession session = req.getSession(false);
+		session.setAttribute("accom_no", accom_no);
+		AccomVO vo = service.accomInfo(accom_no);
+		List<RoomVO> roomList = service.roomList(accom_no);
+		List<ReviewVO> reviewList = service.reviewList(accom_no);
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("vo",vo);
+		mv.addObject("roomList",roomList);
+		mv.addObject("reviewList",reviewList);
+		mv.addObject("reviewListSize", reviewList.size());
+		mv.setViewName("ownerManagement");
+		return mv;
+	}
+
+	//일간매출
+	@RequestMapping("/sales.owner")
+	public @ResponseBody Object sales(@RequestParam(value="accom_no")String accom_no){
+		List<SalesVO> list = new ArrayList<SalesVO>();
+		list = service.sales(accom_no);
+		return list;
 	}
 }

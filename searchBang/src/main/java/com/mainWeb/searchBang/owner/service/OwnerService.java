@@ -10,6 +10,8 @@ import com.mainWeb.searchBang.owner.model.AccomVO;
 import com.mainWeb.searchBang.owner.model.OwnerVO;
 import com.mainWeb.searchBang.owner.model.QnAVO;
 import com.mainWeb.searchBang.owner.model.RoomVO;
+import com.mainWeb.searchBang.owner.model.SalesVO;
+import com.mainWeb.searchBang.user.model.ReviewVO;
 
 public interface OwnerService {
 
@@ -60,19 +62,28 @@ public interface OwnerService {
 
 	// QnA리스트
 	public List<QnAVO> QnAList(QnAVO vo);
-	
+
 	// QnA등록
 	public void QnAInsert(QnAVO vo);
 
 	// 회원정보
 	public OwnerVO ownerInfo(String ownerEmail);
 
-	//핫딜 온오프
+	// 핫딜 온오프
 	public void hotdeal(AccomVO vo);
 
-	//오너업데이트
+	// 오너업데이트
 	public void updateOwner(OwnerVO vo);
 
-	//오너 삭제
+	// 오너 삭제
 	public void deleteOwner(String ownerEmail);
+
+	// 리뷰 리스트
+	public List<ReviewVO> reviewList(String accom_no);
+
+	// 리뷰 신고하기
+	public void reviewDeclration(String review_no);
+
+	// 매출통계
+	public List<SalesVO> sales(String accom_no);
 }

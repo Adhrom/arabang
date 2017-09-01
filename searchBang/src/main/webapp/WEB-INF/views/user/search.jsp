@@ -13,27 +13,15 @@
 <!-- Include Date Range Picker -->
 <script type="text/javascript"
 	src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+<link rel="stylesheet" type="text/css"
+	href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
 <script src="/searchBang/js/user/mainPage.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="/searchBang/css/user/searchNormalize.css" />
 <!-- css -->
-<link rel="stylesheet" href="/searchBang/css/user/search.css">
-<style>
-#daterange {
-	border: 1px solid #fff;
-	font-size: 20px;
-	width: 250px;
-	height: 30px;
-}
+<link rel="stylesheet" href="/searchBang/css/user/search.css?ver=21">
 
-#people {
-	border: 1px solid #fff;
-	font-size: 20px;
-	width: 100px;
-	height: 30px;
-}
-</style>
+
 <script type="text/javascript">
 	function goSearch() {
 		location.href = "searchView.bang?address=" + $('#address').val()
@@ -48,33 +36,43 @@
 	<div>
 		<div id="searchDiv">
 			<table id="searchTable">
+				<colgroup>
+
+					<col width="20%">
+					<col width="30%">
+					<col width="20%">
+
+
+				</colgroup>
 				<thead>
 					<tr>
+
 						<th class="searchTh">위치</th>
 						<th class="searchTh">날짜</th>
 						<th class="searchTh">인원</th>
-						<th class="searchTh"></th>
+
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
 						<!-- 위치 -->
-						<td><textarea class="serachTd" rows="" cols="" id="address"></textarea></td>
+
+						<td><input type="text" class="serachTd" id="address"
+							placeholder="원하는 지역을 검색하세요"></td>
 						<!-- 날짜 -->
-						<td>
-						<input type="text" name="daterange" class="serachTd"
-							id="daterange" />  <script type="text/javascript"
+						<td><input type="text" name="daterange" class="serachTd"
+							id="daterange" /> <script type="text/javascript"
 								id="DateRangePicker">
 								$(function() {
 									$('input[name="daterange"]')
 											.daterangepicker({
-												locale: {
-											      format: 'YYYY-MM-DD'
-										    },
-										    	minDate: moment().toDate(),
-										    	"dateLimit":{
-										             "days":30
-										          },
+												locale : {
+													format : 'YYYY-MM-DD'
+												},
+												minDate : moment().toDate(),
+												"dateLimit" : {
+													"days" : 30
+												},
 												weekStart : 1,
 												"autoApply" : true,
 												"opens" : "center",
@@ -97,11 +95,9 @@
 								<option value="7">7 명</option>
 
 						</select></td>
-						<td>
-							<button class="serachTd" id=searchBt onclick="goSearch()">검색</button>
-						</td>
 			</table>
 		</div>
+		<button id=searchBt onclick="goSearch()">검색</button>
 
 	</div>
 </body>

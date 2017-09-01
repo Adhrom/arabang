@@ -15,19 +15,19 @@ import com.mainWeb.searchBang.user.model.ReviewVO;
 import com.mainWeb.searchBang.user.model.UserInfoVO;
 
 @Repository
-public class UserDAOImpl implements UserDAO{
+public class UserDAOImpl implements UserDAO {
 
 	@Inject
 	private SqlSession sqlsession;
 
 	@Override
 	public void insertUserDAO(UserInfoVO vo) {
-		sqlsession.insert("user.insertUser",vo);
+		sqlsession.insert("user.insertUser", vo);
 	}
 
 	@Override
 	public boolean loginUserDAO(UserInfoVO vo) {
-		System.out.println("dao 진입 : " + vo.getMemberEmail() + " / "+ vo.getMemberPw() );
+		System.out.println("dao 진입 : " + vo.getMemberEmail() + " / " + vo.getMemberPw());
 		vo = sqlsession.selectOne("user.loginuser", vo);
 
 		System.out.println(vo.toString());
@@ -37,7 +37,7 @@ public class UserDAOImpl implements UserDAO{
 
 	@Override
 	public UserInfoVO getUserInfoDAO(Map<String, Object> info) {
-		return sqlsession.selectOne("user.getUserInfo",info);
+		return sqlsession.selectOne("user.getUserInfo", info);
 	}
 
 	@Override
@@ -55,7 +55,6 @@ public class UserDAOImpl implements UserDAO{
 		sqlsession.update("user.updateInfo", info);
 	}
 
-
 	@Override
 	public List<AccomVO> accomList(Map<String, Object> info) {
 		return sqlsession.selectList("user.accomList", info);
@@ -67,17 +66,22 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 	@Override
-	public void doReservation(ReservationVO vo, Map<String, Object> info) {
-		sqlsession.insert("user.doReservation" , vo);
+	public List<RoomVO> roomInfo(String accom_no) {
+		return sqlsession.selectList("user.roomInfoList", accom_no);
+	}
 
-			//sqlsession.update("user.pointUpdate", info);
+	@Override
+	public void doReservation(ReservationVO vo, Map<String, Object> info) {
+		sqlsession.insert("user.doReservation", vo);
+
+		// sqlsession.update("user.pointUpdate", info);
 	}
 
 	@Override
 	public boolean reservationInterceptor(int room_no, Map<String, Object> info) {
 		int roomCount = sqlsession.selectOne("user.roomCount", room_no);
 		int reservationCount = sqlsession.selectOne("user.reservationCount", info);
-		if(roomCount>reservationCount )
+		if (roomCount > reservationCount)
 			return true;
 		else
 			return false;
@@ -89,8 +93,17 @@ public class UserDAOImpl implements UserDAO{
 	}
 
 	@Override
-	public List<RoomVO> roomInfo(String accom_no) {
-		return sqlsession.selectList("user.roomInfoList", accom_no);
+	public UserInfoVO getUserInfo(String memberEmail) {
+		return sqlsession.selectOne("user.getUserInfo", memberEmail);
 	}
 
+	@Override
+	public RoomVO roomInfoForReservation(String room_no) {
+		return sqlsession.selectOne("user.roomInfoForReservation", room_no);
+	}
+
+	@Override
+	public AccomVO accomInfoForReservation(String room_no) {
+		return sqlsession.selectOne("user.accomInfoForReservation", room_no);
+	}
 }

@@ -14,7 +14,8 @@
 		from OWNER_REG where OWNEREMAIL = #{id}
 	</select>
 
-	<select id="loginOwner" parameterType="java.util.Map" resultType="java.lang.String">
+	<select id="loginOwner" parameterType="java.util.Map"
+		resultType="java.lang.String">
 		select approve
 		from OWNER_REG where OWNEREMAIL = #{id} and
 		OWNERPW = #{pass}
@@ -65,7 +66,8 @@
 		,#{roomLodge_Checkin}
 		,#{roomLodge_Checkout}
 		, #{roomimg1} ,
-		#{roomimg2} , #{roomimg3}
+		#{roomimg2}
+		, #{roomimg3}
 		, #{roomimg4} , #{roomimg5} , #{roomimg6} , #{roomimg7} ,
 		#{roomimg8}
 		, #{roomimg9}
@@ -78,19 +80,23 @@
 	</select>
 
 	<select id="accomList" resultType="com.mainWeb.searchBang.owner.model.AccomVO">
-		select * from accom where owneremail = #{loginId}
+		select * from accom where
+		owneremail = #{loginId}
 	</select>
 
 	<select id="accomInfo" resultType="com.mainWeb.searchBang.owner.model.AccomVO">
-		select * from accom where accom_no = #{accom_no}
+		select * from accom where
+		accom_no = #{accom_no}
 	</select>
 
 	<select id="roomList" resultType="com.mainWeb.searchBang.owner.model.RoomVO">
-		select * from room where accom_no = #{accom_no}
+		select * from room where
+		accom_no = #{accom_no}
 	</select>
 
 	<select id="roomInfo" resultType="com.mainWeb.searchBang.owner.model.RoomVO">
-		select * from room where room_no = #{room_no}
+		select * from room where
+		room_no = #{room_no}
 	</select>
 
 	<delete id="deleteAccom">
@@ -98,11 +104,12 @@
 	</delete>
 
 	<update id="updateAccom">
-		update accom set 
-		accomName = #{accomName}, 
-		accomAddress = #{accomAddress}, 
-		accomPhone = #{accomPhone}, 
-		accomInfo = #{accomInfo}, 
+		update accom set
+		accomName = #{accomName},
+		accomAddress = #{accomAddress},
+		accomPhone = #{accomPhone},
+		accomInfo =
+		#{accomInfo},
 		accomType = #{accomType},
 		accomGrade = 1 ,
 		accomGpa = 1.0,
@@ -111,30 +118,38 @@
 		accomimg1 = #{accomimg1},
 		accomimg2 = #{accomimg2},
 		accomimg3 = #{accomimg3},
-		accomimg4 = #{accomimg4},
+		accomimg4 =
+		#{accomimg4},
 		accomimg5 = #{accomimg5},
 		accomimg6 = #{accomimg6},
 		accomimg7 = #{accomimg7},
 		accomimg8 = #{accomimg8},
-		accomimg9 = #{accomimg9},
+		accomimg9 =
+		#{accomimg9},
 		option_couplePC = #{option_couplePC},
-		option_partyRoom = #{option_partyRoom},
+		option_partyRoom =
+		#{option_partyRoom},
 		option_noPeople = #{option_noPeople},
 		option_duplex = #{option_duplex},
 		option_spa = #{option_spa},
 		option_pickUp = #{option_pickUp},
-		option_withAnimal = #{option_withAnimal},
+		option_withAnimal =
+		#{option_withAnimal},
 		option_business = #{option_business},
 		option_noSmoking = #{option_noSmoking},
-		option_barbecue = #{option_barbecue},
+		option_barbecue =
+		#{option_barbecue},
 		option_cleanroom = #{option_cleanroom},
 		option_playGround = #{option_playGround},
-		option_kitchen = #{option_kitchen},
+		option_kitchen =
+		#{option_kitchen},
 		option_hanok = #{option_hanok},
-		option_glamping = #{option_glamping},
+		option_glamping =
+		#{option_glamping},
 		option_seminar = #{option_seminar},
 		option_womenOnly = #{option_womenOnly},
-		option_nokids = #{option_nokids},
+		option_nokids =
+		#{option_nokids},
 		option_freeBlackfast = #{option_freeBlackfast},
 		option_snackBar = #{option_snackBar},
 		parking_valet = #{parking_valet},
@@ -142,7 +157,8 @@
 		parking_having = #{parking_having},
 		ownerEmail = #{ownerEmail},
 		accomAddress2 = #{accomAddress2}
-		where accom_no = #{accom_no}
+		where
+		accom_no = #{accom_no}
 	</update>
 
 	<delete id="deleteRoom">
@@ -150,49 +166,93 @@
 	</delete>
 
 	<update id="updateRoom">
-		update room set 
+		update room set
 		roomType = #{roomType},
-		roomCount = #{roomCount},
+		roomCount =
+		#{roomCount},
 		roomUsingPeople = #{roomUsingPeople},
-		roomRent = #{roomRent},
+		roomRent =
+		#{roomRent},
 		roomRent_Usetime = #{roomRent_Usetime},
 		roomRent_Closingtime = #{roomRent_Closingtime},
-		roomLodge = #{roomLodge},
+		roomLodge =
+		#{roomLodge},
 		roomLodge_Checkin = #{roomLodge_Checkin},
 		roomLodge_Checkout = #{roomLodge_Checkout},
 		roomimg1 = #{roomimg1},
 		roomimg2 = #{roomimg2},
 		roomimg3 = #{roomimg3},
-		roomimg4 = #{roomimg4}, 
+		roomimg4 = #{roomimg4},
 		roomimg5 = #{roomimg5},
 		roomimg6 = #{roomimg6},
 		roomimg7 = #{roomimg7},
 		roomimg8 = #{roomimg8},
 		roomimg9 = #{roomimg9}
-		where room_no = #{room_no}
+		where room_no =
+		#{room_no}
 	</update>
 
 	<select id="QnAList" resultType="com.mainWeb.searchBang.owner.model.QnAVO">
-		select * from QnA where owneremail = #{ownerEmail}
+		select * from QnA where
+		owneremail = #{ownerEmail}
 	</select>
 
 	<insert id="QnAInsert">
-		insert into qna(qna_no , subject , content,owneremail) values(qna_no_seq.nextval,#{subject},#{content},#{ownerEmail})
+		insert into qna(qna_no , subject ,
+		content,owneremail)
+		values(qna_no_seq.nextval,#{subject},#{content},#{ownerEmail})
 	</insert>
 
 	<select id="ownerInfo" resultType="com.mainWeb.searchBang.owner.model.OwnerVO">
-		select * from owner_reg where owneremail = #{ownerEmail}
+		select * from owner_reg where
+		owneremail = #{ownerEmail}
 	</select>
 
 	<update id="hotdeal">
-		update accom set accomhotdeal = #{accomHotdeal} , accomhotdeal_dc = #{accomHotdeal_DC} where accom_no = #{accom_no}
+		update accom set accomhotdeal = #{accomHotdeal} ,
+		accomhotdeal_dc = #{accomHotdeal_DC} where accom_no = #{accom_no}
 	</update>
 
 	<update id="updateOwner">
-		update owner_reg set ownerpw = #{ownerPw} , ownerphone = #{ownerPhone} where owneremail = #{ownerEmail}
+		update owner_reg set ownerpw = #{ownerPw} ,
+		ownerphone = #{ownerPhone} where owneremail = #{ownerEmail}
 	</update>
 
 	<delete id="deleteOwner">
-		delete from owner_reg where owneremail = #{ownerEmail}
+		delete from owner_reg where owneremail =
+		#{ownerEmail}
 	</delete>
+
+	<select id="reviewList" resultType="com.mainWeb.searchBang.user.model.ReviewVO">
+		select * from review where
+		accom_no = #{accom_no}
+	</select>
+
+	<update id="reviewDeclration">
+		update review set declration = 'y' where review_no =
+		#{review_no}
+	</update>
+
+	<select id="sales" resultType="com.mainWeb.searchBang.owner.model.SalesVO">
+		select TO_CHAR(TO_DATE
+		(sales_date,'RRRR-MM-DD'),'RRRR-MM-DD') as "date" , sum(sales_sales)
+		as
+		value from sales where accom_no = #{accom_no} group by
+		TO_CHAR(TO_DATE
+		(sales_date,'RRRR-MM-DD'),'RRRR-MM-DD');
+	</select>
+
+	<select id="reviewCount" resultType="com.mainWeb.searchBang.owner.model.reviewCountVO">
+		select distinct
+		(select count(reviewgrade) from review where reviewgrade=1 and accom_no=117)
+		as "1",
+		(select count(reviewgrade) from review where reviewgrade=2 and accom_no=117)
+		as "2",
+		(select count(reviewgrade) from review where reviewgrade=3 and accom_no=117)
+		as "3",
+		(select count(reviewgrade) from review where reviewgrade=4 and accom_no=117)
+		as "4",
+		(select count(reviewgrade) from review where reviewgrade=5 and accom_no=117)
+		as "5" from review where accom_no=117;
+	</select>
 </mapper>

@@ -22,12 +22,6 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
-[ripple] {
-	z-index: 1;
-	position: relative;
-	overflow: hidden;
-}
-
 [ripple] .ripple {
 	position: absolute;
 	background: #FFFFFF;
@@ -48,22 +42,34 @@ body {
 100%
 {
 -webkit-transform
-:
- 
-scale
-(40);
 
-            
+
+:
+
+
+
+scale
+
+
+(40);
 transform
-:
- 
-scale
-(40);
 
-    
-opacity
+
 :
- 
+
+
+
+scale
+
+
+(40);
+opacity
+
+
+:
+
+
+
 0;
 }
 }
@@ -77,22 +83,34 @@ keyframes ripple { 0% {
 100%
 {
 -webkit-transform
-:
- 
-scale
-(40);
 
-            
+
+:
+
+
+
+scale
+
+
+(40);
 transform
-:
- 
-scale
-(40);
 
-    
-opacity
+
 :
- 
+
+
+
+scale
+
+
+(40);
+opacity
+
+
+:
+
+
+
 0;
 }
 }
@@ -123,7 +141,6 @@ opacity
 	height: 3px;
 	-webkit-transition: 0.3s ease;
 	transition: 0.3s ease;
-	
 }
 
 .tabs-header ul {
@@ -151,7 +168,6 @@ opacity
 }
 
 .tabs-header a {
-	z-index: 1;
 	display: block;
 	box-sizing: border-box;
 	padding: 15px 20px;
@@ -159,9 +175,7 @@ opacity
 	text-decoration: none;
 	text-transform: uppercase;
 	font-weight: 600;
-	font-size : 1.2em;
-	
-	
+	font-size: 1.2em;
 }
 
 .tabs-content {
@@ -170,7 +184,6 @@ opacity
 	-webkit-transition: 0.3s ease;
 	transition: 0.3s ease;
 	overflow: hidden;
-	
 }
 
 .tabs-content:after {
@@ -238,157 +251,159 @@ opacity
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 <script>
-$(document).ready(function () {
+	$(document).ready(function() {
 
-  // Intial Border Position
-  var activePos = $('.tabs-header .active').position();
+		// Intial Border Position
+		var activePos = $('.tabs-header .active').position();
 
-  // Change Position
-  function changePos() {
+		// Change Position
+		function changePos() {
 
-    // Update Position
-    activePos = $('.tabs-header .active').position();
+			// Update Position
+			activePos = $('.tabs-header .active').position();
 
-    // Change Position & Width
-    $('.border').stop().css({
-      left: activePos.left,
-      width: $('.tabs-header .active').width()
-    });
-  }
+			// Change Position & Width
+			$('.border').stop().css({
+				left : activePos.left,
+				width : $('.tabs-header .active').width()
+			});
+		}
 
-  changePos();
+		changePos();
 
-  // Intial Tab Height
-  var tabHeight = $('.tab.active').height();
+		// Intial Tab Height
+		var tabHeight = $('.tab.active').height();
 
-  // Animate Tab Height
-  function animateTabHeight() {
+		// Animate Tab Height
+		function animateTabHeight() {
 
-    // Update Tab Height
-    tabHeight = $('.tab.active').height();
+			// Update Tab Height
+			tabHeight = $('.tab.active').height();
 
-    // Animate Height
-    $('.tabs-content').stop().css({
-      height: tabHeight + '-100px'
-    });
-  }
+			// Animate Height
+			$('.tabs-content').stop().css({
+				height : tabHeight + '-100px'
+			});
+		}
 
-  animateTabHeight();
+		animateTabHeight();
 
-  // Change Tab
-  function changeTab() {
-    var getTabId = $('.tabs-header .active a').attr('tab-id');
+		// Change Tab
+		function changeTab() {
+			var getTabId = $('.tabs-header .active a').attr('tab-id');
 
-    // Remove Active State
-    $('.tab').stop().fadeOut(300, function () {
-      // Remove Class
-      $(this).removeClass('active');
-    }).hide();
+			// Remove Active State
+			$('.tab').stop().fadeOut(300, function() {
+				// Remove Class
+				$(this).removeClass('active');
+			}).hide();
 
-    $('.tab[tab-id=' + getTabId + ']').stop().fadeIn(300, function () {
-      // Add Class
-      $(this).addClass('active');
+			$('.tab[tab-id=' + getTabId + ']').stop().fadeIn(300, function() {
+				// Add Class
+				$(this).addClass('active');
 
-      // Animate Height
-      animateTabHeight();
-    });
-  }
+				// Animate Height
+				animateTabHeight();
+			});
+		}
 
-  // Tabs
-  $('.tabs-header a').on('click', function (e) {
-    e.preventDefault();
+		// Tabs
+		$('.tabs-header a').on('click', function(e) {
+			e.preventDefault();
 
-    // Tab Id
-    var tabId = $(this).attr('tab-id');
+			// Tab Id
+			var tabId = $(this).attr('tab-id');
 
-    // Remove Active State
-    $('.tabs-header a').stop().parent().removeClass('active');
+			// Remove Active State
+			$('.tabs-header a').stop().parent().removeClass('active');
 
-    // Add Active State
-    $(this).stop().parent().addClass('active');
+			// Add Active State
+			$(this).stop().parent().addClass('active');
 
-    changePos();
+			changePos();
 
-    // Update Current Itm
-    tabCurrentItem = tabItems.filter('.active');
+			// Update Current Itm
+			tabCurrentItem = tabItems.filter('.active');
 
-    // Remove Active State
-    $('.tab').stop().fadeOut(300, function () {
-      // Remove Class
-      $(this).removeClass('active');
-    }).hide();
+			// Remove Active State
+			$('.tab').stop().fadeOut(300, function() {
+				// Remove Class
+				$(this).removeClass('active');
+			}).hide();
 
-    // Add Active State
-    $('.tab[tab-id="' + tabId + '"]').stop().fadeIn(300, function () {
-      // Add Class
-      $(this).addClass('active');
+			// Add Active State
+			$('.tab[tab-id="' + tabId + '"]').stop().fadeIn(300, function() {
+				// Add Class
+				$(this).addClass('active');
 
-      // Animate Height
-      animateTabHeight();
-    });
-  });
+				// Animate Height
+				animateTabHeight();
+			});
+		});
 
-  // Tab Items
-  var tabItems = $('.tabs-header ul li');
+		// Tab Items
+		var tabItems = $('.tabs-header ul li');
 
-  // Tab Current Item
-  var tabCurrentItem = tabItems.filter('.active');
+		// Tab Current Item
+		var tabCurrentItem = tabItems.filter('.active');
 
-  // Next Button
-  $('#next').on('click', function (e) {
-    e.preventDefault();
+		// Next Button
+		$('#next').on('click', function(e) {
+			e.preventDefault();
 
-    var nextItem = tabCurrentItem.next();
+			var nextItem = tabCurrentItem.next();
 
-    tabCurrentItem.removeClass('active');
+			tabCurrentItem.removeClass('active');
 
-    if (nextItem.length) {
-      tabCurrentItem = nextItem.addClass('active');
-    } else {
-      tabCurrentItem = tabItems.first().addClass('active');
-    }
+			if (nextItem.length) {
+				tabCurrentItem = nextItem.addClass('active');
+			} else {
+				tabCurrentItem = tabItems.first().addClass('active');
+			}
 
-    changePos();
-    changeTab();
-  });
+			changePos();
+			changeTab();
+		});
 
-  // Prev Button
-  $('#prev').on('click', function (e) {
-    e.preventDefault();
+		// Prev Button
+		$('#prev').on('click', function(e) {
+			e.preventDefault();
 
-    var prevItem = tabCurrentItem.prev();
+			var prevItem = tabCurrentItem.prev();
 
-    tabCurrentItem.removeClass('active');
+			tabCurrentItem.removeClass('active');
 
-    if (prevItem.length) {
-      tabCurrentItem = prevItem.addClass('active');
-    } else {
-      tabCurrentItem = tabItems.last().addClass('active');
-    }
+			if (prevItem.length) {
+				tabCurrentItem = prevItem.addClass('active');
+			} else {
+				tabCurrentItem = tabItems.last().addClass('active');
+			}
 
-    changePos();
-    changeTab();
-  });
+			changePos();
+			changeTab();
+		});
+		/*
+		 // Ripple(잔물결)
+		 $('[ripple]').on('click', function (e) {
+		 var rippleDiv = $('<div class="ripple" ></div>'),
+		 rippleOffset = $(this).offset(),
+		 rippleY = e.pageY - rippleOffset.top,
+		 rippleX = e.pageX - rippleOffset.left,
+		 ripple = $('.ripple');
 
-  // Ripple(잔물결)
-  $('[ripple]').on('click', function (e) {
-    var rippleDiv = $('<div class="ripple" ></div>'),
-      rippleOffset = $(this).offset(),
-      rippleY = e.pageY - rippleOffset.top,
-      rippleX = e.pageX - rippleOffset.left,
-      ripple = $('.ripple');
+		 rippleDiv.css({
+		 top: rippleY - (ripple.height() / 2),
+		 left: rippleX - (ripple.width() / 2),
+		 background: $(this).attr("ripple-color")
+		 }).appendTo($(this));
 
-    rippleDiv.css({
-      top: rippleY - (ripple.height() / 2),
-      left: rippleX - (ripple.width() / 2),
-      background: $(this).attr("ripple-color")
-    }).appendTo($(this));
+		 window.setTimeout(function () {
+		 rippleDiv.remove();
+		 }, 1500);
+		 });
 
-    window.setTimeout(function () {
-      rippleDiv.remove();
-    }, 1500);
-  });
-});
+		 */
+	});
 </script>
 
 
@@ -405,7 +420,7 @@ $(document).ready(function () {
 .room_info {
 	border: 2px solid #dfdfdf;
 	padding: 0px 10px;
-	margin: 20px 0 ; 
+	margin: 20px 0;
 }
 
 .info {
@@ -419,7 +434,6 @@ $(document).ready(function () {
 	display: inline-block;
 	padding: 10px;
 	width: 250px;
-	
 }
 
 .info .title {
@@ -462,14 +476,13 @@ a, input, button, div, li, textarea, form, label, select {
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-.room_info .info .price .price_info{
-border-bottom: 1px solid #dfdfdf;
+.room_info .info .price .price_info {
+	border-bottom: 1px solid #dfdfdf;
 }
+
 .reserve-line {
-text-align : right;
-
+	text-align: right;
 }
-
 
 /*@media all and (min-width:1024px)*/
 .room_info .info .price div p span {
@@ -486,10 +499,8 @@ text-align : right;
 }
 
 .room_info .info .price ul {
-	
 	list-style: none;
 	padding: 0px;
-	
 }
 
 .room_info .info .price ul li {
@@ -497,19 +508,38 @@ text-align : right;
 }
 
 .price strong {
-font-size: 1em;
+	font-size: 1em;
 }
 
-.span_label{
-float:left;
-width: 150px;
+.span_label {
+	float: left;
+	width: 150px;
 }
 
-#tab2_div{
-padding : 5px 30px;
-background-color: #dfdfdf;
-width:auto;
-border-radius: 4px;
+#tab2_div {
+	padding: 5px 30px;
+	background-color: #dfdfdf;
+	width: auto;
+	border-radius: 4px;
+}
+
+.tab2_dl {
+	margin: 30px;
+}
+
+.tab2_dt {
+	font-size: 1.2em;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+#tab2_opsion_dl {
+	width: 700px;
+}
+
+#tab2_opsion_dl dd {
+	display: inline;
+	margin-left: 5px;
 }
 </style>
 
@@ -535,126 +565,169 @@ border-radius: 4px;
 		</div>
 		<div class="tabs-content">
 			<div tab-id="1" class="tab active">
-			
-			<c:forEach var="list" items="${list}"  >
-				<div class="room_info">
-				
-					<img src="${list.roomimg1 }" />
 
-					<div class="info">
-						<strong class="title">${list.roomType }</strong>
-						<div class="half">
-							<div class="price">
-								<strong> 대실 </strong>
-								<div class="price_info">
-								<br/>
+				<c:forEach var="list" items="${list}">
+					<div class="room_info">
 
-									<p class="reserve-line">
-										<span>예약</span> <b style="color: rgba(0, 0, 0, 1)">${list.roomRent }원</b>
-										<!-- 표시금액 -->
-									</p>
+						<img src="${list.roomimg1 }" />
+
+						<div class="info">
+							<strong class="title">${list.roomType }</strong>
+							<div class="half">
+								<div class="price">
+									<strong> 대실 </strong>
+									<div class="price_info">
+										<br />
+
+										<p class="reserve-line">
+											<span>예약</span> <b style="color: rgba(0, 0, 0, 1)">${list.roomRent }원</b>
+											<!-- 표시금액 -->
+										</p>
+
+									</div>
+
+
+									<ul>
+										<li><span class="span_label">마감시간</span>${list.roomRent_Closingtime }시까지</li>
+										<li><span class="span_label">이용시간</span>최대
+											${list.roomRent_Usetime }시간</li>
+									</ul>
 
 								</div>
-									
 
-								<ul>
-									<li><span class="span_label">마감시간</span>${list.roomRent_Closingtime }시까지</li>
-									<li><span class="span_label">이용시간</span>최대 ${list.roomRent_Usetime }시간</li>
-								</ul>
-
+								<button type="button"
+									onclick="location.href='/searchBang/userPay.bang?room_no=${list.room_no}&rentAndLodge=rent';"
+									class="gra_left_right_red">대실 예약</button>
 							</div>
+							<div class="half">
+								<div class="price">
+									<strong> 숙박빠른입실 </strong>
+									<div class="price_info">
+										<br>
+										<p class="reserve-line">
+											<span>예약</span> <b style="color: rgba(0, 0, 0, 1)">${list.roomLodge }원</b>
+											<!-- 표시금액 -->
+										</p>
 
-							<button type="button"
-								onclick="location.href='/reservation?adcno=1&amp;ano=1667&amp;armgno=19538&amp;checkin_type=1&amp;checkin_date=2017-07-31&amp;checkout_date=2017-08-01';"
-								class="gra_left_right_red">대실 예약</button>
-						</div>
-						<div class="half">
-							<div class="price">
-								<strong> 숙박빠른입실 </strong>
-								<div class="price_info">
-									<br>
-									<p class="reserve-line">
-										 <span>예약</span>  <b style="color: rgba(0, 0, 0, 1)">${list.roomLodge }원</b>
-										<!-- 표시금액 -->
-									</p>
-								
-									
+
+									</div>
+
+									<ul>
+										<li><span class="span_label">입실시간</span>${list.roomLodge_Checkin }시부터</li>
+										<li><span class="span_label">퇴실시간</span>익일
+											${list.roomLodge_Checkout }시</li>
+									</ul>
+
 								</div>
-									
-								<ul>
-									<li><span class="span_label">입실시간</span>${list.roomLodge_Checkin }시부터</li>
-									<li><span class="span_label">퇴실시간</span>익일 ${list.roomLodge_Checkout }시</li>
-								</ul>
 
+								<button type="button"
+									onclick="location.href='/searchBang/userPay.bang?room_no=${list.room_no}&rentAndLodge=lodge';"
+									class="gra_left_right_red">숙박 예약</button>
 							</div>
 
-							<button type="button"
-								onclick="location.href='/reservation?adcno=1&amp;ano=1667&amp;armgno=19538&amp;checkin_type=2&amp;checkin_date=2017-07-31&amp;checkout_date=2017-08-01';"
-								class="gra_left_right_red">숙박 예약</button>
 						</div>
-
 					</div>
-				</div>
 
-	</c:forEach>
-	
+				</c:forEach>
+
 			</div>
-		
-			
+
+
 			<div tab-id="2" id="tab1" class="tab">
 				<div id=tab2_div>
-				
-				<h2>혜택안내</h2>
-				<ul>
-<c:if test="vo.option_couplePC != 'null'">
 
-</c:if>
-					<li>요금할인</li>
-					<li>객실문에 부착된 여기어때 혜택마크를 찾아 QR코드로</li>
-					<li>무료초대권</li>
-					<li>혜택존 첫방문+첫 리억리뷰 2,000원 적립</li>
-				</ul>
-				
+					<dl class="tab2_dl" id="tab2_opsion_dl">
+						<dt class="tab2_dt">숙소 옵션</dt>
+						<c:if test="${vo.option_couplePC != 'off'}">
+							<dd>커플PC</dd>
+						</c:if>
+						<c:if test="${vo.option_partyRoom != 'off'}">
+							<dd>파티룸</dd>
+						</c:if>
+						<c:if test="${vo.option_noPeople != 'off'}">
+							<dd>복층구조</dd>
+						</c:if>
+						<c:if test="${vo.option_duplex != 'off'}">
+							<dd>스파/월풀</dd>
+						</c:if>
+						<c:if test="${vo.option_spa != 'off'}">
+							<dd>픽업</dd>
+						</c:if>
+						<c:if test="${vo.option_pickUp != 'off'}">
+							<dd>무인텔</dd>
+						</c:if>
+						<c:if test="${vo.option_withAnimal != 'off'}">
+							<dd>동물입실</dd>
+						</c:if>
+						<c:if test="${vo.option_business != 'off'}">
+							<dd>비즈니스</dd>
+						</c:if>
+						<c:if test="${vo.option_noSmoking != 'off'}">
+							<dd>객실금연</dd>
+						</c:if>
+						<c:if test="${vo.option_barbecue != 'off'}">
+							<dd>바베큐</dd>
+						</c:if>
+						<c:if test="${vo.option_cleanroom != 'off'}">
+							<dd>세탁시설</dd>
+						</c:if>
+						<c:if test="${vo.option_playGround != 'off'}">
+							<dd>운동장</dd>
+						</c:if>
+						<c:if test="${vo.option_kitchen != 'off'}">
+							<dd>주방</dd>
+						</c:if>
+						<c:if test="${vo.option_hanok != 'off'}">
+							<dd>한옥</dd>
+						</c:if>
+						<c:if test="${vo.option_glamping != 'off'}">
+							<dd>글램핑</dd>
+						</c:if>
+						<c:if test="${vo.option_seminar != 'off'}">
+							<dd>세미나실</dd>
+						</c:if>
+						<c:if test="${vo.option_womenOnly != 'off'}">
+							<dd>여성전용</dd>
+						</c:if>
+						<c:if test="${vo.option_nokids != 'off'}">
+							<dd>노키드존</dd>
+						</c:if>
+						<c:if test="${vo.option_snackBar != 'off'}">
+							<dd>무료 조식 제공</dd>
+						</c:if>
+						<c:if test="${vo.option_freeBlackfast != 'off'}">
+							<dd>프론트 스낵바 무료이용</dd>
+						</c:if>
+					</dl>
 
-				
-				<h2>주차장 정보</h2>
-				<ul>
-					<li>주차 불가</li>
-					<li>주차장 미보유 숙소입니다. 도보로 이용해 주세요.</li>
-				</ul>
-				
-				
-				<h2>지하철 정보</h2>
-				<ul>
-					<li>1호전 종로3가역</li>
-				</ul>
-				
+					<dl class="tab2_dl">
+						<dt class="tab2_dt">주차장 정보</dt>
 
-				
-				<h2>프런트 및 그 외 시설</h2>
-				<ul>
-					<li>주종 10시이후 입실시 18시까지 이용가능</li>
-					<li>자체 마일리지 적립 이벤트</li>
-					<li>프론트 스낵바 무료이용</li>
-				</ul>
-				
+						<c:choose>
+							<c:when test="${vo.parking_having == 'yes'}">
+								<c:if test="${vo.parking_valet == 'on'}">
+									<dd>무료 발렛 파킹</dd>
+								</c:if>
+								<c:if test="${vo.parking_inCharge == 'off'}">
+									<dd>유료주차</dd>
+								</c:if>
+								<c:if test="${vo.parking_free == 'yes'}">
+									<dd>무료주차</dd>
+								</c:if>
+							</c:when>
+							<c:otherwise>
+								<dd>주차 시설 미보유</dd>
+							</c:otherwise>
+						</c:choose>
+					</dl>
 
-				
-				<h2>추가 안내사항</h2>
-				<ul>
-					<li>숙박 이용시 기준 인원은 2인 1실 입니다.</li>
+					<dl class="tab2_dl">
+						<dt class="tab2_dt">추가 안내사항</dt>
+						<c:if test="${vo.accomInfo != null}">
+							<dd>${vo.accomInfo }</dd>
+						</c:if>
+					</dl>
 
-				</ul>
-				
-
-				
-				<h2>예약안내</h2>
-				<ul>
-					<li>6~7일:전액 환불가능</li>
-					<li>4~5일:80% 환불가능</li>
-					<li>2~3일:70% 환불가능</li>
-				</ul>
-			
 				</div>
 			</div>
 
@@ -674,8 +747,8 @@ border-radius: 4px;
 						for="star1" title="Sucks big time">1 star</label>
 				</fieldset>
 
-		
-				
+
+
 
 
 

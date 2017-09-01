@@ -10,21 +10,20 @@
 	charset="utf-8"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script src="https://apis.google.com/js/api:client.js"></script>
-<script src="js/user/google.js"></script> 
+<script src="js/user/google.js"></script>
 <script type="text/javascript">
 	function loginProc(){
 		var emailval = $("#login-userId").val();
 		var passwordval = $("#login-userPw").val();
-		$.ajax({
-			data : {
-				email : emailval,
-				password : passwordval
-			},
-			type : "POST",
-			url : "loginProc.bang"
-		});
+		if(emailval=="")
+			alert("이메일을 적어주세요")
+		if(passwordval=="")
+			alert("비밀번호를 적어주세요")
+		document.loginform.action="loginProc.bang";
+		document.loginform.submit();
+
 	}
-	
+
 $(document).ready(function(){
 	$("#login-userId").focus();
 	$("#login-userId").focus(function(){
@@ -51,20 +50,20 @@ $(document).ready(function(){
 <body>
 
 	<jsp:include page="topmenu.jsp" />
-			
-	<form class="login-form">
+
+	<form class="login-form" name="loginform" method="post">
 	<h2	 class="login-title">회원로그인</h2>
 		<div id="login-box">
 
 			<h4 class="input-txt" >이메일</h4>
 			<div id="input-box">
-				<input type="text" class="input-type" name="login-userId"
+				<input type="text" class="input-type" name="email"
 					id="login-userId" required="required" placeholder="  이메일을 입력하세요.">
 			</div>
 
 			<h4 class="input-txt" >비밀번호</h4>
 			<div id="input-box">
-				<input type="password" class="input-type" name="login-userPw"
+				<input type="password" class="input-type" name="password"
 					id="login-userPw" required="required" placeholder="  비밀번호를 입력하세요.">
 			</div>
 
@@ -72,18 +71,18 @@ $(document).ready(function(){
 			<input type="checkbox" id="divECI_ISDVSAVE" /><label
 				for="divECI_ISDVSAVE">아이디 저장</label>
 			</div>
-			
+
 			<input id="login-btn" type="button" value="로그인"
 				onclick="loginProc();"> <input id="join-btn" type="button"
 				value="회원가입" onclick="location.href='userReg.bang';"><br />
-				
+
 			<div id="login_module" >
 			<!-- kakao -->
 			<div id="kakao-login-btn"></div>
 			<!-- naver -->
 			<div id="naver_id_login"></div>
-			
-			
+
+
 			<!-- google -->
 			<div id="gSignInWrapper">
 				<div id="customBtn" class="customGPlusSignIn">
@@ -92,7 +91,7 @@ $(document).ready(function(){
 				</div>
 			</div>
 			<script>startApp();</script>
-			
+
 			<!-- facebook -->
 			<div id="fb-root"></div>
 			<div class="fb-login-button" data-max-rows="1" data-size="large"
@@ -194,7 +193,7 @@ $(document).ready(function(){
          version : 'v2.1'
       });
 
-      // javascript sdk 를 초기화 했으니, FB.getLoginStatus() 를 호출 
+      // javascript sdk 를 초기화 했으니, FB.getLoginStatus() 를 호출
       // 이 함수는 이페이지의 사용자가 현재 로그인 되어있는 상태 3가지 중 하나를 콜백에 리턴함.
       // 그 3가지 상태는 아래와 같다.
 
@@ -220,7 +219,7 @@ $(document).ready(function(){
       fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 
-   // 로그인이 성공한 다음에는 간단한 그래프 ㅇAPI를 호출, 
+   // 로그인이 성공한 다음에는 간단한 그래프 ㅇAPI를 호출,
    // 이 호출은 statusChangeCallback()에서 이루어짐..
 
    function testAPI() {
@@ -229,8 +228,8 @@ $(document).ready(function(){
       }, function(response) {
          var nickname = response.name;
          var email = response.email;
-       
-         // 여기까지 이메일 & 이름 가져오는건 성공함. 
+
+         // 여기까지 이메일 & 이름 가져오는건 성공함.
          $.ajax({
             type : "POST",
             url : "getInfo.bang",

@@ -8,6 +8,8 @@ import com.mainWeb.searchBang.admin.model.AdminNoticeVO;
 import com.mainWeb.searchBang.admin.model.AdminVO;
 import com.mainWeb.searchBang.owner.model.OwnerVO;
 import com.mainWeb.searchBang.owner.model.QnAVO;
+import com.mainWeb.searchBang.user.model.ReviewVO;
+import com.mainWeb.searchBang.user.model.UserInfoVO;
 
 public interface AdminDAO {
 	// 로그인
@@ -57,4 +59,19 @@ public interface AdminDAO {
 
 	// QnA 답변달기
 	public void insertReply(QnAVO vo);
+
+	// 리뷰리스트
+	public List<ReviewVO> reviewList();
+
+	// 신고된 리뷰 리스트
+	public List<ReviewVO> declrationReviewList();
+
+	// 리뷰 삭제
+	public void deleteReview(String review_no);
+
+	// 리뷰 삭제취소
+	public void cancelReview(String review_no);
+
+	//커스토머 리스트
+	public List<UserInfoVO> userList();
 }

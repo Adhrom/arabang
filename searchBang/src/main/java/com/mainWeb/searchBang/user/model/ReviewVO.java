@@ -7,6 +7,17 @@ public class ReviewVO {
 	private int reviewGrade;
 	private String content;
 	private String reviewDate;
+	private String decalration;
+
+
+
+	public String getDecalration() {
+		return decalration;
+	}
+
+	public void setDecalration(String decalration) {
+		this.decalration = decalration;
+	}
 
 	public int getReview_no() {
 		return review_no;

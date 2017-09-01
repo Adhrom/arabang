@@ -1,0 +1,68 @@
+/*별표 모양의 선택창을 전체적으로 감싸는 스타일입니다.*/
+.rating {
+	float: left;
+}
+
+/* :not(:checked) is a filter, so that browsers that don’t support :checked don’t
+ follow these rules. Every browser that supports :checked also supports :not(), so
+ it doesn’t make the test unnecessarily selective */
+/*선택창을 선택하지 않는 input창 부분의 스타일입니다.*/
+.rating:not(:checked) >
+input {
+	position: absolute;
+	top: -9999px;
+	clip: rect(0,0,0,0);
+}
+
+/*선택창을 선택하지 않는 label 부분의 스타일입니다.*/
+.rating:not(:checked) >
+label {
+	float: right;
+	width: 1em;
+	padding: 0 .1em;
+	overflow: hidden;
+	white-space: nowrap;
+	cursor: pointer;
+	font-size: 200%;
+	line-height: 1.2; /*라인의 간격을 벌려줍니다.*/
+	color: #ddd;
+	text-shadow: 1px 1px #bbb, 2px 2px #666, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+/*선택창을 선택하지 않는 label의 before 부분의 스타일입니다.*/
+.rating:not(:checked) >
+label:before {
+	content: '★ '; /*해당하는 부분에 ★ 를 넣어줍니다.*/
+}
+
+/*선택창을 선택한 부분에서 label까지 스타일을 적용해줍니다.*/
+.rating > input:checked ~
+label {
+	color: #f70;
+	text-shadow: 1px 1px #c60, 2px 2px #940, .1em .1em .2em rgba(0,0,0,.5); /*텍스트에 그림자를 적용해줍니다. x,y좌표,색상입니다. 앞의 값부터 안쪽부터 적용됩니다.*/
+}
+
+/*선택창을 선택하지 않는 label에 마우스를 올렸을때와 /*선택창을 선택하지 않는 label에 마우스를 올렸을때부터 label까지 부분의 스타일입니다.*/
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~
+label {
+	color: gold;
+	text-shadow: 1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~
+label {
+	color: #ea0;
+	text-shadow: 1px 1px goldenrod, 2px 2px #B57340, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+/*label부분에 마우스로 클릭했을 경우 발생하는 스타일입니다.*/
+.rating > label:active {
+	position: relative;
+	top: 2px;
+	left: 2px;
+}

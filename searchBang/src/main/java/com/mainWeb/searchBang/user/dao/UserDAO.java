@@ -47,4 +47,13 @@ public interface UserDAO {
 	// 방정보 불러오기
 	public List<RoomVO> roomInfo(String accom_no);
 
+	// 유저정보불러오기
+	public UserInfoVO getUserInfo(String memberEmail);
+
+	// 예약->방정보 가져오기
+	public RoomVO roomInfoForReservation(String room_no);
+
+	// 예약->숙소정보 가져오기
+	public AccomVO accomInfoForReservation(String room_no);
+
 }

@@ -12,6 +12,8 @@ import com.mainWeb.searchBang.admin.model.AdminNoticeVO;
 import com.mainWeb.searchBang.admin.model.AdminVO;
 import com.mainWeb.searchBang.owner.model.OwnerVO;
 import com.mainWeb.searchBang.owner.model.QnAVO;
+import com.mainWeb.searchBang.user.model.ReviewVO;
+import com.mainWeb.searchBang.user.model.UserInfoVO;
 
 @Repository
 public class AdminDAOImpl implements AdminDAO {
@@ -101,6 +103,31 @@ public class AdminDAOImpl implements AdminDAO {
 	@Override
 	public List<QnAVO> QnAList() {
 		return sqlSession.selectList("admin.QnAList");
+	}
+
+	@Override
+	public List<ReviewVO> reviewList() {
+		return sqlSession.selectList("admin.reviewAll");
+	}
+
+	@Override
+	public List<ReviewVO> declrationReviewList() {
+		return sqlSession.selectList("admin.reviewDeclration");
+	}
+
+	@Override
+	public void deleteReview(String review_no) {
+		sqlSession.delete("admin.reviewDelete", review_no);
+	}
+
+	@Override
+	public void cancelReview(String review_no) {
+		sqlSession.update("admin.reviewCancel", review_no);
+	}
+
+	@Override
+	public List<UserInfoVO> userList() {
+		return sqlSession.selectList("admin.userList");
 	}
 
 }

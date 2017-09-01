@@ -14,6 +14,8 @@ import com.mainWeb.searchBang.owner.model.AccomVO;
 import com.mainWeb.searchBang.owner.model.OwnerVO;
 import com.mainWeb.searchBang.owner.model.QnAVO;
 import com.mainWeb.searchBang.owner.model.RoomVO;
+import com.mainWeb.searchBang.owner.model.SalesVO;
+import com.mainWeb.searchBang.user.model.ReviewVO;
 
 @Service
 public class OwnerServiceImpl implements OwnerService {
@@ -125,8 +127,8 @@ public class OwnerServiceImpl implements OwnerService {
 		roomVO.setAccom_no(Integer.parseInt((String) session.getAttribute("accom_no")));
 		dao.addedRoom(roomVO);
 	}
-	
-	
+
+
 
 	@Override
 	public List<AdminNoticeVO> noticeList() {
@@ -222,7 +224,7 @@ public class OwnerServiceImpl implements OwnerService {
 			accomVO.setAccomimg8("null");
 		if(accomVO.getAccomimg9()==null)
 			accomVO.setAccomimg9("null");
-		
+
 		dao.updateAccom(accomVO);
 	}
 
@@ -283,10 +285,25 @@ public class OwnerServiceImpl implements OwnerService {
 	public void updateOwner(OwnerVO vo) {
 		dao.updateOwner(vo);
 	}
-	
+
 	@Override
 	public void deleteOwner(String ownerEmail) {
 		dao.deleteOwner(ownerEmail);
+	}
+
+	@Override
+	public List<ReviewVO> reviewList(String accom_no) {
+		return dao.reviewList(accom_no);
+	}
+
+	@Override
+	public void reviewDeclration(String review_no) {
+		dao.reviewDeclration(review_no);
+	}
+
+	@Override
+	public List<SalesVO> sales(String accom_no) {
+		return dao.sales(accom_no);
 	}
 
 
