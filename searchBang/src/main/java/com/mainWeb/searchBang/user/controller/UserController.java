@@ -1,8 +1,11 @@
 package com.mainWeb.searchBang.user.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -14,12 +17,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.mainWeb.searchBang.owner.model.AccomVO;
 import com.mainWeb.searchBang.owner.model.RoomVO;
+import com.mainWeb.searchBang.user.model.ReservationVO;
+import com.mainWeb.searchBang.user.model.ReviewVO;
 import com.mainWeb.searchBang.user.model.UserInfoVO;
-import com.mainWeb.searchBang.user.model.UserVO;
 import com.mainWeb.searchBang.user.service.UserService;
+import com.mainWeb.searchBang.utils.CharMix;
+import com.mainWeb.searchBang.utils.Mail;
 
 @Controller
 public class UserController {
@@ -28,7 +33,7 @@ public class UserController {
 	private UserService service;
 
 	// 메인인덱스
-	@RequestMapping("index.bang")
+	@RequestMapping("/index.bang")
 	public String index(){
 		return "index";
 	}
@@ -48,6 +53,11 @@ public class UserController {
 		return "naverLoginProc";
 	}
 
+	@RequestMapping("/findPw.bang")
+	public String findPassword(){
+		return "findPw";
+	}
+
 	@RequestMapping(value="/getInfo.bang", method={RequestMethod.GET , RequestMethod.POST})
 	public @ResponseBody void setKakaoInfo(HttpServletRequest request, Model model){
 		HttpSession session = request.getSession();
@@ -64,15 +74,16 @@ public class UserController {
 	}
 
 	@RequestMapping(value="/resistUser.bang", method=RequestMethod.POST)
-	public String registInfo(@ModelAttribute UserVO vo) throws Exception{
+	public String registInfo(@ModelAttribute UserInfoVO vo) throws Exception{
 		service.insertUserService(vo);
 		return null;
 	}
 
 
 	@RequestMapping(value="/loginProc.bang", method={RequestMethod.POST,RequestMethod.GET})
-	public String loginProc(@RequestParam("email") String email,
+	public ModelAndView loginProc(@RequestParam("email") String email,
 			@RequestParam("password") String password, HttpSession session, Model model) throws Exception{
+		ModelAndView mv = new ModelAndView("redirect:login.bang");
 		UserInfoVO vo = new UserInfoVO();
 		boolean result = service.loginUserService(email, password, session , vo);
 
@@ -81,70 +92,86 @@ public class UserController {
 		else
 			model.addAttribute("msg","fail");
 
-		return "redirect:login.bang";
-	}
-	
-	//업체내용과 방정보 불러오기
-	@RequestMapping("room_info.bang")
-	public ModelAndView accom_Information(@RequestParam("accom_no") String accom_no ){
-		ModelAndView mv = new ModelAndView();
-		AccomVO vo = service.accomInfo(accom_no);
-		List<RoomVO> list = service.roomInfo(accom_no);
-		mv.addObject("vo",vo);
-		mv.addObject("list",list);
-		mv.setViewName("room_info");
 		return mv;
 	}
-		
 
-//	정보를 가져오는 과정
-//	public String getInfo(Model model,@RequestParam("email") String id,
-//			@RequestParam("password") String password) throws Exception{
-//		UserVO info = service.getUserInfoService(id, password);
-//		model.addAttribute("info",info);
-//		return null;
-//	}
+	//	 정보 삭제 과정
+	//	public String deleteInfo(Model model, @RequestParam("email") String id,
+	//			@RequestParam("password") String password) throws Exception{
+	//		service.deleteUserInfoService(id, password);
+	//	return null;
+	//	}
 
-//	 정보 삭제 과정
-//	public String deleteInfo(Model model, @RequestParam("email") String id,
-//			@RequestParam("password") String password) throws Exception{
-//		service.deleteUserInfoService(id, password);
-//	return null;
-//	}
+	@RequestMapping(value="/updateInfo.bang", method=RequestMethod.POST)
+	public String updateInfo(@RequestParam("updateForm-id") String email,  @RequestParam("updateForm-password") String password,
+			@RequestParam("updateForm-nickname") String nickname, @RequestParam("updateForm-phone") String phone) throws Exception{
+		service.updateInfoService(email, password, nickname, phone);
+		return "updateFin";
+	}
 
-//	비밀번호 변경
-//	public String changePassword(Model model, @RequestParam("email") String id,
-//			@RequestParam("password") String password) throws Exception{
-//		service.changePasswordService(id, password);
-//		return null;
-//	}
-
-//	정보수정
-//	public String updateInfo(Model model, @RequestParam("email") String id,  @RequestParam("password") String password,
-//			@RequestParam("nickname") String nickname, @RequestParam("phone") String phone) throws Exception{
-//		service.updateInfoService(id, password, nickname, phone);
-//		return null;
-//	}
-
-//	숙소정보 받아오기
-//	public String getAccomList(Model model, @RequestParam("dong") String dong){
-//		List<AccomVO> accomList = service.accomListService(dong);
-//		model.addAttribute("accomList",accomList);
-//		return null;
-//	}
-	
 	//서치뷰
-	@RequestMapping(value = "/searchView.bang", method=RequestMethod.GET)
-	public ModelAndView searchView(@RequestParam(value="address")String address,@RequestParam(value="date")String date,@RequestParam(value="people")String people){
-		
+	@RequestMapping(value = "/searchView.bang", method=RequestMethod.GET) 
+	public ModelAndView searchView(@RequestParam(value="address")String address,@RequestParam(value="date")String date,@RequestParam(value="people")String people, HttpServletRequest req){
+		HttpSession session = req.getSession(false);
+		session.setAttribute("startDate", date.substring(0,10 ));
+		session.setAttribute("endDate", date.substring(13,23 ));
+		//session.setAttribute("room_no", vo.getRoom_no();
 		List<AccomVO> list = service.accomList(address, people);
+		List<RoomVO> r_list = service.roomList(address, people);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("list", list);
+		mv.addObject("r_list",r_list);
 		mv.addObject("date", date);
 		mv.setViewName("searchView");
 		return mv;
 	}
+	//예약하기
+	@RequestMapping("/doReservation.bang")
+	public String doReservation(@ModelAttribute ReservationVO vo , @RequestParam(value="point")String point , @RequestParam(value="memberEmail")String memberEmail){
+		service.doReservation(vo, point , memberEmail);
+		return "index";
+	}
+	//리뷰등록
+	@RequestMapping("/insertReview")
+	public String insertReview(HttpServletRequest req , @ModelAttribute ReviewVO vo){
+		HttpSession session = req.getSession();
+		String memberEmail = (String)session.getAttribute("email");
+		vo.setMemberEmail(memberEmail);
+		return null;
+	}
+
+
+	// 즐겨찾기 추가
+	@RequestMapping(value="/addFavorite.bang", method=RequestMethod.GET)
+	public @ResponseBody void addfavorite(@RequestParam("accomNo") int accomNo, HttpSession session){
+		service.addFavorite(accomNo, session);
+	}
+	// 즐겨찾기 리스트
+	@RequestMapping(value="/abc.bang")
+	public ModelAndView getFavoriteList(HttpSession session){
+		List<AccomVO> list = new ArrayList<AccomVO>();
+		list = service.getFavoriteList(session);
+
+		ModelAndView mv = new ModelAndView();
+
+		return mv;
+	}
+	// 즐겨찾기 삭제
+	public @ResponseBody void deleteFavorite(@RequestParam("accomNo") int accomNo){
+		service.deleteFavorite(accomNo);
+	}
 	
-	
+	//업체내용과 방정보 불러오기 
+	@RequestMapping("room_info.bang")  
+	public ModelAndView accom_Information(@RequestParam("accom_no") String accom_no ){  
+		ModelAndView mv = new ModelAndView(); 
+		AccomVO vo = service.accomInfo(accom_no);  
+		List<RoomVO> list = service.roomInfo(accom_no);  
+		mv.addObject("vo",vo);  
+		mv.addObject("list",list);  
+		mv.setViewName("room_info");  
+		return mv;  
+	}  
+
 
 }

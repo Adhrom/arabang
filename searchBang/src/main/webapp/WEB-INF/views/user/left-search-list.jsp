@@ -28,8 +28,7 @@
 
 			<div id="aside-left-list" class="check_gap">
 				<input type="checkbox" name="reservations">예약 가능<br/>
-				<input type="checkbox" name="promotion">프로모션
-
+			<input type="checkbox" name="promotion">프로모션
 			</div>
 
 
