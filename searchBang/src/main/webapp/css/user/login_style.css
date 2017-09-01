@@ -1,0 +1,553 @@
+@CHARSET "UTF-8";
+
+@import url('http://fonts.googleapis.com/earlyaccess/nanumgothic.css');
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-jp.css);
+/* 구글 폰트 나무고딕 CDN방식이용. */
+
+* {
+	maring:0;
+	padding:0;
+
+}
+
+
+/*로그인 화면*/
+.title { /*회원가입 텍스트*/
+	margin:auto;
+	margin-top:30px;
+	margin-bottom:10px;
+
+	text-align:center;
+	border: solid 1px white;
+	font-weight:normal;
+	color:#192A28;
+}
+.login-form {
+	position : relative;
+	margin : auto;
+	top : 200px;
+	width:400px;
+	border: solid 1px #dfdfdf;
+}
+
+div#login-box {
+	margin: 20px 60px 20px 60px;
+}
+
+.login-title {
+	margin-top : 10px;
+	font-weight:bold;
+	font-size:1.2em;
+	color:#408080;
+	text-align: center;
+
+}
+.input-txt {
+	padding: 5px;
+	margin-left:20px;
+	margin-bottom:5px;
+	font-size:0.8em;
+	font-weight:normal;
+	color:#192A28;
+}
+
+div#input-box {
+	margin: 5px;
+	width: auto;
+	height:30px;
+	font-size:large;
+
+
+}
+
+
+.input-type {
+	width:100%;
+	height:100%;
+	border: solid 1px white;
+	border-color:gray;
+	border-type:solid;
+	box-shadow:0.5px 0.2px 0.5px 0.2px lightgray;
+}
+
+input[type=checkbox] {
+    display: none;
+}
+
+input[type=checkbox] + label{
+	margin-top:20px;
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    padding-left: 25px;
+    margin-right: 15px;
+    font-weight:normal;
+    font-size: 10pt;
+
+}
+
+input[type=checkbox]+ label:before {
+
+    content: "";
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-right: 20px;
+    position: absolute;
+    left: 0;
+    bottom: 1px;
+    background-color: white;
+
+    box-shadow: 1px 1px 0px 0px gray, 0px 0px 1px 1px gray;
+    /*box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);*/
+}
+input[type=checkbox]:checked + label:before {
+
+    content: "\2713";  /* 체크모양 */
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
+    font-size: 15px;
+    font-weight:800;
+    color: #fff;
+    background:#2f87c1;
+    text-align: center;
+    line-height: 15px;  /*체크크기조절*/
+
+}
+
+
+div#remember-txt-sector {
+	position: relative;
+	text-align: right;
+	padding-top:10px;
+	padding-bottom: 0px;
+	bottom: 0px;
+}
+
+div#remember-txt-sector a{
+	color: #989898 ;
+}
+
+
+
+a:link{text-decoration: none; color:black;}
+a:visited{text-decoration: none; color:black;}
+a:active{text-decoration: none; color:black;}
+a:hover{text-decoration: none; color:black;}
+
+input#login-btn {
+	margin-top:15px;
+	width:135px;
+	height:35px;
+	
+	background-color:#00a699;
+	border-style:solid;
+	border-color:#00a699;
+	color:white;
+	font-size:10pt;
+	font-weight: bold;
+
+}
+
+input#join-btn {
+	margin-top:15px;
+	width:135px;
+	height:35px;
+	float:right;
+	background-color:#00a699;
+	border-style:solid;
+	border-color:#00a699;
+	color:white;
+	font-size:10pt;
+	font-weight: bold;
+
+}
+
+
+input#social-login {
+	margin-top:30px;
+	width:135px;
+	height:35px;
+}
+/*로그인 화면*/
+
+/*소셜로그인 버튼*/
+/* Shared */
+.loginBtn {
+  width:135px;
+  box-sizing: border-box;
+  position: relative;
+  /* width: 13em;  - apply for fixed size */
+
+  margin-top: 5px;
+
+
+  padding: 0 15px 0 46px;
+  border: none;
+  text-align: left;
+  line-height: 34px;
+  white-space: nowrap;
+
+  font-size: 10px;
+  color: #FFF;
+
+}
+.loginBtn:before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 34px;
+  height: 100%;
+}
+.loginBtn:focus {
+  outline: none;
+}
+.loginBtn:active {
+
+  	box-shadow: inset 0 0 0 32px rgba(0,0,0,0.1);
+}
+
+
+
+/*SOHO 가입*/
+
+.soho-form {
+	margin:0 auto;
+	width:800px;
+}
+.soho-comment {
+	font-size:20px;
+}
+
+.soho-title {
+	font-size:50px;
+}
+
+
+
+/*방정보 검색 jsp start */
+
+aside#left { /*좌측 조건및 체크박스 구간*/
+
+	margin-top:5px;
+	margin-bottom:5px;
+	width:230px;
+	height:900px;
+	border: solid 1px lightgray;
+	/*
+	background-color:lightgray;
+	*/
+}
+
+
+
+
+#aside-left {
+	margin:5px;
+	border: dotted 1px white;
+}
+#left-title-a {
+	margin:10px;
+	color: black;
+	font-family:'Nanum Gothic', sans-serif;
+	font-size:12pt;
+	font-weight:bolder;
+	text-align:justify;
+	text-justify:inter-cluster;
+	border: solid 1px white;
+
+}
+
+
+#btn-reset {
+	display:block;
+	margin-top:-10px;
+	margin-left:10px;
+	margin-bottom:30px;
+	float:left;
+	width:100px;
+	height:25px;
+	box-shadow:0.5px 0.2px 0.5px 0.2px #00a699;
+	border-style:solid;
+	border-width:1px;
+	border-radius:5px;
+	border-color:#00a699;
+	font-weight:530;
+	font-size:10px;
+	background-color:white;
+	color:#00a699;
+
+
+
+}
+#btn-submit {
+	display:block;
+	margin-top:-10px;
+	margin-right:10px;
+	margin-bottom:30px;
+	float:right;
+	width:100px;
+	height:25px;
+	box-shadow:0.5px 0.2px 0.5px 0.2px #00a699;
+	border-style:solid;
+	border-width:1px;
+	border-radius:5px;
+	border-style:solid;
+	border-color:#00a699;
+	font-weight:530;
+	font-size:10px;
+	background-color:#00a699;
+	color:white;
+
+}
+
+h3#left-title-b {
+
+	color: gray;
+	height: 12px;
+	font-size:11pt;
+	font-weight:500;
+	border: dotted 1px white;
+}
+
+
+div#aside-left input {
+	color: gray;
+	font-weight:normal;
+	font-size:10pt;
+	margin-left:10px;
+
+	border: dotted 1px white;
+}
+div#aside-left-list {
+	margin-left:10px;
+	margin-right:10px;
+	width:90%;
+	float:left;
+	font-size:12px;
+	color:gray;
+	border: dotted 1px white;
+}
+div#aside-left-list-split-l{
+	width:45%;
+	float:left;
+	font-size:12px;
+	color:gray;
+	border: dotted 1px white;
+}
+
+div#aside-left-list-split-r{
+	width:50%;
+
+
+	float:right;
+	font-size:12px;
+	color:gray;
+	border: dotted 1px white;
+}
+
+section#view {
+	position:absoulute;
+	margin-top:15px;
+
+
+}
+
+
+#main-view{
+	position:absoulute;
+	float:left;
+
+	margin-top:-920px;
+	margin-left:300px;
+
+	border: none 1px orange;
+
+}
+
+
+/*///////////////////////
+//view.jsp style sheet //
+///////////////////////*/
+ul li{
+	position:absoulute;
+	text-align:left;
+	list-style:none; /*리스트 스타일 요소를 삭제하자. -블릿제거-*/
+	color:gray;
+
+}
+
+.entry {
+	position:absoulte;
+	width:697px;
+	height:295px;
+
+	margin-bottom:5px;
+	background-image:url('../../img/testimg01.jpg');
+	background-size: 697px 294px;
+	border:none 1px red;/*이미지 파일 위에서 간격테스트시에는 선종료 solid none으로*/
+}
+
+
+
+.txt-bg {
+	position:absolute;
+	margin-top:20px;
+	padding-left:20px;
+	width:250px;
+	height:20px;
+	line-height:20px;
+	font-size:11pt;
+	text-shadow: 0px 1px 1px 2px black;
+	background-color:black;
+	background-color:rgba(0, 0, 0, 0.3);
+	color: white;
+	border-radius: 5px;
+}
+
+
+
+.banner-txt-b {
+	position:absoulute;
+	width:300px;
+	padding-top:200px;
+	margin-left:20px;
+
+	color:white;
+	text-shadow: 0px 1px 1px 1px black;
+	border:none 1px white;
+}
+
+.banner-txt-c {
+	position:absoulute;
+	width:300px;
+	margin-left:20px;
+	font-weight:normal;
+	color:orange;
+	text-shadow: 0px 1px 1px 1px black;
+	border:none 1px white;
+}
+
+.banner-txt-d {
+	position:absoulute;
+	width:300px;
+	margin-left:20px;
+	font-weight:normal;
+	color:white;
+	text-shadow: 0px 1px 1px 1px black;
+	border:none 1px white;
+}
+
+.banner-price-a {
+	position:absoulute;
+	margin-top:-50px;
+	width:150px;
+	margin-left:545px;
+	font-weight:normal;
+	color:white;
+	text-shadow: 0px 2px 1px 1px black;
+	border:none 1px white;
+}
+
+.banner-price-b {
+	position:absoulute;
+	width:150px;
+	margin-top:0px;
+	margin-left:505px;
+	margin-right:155px;
+	font-weight:normal;
+	color:white;
+	text-shadow: 0px 2px 1px 1px black;
+	border:none 1px white;
+}
+
+#reserve {  /*연희님 강조 핑크색 예약border* -_-;*/
+	position:absoulute;
+	margin-top:-20px;
+	margin-left:540px;
+	margin-right:131px;
+	background-color:hotpink;
+	font-size:8pt;
+	color:white;
+	border-color: hotpink;
+	border-style: solid;
+	border-radius: 5px;
+	line-height:8pt;
+	text-align:center;
+	text-shadow: 0px 2px 1px 0px black;
+
+}
+.banner-price-c {
+	position:absoulute;
+	width:200px;
+	margin-top:-20px;
+	margin-left:575px;
+	margin-right:130px;
+	font-weight:normal;
+	color:white;
+	text-shadow: 0px 2px 1px 1px black;
+
+}
+
+
+#customBtn {
+	display: inline-block;
+	background: white;
+	color: #444;
+	border-radius: 5px;
+	border: thin solid #888;
+	white-space: nowrap;
+	width : 222px;
+	height: 42px;
+	margin-bottom: 4px;
+	
+}
+
+#customBtn:hover {
+	cursor: pointer;
+}
+
+span.label {
+	font-family: serif;
+	font-weight: normal;
+}
+
+span.icon {
+	background: url('/searchBang/img/user/googleLogo.png') transparent
+		5px 50% no-repeat;
+	display: inline-block;
+	vertical-align: middle;
+	position : relative;
+	width: 34px;
+	height: 28px;
+}
+
+span.buttonText {
+	display: inline-block;
+	text-align : center;
+	padding-left: 5px;
+	margin-top: 12px;
+	font-size: 13px;
+	font-weight: bold;
+	/* Use the Roboto font that is loaded in the <head> */
+	font-family: 'Roboto', sans-serif;
+}
+
+#login_module {
+	clear: both;
+	margin : 10px auto;
+	margin-bottom : 15px;
+	text-align : center;
+	padding-top: 10px ;
+}
+
+#login_footer{
+	
+	width :100%;
+	position : fixed;
+	bottom: 0px;
+}
+
+

@@ -22,11 +22,7 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
-[ripple] {
-	z-index: 1;
-	position: relative;
-	overflow: hidden;
-}
+
 
 [ripple] .ripple {
 	position: absolute;
@@ -151,7 +147,7 @@ opacity
 }
 
 .tabs-header a {
-	z-index: 1;
+	
 	display: block;
 	box-sizing: border-box;
 	padding: 15px 20px;
@@ -369,7 +365,7 @@ $(document).ready(function () {
     changePos();
     changeTab();
   });
-
+/* 
   // Ripple(잔물결)
   $('[ripple]').on('click', function (e) {
     var rippleDiv = $('<div class="ripple" ></div>'),
@@ -388,6 +384,8 @@ $(document).ready(function () {
       rippleDiv.remove();
     }, 1500);
   });
+  
+  */
 });
 </script>
 
@@ -511,6 +509,24 @@ background-color: #dfdfdf;
 width:auto;
 border-radius: 4px;
 }
+
+.tab2_dl{
+margin: 30px;
+}
+.tab2_dt{
+font-size : 1.2em;
+font-weight: bold;
+margin-bottom: 10px;
+
+}
+#tab2_opsion_dl{
+width : 700px;
+}
+#tab2_opsion_dl dd{
+display: inline;
+margin-left: 5px;
+
+}
 </style>
 
 
@@ -603,57 +619,49 @@ border-radius: 4px;
 			
 			<div tab-id="2" id="tab1" class="tab">
 				<div id=tab2_div>
-				
-				<h2>혜택안내</h2>
-				<ul>
-<c:if test="vo.option_couplePC != 'null'">
 
-</c:if>
-					<li>요금할인</li>
-					<li>객실문에 부착된 여기어때 혜택마크를 찾아 QR코드로</li>
-					<li>무료초대권</li>
-					<li>혜택존 첫방문+첫 리억리뷰 2,000원 적립</li>
-				</ul>
+				<dl class="tab2_dl" id="tab2_opsion_dl"><dt class="tab2_dt" >숙소 옵션</dt>
+				<c:if test="${vo.option_couplePC != 'off'}"><dd>커플PC</dd></c:if>
+				<c:if test="${vo.option_partyRoom != 'off'}"><dd>파티룸</dd></c:if>
+				<c:if test="${vo.option_noPeople != 'off'}"><dd>복층구조</dd></c:if>
+				<c:if test="${vo.option_duplex != 'off'}"><dd>스파/월풀</dd></c:if>
+				<c:if test="${vo.option_spa != 'off'}"><dd>픽업</dd></c:if>
+				<c:if test="${vo.option_pickUp != 'off'}"><dd>무인텔</dd></c:if>
+				<c:if test="${vo.option_withAnimal != 'off'}"><dd>동물입실</dd></c:if>
+				<c:if test="${vo.option_business != 'off'}"><dd>비즈니스</dd></c:if>
+				<c:if test="${vo.option_noSmoking != 'off'}"><dd>객실금연</dd></c:if>
+				<c:if test="${vo.option_barbecue != 'off'}"><dd>바베큐</dd></c:if>
+				<c:if test="${vo.option_cleanroom != 'off'}"><dd>세탁시설</dd></c:if>
+				<c:if test="${vo.option_playGround != 'off'}"><dd>운동장</dd></c:if>
+				<c:if test="${vo.option_kitchen != 'off'}"><dd>주방</dd></c:if>
+				<c:if test="${vo.option_hanok != 'off'}"><dd>한옥</dd></c:if>
+				<c:if test="${vo.option_glamping != 'off'}"><dd>글램핑</dd></c:if>
+				<c:if test="${vo.option_seminar != 'off'}"><dd>세미나실</dd></c:if>
+				<c:if test="${vo.option_womenOnly != 'off'}"><dd>여성전용</dd></c:if>
+				<c:if test="${vo.option_nokids != 'off'}"><dd>노키드존</dd></c:if>
+				<c:if test="${vo.option_snackBar != 'off'}"><dd>무료 조식 제공</dd></c:if>
+				<c:if test="${vo.option_freeBlackfast != 'off'}"><dd>프론트 스낵바 무료이용</dd></c:if>
+				</dl>
 				
+				<dl class="tab2_dl"><dt class="tab2_dt">주차장 정보</dt>
+				
+				<c:choose>
+				<c:when test="${vo.parking_having == 'yes'}">
+				<c:if test="${vo.parking_valet == 'on'}"><dd>무료 발렛 파킹</dd></c:if>
+				<c:if test="${vo.parking_inCharge == 'off'}"><dd>유료주차</dd></c:if>
+				<c:if test="${vo.parking_free == 'yes'}"><dd>무료주차</dd></c:if>
+				</c:when>
+				<c:otherwise>
+				<dd>주차 시설 미보유</dd>
+				</c:otherwise>
+				</c:choose>
+				</dl>
 
-				
-				<h2>주차장 정보</h2>
-				<ul>
-					<li>주차 불가</li>
-					<li>주차장 미보유 숙소입니다. 도보로 이용해 주세요.</li>
-				</ul>
-				
-				
-				<h2>지하철 정보</h2>
-				<ul>
-					<li>1호전 종로3가역</li>
-				</ul>
-				
-
-				
-				<h2>프런트 및 그 외 시설</h2>
-				<ul>
-					<li>주종 10시이후 입실시 18시까지 이용가능</li>
-					<li>자체 마일리지 적립 이벤트</li>
-					<li>프론트 스낵바 무료이용</li>
-				</ul>
-				
-
-				
-				<h2>추가 안내사항</h2>
-				<ul>
-					<li>숙박 이용시 기준 인원은 2인 1실 입니다.</li>
-
-				</ul>
-				
-
-				
-				<h2>예약안내</h2>
-				<ul>
-					<li>6~7일:전액 환불가능</li>
-					<li>4~5일:80% 환불가능</li>
-					<li>2~3일:70% 환불가능</li>
-				</ul>
+				<dl class="tab2_dl"><dt class="tab2_dt">추가 안내사항</dt>
+				<c:if test="${vo.accomInfo != null}">
+				<dd>${vo.accomInfo }</dd>
+				</c:if>
+				</dl>
 			
 				</div>
 			</div>

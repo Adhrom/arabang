@@ -8,12 +8,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- CSS reset -->
 <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,600,700' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,600,700' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="/searchBang/css/admin/reset.css">
 <link rel="stylesheet" href="/searchBang/css/admin/adminstyle.css">
 <link rel="stylesheet" href="/searchBang/css/common/btstyle.css">
 <!-- Resource style -->
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
 <script src="/searchBang/js/admin/main.js"></script>
 <script src="/searchBang/js/admin/jquery.popupoverlay.js"></script>
 <!-- Paging Datatables -->
@@ -99,10 +99,8 @@
 }
 </style>
 <title></title>
-
 </head>
 <body>
-
 	<!-- 로그인실패 알터창 -->
 	<c:if test="${msg == 'failure'}">
 		<script type="text/javascript">

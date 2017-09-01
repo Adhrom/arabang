@@ -12,7 +12,7 @@ import com.mainWeb.searchBang.user.model.UserInfoVO;
 public interface UserDAO {
 
 	// 계정 등록
-	public void insertUserDAO(UserInfoVO vo);
+	public void insertUserDAO(Map<String, Object> info);
 
 	// 로그인 처리
 	public boolean loginUserDAO(UserInfoVO vo);
@@ -31,6 +31,21 @@ public interface UserDAO {
 
 	// 숙소리스트
 	public List<AccomVO> accomList(Map<String, Object> info);
+	
+	// 방리스트
+	public List<RoomVO> roomList(Map<String, Object> info);
+	
+	// 즐겨찾기 추가
+	public void addFavorite(Map<String, Object> favorite);
+	
+	// 즐겨찾기 리스트 보기
+	public List<AccomVO> getFavoriteList(String email);
+	
+	// 즐겨찾기 삭제
+	public void deleteFavorite(int accomNo);
+	
+	// 수정용 정보가져오기
+	public UserInfoVO getInfo(Map<String, Object> map);
 
 	// 예약하기
 	public void doReservation(ReservationVO vo, Map<String, Object> info);
