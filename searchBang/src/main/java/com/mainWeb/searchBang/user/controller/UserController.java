@@ -69,16 +69,16 @@ public class UserController {
 		return mv;
 	}
 
-
-	@RequestMapping(value="/resistUser.bang", method=RequestMethod.POST)
-	public String registInfo(@RequestParam("userName") String nickname, @RequestParam("userEmail") String email
-			, @RequestParam("userPw") String password, @RequestParam("userPhone") String phone) throws Exception{
+	@RequestMapping(value = "/resistUser.bang", method = RequestMethod.POST)
+	public String registInfo(@RequestParam("userName") String nickname, @RequestParam("userEmail") String email,
+			@RequestParam("userPw") String password, @RequestParam("userPhone") String phone) throws Exception {
 		service.insertUserService(email, password, nickname, phone);
 		return "index";
 	}
-	@RequestMapping(value="/loginProc.bang", method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView loginProc(@RequestParam("email") String email,
-			@RequestParam("password") String password, HttpSession session, Model model) throws Exception{
+
+	@RequestMapping(value = "/loginProc.bang", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView loginProc(@RequestParam("email") String email, @RequestParam("password") String password,
+			HttpSession session, Model model) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:login.bang");
 		UserInfoVO vo = new UserInfoVO();
 		boolean result = service.loginUserService(email, password, session, vo);
@@ -91,11 +91,10 @@ public class UserController {
 		return mv;
 	}
 
-
-
-	@RequestMapping(value="/updateInfo.bang", method=RequestMethod.POST)
-	public String updateInfo(@RequestParam("updateForm-id") String email,  @RequestParam("updateForm-password") String password,
-			@RequestParam("updateForm-nickname") String nickname, @RequestParam("updateForm-phone") String phone) throws Exception{
+	@RequestMapping(value = "/updateInfo.bang", method = RequestMethod.POST)
+	public String updateInfo(@RequestParam("updateForm-id") String email,
+			@RequestParam("updateForm-password") String password, @RequestParam("updateForm-nickname") String nickname,
+			@RequestParam("updateForm-phone") String phone) throws Exception {
 		service.updateInfoService(email, password, nickname, phone);
 		return "updateFin";
 	}
@@ -109,8 +108,10 @@ public class UserController {
 		session.setAttribute("endDate", date.substring(13, 23));
 		// session.setAttribute("room_no", vo.getRoom_no();
 		List<AccomVO> list = service.accomList(address, people);
+		List<RoomVO> r_list = service.roomList(address, people);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("list", list);
+		mv.addObject("r_list", r_list);
 		mv.addObject("date", date);
 		mv.setViewName("searchView");
 		return mv;
@@ -163,14 +164,14 @@ public class UserController {
 	}
 
 	// 즐겨찾기 추가
-	@RequestMapping(value="/addFavorite.bang", method=RequestMethod.GET)
-	public @ResponseBody void addfavorite(@RequestParam("accomNo") int accomNo, HttpSession session){
+	@RequestMapping(value = "/addFavorite.bang", method = RequestMethod.GET)
+	public @ResponseBody void addfavorite(@RequestParam("accomNo") int accomNo, HttpSession session) {
 		service.addFavorite(accomNo, session);
 	}
 
 	// 즐겨찾기 리스트
-	@RequestMapping(value="/abc.bang")
-	public ModelAndView getFavoriteList(HttpSession session){
+	@RequestMapping(value = "/abc.bang")
+	public ModelAndView getFavoriteList(HttpSession session) {
 		List<AccomVO> list = new ArrayList<AccomVO>();
 		list = service.getFavoriteList(session);
 
@@ -178,8 +179,9 @@ public class UserController {
 
 		return mv;
 	}
+
 	// 즐겨찾기 삭제
-	public @ResponseBody void deleteFavorite(@RequestParam("accomNo") int accomNo){
+	public @ResponseBody void deleteFavorite(@RequestParam("accomNo") int accomNo) {
 		service.deleteFavorite(accomNo);
 	}
 
@@ -193,23 +195,23 @@ public class UserController {
 	}
 
 	// 정보를 가져오는..
-	@RequestMapping(value="existAccount.bang", method=RequestMethod.POST)
-	public ModelAndView getInfo(@RequestParam("Find-id") String email,
-			@RequestParam("Find-name") String name) throws Exception{
+	@RequestMapping(value = "existAccount.bang", method = RequestMethod.POST)
+	public ModelAndView getInfo(@RequestParam("Find-id") String email, @RequestParam("Find-name") String name)
+			throws Exception {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("uservo",service.getInfo(email, name));
+		mv.addObject("uservo", service.getInfo(email, name));
 		mv.setViewName("updateInfo");
 		return mv;
 	}
 
-	//업체내용과 방정보 불러오기
+	// 업체내용과 방정보 불러오기
 	@RequestMapping("room_info.bang")
-	public ModelAndView accom_Information(@RequestParam("accom_no") String accom_no ){
+	public ModelAndView accom_Information(@RequestParam("accom_no") String accom_no) {
 		ModelAndView mv = new ModelAndView();
 		AccomVO vo = service.accomInfo(accom_no);
 		List<RoomVO> list = service.roomInfo(accom_no);
-		mv.addObject("vo",vo);
-		mv.addObject("list",list);
+		mv.addObject("vo", vo);
+		mv.addObject("list", list);
 		mv.setViewName("room_info");
 		return mv;
 	}
