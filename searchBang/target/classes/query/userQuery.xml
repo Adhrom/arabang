@@ -20,6 +20,11 @@
 		like '%'||#{accomAddress}||'%' and room.ROOMUSINGPEOPLE >= #{roomUsingPeople}
 	</select>
 	
+	<select id="roomList" parameterType="java.util.HashMap" resultType="com.mainWeb.searchBang.owner.model.RoomVO">
+		select DISTINCT room.* from accom ,room where accom.ACCOMADDRESS 
+		like '%'||#{accomAddress}||'%' and room.ROOMUSINGPEOPLE >= #{roomUsingPeople} and accom.accom_no = room.accom_no
+	</select>
+	
 	<select id="getInfo" parameterType="java.util.HashMap" resultType="com.mainWeb.searchBang.user.model.UserInfoVO">
 		SELECT * FROM MEMBER_REG
 		WHERE memberemail = #{email} AND membernickname = #{name}

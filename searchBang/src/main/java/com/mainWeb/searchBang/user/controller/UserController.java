@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import com.mainWeb.searchBang.owner.model.AccomVO;
+import com.mainWeb.searchBang.owner.model.RoomVO;
 import com.mainWeb.searchBang.user.model.ReservationVO;
 import com.mainWeb.searchBang.user.model.ReviewVO;
 import com.mainWeb.searchBang.user.model.UserInfoVO;
@@ -109,6 +110,7 @@ public class UserController {
 	}
 
 	//서치뷰
+	@RequestMapping(value = "/searchView.bang", method=RequestMethod.GET) 
 	public ModelAndView searchView(@RequestParam(value="address")String address,@RequestParam(value="date")String date,@RequestParam(value="people")String people, HttpServletRequest req){
 		HttpSession session = req.getSession(false);
 		session.setAttribute("startDate", date.substring(0,10 ));
@@ -136,6 +138,7 @@ public class UserController {
 		return null;
 	}
 
+
 	// 즐겨찾기 추가
 	@RequestMapping(value="/addFavorite.bang", method=RequestMethod.GET)
 	public @ResponseBody void addfavorite(@RequestParam("accomNo") int accomNo, HttpSession session){
@@ -152,7 +155,6 @@ public class UserController {
 
 		return mv;
 	}
-
 	// 즐겨찾기 삭제
 	public @ResponseBody void deleteFavorite(@RequestParam("accomNo") int accomNo){
 		service.deleteFavorite(accomNo);
@@ -176,4 +178,16 @@ public class UserController {
 		mv.setViewName("updateInfo");
 		return mv;
 	}
+	
+	//업체내용과 방정보 불러오기 
+	@RequestMapping("room_info.bang")  
+	public ModelAndView accom_Information(@RequestParam("accom_no") String accom_no ){  
+		ModelAndView mv = new ModelAndView(); 
+		AccomVO vo = service.accomInfo(accom_no);  
+		List<RoomVO> list = service.roomInfo(accom_no);  
+		mv.addObject("vo",vo);  
+		mv.addObject("list",list);  
+		mv.setViewName("room_info");  
+		return mv;  
+	} 
 }

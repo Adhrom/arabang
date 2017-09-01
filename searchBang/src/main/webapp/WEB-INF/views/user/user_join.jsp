@@ -203,7 +203,7 @@ $(document).ready(function() {
     	  else if($("#userPhone").val() == ""){
     		 alert("전화번호을 입력해 주세요");
            	 $("#userPhone").focus();
-    	  }
+    	  } 
     	  else if($("#secret_certify_num").val() != 1){
     		  alert("인증이 되지 않았습니다. 다시 시행해 주세요");
     		  return ;

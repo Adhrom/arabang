@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>상세조건</title>
 <link rel="stylesheet" href="/searchBang/css/user/searchViewSt.css" />
+<link rel="stylesheet" href="css/common/btstyle.css">
 </head>
 <body>
 
@@ -16,17 +17,22 @@
 	</div>
 
 
-
+	<div id="aside-btn">
+		
 		<input id="btn-reset" type="reset" value="초기화">
 		<input id="btn-submit" type="submit" value="적용">
+	
 	<!-- aside left-detail-condition-btn 끝 -->
+	</div>
 
-			<div id="aside-left-list">
-			<input type="checkbox" name="reservations">예약 가능<br/>
+
+			<div id="aside-left-list" class="check_gap">
+				<input type="checkbox" name="reservations">예약 가능<br/>
 			<input type="checkbox" name="promotion">프로모션
 			</div>
 
-			<div id="aside-left-list">
+
+			<div id="aside-left-list" class="check_gap">
 			<h3 id="left-title-b">호텔·리조트 유형</h3>
 			<input type="checkbox" name="special1st">특1급<br/>
 			<input type="checkbox" name="special">특급<br/>
@@ -36,7 +42,9 @@
 			<input type="checkbox" name="residence">레지던스<br/>
 			<input type="checkbox" name="resort">리조트<br/>
 
-			<div id="aside-left-list-split-l">
+
+
+			<div id="aside-left-list-split-l" class="check_gap">
 			<h3 id="left-title-b">공용시설</h3>
 					<input type="checkbox" name="fitnese">피트니스<br/>
 					<input type="checkbox" name="sauna">사우나<br/>
@@ -51,7 +59,7 @@
 					<input type="checkbox" name="cook">취사가능<br/>
 					<input type="checkbox" name="hotspring">온천<br/>
 			</div>
-			<div id="aside-left-list-split-r">
+			<div id="aside-left-list-split-r" class="check_gap">
 			<h3 id="left-title-b"></h3>
 					<input type="checkbox" name="swim">수영장<br/>
 					<input type="checkbox" name="golf">골프장<br/>
@@ -67,19 +75,19 @@
 					<input type="checkbox" name="ski">스키장<br/>
 			</div>
 
-			<div id="aside-left-list-split-l">
+			<div id="aside-left-list-split-l" class="check_gap">
 			<h3 id="left-title-b">객실 내 시설</h3>
 
 			<input type="checkbox" name="roomspa">객실스파<br/>
 			<input type="checkbox" name="wifi">와이파이<br/>
 			</div>
-			<div id="aside-left-list-split-r">
+			<div id="aside-left-list-split-r" class="check_gap">
 			<h3 id="left-title-b"></h3>
 			<input type="checkbox" name="minibar">미니바<br/>
 			<input type="checkbox" name="bath">욕실용품<br/>
 			</div>
 
-			<div id="aside-left-list-split-l">
+			<div id="aside-left-list-split-l" class="check_gap">
 			<h3 id="left-title-b">기타</h3>
 
 			<input type="checkbox" name="breakfast">조식포함<br/>
@@ -91,7 +99,7 @@
 			<input type="checkbox" name="credit">카드결제<br/>
 			</div>
 
-			<div id="aside-left-list-split-r">
+			<div id="aside-left-list-split-r" class="check_gap">
 			<h3 id="left-title-b"></h3>
 			<input type="checkbox" name="nosmoking">금연<br/>
 			<input type="checkbox" name="valletparking">발렛파킹<br/>

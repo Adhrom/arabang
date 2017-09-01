@@ -16,7 +16,6 @@
 	src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
 <script src="/searchBang/js/admin/main.js"></script>
 <script src="/searchBang/js/admin/jquery.popupoverlay.js"></script>
-
 <style type="text/css">
 .inputarea {
 	width: 100%;
@@ -62,19 +61,19 @@
 	</c:if>
 	<!-- 헤더  -->
 	<header>
-		<a id="cd-logo" href="index.bang">
-		<img src="/searchBang/img/admin/logo.png" alt="Homepage"></a>
+		<a id="cd-logo" href="index.bang"><img
+			src="/searchBang/img/admin/logo.png" alt="Homepage"></a>
 		<nav id="cd-top-nav">
 			<ul>
 				<li><c:choose>
 						<c:when test="${loginId==null }">
-							<a class="initialism login_open btn btn-success" href="login.admin">Login</a>
+							<a class="initialism login_open btn btn-success"
+								href="login.admin">Login</a>
 						</c:when>
 						<c:otherwise>
 							<a href="logout.admin" id="logoutbtn">Logout</a>
 						</c:otherwise>
-					</c:choose>
-				</li>
+					</c:choose></li>
 			</ul>
 		</nav>
 		<a id="cd-menu-trigger" href="#0"><span class="cd-menu-text">Menu</span><span

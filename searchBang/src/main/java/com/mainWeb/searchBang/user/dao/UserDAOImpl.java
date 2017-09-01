@@ -61,6 +61,12 @@ public class UserDAOImpl implements UserDAO{
 		System.out.println(info.entrySet());
 		return sqlsession.selectList("user.accomList", info);
 	}
+	
+	@Override
+	public List<RoomVO> roomList(Map<String, Object> info) {
+		System.out.println(info.entrySet());
+		return sqlsession.selectList("user.roomList", info);
+	}
 
 	@Override
 	public void addFavorite(Map<String, Object> favorite) {
@@ -112,4 +118,6 @@ public class UserDAOImpl implements UserDAO{
 	public UserInfoVO getInfo(Map<String, Object> map) {
 		return sqlsession.selectOne("user.getInfo", map);
 	}
+
+	
 }

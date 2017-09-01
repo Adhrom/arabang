@@ -18,14 +18,18 @@
 			</tr>
 			<tr>
 				<td colspan="2"><div id="idCheckfield">&nbsp;</div></td>
+
 			</tr>
 			<tr>
-				<td><input type="text" name="certify" id="certify" size="25" placeholder="인증번호를 입력해 주세요" value=""></td>
+				<td><input type="text" name="certify" id="certify" size="25"
+					placeholder="인증번호를 입력해 주세요" value=""></td>
 				<td><div id="ViewTimer"></div>
-				<td align="center"><input type="button" value="확인" id="approval" class="button" style="padding: 5px 32px;"></td>
+				<td align="center"><input type="button" value="확인"
+					id="approval" class="button" style="padding: 5px 32px;"></td>
 			</tr>
 		</table>
-		<input type="hidden" name="secret_ceritify" id="secret_ceritify" value="">
+		<input type="hidden" name="secret_ceritify" id="secret_ceritify"
+			value="">
 	</form>
 </body>
 </html>

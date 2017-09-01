@@ -32,6 +32,9 @@ public interface UserDAO {
 	// 숙소리스트
 	public List<AccomVO> accomList(Map<String, Object> info);
 	
+	// 방리스트
+	public List<RoomVO> roomList(Map<String, Object> info);
+	
 	// 즐겨찾기 추가
 	public void addFavorite(Map<String, Object> favorite);
 	

@@ -9,6 +9,7 @@
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
 <link rel="stylesheet" href="/searchBang/css/admin/tablestyle.css">
+
 <!-- Paging Datatables -->
 <link rel="stylesheet" type="text/css"
 	href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css">
@@ -16,10 +17,11 @@
 <script type="text/javascript">
 	$(function() {
 		$("#admintable").dataTable();
-
-
+		
+		
 	});
 </script>
+
 <title>Company List</title>
 </head>
 <body>

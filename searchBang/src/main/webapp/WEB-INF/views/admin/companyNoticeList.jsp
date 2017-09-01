@@ -7,17 +7,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="/searchBang/css/admin/tablestyle.css">
-<link rel="stylesheet" href="//cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.css">
+<link rel="stylesheet" href="//cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.css"><!-- 이거 넣으면 datatable 검색과 목록간 밑단 픽셀 간격이 맞춰짐 -->
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
-	<link rel="stylesheet" type="text/css"
+<link rel="stylesheet" type="text/css"
 	href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css">
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <script type="text/javascript">
 $(function() {
 	$('#admintable').dataTable({
 	"scrollY": 353,// 게시판 height 세로길이고정
-	"order": [[ 0, "desc" ]], //마지막 등록한 글이 위로가게 내림차순 정렬
+	"order": [[ 0, "desc" ]], //마지막 등록한 글이 위로가게 내림차순 정렬 
 	"lengthMenu": [ 10, 25, 50], //기본 Data 10개 25개 50개 "All" 모두
 	"oLanguage": {
 		"sLoadingRecords": "데이터를 불러오는 중입니다.",
@@ -27,7 +27,7 @@ $(function() {
 		"sZeroRecords": "검색 결과가 없습니다.",
 		"sLengthMenu" : "<span>페이징 갯수</span> _MENU_"
 	}
-
+   
 	});
 });
 </script>

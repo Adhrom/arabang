@@ -15,7 +15,8 @@
 	src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
 <script src="/searchBang/js/user/mainPage.min.js"></script>
 <!-- <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" /> -->
-<link rel="stylesheet" type="text/css" href="/searchBang/css/user/searchNormalize.css" />
+<link rel="stylesheet" type="text/css"
+	href="/searchBang/css/user/searchNormalize.css" />
 <!-- css -->
 <link rel="stylesheet" href="/searchBang/css/user/search.css">
 <style>
@@ -35,6 +36,7 @@
 </style>
 <script type="text/javascript">
 	function goSearch() {
+		alert('주소 : ' + $('#address').val()+'날짜기간 : ' +$('#daterange').val()+'사람수 : ' + $('#people').val());
 		location.href = "searchView.bang?address="+$('#address').val()+"&date="+$('#daterange').val()+"&people="+$('#people').val();
 	}
 </script>
@@ -56,29 +58,23 @@
 				<tbody>
 					<tr>
 						<!-- 위치 -->
-						<td><input type="text" class="serachTd" id="address" maxlength="40" size="30"></td>
+						<td><textarea class="serachTd" rows="" cols="" id="address"></textarea></td>
 						<!-- 날짜 -->
 						<td><input type="text" name="daterange" class="serachTd"
 							id="daterange" /> <script type="text/javascript"
 								id="DateRangePicker">
 								$(function() {
 									$('input[name="daterange"]')
-											.daterangepicker({
-												locale: {
-											      format: 'YYYY-MM-DD'
-										    },
-										    	minDate: moment().toDate(),
-										    	"dateLimit":{
-										             "days":30
-										          },
-												weekStart : 1,
-												"autoApply" : true,
-												"opens" : "center",
-											},
-											function(start, end, label) {
-												console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
-											}
-											);
+											.daterangepicker(
+													{
+														weekStart : 1,
+														"autoApply" : true,
+														"opens" : "center"
+													},
+													function(start, end, label) {
+														console
+																.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
+													});
 								});
 							</script></td>
 						<!-- 인원 -->
@@ -90,6 +86,7 @@
 								<option value="5">5 명</option>
 								<option value="6">6 명</option>
 								<option value="7">7 명</option>
+
 						</select></td>
 						<td>
 							<button class="serachTd" id=searchBt onclick="goSearch()">검색</button>

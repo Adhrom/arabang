@@ -33,6 +33,9 @@ public interface UserService {
 	//숙소리스트
 	public List<AccomVO> accomList(String address , String people);
 	
+	//방리스트
+	public List<RoomVO> roomList(String address , String people);
+	
 	// 즐겨찾기 추가
 	public void addFavorite(int accomNo,HttpSession session);
 	

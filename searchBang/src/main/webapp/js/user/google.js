@@ -23,9 +23,10 @@
       // The ID token you need to pass to your backend:
       var id_token = googleUser.getAuthResponse().id_token;
    
+      
       //googleUser은 사용자 정보가 담겨진 객체
       //login.aspx 에서 googleUser로 받은 사용자 정보를 조회해서 가입이 되어 있으면 로그인, 가입이 되어 있지 않으면 회원가입 페이지로 이동한다, 그리고 토큰값에 대한 검증을 한다.
-      $.post("/response.jsp", { "userid": profile.getId(), "email": profile.getEmail(), "username": profile.getName(), "fbaccesstoken": id_token },
+      $.post("/getInfo.bang", { "userid": profile.getId(), "email": profile.getEmail(), "nickname": profile.getName(), "fbaccesstoken": id_token },
       function (responsephp) {
          if (responsephp == "login") {
             //로그인 성공시 login.aspx에서 로그인 처리를 해 준 후 URL로 이동한다.

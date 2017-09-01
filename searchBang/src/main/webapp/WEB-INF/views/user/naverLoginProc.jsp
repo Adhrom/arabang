@@ -8,13 +8,11 @@
 <script type="text/javascript">
 var naver_id_login = new naver_id_login(); // 로그인 객체 할당
 naver_id_login.get_naver_userprofile("naverSignInCallback()");
-function moveParent(){
-	opener.parent.location="userReg.bang"
-	window.close();
-}
 function naverSignInCallback() {
 	var mailvalue = naver_id_login.getProfileData('email');
 	var nicknamevalue = naver_id_login.getProfileData('nickname');
+	/* alert(mailvalue);
+	alert(nicknamevalue); */
 	$.ajax({
 		data : {
 			email : mailvalue,
@@ -22,8 +20,7 @@ function naverSignInCallback() {
 		},
 		type : "post",
 		dataType : "json",
-		url : "getInfo.bang",
-		success : moveParent()
+		url : "getInfo.bang"
 	});
 }
 </script>

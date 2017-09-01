@@ -87,6 +87,13 @@ public class UserServiceImpl implements UserService {
 		info.put("roomUsingPeople", people);
 		return dao.accomList(info);
 	}
+	
+	@Override
+	public List<RoomVO> roomList(String address, String people) {
+		info.put("accomAddress", address);
+		info.put("roomUsingPeople", people);
+		return dao.roomList(info);
+	}
 
 	@Override
 	public void addFavorite(int accomNo, HttpSession session) {
@@ -140,4 +147,6 @@ public class UserServiceImpl implements UserService {
 		vo.setMemberPw("");
 		return vo;
 	}
+
+	
 }
