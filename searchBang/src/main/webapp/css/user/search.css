@@ -73,15 +73,15 @@ body, h1, h2, h3, h4, h5, h6, input, textarea, select, button, table {
 	font-weight: bold;
  }
 
-th {
+#searchTable th {
     font-weight: bold;
     text-align: center;
 }
-td{
+#searchTable td{
 	margin-left:10px;
 }
 
-th, td {
+#searchTable th, #searchTable td {
      padding: 10px;
     text-align: center;
 

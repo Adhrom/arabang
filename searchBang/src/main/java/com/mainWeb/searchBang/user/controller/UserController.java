@@ -36,7 +36,7 @@ public class UserController {
 
 	@Inject
 	private UserService service;
-	
+
 	public  String getSession(HttpSession session) {
 		String ss = (String)session.getAttribute("email");
 		return ss;
@@ -62,7 +62,22 @@ public class UserController {
 	public String naverLoginProc() {
 		return "naverLoginProc";
 	}
-	
+
+	@RequestMapping("/userReserve.bang")
+	public String userReserve() {
+		return "userReserve";
+	}
+
+	@RequestMapping("/verysoonroom.bang")
+	public String very_soon_room() {
+		return "very_soon_room";
+	}
+
+	@RequestMapping("/bookmarkroomlist.bang")
+	public String bookmark_room_list() {
+		return "bookmark_room_list";
+	}
+
 
 	// social-login get(email, nickname)
 	@RequestMapping(value = "/getInfo.bang", method = { RequestMethod.GET, RequestMethod.POST })
@@ -88,7 +103,7 @@ public class UserController {
 		service.insertUserService(email, password, nickname, phone);
 		return "redirect:/index.bang";
 	}
-	
+
 	// 로그인 처리
 	@RequestMapping(value = "/loginProc.bang", method = { RequestMethod.POST, RequestMethod.GET })
 	public String loginProc(@RequestParam("email") String email, @RequestParam("password") String password,
@@ -103,7 +118,7 @@ public class UserController {
 		}
 		return "redirect:/index.bang";
 	}
-	
+
 	// 로그아웃
 	@RequestMapping(value = "/logout.bang")
 	public String logout(HttpSession session) {
@@ -119,7 +134,7 @@ public class UserController {
 		service.updateInfoService(email, password, nickname, phone);
 		return "updateFin";
 	}
-	
+
 	@RequestMapping(value="/deleteInfo.bang", method=RequestMethod.GET)
 	public String deleteInfo(HttpSession session) {
 		service.deleteUser(session);
@@ -249,13 +264,13 @@ public class UserController {
 	@RequestMapping("room_info.bang")
 	public ModelAndView accom_Information(@RequestParam("accom_no") String accom_no, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView();
-		
+
 		// line 216~219 쿠키를 굽는..
 		CookieGenerator cg = new CookieGenerator();
 		cg.setCookieMaxAge(1*60*60); // 1hour?
 		cg.setCookieName("accom_no");
 		cg.addCookie(response, accom_no);
-		
+
 		AccomVO vo = service.accomInfo(accom_no);
 		List<RoomVO> list = service.roomInfo(accom_no);
 		mv.addObject("vo", vo);
@@ -263,18 +278,18 @@ public class UserController {
 		mv.setViewName("room_info");
 		return mv;
 	}
-	
+
 //	@RequestMapping("/getCookies.bang")
 //	public ModelAndView getCookies(HttpServletRequest request) {
 //		String cookieValue = "";
 //		Cookie [] cookie = request.getCookies();
-//		
+//
 //		if(cookie != null && cookie.length > 0) {
 //			for (Cookie cc : cookie) {
 //				cookieValue = cc.getValue();
 //			}
 //		}
-//		
+//
 //		ModelAndView mv = new ModelAndView("getCookies");
 //		mv.addObject("cookie",cookieValue);
 //		return mv;

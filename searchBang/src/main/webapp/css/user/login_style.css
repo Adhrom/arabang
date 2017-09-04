@@ -8,7 +8,6 @@
 * {
 	maring:0;
 	padding:0;
-
 }
 
 
@@ -17,22 +16,18 @@
 	margin:auto;
 	margin-top:30px;
 	margin-bottom:10px;
-
 	text-align:center;
 	border: solid 1px white;
 	font-weight:normal;
 	color:#192A28;
 }
 .login-form {
-	position : relative;
-	margin : auto;
-	top : 200px;
-	width:400px;
-	border: solid 1px #dfdfdf;
+	top: 200px;
+	margin: 0 auto;
+	width: 300px;
 }
 
 div#login-box {
-	margin: 20px 60px 20px 60px;
 }
 
 .login-title {
@@ -135,11 +130,11 @@ a:visited{text-decoration: none; color:black;}
 a:active{text-decoration: none; color:black;}
 a:hover{text-decoration: none; color:black;}
 
-input#login-btn {
+/* input#login-btn {
 	margin-top:15px;
 	width:135px;
 	height:35px;
-	
+
 	background-color:#00a699;
 	border-style:solid;
 	border-color:#00a699;
@@ -161,7 +156,7 @@ input#join-btn {
 	font-size:10pt;
 	font-weight: bold;
 
-}
+} */
 
 
 input#social-login {
@@ -502,7 +497,7 @@ ul li{
 	width : 222px;
 	height: 42px;
 	margin-bottom: 4px;
-	
+
 }
 
 #customBtn:hover {
@@ -544,7 +539,7 @@ span.buttonText {
 }
 
 #login_footer{
-	
+
 	width :100%;
 	position : fixed;
 	bottom: 0px;

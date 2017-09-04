@@ -6,9 +6,23 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet"
    href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="/searchBang/css/owner/footer.css">
+<link rel="stylesheet" href="/searchBang/css/owner/footer.css?ver=1">
 <title>Insert title here</title>
 </head>
+<style>
+.icons i{
+	border: 1px solid #aaa;
+	padding : 10px;
+	border-radius:30px;
+
+}
+
+
+.icons i:HOVER{
+	background-color: rgba(255,255,255,1);;
+
+}
+</style>
 <body>
    <!-- footer -->
    <div id="footer">

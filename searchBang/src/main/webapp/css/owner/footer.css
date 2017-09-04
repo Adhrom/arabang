@@ -80,16 +80,3 @@
    }
 }
 */
-
-.icons i{
-	border: 1px solid #aaa;
-	padding : 10px;
-	border-radius:30px;
-
-}
-
-
-.icons i:HOVER{
-	background-color: rgba(255,255,255,1);;
-
-}

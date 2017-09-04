@@ -19,7 +19,7 @@
 <link rel="stylesheet" type="text/css"
 	href="/searchBang/css/user/searchNormalize.css" />
 <!-- css -->
-<link rel="stylesheet" href="/searchBang/css/user/search.css?ver=21">
+<link rel="stylesheet" href="/searchBang/css/user/search.css?ver=1">
 
 
 <script type="text/javascript">
@@ -95,7 +95,7 @@
 								<option value="7">7 명</option>
 
 						</select></td>
-			</table> 
+			</table>
 		</div>
 		<button id=searchBt onclick="goSearch()">검색</button>
 

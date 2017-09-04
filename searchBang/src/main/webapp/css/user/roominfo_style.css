@@ -3,12 +3,13 @@
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
 * {
 	font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
-
+	
 }
-body {
+#maindiv {
+margin:100px auto;
 width:1000px;
+height:1920px;
 border: solid 1px white;
-margin: 0 auto;
 }
 
 .top #t_left{
@@ -25,7 +26,7 @@ margin: 0 auto;
 	height:200px;
 	border:solid 1px white;
 }
-
+ 
 .star
 {
   /* normal state */
@@ -52,7 +53,7 @@ h1#txt-bg-a {
 	border:solid 1px white;
 }
 h5#txt-bg-b{
-
+	
 	width:25px;
 	border-radius:5px;
 	line-height:18px;
@@ -61,7 +62,7 @@ h5#txt-bg-b{
 	font-size : 10px;
 	color:white;
 	border: solid 1px white;
-
+	
 }
 h3#txt-bg-b-txt {
 	margin-top:-22px;
@@ -81,7 +82,7 @@ h3#txt-bg-b-txt {
 .txt-info p{
 	font-weight: 300;
 }
-#map {
+#map {	
 	width: 440px;
 	height:260px;
 }
@@ -96,9 +97,9 @@ h3#txt-bg-b-txt {
 }
 
 footer{
-
-	width:100%;
-	position:fixed;
 	left:0px;
-	bottom: 0px;
+	height: 150px;
+	width:100%;
+	position:absolute; 
+	margin-top: 300px;
 }

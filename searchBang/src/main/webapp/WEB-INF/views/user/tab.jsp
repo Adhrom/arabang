@@ -1,13 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <!doctype html>
 <html>
 <head>
+
 <meta charset="UTF-8">
 <title>tab</title>
-
+	<!-- jQuery library (served from Google) -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="/searchBang/js/common/jquery.bxslider.min.js"></script>
+<!-- bxSlider CSS file -->
+<link href="/searchBang/css/common/jquery.bxslider.css" rel="stylesheet" />
+<link rel="stylesheet" href="css/user/tab_star_style.css" />
 <style>
 html {
 	width: 100%;
@@ -227,12 +234,6 @@ opacity
 </style>
 
 
-
-
-
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
 <script>
 $(document).ready(function () {
 
@@ -388,10 +389,35 @@ $(document).ready(function () {
   */
 });
 </script>
+<script>
+	$(document).ready(function() {
+		var slider = $('.bxslider2').bxSlider({
+			auto : true,
+			mode : 'fade'
+		});
+		// 클릭시 멈춤 현상 해결 //
+		$(document).on('click', '.bx-next, .bx-prev', function() {
+			slider.stopAuto();
+			slider.startAuto();
+			slider.stopAuto();
+			slider.startAuto();
+		});
+		$(document).on('mouseover', '.bx-pager, #bx-pager1', function() {
+			slider.stopAuto();
+			slider.startAuto();
+			slider.stopAuto();
+			slider.startAuto();
+			slider.stopAuto();
+			slider.startAuto();
+		});
+	});
+</script>
+
 
 
 <style>
-.room_info img {
+.bx-wrapper {
+	
 	position: relative;
 	top: 10px;
 	padding: 0px;
@@ -400,13 +426,15 @@ $(document).ready(function () {
 	margin-right: 10px;
 }
 
+}
 .room_info {
-	border: 2px solid #dfdfdf;
+	border:2px solid #dfdfdf;
 	padding: 0px 10px;
 	margin: 20px 0 ;
 }
 
 .info {
+	
 	display: inline-block;
 	margin: 0px 0px;
 	padding: 1px 0px;
@@ -416,7 +444,7 @@ $(document).ready(function () {
 	margin: 0px;
 	display: inline-block;
 	padding: 10px;
-	width: 250px;
+	width: 260px;
 
 }
 
@@ -527,10 +555,26 @@ display: inline;
 margin-left: 5px;
 
 }
+#bxdiv{
+display:inline-block;
+
+}
+
+.room_info{
+padding-top : 10px;
+border : 1px solid #dfdfdf;
+text-align: center;
+
+}
+
+.room_info .info{
+position : relative;
+top: -20px;
+border: 1px solid #dfdfdf;
+}
 </style>
 
 
-<link rel="stylesheet" href="css/user/tab_star_style.css" />
 </head>
 <body>
 
@@ -555,7 +599,55 @@ margin-left: 5px;
 			<c:forEach var="list" items="${list}"  >
 				<div class="room_info">
 
-					<img src="${list.roomimg1 }" />
+					<div id="bxdiv" >
+						<ul class="bxslider2">
+							<c:if test="${list.roomimg1 != 'null'}">
+							<li class="banner_01">
+							<img alt="이미지 정보" src="${list.roomimg1}" width="320" height="240">
+							</li>
+							</c:if>
+							<c:if test="${list.roomimg2 != 'null'}">
+							<li class="banner_02">
+							<img alt="이미지 정보" src="${list.roomimg2}" width="320" height="240">
+							</li>
+							</c:if>
+							<c:if test="${list.roomimg3 != 'null'}">
+							<li class="banner_03">
+							<img alt="이미지 정보" src="${list.roomimg3}" width="320" height="240">
+							</li>
+							</c:if>
+							<c:if test="${list.roomimg4 != 'null'}">
+							<li class="banner_04">
+							<img alt="이미지 정보" src="${list.roomimg4}" width="320" height="240">
+							</li>
+							</c:if>
+							<c:if test="${list.roomimg5 != 'null'}">
+							<li class="banner_05">
+							<img alt="이미지 정보" src="${list.roomimg5}" width="320" height="240">
+							</li>
+							</c:if>
+							<c:if test="${list.roomimg6 != 'null'}">
+							<li class="banner_06">
+							<img alt="이미지 정보" src="${list.roomimg6}" width="320" height="240">
+							</li>
+							</c:if>
+							<c:if test="${list.roomimg7 != 'null'}">
+							<li class="banner_07">
+							<img alt="이미지 정보" src="${list.roomimg7}" width="320" height="240">
+							</li>
+							</c:if>
+							<c:if test="${list.roomimg8 != 'null'}">
+							<li class="banner_08">
+							<img alt="이미지 정보" src="${list.roomimg8}" width="320" height="240">
+							</li>
+							</c:if>
+							<c:if test="${list.roomimg9 != 'null'}">
+							<li class="banner_09">
+							<img alt="이미지 정보" src="${list.roomimg9}" width="320" height="240">
+							</li>
+							</c:if>
+						</ul>
+					</div>
 
 					<div class="info">
 						<strong class="title">${list.roomType }</strong>
@@ -566,7 +658,8 @@ margin-left: 5px;
 								<br/>
 
 									<p class="reserve-line">
-										<span>예약</span> <b style="color: rgba(0, 0, 0, 1)">${list.roomRent }원</b>
+										<span>예약</span> <b style="color: rgba(0, 0, 0, 1)">
+										<fmt:formatNumber value="${list.roomRent }"/>원</b>
 										<!-- 표시금액 -->
 									</p>
 
@@ -590,7 +683,7 @@ margin-left: 5px;
 								<div class="price_info">
 									<br>
 									<p class="reserve-line">
-										 <span>예약</span>  <b style="color: rgba(0, 0, 0, 1)">${list.roomLodge }원</b>
+										 <span>예약</span>  <b style="color: rgba(0, 0, 0, 1)"><fmt:formatNumber value="${list.roomLodge }"/>원</b>
 										<!-- 표시금액 -->
 									</p>
 

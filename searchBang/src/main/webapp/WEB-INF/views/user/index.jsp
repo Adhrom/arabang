@@ -13,7 +13,7 @@
          auto : true,
          mode : 'fade',
       });
-      
+
       // 클릭시 멈춤 현상 해결 //
       $(document).on('click', '.bx-next, .bx-prev', function() {
          slider.stopAuto();
@@ -156,7 +156,7 @@
 		</div>
 	</div>
 	<jsp:include page="footer.jsp" flush="false"></jsp:include>
-	
+
 	<!--미니탭-->
 <script>
    function openCity(evt, cityName) {
