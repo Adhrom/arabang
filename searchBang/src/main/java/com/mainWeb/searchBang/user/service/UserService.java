@@ -16,7 +16,7 @@ public interface UserService {
 	public void insertUserService(String email, String password, String nickname, String phone) throws Exception;
 
 	//로그인
-	public boolean loginUserService(String id, String pass, HttpSession session , UserInfoVO vo) throws Exception;
+	public boolean loginUserService(String id, String pass, HttpSession session) throws Exception;
 
 	// 계정 정보 가져오기
 	public UserInfoVO getUserInfoService(String id, String password) throws Exception;
@@ -68,6 +68,16 @@ public interface UserService {
 
 	//예약->숙소정보 가져오기
 	public AccomVO accomInfoForReservation(String room_no);
-
-
+	
+	// 포인트 가져오기
+	public int getPoint(HttpSession session);
+	
+	// 로그아웃
+	public void logout(HttpSession session);
+	
+	// 세션으로 정보조회하기.
+	public UserInfoVO getInfo1(HttpSession session);
+	
+	// 계정탈퇴
+	public void deleteUser(HttpSession session);
 }
