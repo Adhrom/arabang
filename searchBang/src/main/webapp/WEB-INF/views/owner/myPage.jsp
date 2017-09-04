@@ -238,7 +238,6 @@
 		});
 
 	});
-
 </script>
 </head>
 <body>
@@ -300,7 +299,7 @@
 					<c:forEach items="${list }" var="row" varStatus="number" begin="0"
 						step="1">
 						<tr>
-							<td class="table-rank"></td>
+							<td class="table-rank">${row.accomGrade }</td>
 							<td class="table-company">${row.accomName }</td>
 							<td class="table-address">${row.accomAddress }/
 								${row.accomAddress2 }</td>

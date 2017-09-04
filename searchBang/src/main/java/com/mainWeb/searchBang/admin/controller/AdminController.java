@@ -1,5 +1,6 @@
 package com.mainWeb.searchBang.admin.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -10,13 +11,18 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mainWeb.searchBang.admin.model.AdminNoticeVO;
 import com.mainWeb.searchBang.admin.model.AdminVO;
+import com.mainWeb.searchBang.admin.model.OwnerCountVO;
+import com.mainWeb.searchBang.admin.model.ReservationChartVO;
 import com.mainWeb.searchBang.admin.service.AdminService;
 import com.mainWeb.searchBang.owner.model.OwnerVO;
 import com.mainWeb.searchBang.owner.model.QnAVO;
+import com.mainWeb.searchBang.owner.model.ReviewCountVO;
+import com.mainWeb.searchBang.owner.model.SalesVO;
 import com.mainWeb.searchBang.user.model.ReviewVO;
 import com.mainWeb.searchBang.user.model.UserInfoVO;
 import com.mainWeb.searchBang.utils.SHA256;
@@ -101,12 +107,6 @@ public class AdminController {
 		return mv;
 	}
 
-	// companyStats
-	@RequestMapping("/companyStats.admin")
-	public String companyStats() {
-		return "companyStats";
-	}
-
 	// customerList
 	@RequestMapping("/customerList.admin")
 	public ModelAndView customerList() {
@@ -126,11 +126,6 @@ public class AdminController {
 		mv.setViewName("customerNoticeList");
 		mv.addObject("noticeList", noticeList);
 		return mv;
-	}
-	// customerStats
-	@RequestMapping("/customerStats.admin")
-	public String customerStats() {
-		return "customerStats";
 	}
 
 	// noticeWrite
@@ -179,10 +174,14 @@ public class AdminController {
 		return "redirect:" + noticeVO.getNoticeType() + "NoticeList.admin";
 	}
 
-	// salesStats
-	@RequestMapping("/salesStats.admin")
-	public String salesStats() {
-		return "salesStats";
+	// Stats
+	@RequestMapping("/Stats.admin")
+	public ModelAndView salesStats() {
+		ModelAndView mv = new ModelAndView();
+		int totalAccom = adminService.totalAccom();
+		mv.addObject("size", totalAccom);
+		mv.setViewName("Stats");
+		return mv;
 	}
 
 	// login
@@ -231,6 +230,7 @@ public class AdminController {
 		return "redirect:QnAReply.admin";
 	}
 
+	// 리뷰리스트
 	@RequestMapping("/review.admin")
 	public ModelAndView reviewList(@RequestParam(value = "declration") String declration) {
 		ModelAndView mv = new ModelAndView();
@@ -244,6 +244,7 @@ public class AdminController {
 		return mv;
 	}
 
+	// 리뷰삭제
 	@RequestMapping("/deleteReview.admin")
 	public String deleteReview(@RequestParam(value = "review_no") String review_no,
 			@RequestParam(value = "declration") String declration) {
@@ -254,6 +255,7 @@ public class AdminController {
 			return "redirect:review.admin?declration=n";
 	}
 
+	// 리뷰신고취소
 	@RequestMapping("/cancelReview.admin")
 	public String cancelReview(@RequestParam(value = "review_no") String review_no,
 			@RequestParam(value = "declration") String declration) {
@@ -263,5 +265,38 @@ public class AdminController {
 		else
 			return "redirect:review.admin?declration=n";
 	}
+
+	// 매출수수료통계
+	@RequestMapping("/sales_fees.admin")
+	public @ResponseBody Object sales_fees() {
+		List<SalesVO> list = new ArrayList<SalesVO>();
+		list = adminService.sales_fees();
+		return list;
+	}
+
+	// 오너카운트
+	@RequestMapping("/ownerCount.admin")
+	public @ResponseBody Object ownerCount() {
+		List<OwnerCountVO> list = new ArrayList<OwnerCountVO>();
+		list = adminService.ownerCount();
+		return list;
+	}
+
+	//예약 일자별 차트
+	@RequestMapping("/reservationChart.admin")
+	public @ResponseBody Object reservationChart() {
+		List<ReservationChartVO> list = new ArrayList<ReservationChartVO>();
+		list = adminService.reservationChart();
+		return list;
+	}
+
+	// 오너 등록 숙소 그래이드 차트
+	@RequestMapping("/ownerGradeChart.admin")
+	public @ResponseBody Object ownerGradeChart(){
+		List<ReviewCountVO> list = new ArrayList<ReviewCountVO>();
+		list = adminService.ownerGradeChart();
+		return list;
+	}
+
 
 }

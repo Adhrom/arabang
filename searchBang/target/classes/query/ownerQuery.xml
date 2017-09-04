@@ -5,7 +5,7 @@
 <mapper namespace="owner">
 	<insert id="insertOwner">
 		insert into owner_reg values
-		(#{ownerEmail},#{ownerName},#{ownerPw},#{ownerPhone},'n')
+		(#{ownerEmail},#{ownerName},#{ownerPw},#{ownerPhone},'n' , sysdate)
 	</insert>
 
 	<select id="idCheckOwner" parameterType="java.lang.String"
@@ -239,20 +239,29 @@
 		as
 		value from sales where accom_no = #{accom_no} group by
 		TO_CHAR(TO_DATE
-		(sales_date,'RRRR-MM-DD'),'RRRR-MM-DD');
+		(sales_date,'RRRR-MM-DD'),'RRRR-MM-DD')
 	</select>
 
 	<select id="reviewCount" resultType="com.mainWeb.searchBang.owner.model.ReviewCountVO">
-		select distinct
-		(select count(reviewgrade) from review where reviewgrade=1 and accom_no=117)
-		as "1",
-		(select count(reviewgrade) from review where reviewgrade=2 and accom_no=117)
-		as "2",
-		(select count(reviewgrade) from review where reviewgrade=3 and accom_no=117)
-		as "3",
-		(select count(reviewgrade) from review where reviewgrade=4 and accom_no=117)
-		as "4",
-		(select count(reviewgrade) from review where reviewgrade=5 and accom_no=117)
-		as "5" from review where accom_no=117;
+
+	</select>
+
+	<select id="weekSales" resultType="com.mainWeb.searchBang.owner.model.WeekSalesVO">
+		select TO_CHAR(TO_DATE
+		(sales_date,'RRRR-MM-DD'),'day') as country , count(sales_sales)
+		as
+		"visits" from sales where accom_no = #{accom_no} and sales_date > sysdate-7
+        group by
+        TO_CHAR(TO_DATE
+		(sales_date,'RRRR-MM-DD'),'day')
+		order by country
+	</select>
+
+	<select id="todayCount" resultType="java.lang.Integer">
+		select count(sales_no) as count from sales where accom_no = #{accom_no} and to_char(SALES_DATE,'yyyy-mm-dd') = to_char(sysdate,'yyyy-mm-dd')
+	</select>
+
+	<select id="reviewGrade" resultType="com.mainWeb.searchBang.owner.model.ReviewCountVO">
+		select reviewgrade as title , count(reviewgrade) as value from review where accom_no = #{accom_no} group by reviewgrade order by reviewgrade asc
 	</select>
 </mapper>

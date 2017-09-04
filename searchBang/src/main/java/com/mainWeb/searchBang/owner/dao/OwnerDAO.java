@@ -7,8 +7,10 @@ import com.mainWeb.searchBang.admin.model.AdminNoticeVO;
 import com.mainWeb.searchBang.owner.model.AccomVO;
 import com.mainWeb.searchBang.owner.model.OwnerVO;
 import com.mainWeb.searchBang.owner.model.QnAVO;
+import com.mainWeb.searchBang.owner.model.ReviewCountVO;
 import com.mainWeb.searchBang.owner.model.RoomVO;
 import com.mainWeb.searchBang.owner.model.SalesVO;
+import com.mainWeb.searchBang.owner.model.WeekSalesVO;
 import com.mainWeb.searchBang.user.model.ReviewVO;
 
 public interface OwnerDAO {
@@ -81,5 +83,14 @@ public interface OwnerDAO {
 
 	// 매출통계
 	public List<SalesVO> sales(String accom_no);
+
+	// 주간예약자통계
+	public List<WeekSalesVO> weekSales(String accom_no);
+
+	// 오너매니지먼트 투데이카운트
+	public int todayCount(String accom_no);
+
+	// 평점통계
+	public List<ReviewCountVO> reviewGrade(String accom_no);
 
 }

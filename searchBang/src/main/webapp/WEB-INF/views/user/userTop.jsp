@@ -13,7 +13,7 @@
 
 	<div id="page-wrapper">
 		<div id="loginText">
-				<ul>
+				<ul style="list-style: none;">
 					<li>
 				<i class="fa fa-sign-in" aria-hidden="true"></i>
 					<a href="#">로그인</a></li>
@@ -22,7 +22,7 @@
 		<!-- Header -->
 
 		<div id="header-wrapper">
-	
+
 			<div id="header">
 
 				<!-- Logo -->

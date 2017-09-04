@@ -10,8 +10,12 @@ import org.springframework.stereotype.Service;
 import com.mainWeb.searchBang.admin.dao.AdminDAO;
 import com.mainWeb.searchBang.admin.model.AdminNoticeVO;
 import com.mainWeb.searchBang.admin.model.AdminVO;
+import com.mainWeb.searchBang.admin.model.OwnerCountVO;
+import com.mainWeb.searchBang.admin.model.ReservationChartVO;
 import com.mainWeb.searchBang.owner.model.OwnerVO;
 import com.mainWeb.searchBang.owner.model.QnAVO;
+import com.mainWeb.searchBang.owner.model.ReviewCountVO;
+import com.mainWeb.searchBang.owner.model.SalesVO;
 import com.mainWeb.searchBang.user.model.ReviewVO;
 import com.mainWeb.searchBang.user.model.UserInfoVO;
 
@@ -130,6 +134,31 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<UserInfoVO> userList() {
 		return adminDAO.userList();
+	}
+
+	@Override
+	public List<SalesVO> sales_fees() {
+		return adminDAO.sales_fees();
+	}
+
+	@Override
+	public List<OwnerCountVO> ownerCount() {
+		return adminDAO.ownerCount();
+	}
+
+	@Override
+	public List<ReservationChartVO> reservationChart() {
+		return adminDAO.reservationChart();
+	}
+
+	@Override
+	public List<ReviewCountVO> ownerGradeChart() {
+		return adminDAO.ownerGradeChart();
+	}
+
+	@Override
+	public int totalAccom() {
+		return adminDAO.totalAccom();
 	}
 
 }
