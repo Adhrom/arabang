@@ -13,8 +13,10 @@ import com.mainWeb.searchBang.owner.dao.OwnerDAO;
 import com.mainWeb.searchBang.owner.model.AccomVO;
 import com.mainWeb.searchBang.owner.model.OwnerVO;
 import com.mainWeb.searchBang.owner.model.QnAVO;
+import com.mainWeb.searchBang.owner.model.ReviewCountVO;
 import com.mainWeb.searchBang.owner.model.RoomVO;
 import com.mainWeb.searchBang.owner.model.SalesVO;
+import com.mainWeb.searchBang.owner.model.WeekSalesVO;
 import com.mainWeb.searchBang.user.model.ReviewVO;
 
 @Service
@@ -304,6 +306,21 @@ public class OwnerServiceImpl implements OwnerService {
 	@Override
 	public List<SalesVO> sales(String accom_no) {
 		return dao.sales(accom_no);
+	}
+
+	@Override
+	public List<WeekSalesVO> weekSales(String accom_no) {
+		return dao.weekSales(accom_no);
+	}
+
+	@Override
+	public int todayCount(String accom_no) {
+		return dao.todayCount(accom_no);
+	}
+
+	@Override
+	public List<ReviewCountVO> reviewGrade(String accom_no) {
+		return dao.reviewGrade(accom_no);
 	}
 
 

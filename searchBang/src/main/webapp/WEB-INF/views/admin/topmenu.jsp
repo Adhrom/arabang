@@ -113,7 +113,7 @@
 </div>
 	<!-- 헤더  -->
 	<header>
-		
+
 		<nav id="cd-top-nav">
 			<ul>
 				<li><c:choose>
@@ -142,17 +142,15 @@
 				<ul class="sub-menu">
 					<li><a href="companyApprove.admin">업체승인/거절</a></li>
 					<li><a href="companyList.admin">업체리스트</a></li>
-					<li><a href="companyStats.admin">업체통계</a></li>
 					<li><a href="QnAReply.admin">1:1문의</a></li>
 					<li><a href="review.admin?declration=y">신고된 리뷰</a></li>
 				</ul></li>
 			<li class="item-has-children"><a href="#0">고객관리</a>
 				<ul class="sub-menu">
 					<li><a href="customerList.admin">고객리스트</a></li>
-					<li><a href="customerStats.admin">고객통계</a></li>
 				</ul></li>
 			<li><a href="review.admin?declration=n">리뷰</a></li>
-			<li><a href="salesStats.admin">매출통계</a></li>
+			<li><a href="Stats.admin">통합통계</a></li>
 			<li><a href="adminManagement.admin">관리자등록</a></li>
 		</ul>
 	</nav>

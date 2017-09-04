@@ -1,4 +1,4 @@
-var chart = AmCharts.makeChart("paymentChartdiv", {
+var paymentChart = AmCharts.makeChart("paymentChartdiv", {
 	"type" : "serial",
 	"theme" : "light",
 	"marginRight" : 40,
@@ -74,16 +74,3 @@ var chart = AmCharts.makeChart("paymentChartdiv", {
 		"enabled" : true
 	}
 });
-
-chart.addListener("rendered", zoomChart);
-$.getJSON("http://localhost:8080/searchBang/sales.owner?accom_no=117",
-		function(data) {
-			chart.dataProvider = data;
-			chart.validateData();
-		});
-zoomChart();
-
-function zoomChart() {
-	chart.zoomToIndexes(chart.dataProvider.length - 40,
-			chart.dataProvider.length - 1);
-}

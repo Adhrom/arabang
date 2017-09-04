@@ -12,8 +12,10 @@ import com.mainWeb.searchBang.admin.model.AdminNoticeVO;
 import com.mainWeb.searchBang.owner.model.AccomVO;
 import com.mainWeb.searchBang.owner.model.OwnerVO;
 import com.mainWeb.searchBang.owner.model.QnAVO;
+import com.mainWeb.searchBang.owner.model.ReviewCountVO;
 import com.mainWeb.searchBang.owner.model.RoomVO;
 import com.mainWeb.searchBang.owner.model.SalesVO;
+import com.mainWeb.searchBang.owner.model.WeekSalesVO;
 import com.mainWeb.searchBang.user.model.ReviewVO;
 
 @Repository
@@ -137,6 +139,21 @@ public class OwnerDAOImpl implements OwnerDAO {
 	@Override
 	public List<SalesVO> sales(String accom_no) {
 		return sqlSessionTemplate.selectList("owner.sales", accom_no);
+	}
+
+	@Override
+	public List<WeekSalesVO> weekSales(String accom_no) {
+		return sqlSessionTemplate.selectList("owner.weekSales", accom_no);
+	}
+
+	@Override
+	public int todayCount(String accom_no) {
+		return sqlSessionTemplate.selectOne("owner.todayCount", accom_no);
+	}
+
+	@Override
+	public List<ReviewCountVO> reviewGrade(String accom_no) {
+		return sqlSessionTemplate.selectList("owner.reviewGrade", accom_no);
 	}
 
 }

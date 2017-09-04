@@ -39,7 +39,7 @@ function popuploginCheck(){
 			</script>
 		</c:if>
 		<div id="loginText">
-				<ul>
+				<ul style="list-style: none;">
 					<li>
 					<c:choose>
 						<c:when test="${msg == 'success' }">
@@ -56,7 +56,7 @@ function popuploginCheck(){
 		<!-- Header -->
 
 		<div id="header-wrapper">
-	
+
 			<div id="header">
 
 				<!-- Logo -->

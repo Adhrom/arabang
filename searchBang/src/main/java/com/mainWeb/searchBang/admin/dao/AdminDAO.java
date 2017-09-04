@@ -6,8 +6,12 @@ import javax.servlet.http.HttpSession;
 
 import com.mainWeb.searchBang.admin.model.AdminNoticeVO;
 import com.mainWeb.searchBang.admin.model.AdminVO;
+import com.mainWeb.searchBang.admin.model.OwnerCountVO;
+import com.mainWeb.searchBang.admin.model.ReservationChartVO;
 import com.mainWeb.searchBang.owner.model.OwnerVO;
 import com.mainWeb.searchBang.owner.model.QnAVO;
+import com.mainWeb.searchBang.owner.model.ReviewCountVO;
+import com.mainWeb.searchBang.owner.model.SalesVO;
 import com.mainWeb.searchBang.user.model.ReviewVO;
 import com.mainWeb.searchBang.user.model.UserInfoVO;
 
@@ -72,6 +76,21 @@ public interface AdminDAO {
 	// 리뷰 삭제취소
 	public void cancelReview(String review_no);
 
-	//커스토머 리스트
+	// 커스토머 리스트
 	public List<UserInfoVO> userList();
+
+	// 어드민매출통계
+	public List<SalesVO> sales_fees();
+
+	// 오너카운트
+	public List<OwnerCountVO> ownerCount();
+
+	//예약 일자별 차트
+	public List<ReservationChartVO> reservationChart();
+
+	// 오너등록숙소그레이드차트
+	public List<ReviewCountVO> ownerGradeChart();
+
+	// 토탈숙소
+	public int totalAccom();
 }

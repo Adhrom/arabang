@@ -25,48 +25,59 @@
 		insert into admin_reg values(#{adminId},#{adminPw})
 	</insert>
 	<insert id="insertNotice">
-		insert into admin_notice values(notice_no_seq.nextval,#{noticeType},#{content},#{subject})
+		insert into admin_notice
+		values(notice_no_seq.nextval,#{noticeType},#{content},#{subject})
 	</insert>
 
 	<select id="NoticeList" resultType="com.mainWeb.searchBang.admin.model.AdminNoticeVO">
-		select subject , content , notice_no from
+		select subject , content ,
+		notice_no from
 		admin_notice where noticetype = #{noticeType}
 	</select>
 
 	<select id="noticeRead" resultType="com.mainWeb.searchBang.admin.model.AdminNoticeVO">
-		select * from admin_notice where notice_no = #{notice_no_int}
+		select * from admin_notice
+		where notice_no = #{notice_no_int}
 	</select>
 
 	<delete id="noticeDel">
-		delete from admin_notice where notice_no = #{notice_no}
+		delete from admin_notice where notice_no =
+		#{notice_no}
 	</delete>
 
 	<update id="noticeUpdate">
-		update admin_notice set subject = #{subject} , content = #{content} where notice_no = #{notice_no}
+		update admin_notice set subject = #{subject} ,
+		content = #{content} where notice_no = #{notice_no}
 	</update>
 
 	<select id="approveCompany" resultType="com.mainWeb.searchBang.owner.model.OwnerVO">
-		select owneremail , ownername , ownerphone from owner_reg where approve = 'n'
+		select owneremail ,
+		ownername , ownerphone from owner_reg where approve = 'n'
 	</select>
 
 	<update id="approveOk">
-		update owner_reg set approve = 'y' where owneremail = #{ownerEmail}
+		update owner_reg set approve = 'y' where owneremail =
+		#{ownerEmail}
 	</update>
 
 	<update id="approveCancel">
-		update owner_reg set approve = 'c' where owneremail = #{ownerEmail}
+		update owner_reg set approve = 'c' where owneremail =
+		#{ownerEmail}
 	</update>
 
 	<select id="approveList" resultType="com.mainWeb.searchBang.owner.model.OwnerVO">
-		select owneremail , ownername , ownerphone from owner_reg where approve = 'y'
+		select owneremail ,
+		ownername , ownerphone from owner_reg where approve = 'y'
 	</select>
 
 	<select id="QnAList" resultType="com.mainWeb.searchBang.owner.model.QnAVO">
-		select * from qna where reply is null
+		select * from qna where reply is
+		null
 	</select>
 
 	<update id="insertReply">
-		update qna set reply = #{reply} where qna_no = #{qna_no}
+		update qna set reply = #{reply} where qna_no =
+		#{qna_no}
 	</update>
 
 	<select id="reviewAll" resultType="com.mainWeb.searchBang.user.model.ReviewVO">
@@ -74,7 +85,8 @@
 	</select>
 
 	<select id="reviewDeclration" resultType="com.mainWeb.searchBang.user.model.ReviewVO">
-		select * from review where declration = 'y'
+		select * from review
+		where declration = 'y'
 	</select>
 
 	<delete id="reviewDelete">
@@ -82,10 +94,47 @@
 	</delete>
 
 	<update id="reviewCancel">
-		update review set declration = 'c' where review_no = #{review_no}
+		update review set declration = 'c' where review_no =
+		#{review_no}
 	</update>
 
 	<select id="userList" resultType="com.mainWeb.searchBang.user.model.UserInfoVO">
 		select * from member_reg
+	</select>
+
+	<select id="sales_fees" resultType="com.mainWeb.searchBang.owner.model.SalesVO">
+		select TO_CHAR(TO_DATE
+		(sales_date,'RRRR-MM-DD'),'RRRR-MM-DD') as "date" , sum(sales_sales)
+		as
+		value from sales group by
+		TO_CHAR(TO_DATE
+		(sales_date,'RRRR-MM-DD'),'RRRR-MM-DD')
+	</select>
+
+	<select id="ownerCount" resultType="com.mainWeb.searchBang.admin.model.OwnerCountVO">
+		select TO_CHAR(TO_DATE
+		(reg_date,'RRRR-MM-DD'),'RRRR-MM-DD') as "date" , count(owneremail)
+		as
+		visits from owner_reg group by
+		TO_CHAR(TO_DATE
+		(reg_date,'RRRR-MM-DD'),'RRRR-MM-DD')
+        order by "date"
+	</select>
+
+	<select id="reservationChart" resultType="com.mainWeb.searchBang.admin.model.ReservationChartVO">
+		select TO_CHAR(TO_DATE
+		(sales_date,'RRRR-MM-DD'),'RRRR-MM-DD') as "date" , count(sales_sales)
+		as
+		value from sales group by
+		TO_CHAR(TO_DATE
+		(sales_date,'RRRR-MM-DD'),'RRRR-MM-DD')
+	</select>
+
+	<select id="ownerGradeChart" resultType="com.mainWeb.searchBang.owner.model.ReviewCountVO">
+		select accomgrade as title , count(accomgrade) as value from accom group by accomgrade order by accomgrade asc
+	</select>
+
+	<select id="totalAccom" resultType="java.lang.Integer">
+		select count(accom_no) from accom
 	</select>
 </mapper>

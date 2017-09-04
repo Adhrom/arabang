@@ -7,14 +7,9 @@
 
 <meta charset="UTF-8">
 <title>방상세보기</title>
+<jsp:include page="userTop.jsp" flush="false"></jsp:include>
 
-
-
-</head>
-
-
-<header> <jsp:include page="topmenu.jsp"/> </header>
-<link rel="stylesheet" type="text/css" href="css/user/roominfo_style.css">
+<link rel="stylesheet" type="text/css" href="css/user/roominfo_style.css?ver=1">
 <body class="room">
 
 <!-- <header> -->

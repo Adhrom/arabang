@@ -6,17 +6,6 @@
 <head>
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<!-- 방문자차트
-<script type="text/javascript">
-	function visibleDIV(idMyDiv) {
-		var objDiv = document.getElementById(idMyDiv);
-		if (objDiv.style.display == "block") {
-			objDiv.style.display = "none";
-		} else {
-			objDiv.style.display = "block";
-		}
-	}
-</script> -->
 <!-- 차트 -->
 <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
 <link rel="stylesheet"
@@ -41,7 +30,8 @@
 
 <script src="https://www.amcharts.com/lib/3/serial.js"></script>
 <script type="text/javascript"
-	src="/searchBang/js/owner/paymentChart.js"></script>
+	src="/searchBang/js/owner/paymentChart.js?ver=1"></script>
+
 <!-- css -->
 <link rel="stylesheet" href="/searchBang/css/owner/paymentChart.css" />
 <!-- 결제차트 끝 -->
@@ -52,16 +42,39 @@
 <link rel="stylesheet" href="/searchBang/css/owner/miniTab.css" />
 <!-- 미니탭 끝 -->
 <script type="text/javascript">
-	$(document).ready(function() {
-		document.getElementById("defaultOpen").click();
-	});
+	$(document).ready(
+			function() {
+				document.getElementById("defaultOpen").click();
+				//페이먼트차트
+				var accom_no = "";
+				accom_no = document.getElementById("accom_no").value;
+				$.getJSON(
+						"http://localhost:8080/searchBang/sales.owner?accom_no="
+								+ accom_no, function(data) {
+							paymentChart.dataProvider = data;
+							paymentChart.validateData();
+						});
+				$.getJSON(
+						"http://localhost:8080/searchBang/weekSales.owner?accom_no="
+								+ accom_no, function(data) {
+							visitChart.dataProvider = data;
+							visitChart.validateData();
+						});
+				$.getJSON(
+						"http://localhost:8080/searchBang/reviewGrade.owner?accom_no="
+								+ accom_no, function(data) {
+								gradeChart.dataProvider = data;
+								gradeChart.validateData();
+						});
+			});
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="/searchBang/css/owner/ownerManagement.css">
 
-<title>Insert title here</title>
+<title>숙소 관리</title>
 </head>
 <body>
+	<input type="hidden" id="accom_no" value="${vo.accom_no}">
 	<div id="ownerManagement">
 		<div>
 			<ul id="management">
@@ -93,7 +106,7 @@
 			<div class="companyInfo">
 				<ul class="companyInfoDB">
 					<li class="companyInfosubject">Today</li>
-					<li>3(DB)</li>
+					<li>${todayCount }</li>
 				</ul>
 			</div>
 			<!-- 새리뷰 -->
@@ -151,9 +164,9 @@
 			<div id="visitChart">
 				<div class="tab">
 					<button class="tablinks" onclick="openCity(event, 'London')"
-						id="defaultOpen">결제</button>
+						id="defaultOpen">매출</button>
 					<button class="tablinks" onclick="openCity(event, 'Paris')">주간
-						방문자</button>
+						예약자</button>
 					<button class="tablinks" onclick="openCity(event, 'Tokyo')">평점</button>
 				</div>
 
@@ -162,14 +175,36 @@
 
 				</div>
 
-				<div id="Paris" class="tabcontent">
+				<div id="Tokyo" class="tabcontent">
 					<div id="gradeChartdiv"></div>
 				</div>
 
-				<div id="Tokyo" class="tabcontent">
+				<div id="Paris" class="tabcontent">
 					<div id="visitChartdiv"></div>
 				</div>
 
+			</div>
+
+			<!-- 리뷰 -->
+			<div>
+				<table>
+					<thead>
+						<tr>
+							<td>글쓴이</td>
+							<td>내용</td>
+							<td>평점</td>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${reviewList }" var="row">
+						<tr>
+							<td>${row.memberEmail }</td>
+							<td>${row.content }</td>
+							<td>${row.reviewGrade }</td>
+						</tr>
+						</c:forEach>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>
