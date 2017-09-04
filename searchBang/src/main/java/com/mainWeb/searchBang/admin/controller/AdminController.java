@@ -122,9 +122,9 @@ public class AdminController {
 	public ModelAndView customerNoticeList() {
 		String noticeType = "customer";
 		List<AdminNoticeVO> noticeList = adminService.NoticeList(noticeType);
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("customerNoticeList");
-		mv.addObject("noticeList", noticeList);
+ModelAndView mv = new ModelAndView();
+mv.setViewName("customerNoticeList");
+mv.addObject("noticeList", noticeList);
 		return mv;
 	}
 
@@ -144,7 +144,7 @@ public class AdminController {
 
 	@RequestMapping("/insertNotice.admin")
 	public String insertNotice(@ModelAttribute AdminNoticeVO noticeVO) {
-		System.out.println(noticeVO);
+//		System.out.println(noticeVO);
 		adminService.insertNotice(noticeVO);
 		return "redirect:" + noticeVO.getNoticeType() + "NoticeList.admin";
 	}
@@ -177,10 +177,10 @@ public class AdminController {
 	// Stats
 	@RequestMapping("/Stats.admin")
 	public ModelAndView salesStats() {
-		ModelAndView mv = new ModelAndView();
-		int totalAccom = adminService.totalAccom();
-		mv.addObject("size", totalAccom);
-		mv.setViewName("Stats");
+ModelAndView mv = new ModelAndView();
+int totalAccom = adminService.totalAccom();
+mv.addObject("size", totalAccom);
+mv.setViewName("Stats");
 		return mv;
 	}
 
@@ -214,11 +214,11 @@ public class AdminController {
 	// QnA 리스트
 	@RequestMapping("/QnAReply.admin")
 	public ModelAndView QnAReply() {
-		ModelAndView mv = new ModelAndView();
+ModelAndView mv = new ModelAndView();
 		List<QnAVO> list = adminService.QnAList();
-		mv.addObject("size", list.size());
-		mv.addObject("list", list);
-		mv.setViewName("QnAReply");
+mv.addObject("size", list.size());
+mv.addObject("list", list);
+mv.setViewName("QnAReply");
 		return mv;
 	}
 

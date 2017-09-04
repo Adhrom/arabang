@@ -292,7 +292,6 @@ public class OwnerController {
 	// 숙소삭제
 	@RequestMapping("/deleteAccom.owner")
 	public String deleteAccom(@RequestParam(value = "accom_no", required = true) String accom_no) {
-		System.out.println("업체번호" + accom_no);
 		service.deleteAccom(accom_no);
 		return "redirect:accomManagement.owner";
 	}
