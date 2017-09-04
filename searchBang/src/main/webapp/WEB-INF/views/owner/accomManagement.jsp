@@ -34,7 +34,7 @@
 		$('#admintable').dataTable({
 		"info": false,
 		"scrollY": 360,	//세로고정
-		"order": [[ 0, "desc" ]], //마지막 등록한 글이 위로가게 내림차순 정렬 
+		"order": [[ 0, "desc" ]], //마지막 등록한 글이 위로가게 내림차순 정렬
 		"lengthMenu": [ 10, 25, 50], //기본 Data 10개 25개 50개 "All" 모두
 		"oLanguage": {
 			"sLoadingRecords": "데이터를 불러오는 중입니다.",
@@ -79,6 +79,7 @@
 							class="button">수정</button>
 						<button type="button" onclick="accomD('${row.accom_no}')"
 							class="button">삭제</button>
+						<a href="roomManagement.owner?accom_no=${row.accom_no }"><button class="button">방보기</button></a>
 					</td>
 				</tr>
 			</table>
