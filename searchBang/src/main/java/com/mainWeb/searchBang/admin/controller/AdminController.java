@@ -49,7 +49,7 @@ public class AdminController {
 	public String regAdmin(@ModelAttribute AdminVO vo) throws Exception {
 
 		String cryptStr = sha.getSha256(vo.getAdminPw().getBytes()); // 비밀번호
-																		// 세팅과정
+		// 세팅과정
 		vo.setAdminPw(cryptStr);
 		adminService.insertAdmin(vo);
 		return "redirect:adminManagement.admin";
@@ -186,7 +186,6 @@ public class AdminController {
 	}
 
 	// login
-
 	@RequestMapping("/login.admin")
 	public ModelAndView login(@ModelAttribute AdminVO vo, HttpSession session) throws Exception {
 

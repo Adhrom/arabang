@@ -42,6 +42,7 @@ function addfavorite(accomvalue){
 			</tr>
 			<tr>
 				<td style="height: 10px; vertical-align: middle; padding-left: 10px;"><span id="spanphone">예약</span>${row.accomPhone }</td>
+				<td style="height: 10px; vertical-align: middle; padding-left: 10px;"><input type="button" onclick="addfavorite('${row.accom_no}')" value="즐겨찾기에 추가">
 			</tr>
 			<c:set var="break" value="false" />
 			<c:forEach items="${r_list}" var = "room"  >
@@ -49,22 +50,17 @@ function addfavorite(accomvalue){
 				<c:if test="${row.accom_no == room.accom_no }">
 
 			   <c:set var="break" value="true" /> <!-- if문을 한번 찍었으면 true 를 준다. -->
-			<tr class="price_tr">
-				<td><label for="price_1"  class="price">대여가격 </label><span id="price_1"class="price_V"><fmt:formatNumber  value="${room.roomRent }"/></span>	</td>
-			</tr>
-			<tr>
-				<td><label for="price_2" class="price">숙박가격 </label><span id="price_2"class="price_V"><fmt:formatNumber  value="${room.roomLodge }"/></span></td>
-			</tr>
+					<tr class="price_tr">
+						<td><label for="price_1"  class="price">대여가격 </label><span id="price_1"class="price_V"><fmt:formatNumber  value="${room.roomRent }"/></span>	</td>
+					</tr>
+					<tr>
+						<td><label for="price_2" class="price">숙박가격 </label><span id="price_2"class="price_V"><fmt:formatNumber  value="${room.roomLodge }"/></span></td>
+					</tr>
 
       			</c:if> <!-- 업체에 맞는 방리스트 뽑기 -->
 
  			</c:if> <!--  break가 true 이면 출력하지 않는다.-->
-
-
-
-
 			</c:forEach>
-
 		</table>
 		<br />
 	</c:forEach>

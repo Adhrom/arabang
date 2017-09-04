@@ -5,8 +5,10 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.mail.MessagingException;
+import javax.mail.Session;
 import javax.mail.internet.AddressException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.util.CookieGenerator;
 
 import com.mainWeb.searchBang.owner.model.AccomVO;
 import com.mainWeb.searchBang.owner.model.RoomVO;
@@ -32,6 +36,11 @@ public class UserController {
 
 	@Inject
 	private UserService service;
+	
+	public  String getSession(HttpSession session) {
+		String ss = (String)session.getAttribute("email");
+		return ss;
+	}
 
 	// 메인인덱스
 	@RequestMapping("index.bang")
@@ -53,7 +62,9 @@ public class UserController {
 	public String naverLoginProc() {
 		return "naverLoginProc";
 	}
+	
 
+	// social-login get(email, nickname)
 	@RequestMapping(value = "/getInfo.bang", method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody void setKakaoInfo(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
@@ -61,6 +72,7 @@ public class UserController {
 		session.setAttribute("email", request.getParameter("email"));
 	}
 
+	// social-login -> resist-form
 	@RequestMapping("/sendInfo.bang")
 	public ModelAndView sendInfo(HttpSession session) {
 		ModelAndView mv = new ModelAndView("redirect:userReg.bang");
@@ -69,34 +81,49 @@ public class UserController {
 		return mv;
 	}
 
+	// 가입
 	@RequestMapping(value = "/resistUser.bang", method = RequestMethod.POST)
 	public String registInfo(@RequestParam("userName") String nickname, @RequestParam("userEmail") String email,
 			@RequestParam("userPw") String password, @RequestParam("userPhone") String phone) throws Exception {
 		service.insertUserService(email, password, nickname, phone);
-		return "index";
+		return "redirect:/index.bang";
 	}
-
+	
+	// 로그인 처리
 	@RequestMapping(value = "/loginProc.bang", method = { RequestMethod.POST, RequestMethod.GET })
-	public ModelAndView loginProc(@RequestParam("email") String email, @RequestParam("password") String password,
-			HttpSession session, Model model) throws Exception {
-		ModelAndView mv = new ModelAndView("redirect:login.bang");
-		UserInfoVO vo = new UserInfoVO();
-		boolean result = service.loginUserService(email, password, session, vo);
+	public String loginProc(@RequestParam("email") String email, @RequestParam("password") String password,
+			HttpSession session, RedirectAttributes redirectAttributes) throws Exception {
+		boolean result = service.loginUserService(email, password, session);
 
-		if (result)
-			model.addAttribute("msg", "success");
-		else
-			model.addAttribute("msg", "fail");
-
-		return mv;
+		if (result) {
+			redirectAttributes.addFlashAttribute("msg","success");
+		}
+		else {
+			redirectAttributes.addFlashAttribute("msg","fail");
+		}
+		return "redirect:/index.bang";
+	}
+	
+	// 로그아웃
+	@RequestMapping(value = "/logout.bang")
+	public String logout(HttpSession session) {
+		service.logout(session);
+		return "redirect:/index.bang";
 	}
 
-	@RequestMapping(value = "/updateInfo.bang", method = RequestMethod.POST)
+	// 정보수정
+	@RequestMapping(value = "/updateInfo.bang", method = {RequestMethod.POST, RequestMethod.GET})
 	public String updateInfo(@RequestParam("updateForm-id") String email,
 			@RequestParam("updateForm-password") String password, @RequestParam("updateForm-nickname") String nickname,
 			@RequestParam("updateForm-phone") String phone) throws Exception {
 		service.updateInfoService(email, password, nickname, phone);
 		return "updateFin";
+	}
+	
+	@RequestMapping(value="/deleteInfo.bang", method=RequestMethod.GET)
+	public String deleteInfo(HttpSession session) {
+		service.deleteUser(session);
+		return "index";
 	}
 
 	@RequestMapping(value = "/searchView.bang", method = RequestMethod.GET)
@@ -154,13 +181,27 @@ public class UserController {
 	}
 
 	@RequestMapping("/userInfo.bang")
-	public String userInfo() {
-		return "userInfo";
+	public ModelAndView userInfo(HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		String str = this.getSession(session);
+		if(!str.equals(null)) {
+			mv.setViewName("userInfo");
+			mv.addObject("point",service.getPoint(session)); // 세션에 따라 포인트 조회해서 오기.
+		}
+		else {
+			mv.setViewName("index");
+			mv.addObject("msg","fail");
+		}
+		return mv;
 	}
 
 	@RequestMapping("/infoAdmin.bang")
-	public String infoAdmin() {
-		return "infoAdmin";
+	public ModelAndView infoAdmin(HttpSession session) {
+		ModelAndView mv = new ModelAndView("infoAdmin");
+		UserInfoVO vo =  service.getInfo1(session);
+		vo.setMemberPw("");
+		mv.addObject("info",vo);
+		return mv;
 	}
 
 	// 즐겨찾기 추가
@@ -170,19 +211,19 @@ public class UserController {
 	}
 
 	// 즐겨찾기 리스트
-	@RequestMapping(value = "/abc.bang")
+	@RequestMapping(value = "/getfavoriteList.bang")
 	public ModelAndView getFavoriteList(HttpSession session) {
 		List<AccomVO> list = new ArrayList<AccomVO>();
 		list = service.getFavoriteList(session);
-
-		ModelAndView mv = new ModelAndView();
-
+		ModelAndView mv = new ModelAndView("favoriteList");
+		mv.addObject("list",list);
 		return mv;
 	}
 
 	// 즐겨찾기 삭제
-	public @ResponseBody void deleteFavorite(@RequestParam("accomNo") int accomNo) {
-		service.deleteFavorite(accomNo);
+	@RequestMapping(value="/deleteFavorite.bang")
+	public @ResponseBody void deleteFavorite(@RequestParam("accomNo") String accomNo) {
+		service.deleteFavorite(Integer.parseInt(accomNo));
 	}
 
 	// 버튼클릭시, 이메일로 인증번호를 보내는 ,,(?)
@@ -206,8 +247,15 @@ public class UserController {
 
 	// 업체내용과 방정보 불러오기
 	@RequestMapping("room_info.bang")
-	public ModelAndView accom_Information(@RequestParam("accom_no") String accom_no) {
+	public ModelAndView accom_Information(@RequestParam("accom_no") String accom_no, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView();
+		
+		// line 216~219 쿠키를 굽는..
+		CookieGenerator cg = new CookieGenerator();
+		cg.setCookieMaxAge(1*60*60); // 1hour?
+		cg.setCookieName("accom_no");
+		cg.addCookie(response, accom_no);
+		
 		AccomVO vo = service.accomInfo(accom_no);
 		List<RoomVO> list = service.roomInfo(accom_no);
 		mv.addObject("vo", vo);
@@ -215,4 +263,20 @@ public class UserController {
 		mv.setViewName("room_info");
 		return mv;
 	}
+	
+//	@RequestMapping("/getCookies.bang")
+//	public ModelAndView getCookies(HttpServletRequest request) {
+//		String cookieValue = "";
+//		Cookie [] cookie = request.getCookies();
+//		
+//		if(cookie != null && cookie.length > 0) {
+//			for (Cookie cc : cookie) {
+//				cookieValue = cc.getValue();
+//			}
+//		}
+//		
+//		ModelAndView mv = new ModelAndView("getCookies");
+//		mv.addObject("cookie",cookieValue);
+//		return mv;
+//	}
 }

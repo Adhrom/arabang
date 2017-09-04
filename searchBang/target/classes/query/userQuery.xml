@@ -10,10 +10,15 @@
 		(#{email}, #{password}, #{nickname}, #{phone})
 	</insert>
 
-	<select id="loginuser"  resultType="com.mainWeb.searchBang.user.model.UserInfoVO">
-		select * from member_reg
-		where memberemail = #{memberEmail} and memberpw = #{memberPw}
+	<select id="loginuser"  resultType="java.lang.String" parameterType="java.util.HashMap">
+		select memberemail from member_reg
+		where memberemail = #{id} and memberpw = #{password}
 	</select>
+	
+	<delete id="deleteuser" parameterType="java.lang.String">
+		DELETE FROM MEMBER_REG 
+		WHERE MEMBEREMAIL = #{email}
+	</delete>
 
 	<select id="accomList" parameterType="java.util.HashMap" resultType="com.mainWeb.searchBang.owner.model.AccomVO">
 		select DISTINCT accom.* from accom ,room where accom.ACCOMADDRESS 
@@ -40,9 +45,14 @@
 	</insert>
 	
 	<select id="favoriteList" parameterType="java.lang.String" resultType="com.mainWeb.searchBang.owner.model.AccomVO">
-		select DISTINCT accom.* from accom,favorite where favorite.email = #{email} 
+		select DISTINCT accom.* from accom,favorite where favorite.useremail = #{email} 
 		AND FAVORITE.ACCOMNUM = ACCOM.ACCOM_NO
 	</select>
+	
+	<delete id="deleteAccom" parameterType="java.lang.Integer">
+		delete from favorite
+		where 
+	</delete>
 
 	<select id="accomInfo" resultType="com.mainWeb.searchBang.owner.model.AccomVO">
 		select * from accom where accom_no = #{accom_no}
@@ -76,7 +86,7 @@
 		insert into review values(review_no_seq , #{memberEmail} , #{accom_no} , #{reviewGrade} , #{content} , sysdate , 'n')
 	</insert>
 
-	<select id="getUserInfo" resultType="com.mainWeb.searchBang.user.model.UserInfoVO">
+	<select id="getUserInfo" resultType="com.mainWeb.searchBang.user.model.UserInfoVO" parameterType="java.lang.String">
 		select * from member_reg where memberemail = #{memberEmail}
 	</select>
 
@@ -86,5 +96,10 @@
 
 	<select id="accomInfoForReservation" resultType="com.mainWeb.searchBang.owner.model.AccomVO">
 		select * from accom where accom_no = (select accom_no from room where room_no = #{room_no})
+	</select>
+	
+	<select id="getUserpoint" parameterType="java.lang.String" resultType="java.lang.Integer">
+		SELECT POINT FROM MEMBER_REG 
+		WHERE MEMBEREMAIL = #{email}
 	</select>
 </mapper>

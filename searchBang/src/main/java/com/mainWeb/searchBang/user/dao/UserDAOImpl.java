@@ -26,13 +26,9 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public boolean loginUserDAO(UserInfoVO vo) {
-		System.out.println("dao 진입 : " + vo.getMemberEmail() + " / " + vo.getMemberPw());
-		vo = sqlsession.selectOne("user.loginuser", vo);
-
-		System.out.println(vo.toString());
-
-		return (vo.getMemberEmail() == null) ? false : true;
+	public boolean loginUserDAO(Map<String, Object> info) {
+		String email = sqlsession.selectOne("user.loginuser", info);
+		return (email == null) ? false : true;
 	}
 
 	@Override
@@ -130,6 +126,12 @@ public class UserDAOImpl implements UserDAO {
 	public UserInfoVO getInfo(Map<String, Object> map) {
 		return sqlsession.selectOne("user.getInfo", map);
 	}
-
-
+	
+	public int getPoint(String email) {
+		return sqlsession.selectOne("user.getUserpoint", email);
+	}
+	
+	public void deleteUser(String email) {
+		sqlsession.delete("user.deleteuser", email);
+	}
 }

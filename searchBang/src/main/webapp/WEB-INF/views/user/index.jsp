@@ -13,6 +13,7 @@
          auto : true,
          mode : 'fade',
       });
+      
       // 클릭시 멈춤 현상 해결 //
       $(document).on('click', '.bx-next, .bx-prev', function() {
          slider.stopAuto();
@@ -30,10 +31,6 @@
       });
    });
 </script>
-
-
-
-
 <title>ARA BANG</title>
 </head>
 <body>
@@ -155,14 +152,6 @@
 					<h3>Tokyo</h3>
 					<p>Tokyo is the capital of Japan.</p>
 				</div>
-
-
-
-
-
-
-
-
 			</div>
 		</div>
 	</div>

@@ -102,8 +102,6 @@
 
 </head>
 <body>
-
-
 	<!-- 로그인실패 알터창 -->
 	<c:if test="${msg == 'failure'}">
 		<script type="text/javascript">
@@ -179,13 +177,11 @@
 				</tr>
 				<tr>
 					<td>
-						<button type="button" id="btnLogin" class="button"
-							style="width: 100%;">LOGIN</button>
+						<button type="button" id="btnLogin" class="button" style="width: 100%;">LOGIN</button>
 					</td>
 				</tr>
 			</table>
-			<input type="hidden" name="${_csrf.parameterName}"
-				value="${_csrf.token}" />
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 		</form>
 	</div>
 </body>

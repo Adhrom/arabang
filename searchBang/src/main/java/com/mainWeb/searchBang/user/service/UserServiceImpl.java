@@ -42,11 +42,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean loginUserService(String email, String password,HttpSession session , UserInfoVO vo) throws Exception {
-		System.out.println("service 진입 : " + email +" "+ password );
-		vo.setMemberEmail(email);
-		vo.setMemberPw(sha.getSha256(password.getBytes()));
-		boolean result = dao.loginUserDAO(vo);
+	public boolean loginUserService(String email, String password,HttpSession session) throws Exception {
+		this.setMapping(email, password);
+		boolean result = dao.loginUserDAO(info);
 		if(result){
 			session.setAttribute("email", email);
 			session.setAttribute("loginresult", "success");
@@ -161,6 +159,21 @@ public class UserServiceImpl implements UserService {
 		vo.setMemberPw("");
 		return vo;
 	}
-
 	
+	public int getPoint(HttpSession session) {
+		String email = (String) session.getAttribute("email");
+		return dao.getPoint(email);
+	}
+	
+	public void logout(HttpSession session) {
+		session.invalidate();
+	}
+	
+	public UserInfoVO getInfo1(HttpSession session) {
+		return dao.getUserInfo((String) session.getAttribute("email"));
+	}
+	
+	public void deleteUser(HttpSession session) {
+		dao.deleteUser((String)session.getAttribute("email"));
+	}
 }
