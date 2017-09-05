@@ -29,7 +29,7 @@ $(function() {
 		"sZeroRecords": "검색 결과가 없습니다.",
 		"sLengthMenu" : "<span>페이지 갯수</span> _MENU_"
 	}
-   
+
 	});
 });
 </script>
@@ -59,10 +59,6 @@ $(function() {
 					</tr>
 				</c:forEach>
 				</tbody>
-				<tr style="border-top: 2px solid #00a699;">
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-				</tr>
 			</table>
 		</form>
 			<p style="text-align: center;">

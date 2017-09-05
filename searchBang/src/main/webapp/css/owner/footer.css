@@ -1,7 +1,7 @@
 @CHARSET "UTF-8";
 /* Footer */
 #footer {
-
+   display:block;
    padding: 30px;
    margin-top: 50px;
    background: #f6f6f6;
@@ -10,9 +10,6 @@
 }
 #footerall{
    width: 1000px;
-   margin: auto;
-
-
 }
 
 #footer ul li{
@@ -80,3 +77,16 @@
    }
 }
 */
+
+.icons i{
+	border: 1px solid #aaa;
+	padding : 10px;
+	border-radius:30px;
+
+}
+
+
+.icons i:HOVER{
+	background-color: rgba(255,255,255,1);;
+
+}

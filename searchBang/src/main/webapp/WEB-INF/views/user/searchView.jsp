@@ -9,7 +9,7 @@
 <title>Main View Test Page</title>
 
 
-<link rel="stylesheet" href="/searchBang/css/user/searchViewSt.css" />
+<link rel="stylesheet" href="/searchBang/css/user/searchViewSt.css?ver=1" />
 </head>
 <body>
 	<jsp:include page="userTop.jsp" flush="false"></jsp:include>

@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -11,9 +12,10 @@
 	href='http://fonts.googleapis.com/css?family=Titillium+Web:400,600,700'
 	rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="/searchBang/css/admin/reset.css?ver=1">
-<link rel="stylesheet" href="/searchBang/css/admin/adminstyle.css">
+<link rel="stylesheet" href="/searchBang/css/admin/adminstyle.css?ver=1">
 <link rel="stylesheet" href="/searchBang/css/common/btstyle.css">
 <link rel="stylesheet" href="/searchBang/css/common/checkboxstyle.css">
+<link rel="stylesheet" href="/searchBang/css/owner/topmenu.css">
 <!-- Resource style -->
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
@@ -33,41 +35,6 @@
 	});
 </script>
 
-
-<style type="text/css">
-.inputarea {
-	width: 100%;
-	border-radius: 4px;
-	border: 2px solid #989898;
-	color: #989898;
-	padding: 5px;
-}
-
-#cd-lateral-nav .item-has-children>a::after {
-	content: '';
-	display: block;
-	height: 11px;
-	width: 8px;
-	position: absolute;
-	top: 50%;
-	bottom: auto;
-	-webkit-transform: translateY(-50%);
-	-moz-transform: translateY(-50%);
-	-ms-transform: translateY(-50%);
-	-o-transform: translateY(-50%);
-	transform: translateY(-50%);
-	right: 1em;
-	background: url("/searchBang/img/admin/cd-arrow.svg") no-repeat center
-		center;
-	background-size: 8px 11px;
-	-webkit-transition-property: -webkit-transform;
-	-moz-transition-property: -moz-transform;
-	transition-property: transform;
-	-webkit-transition-duration: 0.2s;
-	-moz-transition-duration: 0.2s;
-	transition-duration: 0.2s;
-}
-</style>
 <title></title>
 </head>
 <body>
@@ -95,7 +62,7 @@
 	</div>
 	<!-- 헤더  -->
 	<header>
-		
+
 		<nav id="cd-top-nav">
 			<ul>
 				<li><c:choose>
@@ -122,31 +89,28 @@
 		</ul>
 	</nav>
 
-	<div id="login"
-		style="background-color: white; padding: 30px; width: 330px; border: 3px solid #00a699; border-radius: 5px;"
-		class="checks etrans">
+	<div id="login"	class="checks etrans">
 		<form class="login-form" id="loginForm" name="loginForm"
 			action="loginProc.owner" method="post">
-
-			<p style="font-size: 35px; font-weight: bold;">사장님 로그인</p><br/>
-			<table style="width: 300px">
+			<p >사장님 로그인</p><br/>
+			<table>
 				<tr>
-					<td style="font-size: 13px; padding-left: 20px;">이메일</td>
+					<td class="login-name-text">이메일</td>
 				</tr>
 				<tr height="50px;">
-					<td colspan="2"><input type="text" class="input-type" name="loginEmail" style="width: 90%; height: 30px;"></td>
+					<td colspan="2"><input type="text" class="input-type" name="loginEmail" style="width: 90%; height: 30px; outline-width:0;"></td>
 				</tr>
 				<tr>
-					<td style="font-size: 13px; padding-left: 20px;">비밀번호</td>
+					<td class="login-name-text">비밀번호</td>
 				</tr>
 				<tr height="50px;">
-					<td colspan="2"><input type="password" class="input-type" name="loginPass" style="width: 90%; height: 30px;"></td>
+					<td colspan="2"><input type="password" class="input-type" name="loginPass" style="width: 90%; height: 30px; outline-width:0;"></td>
 				</tr>
 				<tr height="30px;">
 					<td style="padding-right: 10px;"><input type="checkbox" id="divECI_ISDVSAVE"
 						name="divECI_ISDVSAVE" /> <label for="divECI_ISDVSAVE">아이디
 							저장</label></td>
-					<td style="text-align: right; font-size: 13px; padding-right: 30px;"><a href="#">비밀번호 찾기</a></td>
+					<td style="text-align: right; font-size: 13px; padding-right: 30px; text-decoration: none;"><a href="#">비밀번호 찾기</a></td>
 				</tr>
 				<tr height="30px;">
 					<td><input id="login-btn" type="button" value="로그인"

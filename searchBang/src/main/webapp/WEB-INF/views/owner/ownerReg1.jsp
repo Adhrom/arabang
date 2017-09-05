@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="/searchBang/css/owner/welcome.css">
+<link rel="stylesheet" href="/searchBang/css/owner/ownerReg1.css">
 <link rel="stylesheet" href="/searchBang/css/common/btstyle.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>ARA 가족신청</title>
@@ -32,11 +32,12 @@
 	<!-- 헤더 -->
 
 	<jsp:include page="topmenu.jsp" flush="false"></jsp:include>
-	<div class="cd-main-content" style="width: 1000px; margin: 50px auto;">
+	<div class="cd-main-content">
 		<div id="agree">
-			<h4 id="title-a">알아방 가족이 되어주세요</h4>
-			<b id="title-b">알아방 가족 신청 페이지</b>
-
+		<ul>
+			<li id="title-a">알아방 가족이 되어주세요</li>
+			<li id="title-b">알아방 가족 신청 페이지</li>
+			</ul>
 			<!-- 진행숫자 -->
 			<div class="circle-wrapper">
 				<div class="circle1">
@@ -558,8 +559,8 @@
 					약관은 2015년 11월 1일부터 적용됩니다. <br>
 				</div>
 				<div id="btn">
-					<input type="button" id="back" value="이전" class="button"> <input
-						type="button" id="next" value="다음" class="button">
+					<input type="button" id="back" value="이전" class="button"> 
+					<input type="button" id="next" value="다음" class="button">
 				</div>
 			</div>
 		</div>

@@ -6,18 +6,35 @@ body, h1, h2, h3, h4, h5, h6, input, textarea, select, button, table {
     -webkit-text-size-adjust: none;
     -ms-text-size-adjust: 100%;
     -webkit-tap-highlight-color: transparent;
+    margin:0;
+   padding: 0;
 }
+ul, li{
+   list-style: none;
+    margin:0;
+   padding: 0;
+}
+
+#cd-main-content{
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top:5%;
+}
+#title-b{
+	margin-top:1%;
+	font-size:3em;
+}
+
 #agree{
 	width:1000px;
 	margin-left: auto;
-	margin-right: auto; 
+	margin-right: auto;
 }
-/*진행 순서 동그라미   */ 
-b#title-b {
-	font-size:40px;
-}
+/*진행 순서 동그라미   */
+
 .circle-wrapper {
-	
+
 	margin-top:50px;
 	margin-left:300px;
 	margin-right:300px;
@@ -27,7 +44,23 @@ b#title-b {
 }
 
 .circle1 {
-	
+
+	width: 30px;
+	height: 30px;
+	-moz-border-radius: 30px;
+	-webkit-border-radius: 30px;
+	border: 1.5px;
+	border-color:#00a699;
+	border-style:solid;
+	border-radius: 50px;
+	text-align:center;
+	color: #00a699;
+	line-height: 30px;
+}
+.circle2 {
+	margin-top:-30px;
+	margin-left:183px;
+	top:10px;
 	width: 30px;
 	height: 30px;
 	-moz-border-radius: 30px;
@@ -37,23 +70,7 @@ b#title-b {
 	border-style:solid;
 	border-radius: 50px;
 	text-align:center;
-	color: #989898;
-	line-height: 30px;
-}
-.circle2 {
-	margin-top:-33px;
-	margin-left:183px;
-	top:10px;
-	width: 30px;
-	height: 30px;
-	-moz-border-radius: 30px;
-	-webkit-border-radius: 30px;
-	border: 1.5px;
-	border-color:#00a699;	
-	border-style:solid;
-	border-radius: 50px;
-	text-align:center;
-	color:#00a699;
+	color:#989898;
 	line-height: 30px;
 }
 .circle3 {
@@ -73,25 +90,26 @@ b#title-b {
 	line-height: 30px;
 }
 .line1 {
-	margin-top:-18px;
-	margin-left:33px;
-	width:150px;
+	margin-top:-17px;
+	margin-left:30px;
+	width:153px;
 	background:lightgray;
-	border: 0.5px solid #989898;
-	
+	border: 0.5px solid #00a699;
+
 	line-height: 100px;
 }
 
 .line2 {
-	margin-top:-1.5px;
-	margin-left:215px;
-	width:150px;
+	margin-top:-0.5px;
+	margin-left:212px;
+	width:153px;
 	background:lightgray;
-	border: 0.5px solid #00a699;
-	
+	border: 0.5px solid #989898;
+
 	line-height: 100px;
 }
 
+/*********************내용*******************/
 #checkboxAuto{
 	float: left;
 }
@@ -103,7 +121,7 @@ table {
 
 .agreeText {
     border-top: 0 none;
-    height: 110px;
+    height: 220px;
     overflow-y: scroll;
      padding: 30px;
     border: 1px solid #ddd;
@@ -133,37 +151,9 @@ td, th {
 }
 /*이전 다음 버튼*/
 #btn{
-	width:300px;
-	margin-left:auto;
+	width:1000px;
+	margin-left:43%;
 	margin-right:auto;
 	margin-top: 5%;
 	margin-bottom: 5%;
-}
-
-input#back-btn {
-	
-	width:48%;
-	height:27px;
-	
-	float:left;
-	
-	background-color:white;
-	border: solid 1px #00a699;
-	border-radius:5px;
-	color:#00a699;
-	font-size: 9pt;
-	font-weight: bold;
-}
-input#next-btn {
-	width:48%;
-	height:27px;
-	
-	float:right;
-	
-	background-color:white;
-	border: solid 1px #00a699;
-	border-radius:5px;
-	color:#00a699;
-	font-size: 9pt;
-	font-weight: bold;
 }

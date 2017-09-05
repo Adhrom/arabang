@@ -5,8 +5,6 @@
 <head>
 <!-- Include Required Prerequisites -->
 <script type="text/javascript"
-	src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
-<script type="text/javascript"
 	src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="//cdn.jsdelivr.net/bootstrap/3/css/bootstrap.css" />
@@ -58,7 +56,7 @@
 						<!-- 위치 -->
 
 						<td><input type="text" class="serachTd" id="address"
-							placeholder="원하는 지역을 검색하세요"></td>
+							placeholder="모든 위치"></td>
 						<!-- 날짜 -->
 						<td><input type="text" name="daterange" class="serachTd"
 							id="daterange" /> <script type="text/javascript"

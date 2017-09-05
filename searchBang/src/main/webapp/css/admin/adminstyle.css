@@ -16,7 +16,7 @@ html * {
 
 html, body {
   /* you need to set this to assign to the main element a min height of 100% */
-  
+
   height: 100%;
 }
 
@@ -87,14 +87,14 @@ width: 1000px;
     padding-top: 70px;
   }
 }
-.logo-header {	
+.logo-header {
 	position: absolute;
 	float:left;
 	width:80%;
 	height: 70px;
 	top:0;
 	left:0;
-	
+
 	background: #00a699;
 }
 header {
@@ -157,11 +157,11 @@ header.is-fixed {
 }
 #cd-top-nav ul {
   height: 100%;
-  padding-top: 18px;
 }
 #cd-top-nav li {
   display: inline-block;
   margin-right: 1em;
+  margin-top: 20px;
 }
 #cd-top-nav a {
   display: inline-block;

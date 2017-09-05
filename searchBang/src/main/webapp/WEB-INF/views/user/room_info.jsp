@@ -10,14 +10,7 @@
 
 <link rel="stylesheet" type="text/css"
 	href="/searchBang/css/user/roominfo_style.css">
-<link rel="stylesheet" href="css/user/userTop.css">
 
-<!-- jQuery library (served from Google) -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-<script src="/js/common/jquery.bxslider.min.js"></script>
-<!-- bxSlider CSS file -->
-<link href="/css/common/jquery.bxslider.css" rel="stylesheet" />
-</head>
 
 
 <body style="width: 1000px; margin: 0 auto;">

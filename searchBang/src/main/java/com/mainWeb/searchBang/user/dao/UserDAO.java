@@ -3,8 +3,6 @@ package com.mainWeb.searchBang.user.dao;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
 import com.mainWeb.searchBang.owner.model.AccomVO;
 import com.mainWeb.searchBang.owner.model.RoomVO;
 import com.mainWeb.searchBang.user.model.ReservationVO;
@@ -75,8 +73,14 @@ public interface UserDAO {
 
 	// 포인트 가져오기
 	public int getPoint(String email);
-	
+
 	// 계정 탈퇴
 	public void deleteUser(String email);
-	
+
+	// 핫딜 리스트
+	public List<AccomVO> hotdeal();
+
+	// 타입으로 검색
+	public List<AccomVO> accomTypeForRoomtype(String roomType);
+
 }

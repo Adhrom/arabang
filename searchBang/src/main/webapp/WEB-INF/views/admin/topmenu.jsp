@@ -9,7 +9,7 @@
 <!-- CSS reset -->
 <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,600,700' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="/searchBang/css/admin/reset.css">
-<link rel="stylesheet" href="/searchBang/css/admin/adminstyle.css">
+<link rel="stylesheet" href="/searchBang/css/admin/adminstyle.css?ver=1">
 <link rel="stylesheet" href="/searchBang/css/common/btstyle.css">
 <!-- Resource style -->
 <script type="text/javascript"

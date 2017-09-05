@@ -10,7 +10,7 @@
 </head>
 <body class="top-section">
 	<header>
-		<jsp:include page="topmenu.jsp" flush="false"></jsp:include>
+		<jsp:include page="userTop.jsp" flush="false"></jsp:include>
 	</header>
 	<div class="findpw-page-section">
 		<div id="explain">
@@ -18,7 +18,7 @@
 		</div>
 		<form method="post" id="certiform" name="certiform">
 			<div class="input-box">
-				<input class="input-style" type="text" id="Find-id" name="Find-id" placeholder="이메일 인증을 먼저 해주세요" readonly="readonly"> 
+				<input class="input-style" type="text" id="Find-id" name="Find-id" placeholder="이메일 인증을 먼저 해주세요" readonly="readonly">
 				<input class="btn-style certify_open" type="button" id="sendEmail" value="이메일 인증">
 				<input class="input-style" type="text" id="Find-name" name="Find-name" placeholder="이름을 입력해 주세요">
 				<input class="btn-style" type="button" id="Find-pw" value="다음" onclick="certifyCheck()">
@@ -42,11 +42,11 @@
             transition : 'all 0.3s'
          });
       });
-      
+
       $('#approval').click(function() {
 			var v1 =  $('input[id="certify"]').parent().parent().find('input[type="text"]').val(); // 값이 안넘어와서 좀복잡하게 처리
 			var v2 = $("#secret_ceritify").val();
-			
+
 			var email = $('#idfield').val();
 			if (email == "") {
 				alert("이메일을 입력해 주세요.");
@@ -58,14 +58,14 @@
 			}
 			else {
 				alert("인증이 성공되었습니다");
-				$('#secret_certify_num').val(1); // 인증여부확인 변수 체크, 
+				$('#secret_certify_num').val(1); // 인증여부확인 변수 체크,
 				$('#Find-id').val($('#idfield').val());
 				var bt = document.getElementById('approval');
 				bt.disabled = 'disabled';
 				$('#certify').popup('hide');
 			}
 		});
-      
+
       // 인증여부 확인 & 닉네임 입력 안했을때
       function certifyCheck(){
     	  if($("#Find-name").val() == ""){
@@ -73,7 +73,7 @@
          	 $("#Find-name").focus();
          	 return ;
           }
-    	  
+
     	  else if($("#secret_certify_num").val() != 1){
     		  alert("인증이 되지 않았습니다. 다시 시행해 주세요");
     		  return ;

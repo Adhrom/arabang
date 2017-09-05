@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="/searchBang/css/owner/welcomeFinish.css">
+<link rel="stylesheet" href="/searchBang/css/owner/ownerReg3.css">
 <link rel="stylesheet" href="/searchBang/css/common/btstyle.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>ARA 가족신청</title>
@@ -13,11 +13,16 @@
 	<!-- 헤더 -->
 
 	<jsp:include page="topmenu.jsp" flush="false"></jsp:include>
-	<div class="cd-main-content" style="width: 1000px; margin: 50px auto;">
-		<div id="welcomeFinish">
-			<h4 id="title-a">알아방 가족이 되어주세요</h4>
-			<b id="title-b">알아방 가족 신청 페이지</b>
+	<div id="cd-main-content">
+			<!-- 메인콘텐츠 -->
+		<div class="cd-main-content">
 
+			<ul>
+				<li id="title-a">알아방으로 다양한 혜택을 알아보세요</li>
+				<li id="title-b">알아방 회원가입</li>
+			</ul>
+
+				<!-- 진행숫자 -->
 			<div class="circle-wrapper">
 				<div class="circle1">
 					<b>1</b>
@@ -28,7 +33,6 @@
 				<div class="circle3">
 					<b>3</b>
 				</div>
-
 				<div class="line1"></div>
 
 				<div class="line2"></div>

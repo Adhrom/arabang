@@ -1,0 +1,223 @@
+@CHARSET "UTF-8";
+body, h1, h2, h3, h4, h5, h6, input, textarea, select, button, table {
+    font-family: "Apple SD Gothic Neo", "Nanum Barun Gothic", "NanumBarunGothic", sans-serif !important;
+    color: #666666;
+    font-size: 14px;
+    -webkit-text-size-adjust: none;
+    -ms-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    margin:0;
+   padding: 0;
+}
+ul, li{
+   list-style: none;
+    margin:0;
+   padding: 0;
+}
+
+.cd-main-content{
+   width: 1000px;
+   margin-left:auto;
+   margin-right: auto;
+   margin-top:5%;
+}
+
+
+.input-box {
+	margin-top: 5%;
+	margin-bottom: 10%; /* footer와의 간격*/
+	width: auto;
+	border: solid 1px #989898;
+	border-radius: 4px;
+	
+}
+#title-b{
+	margin-top:1%;
+	font-size:3em;
+}
+.input-box-value {
+	width:40%;
+	height:auto;
+	margin-left:auto;
+	margin-right:auto;
+	border: solid 1px white;
+	padding-top:5%;
+	padding-bottom: 5%;
+
+}
+
+
+.input-value {
+	width: 99%;	
+	margin-left: auto;
+	margin-right: auto;
+	margin-top:5px;
+	margin-bottom:15px;
+	height:25px;
+	
+}
+
+input#input-phone {
+	width:91px;
+	margin-top:5px;
+	margin-bottom:15px;
+	height:25px;
+	
+}
+
+
+.input-box-value li{
+	margin-bottom: 2%;
+}
+
+#sendEmail {
+	width:90%;	
+	line-height:30px;
+	background-color: #00a699;
+	border: none;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 14px;
+	font-weight: bold;
+	margin-left: 10%;
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
+	cursor: pointer;
+	background-color: white;
+	border: 1px solid #00a699;
+	border-radius: 4px;
+	color: #989898;
+}
+
+.left-btn {
+	
+	width:45%;
+	height:30px;
+	float:left;
+	background-color: #00a699;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 14px;
+	font-weight: bold;
+	background-color: white;
+	border: 1px solid #00a699;
+	border-radius: 4px;
+	color: #989898;
+}
+.right-btn {
+	margin-right:10px;
+	width:45%;
+	height:30px;
+	float:right;
+	background-color: #00a699;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 14px;
+	font-weight: bold;
+	background-color: white;
+	border: 1px solid #00a699;
+	border-radius: 4px;
+	color: #989898;
+	
+}
+
+
+
+.body-form{
+	margin:30px;
+}
+.mail-title {
+	
+	height:30px;
+	line-height:30px;
+	text-align:center;
+	font-size:20px;
+	background-color:#00a699;
+	color:white;
+}
+.mail-form {
+	margin: 0 auto;
+	margin-bottom:2%;
+	height:100px;
+	/* border: 1px solid #989898; */
+}
+.mail-popup {
+	
+}
+.mail-btn {
+	margin-right:30px;
+	width:80%;
+	height:25px;
+	line-height:25px;
+	background-color: #00a699;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 11px;
+	font-weight: bold;
+	background-color: white;
+	border: 1px solid #00a699;
+	border-radius: 4px;
+	color: #989898;
+}
+
+.mail-btn:hover {
+	background-color: #00a699;
+	color: white;
+}
+
+.mail-btn:ACTIVE {
+	background-color: white;
+	color: #989898;
+}
+
+.frmdate {
+	margin-top:1%;
+	margin-bottom:2%;
+	height: 30px;
+	width: 98%;
+}
+
+table {
+	width: 100%;
+}
+
+.frmtd {
+	margin-top: 10px;
+	margin-bottom: 25px;
+}
+
+
+.chkfield {
+	margin-top:2%;
+	margin-left:15px;
+	line-height:20px;
+	
+	
+}
+
+
+.input-box-value {
+	width: 50%;
+	height: 400px;
+	margin-top: 40px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 40px;
+	border: solid 1px white;
+}
+
+.label {
+	margin-bottom:3%;
+	font-size: 12px;
+}
+
+.frmdate {
+	margin-top:1%;
+	margin-bottom:2%;
+	height: 30px;
+	width: 98%;
+}

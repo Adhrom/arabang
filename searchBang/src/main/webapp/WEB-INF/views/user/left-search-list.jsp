@@ -5,7 +5,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>상세조건</title>
-<link rel="stylesheet" href="/searchBang/css/user/searchViewSt.css" />
 </head>
 <body>
 

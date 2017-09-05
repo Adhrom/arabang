@@ -9,11 +9,6 @@
 
 <meta charset="UTF-8">
 <title>tab</title>
-	<!-- jQuery library (served from Google) -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-<script src="/searchBang/js/common/jquery.bxslider.min.js"></script>
-<!-- bxSlider CSS file -->
-<link href="/searchBang/css/common/jquery.bxslider.css" rel="stylesheet" />
 <link rel="stylesheet" href="css/user/tab_star_style.css" />
 <style>
 html {
@@ -417,11 +412,11 @@ $(document).ready(function () {
 
 <style>
 .bx-wrapper {
-	
+
 	position: relative;
 	top: 10px;
 	padding: 0px;
-	width: 320px;
+	width: 310px;
 	height: 240px;
 	margin-right: 10px;
 }
@@ -434,7 +429,7 @@ $(document).ready(function () {
 }
 
 .info {
-	
+
 	display: inline-block;
 	margin: 0px 0px;
 	padding: 1px 0px;
@@ -561,6 +556,7 @@ display:inline-block;
 }
 
 .room_info{
+
 padding-top : 10px;
 border : 1px solid #dfdfdf;
 text-align: center;
@@ -568,8 +564,9 @@ text-align: center;
 }
 
 .room_info .info{
+
 position : relative;
-top: -20px;
+top: -10px;
 border: 1px solid #dfdfdf;
 }
 </style>
@@ -603,47 +600,47 @@ border: 1px solid #dfdfdf;
 						<ul class="bxslider2">
 							<c:if test="${list.roomimg1 != 'null'}">
 							<li class="banner_01">
-							<img alt="이미지 정보" src="${list.roomimg1}" width="320" height="240">
+							<img alt="이미지 정보" src="${list.roomimg1}" width="310" height="240">
 							</li>
 							</c:if>
 							<c:if test="${list.roomimg2 != 'null'}">
 							<li class="banner_02">
-							<img alt="이미지 정보" src="${list.roomimg2}" width="320" height="240">
+							<img alt="이미지 정보" src="${list.roomimg2}" width="310" height="240">
 							</li>
 							</c:if>
 							<c:if test="${list.roomimg3 != 'null'}">
 							<li class="banner_03">
-							<img alt="이미지 정보" src="${list.roomimg3}" width="320" height="240">
+							<img alt="이미지 정보" src="${list.roomimg3}" width="310" height="240">
 							</li>
 							</c:if>
 							<c:if test="${list.roomimg4 != 'null'}">
 							<li class="banner_04">
-							<img alt="이미지 정보" src="${list.roomimg4}" width="320" height="240">
+							<img alt="이미지 정보" src="${list.roomimg4}" width="310" height="240">
 							</li>
 							</c:if>
 							<c:if test="${list.roomimg5 != 'null'}">
 							<li class="banner_05">
-							<img alt="이미지 정보" src="${list.roomimg5}" width="320" height="240">
+							<img alt="이미지 정보" src="${list.roomimg5}" width="310" height="240">
 							</li>
 							</c:if>
 							<c:if test="${list.roomimg6 != 'null'}">
 							<li class="banner_06">
-							<img alt="이미지 정보" src="${list.roomimg6}" width="320" height="240">
+							<img alt="이미지 정보" src="${list.roomimg6}" width="310" height="240">
 							</li>
 							</c:if>
 							<c:if test="${list.roomimg7 != 'null'}">
 							<li class="banner_07">
-							<img alt="이미지 정보" src="${list.roomimg7}" width="320" height="240">
+							<img alt="이미지 정보" src="${list.roomimg7}" width="310" height="240">
 							</li>
 							</c:if>
 							<c:if test="${list.roomimg8 != 'null'}">
 							<li class="banner_08">
-							<img alt="이미지 정보" src="${list.roomimg8}" width="320" height="240">
+							<img alt="이미지 정보" src="${list.roomimg8}" width="310" height="240">
 							</li>
 							</c:if>
 							<c:if test="${list.roomimg9 != 'null'}">
 							<li class="banner_09">
-							<img alt="이미지 정보" src="${list.roomimg9}" width="320" height="240">
+							<img alt="이미지 정보" src="${list.roomimg9}" width="310" height="240">
 							</li>
 							</c:if>
 						</ul>

@@ -63,12 +63,6 @@
 						<td class="admintd">상세보기</td>
 					</tr>
 				</c:forEach>
-				<tr style="border-top: 2px solid #00a699;">
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-				</tr>
 				</tbody>
 			</table>
 		</form>

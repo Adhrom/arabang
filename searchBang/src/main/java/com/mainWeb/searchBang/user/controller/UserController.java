@@ -1,11 +1,12 @@
 package com.mainWeb.searchBang.user.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.mail.MessagingException;
-import javax.mail.Session;
 import javax.mail.internet.AddressException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,15 +38,19 @@ public class UserController {
 	@Inject
 	private UserService service;
 
-	public  String getSession(HttpSession session) {
-		String ss = (String)session.getAttribute("email");
+	public String getSession(HttpSession session) {
+		String ss = (String) session.getAttribute("email");
 		return ss;
 	}
 
 	// 메인인덱스
 	@RequestMapping("index.bang")
-	public String index() {
-		return "index";
+	public ModelAndView index() {
+		ModelAndView mv = new ModelAndView();
+		List<AccomVO> list = service.hotdeal();
+		mv.setViewName("index");
+		mv.addObject("list", list);
+		return mv;
 	}
 
 	@RequestMapping("/login.bang")
@@ -78,7 +83,6 @@ public class UserController {
 		return "bookmark_room_list";
 	}
 
-
 	// social-login get(email, nickname)
 	@RequestMapping(value = "/getInfo.bang", method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody void setKakaoInfo(HttpServletRequest request, Model model) {
@@ -106,17 +110,17 @@ public class UserController {
 
 	// 로그인 처리
 	@RequestMapping(value = "/loginProc.bang", method = { RequestMethod.POST, RequestMethod.GET })
-	public String loginProc(@RequestParam("email") String email, @RequestParam("password") String password,
-			HttpSession session, RedirectAttributes redirectAttributes) throws Exception {
+	public String loginProc(@RequestParam("email") String email, @RequestParam("password") String password, RedirectAttributes redirectAttributes , HttpServletRequest req) throws Exception {
+		HttpSession session = req.getSession(false);
 		boolean result = service.loginUserService(email, password, session);
-
+		String url = req.getHeader("REFERER");
 		if (result) {
-			redirectAttributes.addFlashAttribute("msg","success");
+			session.setAttribute("email", email);
+			redirectAttributes.addFlashAttribute("msg", "success");
+		} else {
+			redirectAttributes.addFlashAttribute("msg", "failure");
 		}
-		else {
-			redirectAttributes.addFlashAttribute("msg","fail");
-		}
-		return "redirect:/index.bang";
+		return "redirect:"+url;
 	}
 
 	// 로그아웃
@@ -127,7 +131,7 @@ public class UserController {
 	}
 
 	// 정보수정
-	@RequestMapping(value = "/updateInfo.bang", method = {RequestMethod.POST, RequestMethod.GET})
+	@RequestMapping(value = "/updateInfo.bang", method = { RequestMethod.POST, RequestMethod.GET })
 	public String updateInfo(@RequestParam("updateForm-id") String email,
 			@RequestParam("updateForm-password") String password, @RequestParam("updateForm-nickname") String nickname,
 			@RequestParam("updateForm-phone") String phone) throws Exception {
@@ -135,7 +139,7 @@ public class UserController {
 		return "updateFin";
 	}
 
-	@RequestMapping(value="/deleteInfo.bang", method=RequestMethod.GET)
+	@RequestMapping(value = "/deleteInfo.bang", method = RequestMethod.GET)
 	public String deleteInfo(HttpSession session) {
 		service.deleteUser(session);
 		return "index";
@@ -155,6 +159,22 @@ public class UserController {
 		mv.addObject("list", list);
 		mv.addObject("r_list", r_list);
 		mv.addObject("date", date);
+		mv.setViewName("searchView");
+		return mv;
+	}
+
+	@RequestMapping(value = "/searchView2.bang", method = RequestMethod.GET)
+	public ModelAndView searchView2(@RequestParam(value = "accomType") String accomType, HttpServletRequest req) {
+		HttpSession session = req.getSession(false);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar c1 = Calendar.getInstance();
+		String strToday = sdf.format(c1.getTime());
+		session.setAttribute("startDate", strToday);
+		session.setAttribute("endDate", strToday);
+		// session.setAttribute("room_no", vo.getRoom_no();
+		List<AccomVO> list = service.accomTypeForRoomtype(accomType);
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("list", list);
 		mv.setViewName("searchView");
 		return mv;
 	}
@@ -199,13 +219,13 @@ public class UserController {
 	public ModelAndView userInfo(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		String str = this.getSession(session);
-		if(!str.equals(null)) {
+		if (!str.equals(null)) {
 			mv.setViewName("userInfo");
-			mv.addObject("point",service.getPoint(session)); // 세션에 따라 포인트 조회해서 오기.
-		}
-		else {
+			mv.addObject("point", service.getPoint(session)); // 세션에 따라 포인트 조회해서
+																// 오기.
+		} else {
 			mv.setViewName("index");
-			mv.addObject("msg","fail");
+			mv.addObject("msg", "fail");
 		}
 		return mv;
 	}
@@ -213,9 +233,9 @@ public class UserController {
 	@RequestMapping("/infoAdmin.bang")
 	public ModelAndView infoAdmin(HttpSession session) {
 		ModelAndView mv = new ModelAndView("infoAdmin");
-		UserInfoVO vo =  service.getInfo1(session);
+		UserInfoVO vo = service.getInfo1(session);
 		vo.setMemberPw("");
-		mv.addObject("info",vo);
+		mv.addObject("info", vo);
 		return mv;
 	}
 
@@ -231,12 +251,12 @@ public class UserController {
 		List<AccomVO> list = new ArrayList<AccomVO>();
 		list = service.getFavoriteList(session);
 		ModelAndView mv = new ModelAndView("favoriteList");
-		mv.addObject("list",list);
+		mv.addObject("list", list);
 		return mv;
 	}
 
 	// 즐겨찾기 삭제
-	@RequestMapping(value="/deleteFavorite.bang")
+	@RequestMapping(value = "/deleteFavorite.bang")
 	public @ResponseBody void deleteFavorite(@RequestParam("accomNo") String accomNo) {
 		service.deleteFavorite(Integer.parseInt(accomNo));
 	}
@@ -267,7 +287,7 @@ public class UserController {
 
 		// line 216~219 쿠키를 굽는..
 		CookieGenerator cg = new CookieGenerator();
-		cg.setCookieMaxAge(1*60*60); // 1hour?
+		cg.setCookieMaxAge(1 * 60 * 60); // 1hour?
 		cg.setCookieName("accom_no");
 		cg.addCookie(response, accom_no);
 
@@ -279,19 +299,19 @@ public class UserController {
 		return mv;
 	}
 
-//	@RequestMapping("/getCookies.bang")
-//	public ModelAndView getCookies(HttpServletRequest request) {
-//		String cookieValue = "";
-//		Cookie [] cookie = request.getCookies();
-//
-//		if(cookie != null && cookie.length > 0) {
-//			for (Cookie cc : cookie) {
-//				cookieValue = cc.getValue();
-//			}
-//		}
-//
-//		ModelAndView mv = new ModelAndView("getCookies");
-//		mv.addObject("cookie",cookieValue);
-//		return mv;
-//	}
+	// @RequestMapping("/getCookies.bang")
+	// public ModelAndView getCookies(HttpServletRequest request) {
+	// String cookieValue = "";
+	// Cookie [] cookie = request.getCookies();
+	//
+	// if(cookie != null && cookie.length > 0) {
+	// for (Cookie cc : cookie) {
+	// cookieValue = cc.getValue();
+	// }
+	// }
+	//
+	// ModelAndView mv = new ModelAndView("getCookies");
+	// mv.addObject("cookie",cookieValue);
+	// return mv;
+	// }
 }

@@ -21,7 +21,7 @@
 		$('#admintable').dataTable({
 		"info":false,
 		"scrollY": 360,
-		"order": [[ 0, "desc" ]], //마지막 등록한 글이 위로가게 내림차순 정렬 
+		"order": [[ 0, "desc" ]], //마지막 등록한 글이 위로가게 내림차순 정렬
 		"lengthMenu": [ 10, 25, 50], //기본 Data 10개 25개 50개 "All" 모두
 		"oLanguage": {
 			"sLoadingRecords": "데이터를 불러오는 중입니다.",
@@ -31,11 +31,11 @@
 			"sZeroRecords": "검색 결과가 없습니다.",
 			"sLengthMenu" : "<span>페이징 갯수</span> _MENU_"
 		}
-       
+
 		});
-		
+
 	});
-	
+
 </script>
 <title>Customer Notice List</title>
 </head>
@@ -46,11 +46,11 @@
 		<hr />
 		<br />
 		<form name="customerNoticeList" method="post" action="#">
-			
+
 			<table id="admintable">
 			<thead>
 				<tr class="admintr">
-				
+
 					<th class="adminth" style="border-right: 2px solid white;"
 						width="100px;">NO.</th>
 					<th class="adminth">제목</th>
@@ -65,10 +65,6 @@
 					</tr>
 				</c:forEach>
 				</tbody>
-				<tr style="border-top: 2px solid #00a699;">
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-				</tr>
 			</table>
 		</form>
 			<p style="text-align: center;">

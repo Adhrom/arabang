@@ -126,12 +126,22 @@ public class UserDAOImpl implements UserDAO {
 	public UserInfoVO getInfo(Map<String, Object> map) {
 		return sqlsession.selectOne("user.getInfo", map);
 	}
-	
+
 	public int getPoint(String email) {
 		return sqlsession.selectOne("user.getUserpoint", email);
 	}
-	
+
 	public void deleteUser(String email) {
 		sqlsession.delete("user.deleteuser", email);
+	}
+
+	@Override
+	public List<AccomVO> hotdeal() {
+		return sqlsession.selectList("user.hotdealList");
+	}
+
+	@Override
+	public List<AccomVO> accomTypeForRoomtype(String roomType) {
+		return sqlsession.selectList("user.accomTypeForRoomtype", roomType);
 	}
 }

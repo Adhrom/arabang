@@ -85,7 +85,7 @@ public class UserServiceImpl implements UserService {
 		info.put("roomUsingPeople", people);
 		return dao.accomList(info);
 	}
-	
+
 	@Override
 	public List<RoomVO> roomList(String address, String people) {
 		info.put("accomAddress", address);
@@ -159,21 +159,31 @@ public class UserServiceImpl implements UserService {
 		vo.setMemberPw("");
 		return vo;
 	}
-	
+
 	public int getPoint(HttpSession session) {
 		String email = (String) session.getAttribute("email");
 		return dao.getPoint(email);
 	}
-	
+
 	public void logout(HttpSession session) {
 		session.invalidate();
 	}
-	
+
 	public UserInfoVO getInfo1(HttpSession session) {
 		return dao.getUserInfo((String) session.getAttribute("email"));
 	}
-	
+
 	public void deleteUser(HttpSession session) {
 		dao.deleteUser((String)session.getAttribute("email"));
+	}
+
+	@Override
+	public List<AccomVO> hotdeal() {
+		return dao.hotdeal();
+	}
+
+	@Override
+	public List<AccomVO> accomTypeForRoomtype(String roomType) {
+		return dao.accomTypeForRoomtype(roomType);
 	}
 }

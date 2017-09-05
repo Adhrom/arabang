@@ -9,10 +9,10 @@
 	src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
 	charset="utf-8"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script src="/searchBang/js/user/facebook.js"></script>
 <script src="https://apis.google.com/js/api:client.js"></script>
 <script src="/searchBang/js/user/google.js"></script>
 <script src="/searchBang/js/user/loginProc.js"></script>
-<script src="/searchBang/js/user/facebook.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style>
 ._5h0f ._5h0o {
@@ -59,12 +59,6 @@
 	margin-top: 2px;
 	margin-bottom: 2px;
 }
-
-#footer {
-	width: 100%;
-	position: absolute;
-	bottom: 0px;
-}
 </style>
 
 <title>Login View</title>
@@ -76,20 +70,19 @@
 </head>
 <body>
 	<form class="login-form">
-		<div id="login-box"
-			style="background-color: white; padding: 30px; border: 3px solid #00a699; border-radius: 3px;">
+		<div id="login-box">
 			<h2 class="login-title">회원로그인</h2>
 
 			<h4 class="input-txt">이메일</h4>
 			<div id="input-box">
 				<input type="text" class="input-type" name="email" id="login-userId"
-					required="required" placeholder="  이메일을 입력하세요.">
+					placeholder="  이메일을 입력하세요.">
 			</div>
 
 			<h4 class="input-txt">비밀번호</h4>
 			<div id="input-box">
 				<input type="password" class="input-type" name="password"
-					id="login-userPw" required="required" placeholder="  비밀번호를 입력하세요.">
+					id="login-userPw" placeholder="  비밀번호를 입력하세요.">
 			</div>
 			<table style="width: 224px;">
 				<tr>

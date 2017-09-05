@@ -1,16 +1,146 @@
-#s_banner_wrap ul li {
-	list-style: none;
+body, h1, h2, h3, h4, h5, h6, input, textarea, select, button, table {
+    font-family: "Apple SD Gothic Neo", "Nanum Barun Gothic", "NanumBarunGothic", sans-serif !important;
+    color: #666666;
+    font-size: 14px;
+    -webkit-text-size-adjust: none;
+    -ms-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
 }
 
-/* ��ʻ������ ��ġ */
+
+ul li{
+		list-style: none;
+		margin:0;
+		padding:0;
+}
+
+#ownerIndex{
+	width:1000px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+/* 배너*/
 #s_banner_wrap {
 	width: 1000px;
 	height: 500px;
 	position: relative;
-	margin: 10px 0;
+	margin: 3% 0;
 	margin-left: auto;
 	margin-right: auto;
 }
+
+/*************배너 글자*****************/
+#s_banner_wrap ul {
+	width:inherit;
+	text-align:center;
+	color: #fff;
+}
+
+#s_banner_wrap #arabang-ment{
+	font-size:3em;
+	padding-top:10%;
+	padding-bottom: 2%;
+}
+
+#s_banner_wrap #arabang-smallment{
+	font-size:0.9em;
+	padding-bottom: 0.3%;
+
+}
+
+#s_banner_wrap_text{
+	margin-bottom:8%;
+}
+/***************배너 미니 탭(아이콘 있는거 3개)***********************/
+#s_baner_button{
+	margin-left: 27.5%;
+}
+#s_banner_wrap #s_baner_button{
+	width:inherit;
+	padding-left: auto;
+	padding-right: auto;
+}
+.s_baner_button_li {
+	width: inherit;
+	text-align:center;
+	margin-right: 25px;
+	display: inline;
+	list-style: none;
+	float: left;
+	-webkit-padding-start: 20px;
+}
+
+#s_banner_wrap a {
+	text-decoration: none;
+}
+
+.bullhorn:before {
+	content: "\f0a1";
+	margin-left: 20%;
+	font-family: FontAwesome;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 25px;
+	color: white;
+	line-height: 30px;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.bullhorn-txt {
+	margin-left: 10px;
+	color: white;
+	text-decoration: none;
+	font-weight: lighter;
+	width: inherit;
+	text-align: center;
+}
+
+.lightbulb:before {
+	content: "\f0eb";
+	font-family: FontAwesome;
+	font-style: normal;
+	font-weight: normal;
+	margin-left: 20%;
+	font-size: 25px;
+	color: white;
+	line-height: 30px;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.lightbulb-txt {
+	margin-top: 20px;
+	margin-left: 15px;
+	color: white;
+	text-decoration: none;
+	font-weight: lighter;
+}
+
+.comments:before {
+	content: "\f0e6";
+	font-family: FontAwesome;
+	font-style: normal;
+	font-weight: normal;
+	margin-left: 20%;
+	font-size: 25px;
+	color: white;
+	line-height: 30px;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.comments-txt {
+	margin-top: 20px;
+	margin-left: 15px;
+	color: white;
+	text-decoration: none;
+	font-weight: lighter;
+}
+
+
+
 
 /** RESET AND LAYOUT
 ===================================*/
@@ -100,13 +230,13 @@
 .bx-wrapper .bx-prev {
 	left: 10px;
 	background: url(/searchBang/img/user/controls.png) no-repeat 0 -32px;
-	
+
 }
 
 .bx-wrapper .bx-next {
 	right: 10px;
 	background: url(/searchBang/img/user/controls.png) no-repeat -43px -32px;
-	
+
 }
 
 .bx-wrapper .bx-prev:hover {
@@ -125,7 +255,7 @@
 	width: 32px;
 	height: 32px;
 	text-indent: -9999px;
-	
+
 }
 
 .bx-wrapper .bx-controls-direction a.disabled {
@@ -179,177 +309,9 @@
 	width: 35px;
 }
 
-/* IMAGE CAPTIONS */
-.bx-wrapper .bx-caption {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	background: #666\9;
-	background: rgba(80, 80, 80, 0.75);
-	width: 100%;
-}
 
-.bx-wrapper .bx-caption span {
-	color: #fff;
-	font-family: Arial;
-	display: block;
-	font-size: .85em;
-	padding: 10px;
-}
 
-/* �Ͽ콺 ��ư */
-#houseButton {
-	text-align: center;
-}
-
-.houseButton {
-	list-style: none;
-	display: inline-block;
-}
-
-.line {
-	border-top: 1px solid #d2d2d2;
-	width: 1000px;
-}
-
-/*�ֵ�*/
-#hotdeal {
-	width: 1000px;
-	margin: 0 auto;
-}
-
-/* Style the tab buttons */
-.tablink {
-	background-color: #ffffff;
-	color: #333;
-	float: left;
-	border: none;
-	outline: none;
-	cursor: pointer;
-	padding: 0px 12px;
-	font-size: 14px;
-}
-
-#defaultOpen {
-	color: red;
-}
-
-/* Change background color of buttons on hover */
-.tablink:hover {
-	color: red;
-	/*display: block;
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    height: 5px;
-    background: cadetblue;
-    -webkit-transition: all 0.5s;
-    transition: all 0.5s;
-    border-radius: 4px;
-   */
-}
-
-/* Set default styles for tab content */
-.tabcontent {
-	color: #ff0000;
-	display: none;
-	padding: 10px;
-	text-align: center;
-}
-
-/* Style each tab content individually */
-#London {
-	background-color: red;
-}
-
-#Paris {
-	background-color: green;
-}
-
-#Tokyo {
-	background-color: blue;
-}
-
-#Oslo {
-	background-color: orange;
-}
-.s_baner_button_li {
-	padding-top: 10px;
-	width: 155px;
-	height: 70px;
-	float: center;
-	margin-right: 25px;
-	display: inline;
-	list-style: none;
-	float: left;
-	-webkit-padding-start: 20px;
-}
-
-#s_banner_wrap a {
-	text-decoration: none;
-}
-
-.bullhorn:before {
-	content: "\f0a1";
-	margin-left: 50px;
-	font-family: FontAwesome;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 25px;
-	color: white;
-	line-height: 30px;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
-
-.bullhorn-txt {
-	margin-left: 10px;
-	color: white;
-	text-decoration: none;
-	font-weight: lighter;
-}
-
-.lightbulb:before {
-	content: "\f0eb";
-	font-family: FontAwesome;
-	font-style: normal;
-	font-weight: normal;
-	margin-left: 50px;
-	font-size: 25px;
-	color: white;
-	line-height: 30px;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
-
-.lightbulb-txt {
-	margin-top: 20px;
-	margin-left: 15px;
-	color: white;
-	text-decoration: none;
-	font-weight: lighter;
-}
-
-.comments:before {
-	content: "\f0e6";
-	font-family: FontAwesome;
-	font-style: normal;
-	font-weight: normal;
-	margin-left: 50px;
-	font-size: 25px;
-	color: white;
-	line-height: 30px;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
-
-.comments-txt {
-	margin-top: 20px;
-	margin-left: 15px;
-	color: white;
-	text-decoration: none;
-	font-weight: lighter;
-}
+/***************버튼******************/
 
 .bottom-section {
 	margin: 0 auto;
