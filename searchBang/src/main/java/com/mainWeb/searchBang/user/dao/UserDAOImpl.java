@@ -8,11 +8,13 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.mainWeb.searchBang.admin.model.AdminNoticeVO;
 import com.mainWeb.searchBang.owner.model.AccomVO;
 import com.mainWeb.searchBang.owner.model.RoomVO;
 import com.mainWeb.searchBang.user.model.ReservationVO;
 import com.mainWeb.searchBang.user.model.ReviewVO;
 import com.mainWeb.searchBang.user.model.UserInfoVO;
+import com.mainWeb.searchBang.user.model.ViewReservation;
 
 @Repository
 public class UserDAOImpl implements UserDAO {
@@ -106,6 +108,7 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public RoomVO roomInfoForReservation(String room_no) {
+		System.out.println(room_no);
 		return sqlsession.selectOne("user.roomInfoForReservation", room_no);
 	}
 	@Override
@@ -143,5 +146,25 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public List<AccomVO> accomTypeForRoomtype(String roomType) {
 		return sqlsession.selectList("user.accomTypeForRoomtype", roomType);
+	}
+
+	@Override
+	public List<ViewReservation> viewReservation(String memberEmail) {
+		return sqlsession.selectList("user.viewReservation", memberEmail);
+	}
+
+	@Override
+	public void cancelReservation(String reservation_no) {
+		sqlsession.delete("user.cancelReservation", reservation_no);
+	}
+
+	@Override
+	public List<AdminNoticeVO> noticeList() {
+		return sqlsession.selectList("user.noticeList");
+	}
+
+	@Override
+	public List<ReviewVO> reviewList(String accom_no) {
+		return sqlsession.selectList("user.reviewList", accom_no);
 	}
 }

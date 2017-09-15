@@ -4,17 +4,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <meta charset="UTF-8">
 <title>방상세보기</title>
 
 <link rel="stylesheet" type="text/css"
-	href="/searchBang/css/user/roominfo_style.css">
-
-
-
-<body style="width: 1000px; margin: 0 auto;">
-	<div>
+	href="/searchBang/css/user/roominfo_style.css?ver=1">
+<body>
+	<div style="width: 1000px; margin: 0 auto;">
 		<!-- <header> -->
 		<%-- 	<jsp:include page="topmenu.jsp" /> --%>
 		<!-- </header> -->
@@ -151,8 +147,8 @@
 
 
 
-		<footer><jsp:include page="footer.jsp" /></footer>
 	</div>
+	<footer><jsp:include page="footer.jsp" /></footer>
 </body>
 
 </html>

@@ -40,6 +40,7 @@
 <script type="text/javascript" src="/searchBang/js/owner/miniTab.js"></script>
 <!-- css -->
 <link rel="stylesheet" href="/searchBang/css/owner/miniTab.css" />
+<link rel="stylesheet" href="/searchBang/css/common/btstyle.css" />
 <!-- 미니탭 끝 -->
 <script type="text/javascript">
 	$(document).ready(
@@ -69,13 +70,48 @@
 			});
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="/searchBang/css/owner/ownerManagement.css">
+<link rel="stylesheet" href="/searchBang/css/owner/ownerManagement.css?ver=1">
+<link rel="stylesheet" href="/searchBang/css/admin/tablestyle.css">
+<!-- dataTables.bootstrap.css  datatable 검색과 목록간 밑단 픽셀 간격이 맞춰짐-->
+<!-- dataTables.bootstrap.css sorting 구간 ㅁ자 table.dataTable thead .sorting:after opacity 0으로 제거   -->
+<link rel="stylesheet" href="/searchBang/css/common/dataTables.bootstrap.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
+<!-- Paging Datatables -->
+<link rel="stylesheet" type="text/css"
+	href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+	<script src="/searchBang/js/common/jquery.datatables.min.js"></script>
+<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$('#admintable').dataTable({
+		"info": false,
+		"scrollY": 353,// 게시판 height 세로길이고정
+		"order": [[ 0, "desc" ]], //마지막 등록한 글이 위로가게 내림차순 정렬
+		"pageLength": 5,//페이지 등록글 갯수 4개로 고정
+		"oLanguage": {
+			"sLoadingRecords": "데이터를 불러오는 중입니다.",
+			"sProcessing": "데이터를 처리중 입니다.",
+			"sEmptyTables": "데이터가 없습니다.",
+			"sSearch": "<span>검색</span> _INPUT_",//검색
+			"sZeroRecords": "검색 결과가 없습니다.",
+			"sLengthMenu" : "<span>페이지 갯수</span> _MENU_"
+		}
+
+		});
+
+	});
+</script>
 
 <title>숙소 관리</title>
 </head>
 <body>
+<div class="page">
+<div class="owner-main-content">
+	<jsp:include page="topmenu.jsp" flush="false"></jsp:include>
+</div>
+
 	<input type="hidden" id="accom_no" value="${vo.accom_no}">
-	<div id="ownerManagement">
+	<div class="owner-management" id="ownerManagement">
 		<div>
 			<ul id="management">
 				<li id="companyTitle">숙소 관리</li>
@@ -124,9 +160,9 @@
 					<li>${vo.accomGrade}</li>
 				</ul>
 			</div>
-		</div>
+		</div></div>
 
-
+		<div class="center-info">
 		<!-- 객실 현황 및 차트 -->
 
 		<div class="roomAndChart">
@@ -151,16 +187,15 @@
 
 				<div class="roomInfo">
 					<c:forEach var="row" items="${roomList }">
-						<div class="roomContent">
-							<span>${row.roomType }</span>
-						</div>
-						<button id="soldoutBt">SOLD OUT</button>
+						<p><label for="soldoutBt">${row.roomType }</label>
+						<button id="soldoutBt">SOLD OUT</button></p>
 					</c:forEach>
 				</div>
 			</div>
+		</div>
+		</div> <!-- center-info end -->
 
-
-			<!-- 판매차트 -->
+		<!-- 판매차트 -->
 			<div id="visitChart">
 				<div class="tab">
 					<button class="tablinks" onclick="openCity(event, 'London')"
@@ -185,14 +220,16 @@
 
 			</div>
 
-			<!-- 리뷰 -->
-			<div>
-				<table>
+		<div class="bottom-info"></div>
+		<!-- 리뷰 -->
+			<div class="review">
+				<table id="admintable">
 					<thead>
-						<tr>
-							<td>글쓴이</td>
-							<td>내용</td>
-							<td>평점</td>
+						<tr style="background:#00a699; height:50px; color:white;">
+							<td style="width:170px;">글쓴이</td>
+							<td style="width:500px;">내용</td>
+							<td style="width:50px;">평점</td>
+							<td style="width:80px;">신고</td>
 						</tr>
 					</thead>
 					<tbody>
@@ -201,12 +238,16 @@
 							<td>${row.memberEmail }</td>
 							<td>${row.content }</td>
 							<td>${row.reviewGrade }</td>
+							<td><a href="declrationReview.owner?declration=${row.review_no }"><button class="button">신고하기</button></a></td>
 						</tr>
 						</c:forEach>
 					</tbody>
 				</table>
 			</div>
+		<!-- cd-main-content end -->
 		</div>
-	</div>
+	<footer>
+		<jsp:include page="footer.jsp" flush="false" />
+	</footer>
 </body>
 </html>

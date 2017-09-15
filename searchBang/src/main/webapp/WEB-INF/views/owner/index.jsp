@@ -53,7 +53,7 @@
 				</div>
 				<div id="s_baner_button">
 					<ul>
-						<li class="s_baner_button_li"><a href="#">
+						<li class="s_baner_button_li"><a href="ownerGuide.owner">
 						<span class="bullhorn"></span><br /> <span class="bullhorn-txt">알아방 가이드</span></a></li>
 						<li class="s_baner_button_li"><a href="#"><span class="lightbulb"></span><br />
 						<span class="lightbulb-txt">알아방 QnA</span></a></li>

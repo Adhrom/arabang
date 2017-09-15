@@ -1,31 +1,25 @@
 @CHARSET "UTF-8";
-body, h1, h2, h3, h4, h5, h6, input, textarea, select, button, table {
-    font-family: "Apple SD Gothic Neo", "Nanum Barun Gothic", "NanumBarunGothic", sans-serif !important;
-    color: #666666;
-    font-size: 14px;
-    -webkit-text-size-adjust: none;
-    -ms-text-size-adjust: 100%;
-    -webkit-tap-highlight-color: transparent;
-	margin:0;
-	padding:0;
-}
-body{
 
-	width:1000px;
-	margin:0;
-	padding:0;
-	margin-left: auto;
-	margin-right: auto;
-	
+.page{
+	margin:0 auto;
+	margin-top:100px;
+	width:1050px;
 }
 ul{
 	list-style: none;
 	margin:0;
 	padding:0;
 }
+
+.owner-main-content {
+
+}
 /*************************************/
 /*상단 타이틀*/
 /*************************************/
+.owner-management {
+	
+}
 #management li{
 	margin-top:3%;
 	display: inline-block;
@@ -92,6 +86,11 @@ ul{
 	fint-size:1.2em;
 	color: #d2d2de;
 }
+
+.center-info{
+	
+}
+
 /*************************************/
 /*객실 현황 및 차트*/
 /*************************************/
@@ -102,7 +101,7 @@ ul{
 /*객실현황*/
 /*************************************/
 #roomNow{	
-	width:37%;
+	width:30%;
 	height:60px;
 	float:left;
 	margin-left:auto;
@@ -128,10 +127,21 @@ ul{
 	margin-top:3%;
 }
 .roomInfo div:FIRST-CHILD{
-	margin-left:8%;
+	
+}
+
+.roomInfo label{
+	margin-top: 10px;
+	margin-left: 10px;
+	float:left ;
+	width: 200px;
 }
 
 #soldoutBt{
+	margin-top:10px;
+	margin-right:10px;
+	float:right;
+	cursor : pointer;
 	background-color:white;
 	border: solid 1px #00a699;
 	color:#00a699;
@@ -140,9 +150,18 @@ ul{
 /*차트*/
 /*************************************/
 #visitChart{
-
+	
 	float:right;
-	width:60%;
+	width:68%;
 	height: 60px;
 
+}
+
+.bottom-info{
+	margin-top:450px;
+	
+}
+
+.review {
+	
 }

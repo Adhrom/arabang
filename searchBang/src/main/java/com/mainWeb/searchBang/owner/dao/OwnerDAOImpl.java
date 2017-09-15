@@ -1,5 +1,6 @@
 package com.mainWeb.searchBang.owner.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +24,7 @@ public class OwnerDAOImpl implements OwnerDAO {
 
 	@Inject
 	private SqlSessionTemplate sqlSessionTemplate;
+	Map<String, Object> info = new HashMap<String, Object>();
 
 	@Override
 	public void insertOwner(OwnerVO ownerVO) {
@@ -155,5 +157,21 @@ public class OwnerDAOImpl implements OwnerDAO {
 	public List<ReviewCountVO> reviewGrade(String accom_no) {
 		return sqlSessionTemplate.selectList("owner.reviewGrade", accom_no);
 	}
+
+	@Override
+	public void declrationReview(String declration) {
+		sqlSessionTemplate.update("owner.declrationReview", declration);
+	}
+
+	@Override
+	public void updateGrade(String accom_no) {
+		Double jumsu = sqlSessionTemplate.selectOne("owner.getJumsu", accom_no);
+		int jumsu2 = (int)(jumsu/2)+1;
+		System.out.println(accom_no+"/"+jumsu2);
+		info.put("accom_no", accom_no);
+		info.put("jumsu", jumsu2);
+		sqlSessionTemplate.update("owner.updateGrade", info);
+	}
+
 
 }

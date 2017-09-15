@@ -6,13 +6,16 @@
 <mapper namespace="user">
 
 	<insert id="insertUser" parameterType="java.util.HashMap">
-		INSERT INTO MEMBER_REG(MEMBEREMAIL, MEMBERPW, MEMBERNICKNAME, MEMBERPHONE) VALUES
+		INSERT INTO
+		MEMBER_REG(MEMBEREMAIL, MEMBERPW, MEMBERNICKNAME, MEMBERPHONE) VALUES
 		(#{email}, #{password}, #{nickname}, #{phone})
 	</insert>
 
-	<select id="loginuser"  resultType="java.lang.String" parameterType="java.util.HashMap">
+	<select id="loginuser" resultType="java.lang.String"
+		parameterType="java.util.HashMap">
 		select memberemail from member_reg
-		where memberemail = #{id} and memberpw = #{password}
+		where memberemail =
+		#{id} and memberpw = #{password}
 	</select>
 
 	<delete id="deleteuser" parameterType="java.lang.String">
@@ -20,32 +23,46 @@
 		WHERE MEMBEREMAIL = #{email}
 	</delete>
 
-	<select id="accomList" parameterType="java.util.HashMap" resultType="com.mainWeb.searchBang.owner.model.AccomVO">
-		select DISTINCT accom.* from accom ,room where accom.ACCOMADDRESS
-		like '%'||#{accomAddress}||'%' and room.ROOMUSINGPEOPLE >= #{roomUsingPeople}
+	<select id="accomList" parameterType="java.util.HashMap"
+		resultType="com.mainWeb.searchBang.owner.model.AccomVO">
+		select DISTINCT accom.* from accom ,room where
+		accom.ACCOMADDRESS
+		like '%'||#{accomAddress}||'%' and
+		room.ROOMUSINGPEOPLE >= #{roomUsingPeople}
 	</select>
 
-	<select id="roomList" parameterType="java.util.HashMap" resultType="com.mainWeb.searchBang.owner.model.RoomVO">
-		select DISTINCT room.* from accom ,room where accom.ACCOMADDRESS
-		like '%'||#{accomAddress}||'%' and room.ROOMUSINGPEOPLE >= #{roomUsingPeople} and accom.accom_no = room.accom_no
+	<select id="roomList" parameterType="java.util.HashMap"
+		resultType="com.mainWeb.searchBang.owner.model.RoomVO">
+		select DISTINCT room.* from accom ,room where
+		accom.ACCOMADDRESS
+		like '%'||#{accomAddress}||'%' and
+		room.ROOMUSINGPEOPLE >= #{roomUsingPeople} and accom.accom_no =
+		room.accom_no
 	</select>
 
-	<select id="getInfo" parameterType="java.util.HashMap" resultType="com.mainWeb.searchBang.user.model.UserInfoVO">
+	<select id="getInfo" parameterType="java.util.HashMap"
+		resultType="com.mainWeb.searchBang.user.model.UserInfoVO">
 		SELECT * FROM MEMBER_REG
-		WHERE memberemail = #{email} AND membernickname = #{name}
+		WHERE memberemail = #{email} AND
+		membernickname = #{name}
 	</select>
 
 	<update id="updateInfo" parameterType="java.util.HashMap">
-		UPDATE MEMBER_REG SET MEMBERPW = #{password}, MEMBERNICKNAME = #{nickname}, MEMBERPHONE = #{phone}
+		UPDATE MEMBER_REG SET
+		MEMBERPW = #{password}, MEMBERNICKNAME = #{nickname}, MEMBERPHONE =
+		#{phone}
 		WHERE MEMBEREMAIL = #{email}
 	</update>
 
 	<insert id="insertFavorite" parameterType="java.util.HashMap">
-		INSERT INTO FAVORITE VALUES (#{email}, #{accomNo})
+		INSERT INTO FAVORITE
+		VALUES (#{email}, #{accomNo})
 	</insert>
 
-	<select id="favoriteList" parameterType="java.lang.String" resultType="com.mainWeb.searchBang.owner.model.AccomVO">
-		select DISTINCT accom.* from accom,favorite where favorite.useremail = #{email}
+	<select id="favoriteList" parameterType="java.lang.String"
+		resultType="com.mainWeb.searchBang.owner.model.AccomVO">
+		select DISTINCT accom.* from accom,favorite where
+		favorite.useremail = #{email}
 		AND FAVORITE.ACCOMNUM = ACCOM.ACCOM_NO
 	</select>
 
@@ -55,59 +72,116 @@
 	</delete>
 
 	<select id="accomInfo" resultType="com.mainWeb.searchBang.owner.model.AccomVO">
-		select * from accom where accom_no = #{accom_no}
+		select * from accom where
+		accom_no = #{accom_no}
 	</select>
 
 	<select id="roomInfoList" resultType="com.mainWeb.searchBang.owner.model.RoomVO">
-		select * from room where accom_no = #{accom_no}
+		select * from room where
+		accom_no = #{accom_no}
 	</select>
 
 	<insert id="doReservation">
-		insert into reservation values(reservation_no_seq.nextval , #{memberEmail} , #{accom_no} , #{room_no} , to_date(#{checkIn},'YYYY-MM-DD') , to_date(#{checkOut},'YYYY-MM-DD') , 'n' , #{price})
+		insert into reservation
+		values(reservation_no_seq.nextval , #{memberEmail} , #{accom_no} ,
+		#{room_no} , to_date(#{checkIn},'YYYY-MM-DD') ,
+		to_date(#{checkOut},'YYYY-MM-DD') , 'n' , #{price})
 	</insert>
 
 	<update id="pointUpdate">
-		update member_reg set point = #{point} where memberemail = #{memberEmail}
+		update member_reg set point = #{point} where
+		memberemail = #{memberEmail}
 	</update>
 
 	<select id="roomCount" resultType="java.lang.Integer">
-		select roomcount from room where room_no = #{room_no};
+		select roomcount from room
+		where room_no = #{room_no};
 	</select>
 
-	<select id="reservationCount" parameterType="java.util.HashMap" resultType="java.lang.Integer">
-		select distinct count(reservation.RESERVATION_NO) from reservation, room where reservation.checkin <![CDATA[ >= ]]> to_date(#{startDate},'YYYY-MM-DD') and reservation.checkout <![CDATA[ <= ]]> to_date(#{endDate},'YYYY-MM-DD') and room.room_no=#{room_no};
+	<select id="reservationCount" parameterType="java.util.HashMap"
+		resultType="java.lang.Integer">
+		select distinct count(reservation.RESERVATION_NO) from reservation,
+		room where reservation.checkin <![CDATA[ >= ]]>
+		to_date(#{startDate},'YYYY-MM-DD') and reservation.checkout <![CDATA[ <= ]]>
+		to_date(#{endDate},'YYYY-MM-DD') and room.room_no=#{room_no};
 	</select>
 
 	<delete id="deleteFavorite" parameterType="java.lang.String">
-		DELETE FROM favorite WHERE ACCOMNO = #{accomNo}
+		DELETE FROM favorite
+		WHERE ACCOMNO = #{accomNo}
 	</delete>
 
 	<insert id="insertReview">
-		insert into review values(review_no_seq , #{memberEmail} , #{accom_no} , #{reviewGrade} , #{content} , sysdate , 'n')
+		insert into review values(review_no_seq ,
+		#{memberEmail} , #{accom_no} , #{reviewGrade} , #{content} , sysdate ,
+		'n')
 	</insert>
 
-	<select id="getUserInfo" resultType="com.mainWeb.searchBang.user.model.UserInfoVO" parameterType="java.lang.String">
-		select * from member_reg where memberemail = #{memberEmail}
+	<select id="getUserInfo" resultType="com.mainWeb.searchBang.user.model.UserInfoVO"
+		parameterType="java.lang.String">
+		select * from member_reg where memberemail =
+		#{memberEmail}
 	</select>
 
-	<select id="roomInfoForReservation" parameterType="java.util.HashMap" resultType="com.mainWeb.searchBang.owner.model.RoomVO">
+	<select id="roomInfoForReservation" parameterType="java.util.HashMap"
+		resultType="com.mainWeb.searchBang.owner.model.RoomVO">
 		select * from room where room_no = #{room_no}
 	</select>
 
 	<select id="accomInfoForReservation" resultType="com.mainWeb.searchBang.owner.model.AccomVO">
-		select * from accom where accom_no = (select accom_no from room where room_no = #{room_no})
+		select * from
+		accom where accom_no = (select accom_no from room where room_no =
+		#{room_no})
 	</select>
 
-	<select id="getUserpoint" parameterType="java.lang.String" resultType="java.lang.Integer">
+	<select id="getUserpoint" parameterType="java.lang.String"
+		resultType="java.lang.Integer">
 		SELECT POINT FROM MEMBER_REG
 		WHERE MEMBEREMAIL = #{email}
 	</select>
 
 	<select id="hotdealList" resultType="com.mainWeb.searchBang.owner.model.AccomVO">
-		select * from accom where accomhotdeal = 'y'
+		select * from accom where
+		accomhotdeal = 'y'
 	</select>
 
 	<select id="accomTypeForRoomtype" resultType="com.mainWeb.searchBang.owner.model.AccomVO">
-		select * from accom where accomtype = #{roomType}
+		select * from accom
+		where accomtype = #{roomType}
+	</select>
+
+	<select id="viewReservation" resultType="com.mainWeb.searchBang.user.model.ViewReservation">
+		select distinct
+		reservation_no ,(select distinct accom.accomName from accom where
+		accom.accom_no = reservation.accom_no) as accomName ,
+		(select distinct
+		accom.accomAddress from accom where accom.accom_no =
+		reservation.accom_no) as accomAddress,
+		(select distinct
+		accom.accomPhone from accom where accom.accom_no =
+		reservation.accom_no) as accomPhone,
+		(select distinct room.roomType
+		from room where room.room_no =
+		reservation.room_no) as roomType,
+		(select distinct accom.accom_no from accom where accom.accom_no =
+		reservation.accom_no) as accom_no,
+		reservation.checkin , reservation.checkout , reservation.price from room , accom ,
+		reservation where reservation.memberemail = #{memberEmail}
+		order by
+		reservation_no
+	</select>
+
+	<delete id="cancelReservation">
+		delete from reservation where reservation_no =
+		#{reservation_no}
+	</delete>
+
+	<select id="noticeList" resultType="com.mainWeb.searchBang.admin.model.AdminNoticeVO">
+		select * from admin_notice
+		where noticetype = 'customer' order by notice_no desc
+	</select>
+
+	<select id="reviewList" resultType="com.mainWeb.searchBang.user.model.ReviewVO">
+		select * from review where accom_no = #{accom_no} order by review_no desc
 	</select>
 </mapper>

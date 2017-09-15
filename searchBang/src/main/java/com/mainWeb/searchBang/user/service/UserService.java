@@ -4,11 +4,13 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import com.mainWeb.searchBang.admin.model.AdminNoticeVO;
 import com.mainWeb.searchBang.owner.model.AccomVO;
 import com.mainWeb.searchBang.user.model.ReservationVO;
 import com.mainWeb.searchBang.user.model.ReviewVO;
 import com.mainWeb.searchBang.owner.model.RoomVO;
 import com.mainWeb.searchBang.user.model.UserInfoVO;
+import com.mainWeb.searchBang.user.model.ViewReservation;
 
 public interface UserService {
 
@@ -83,6 +85,19 @@ public interface UserService {
 
 	// 핫딜 리스트
 	public List<AccomVO> hotdeal();
+
 	// 타입으로 검색
 	public List<AccomVO> accomTypeForRoomtype(String roomType);
+
+	// 예약내역 끌어오기
+	public List<ViewReservation> viewReservation(String memberEmail);
+
+	// 예약취소
+	public void cancelReservation(String reservation_no);
+
+	// 공지사항 리스트
+	public List<AdminNoticeVO> noticeList();
+
+	// 리뷰 리스트
+	public List<ReviewVO> reviewList(String accom_no);
 }

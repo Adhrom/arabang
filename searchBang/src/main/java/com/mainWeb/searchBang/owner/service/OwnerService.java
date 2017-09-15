@@ -97,4 +97,10 @@ public interface OwnerService {
 
 	// 평점통계
 	public List<ReviewCountVO> reviewGrade(String accom_no);
+
+	// 리뷰 신고
+	public void declrationReview(String declration);
+
+	//오너등급 업데이트
+	public void updateGrade(String accom_no);
 }

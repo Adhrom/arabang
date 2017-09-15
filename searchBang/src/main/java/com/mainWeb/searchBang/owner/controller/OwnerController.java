@@ -561,5 +561,21 @@ public class OwnerController {
 	}
 
 	// 오너 등급 업데이트
+	@RequestMapping("/updateGrade.owner")
+	public String updateGrade(@RequestParam(value="accom_no")String accom_no){
+		service.updateGrade(accom_no);
+		return "redirect:/myPage.owner";
+	}
 
+	// 리뷰 신고
+	@RequestMapping("declrationReview.owner")
+	public String declration(@RequestParam(value= "declration")String declration , HttpServletRequest req){
+		String url = req.getHeader("REFERER");
+		return "redirect:"+url;
+	}
+	//오너가이드
+	@RequestMapping("ownerGuide.owner")
+	public String ownerGuide(){
+		return "ownerGuide";
+	}
 }

@@ -323,5 +323,15 @@ public class OwnerServiceImpl implements OwnerService {
 		return dao.reviewGrade(accom_no);
 	}
 
+	@Override
+	public void declrationReview(String declration) {
+		dao.declrationReview(declration);
+	}
+
+	@Override
+	public void updateGrade(String accom_no) {
+		dao.updateGrade(accom_no);
+	}
+
 
 }

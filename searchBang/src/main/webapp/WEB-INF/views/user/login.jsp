@@ -103,12 +103,16 @@
 					<td><div id="naver_id_login"></div></td>
 				</tr>
 				<tr>
-					<td><div id="gSignInWrapper">
+					<td>
+						<div id="gSignInWrapper">
 							<div id="customBtn" class="customGPlusSignIn">
 								<span class="icon"></span> <span class="buttonText">Google
 									계정으로 로그인하기</span>
 							</div>
-						</div></td>
+						</div> <script>
+							startApp();
+						</script>
+					</td>
 				</tr>
 				<tr>
 					<td><div id="fb-root"></div>

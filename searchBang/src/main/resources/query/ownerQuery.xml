@@ -242,26 +242,69 @@
 		(sales_date,'RRRR-MM-DD'),'RRRR-MM-DD')
 	</select>
 
-	<select id="reviewCount" resultType="com.mainWeb.searchBang.owner.model.ReviewCountVO">
-
-	</select>
-
 	<select id="weekSales" resultType="com.mainWeb.searchBang.owner.model.WeekSalesVO">
 		select TO_CHAR(TO_DATE
 		(sales_date,'RRRR-MM-DD'),'day') as country , count(sales_sales)
 		as
-		"visits" from sales where accom_no = #{accom_no} and sales_date > sysdate-7
-        group by
-        TO_CHAR(TO_DATE
+		"visits" from sales where accom_no = #{accom_no} and sales_date >
+		sysdate-7
+		group by
+		TO_CHAR(TO_DATE
 		(sales_date,'RRRR-MM-DD'),'day')
 		order by country
 	</select>
 
 	<select id="todayCount" resultType="java.lang.Integer">
-		select count(sales_no) as count from sales where accom_no = #{accom_no} and to_char(SALES_DATE,'yyyy-mm-dd') = to_char(sysdate,'yyyy-mm-dd')
+		select count(sales_no) as
+		count from sales where accom_no = #{accom_no} and
+		to_char(SALES_DATE,'yyyy-mm-dd') = to_char(sysdate,'yyyy-mm-dd')
 	</select>
 
 	<select id="reviewGrade" resultType="com.mainWeb.searchBang.owner.model.ReviewCountVO">
-		select reviewgrade as title , count(reviewgrade) as value from review where accom_no = #{accom_no} group by reviewgrade order by reviewgrade asc
+		select reviewgrade as title
+		, count(reviewgrade) as value from review where accom_no = #{accom_no}
+		group by reviewgrade order by reviewgrade asc
 	</select>
+
+	<update id="declrationReview">
+		update review set declration = 'y' where review_no =
+		#{declration}
+	</update>
+
+	<select id="getJumsu" resultType="java.lang.Double">
+		<![CDATA[
+		select distinct
+		((select distinct case
+		when (select sum(sales_sales) from sales where sales.accom_no =
+		#{accom_no})/(select sum(sales_sales) from sales)<0.1 then 10
+		when (select sum(sales_sales) from sales where sales.accom_no =
+		#{accom_no})/(select sum(sales_sales) from sales)<0.3 then 30
+		when (select sum(sales_sales) from sales where sales.accom_no =
+		#{accom_no})/(select sum(sales_sales) from sales)<0.5 then 60
+		when (select sum(sales_sales) from sales where sales.accom_no =
+		#{accom_no})/(select sum(sales_sales) from sales)<0.75 then 70 else 75
+		end as jumsu1
+		from dual)+
+		(select distinct case
+		when (select sum(sales_sales) from sales where sales.accom_no =
+		#{accom_no})/(select sum(sales_sales) from sales)<0.4 then 5
+		when (select sum(sales_sales) from sales where sales.accom_no =
+		#{accom_no})/(select sum(sales_sales) from sales)<0.6 then 10
+		else 15
+		end as jumsu2
+		from dual)+
+		(select distinct case
+		when (select accomgpa from accom where accom_no=#{accom_no})<1 then 2
+		when (select accomgpa from accom where accom_no=#{accom_no})<2 then 4
+		when (select accomgpa from accom where accom_no=#{accom_no})<3 then 6
+		when (select accomgpa from accom where accom_no=#{accom_no})<4 then 8
+		else 10
+		end as jumsu3
+		from dual))*0.1 as jumsu from accom
+		]]>
+	</select>
+
+	<update id="updateGrade">
+		update accom set accomgrade = #{jumsu} where accom_no = #{accom_no}
+	</update>
 </mapper>

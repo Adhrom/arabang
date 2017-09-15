@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="/searchBang/css/admin/tablestyle.css">
-<link rel="stylesheet" href="//cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.css">
+<link rel="stylesheet" href="/searchBang/css/common/dataTables.bootstrap.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.0.min.js"></script>
 <!-- Paging Datatables -->
 <link rel="stylesheet" type="text/css"

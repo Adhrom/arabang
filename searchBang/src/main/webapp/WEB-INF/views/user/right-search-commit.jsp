@@ -50,10 +50,10 @@ function addfavorite(accomvalue){
 
 			   <c:set var="break" value="true" /> <!-- if문을 한번 찍었으면 true 를 준다. -->
 					<tr class="price_tr">
-						<td><label for="price_1"  class="price">대실가격 </label><span id="price_1"class="price_V"><fmt:formatNumber  value="${room.roomRent }"/></span>	</td>
+						<td><c:if test="${room.roomRent ne '0' }"><label for="price_1"  class="price">대실가격 </label><span id="price_1"class="price_V"><fmt:formatNumber  value="${room.roomRent }"/></span></c:if></td>
 					</tr>
 					<tr>
-						<td><label for="price_2" class="price">숙박가격 </label><span id="price_2"class="price_V"><fmt:formatNumber  value="${room.roomLodge }"/></span></td>
+						<td><c:if test="${room.roomLodge ne '0' }"><label for="price_2" class="price">숙박가격 </label><span id="price_2"class="price_V"><fmt:formatNumber  value="${room.roomLodge }"/></span></c:if></td>
 					</tr>
 
       			</c:if> <!-- 업체에 맞는 방리스트 뽑기 -->

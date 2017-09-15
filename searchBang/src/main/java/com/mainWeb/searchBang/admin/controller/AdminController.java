@@ -122,9 +122,9 @@ public class AdminController {
 	public ModelAndView customerNoticeList() {
 		String noticeType = "customer";
 		List<AdminNoticeVO> noticeList = adminService.NoticeList(noticeType);
-ModelAndView mv = new ModelAndView();
-mv.setViewName("customerNoticeList");
-mv.addObject("noticeList", noticeList);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("customerNoticeList");
+		mv.addObject("noticeList", noticeList);
 		return mv;
 	}
 
@@ -144,7 +144,7 @@ mv.addObject("noticeList", noticeList);
 
 	@RequestMapping("/insertNotice.admin")
 	public String insertNotice(@ModelAttribute AdminNoticeVO noticeVO) {
-//		System.out.println(noticeVO);
+		// System.out.println(noticeVO);
 		adminService.insertNotice(noticeVO);
 		return "redirect:" + noticeVO.getNoticeType() + "NoticeList.admin";
 	}
@@ -177,10 +177,10 @@ mv.addObject("noticeList", noticeList);
 	// Stats
 	@RequestMapping("/Stats.admin")
 	public ModelAndView salesStats() {
-ModelAndView mv = new ModelAndView();
-int totalAccom = adminService.totalAccom();
-mv.addObject("size", totalAccom);
-mv.setViewName("Stats");
+		ModelAndView mv = new ModelAndView();
+		int totalAccom = adminService.totalAccom();
+		mv.addObject("size", totalAccom);
+		mv.setViewName("Stats");
 		return mv;
 	}
 
@@ -214,11 +214,11 @@ mv.setViewName("Stats");
 	// QnA 리스트
 	@RequestMapping("/QnAReply.admin")
 	public ModelAndView QnAReply() {
-ModelAndView mv = new ModelAndView();
+		ModelAndView mv = new ModelAndView();
 		List<QnAVO> list = adminService.QnAList();
-mv.addObject("size", list.size());
-mv.addObject("list", list);
-mv.setViewName("QnAReply");
+		mv.addObject("size", list.size());
+		mv.addObject("list", list);
+		mv.setViewName("QnAReply");
 		return mv;
 	}
 
@@ -234,10 +234,11 @@ mv.setViewName("QnAReply");
 	public ModelAndView reviewList(@RequestParam(value = "declration") String declration) {
 		ModelAndView mv = new ModelAndView();
 		List<ReviewVO> list;
-		if (declration.equals('y'))
+		if (declration.charAt(0)=='y') {
 			list = adminService.declrationReviewList();
-		else
+		} else {
 			list = adminService.reviewList();
+		}
 		mv.setViewName("review");
 		mv.addObject("list", list);
 		return mv;
@@ -281,7 +282,7 @@ mv.setViewName("QnAReply");
 		return list;
 	}
 
-	//예약 일자별 차트
+	// 예약 일자별 차트
 	@RequestMapping("/reservationChart.admin")
 	public @ResponseBody Object reservationChart() {
 		List<ReservationChartVO> list = new ArrayList<ReservationChartVO>();
@@ -291,11 +292,10 @@ mv.setViewName("QnAReply");
 
 	// 오너 등록 숙소 그래이드 차트
 	@RequestMapping("/ownerGradeChart.admin")
-	public @ResponseBody Object ownerGradeChart(){
+	public @ResponseBody Object ownerGradeChart() {
 		List<ReviewCountVO> list = new ArrayList<ReviewCountVO>();
 		list = adminService.ownerGradeChart();
 		return list;
 	}
-
 
 }

@@ -10,7 +10,7 @@
 <link rel="stylesheet" type="text/css"
 	href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css">
 	<!-- paging css -->
-<link rel="stylesheet" href="//cdn.datatables.net/plug-ins/f2c75b7247b/integration/bootstrap/3/dataTables.bootstrap.css"><!-- 이거 넣으면 datatable 검색과 목록간 밑단 픽셀 간격이 맞춰짐 -->
+<link rel="stylesheet" href="/searchBang/css/common/dataTables.bootstrap.css">
 <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
@@ -22,7 +22,7 @@
 		$('#admintable').dataTable({
 		"info":false,
 		"scrollY": 360,
-		"order": [[ 0, "desc" ]], //마지막 등록한 글이 위로가게 내림차순 정렬 
+		"order": [[ 0, "desc" ]], //마지막 등록한 글이 위로가게 내림차순 정렬
 		"lengthMenu": [ 10, 25, 50], //기본 Data 10개 25개 50개 "All" 모두
 		"oLanguage": {
 			"sLoadingRecords": "데이터를 불러오는 중입니다.",
@@ -32,11 +32,11 @@
 			"sZeroRecords": "검색 결과가 없습니다.",
 			"sLengthMenu" : "<span>페이지 갯수</span> _MENU_"
 		}
-       
+
 		});
-		
+
 	});
-	
+
 </script>
 <title>Notice List</title>
 </head>
@@ -64,13 +64,9 @@
 						</tr>
 					</c:forEach>
 				</tbody>
-				<tr style="border-top: 2px solid #00a699;">
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-				</tr>
 			</table>
 		</form>
-		
+
 	</div>
 	<footer>
 		<jsp:include page="footer.jsp" flush="false"></jsp:include>

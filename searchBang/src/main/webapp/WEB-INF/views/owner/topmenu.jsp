@@ -85,7 +85,7 @@
 			<li><a href="myPage.owner">마이페이지</a></li>
 			<li><a href="accomManagement.owner">숙소관리</a></li>
 			<li><a href="QnA.owner">1:1문의</a></li>
-			<li><a href="#">이용가이드</a></li>
+			<li><a href="ownerGuide.owner">이용가이드</a></li>
 		</ul>
 	</nav>
 

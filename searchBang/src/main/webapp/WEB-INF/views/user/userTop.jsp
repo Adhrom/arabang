@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="/searchBang/css/user/userTop.css?ver=1">
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+<script src="/searchBang/js/common/jquery.datatables.min.js"></script>
 <title>Insert title here</title>
 <!-- 로그인 -->
 <script src="/searchBang/js/admin/jquery.popupoverlay.js"></script>
@@ -18,9 +19,14 @@
 <script src="/searchBang/js/user/facebook.js"></script>
 <script src="https://apis.google.com/js/api:client.js"></script>
 <script src="/searchBang/js/user/google.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#login').popup({
+			transition : 'all 0.3s'
+		});
+		$('#findPwModal').popup({
 			transition : 'all 0.3s'
 		});
 		$('#loginbtn').click(function() {
@@ -89,19 +95,20 @@
 	<c:if test="${msg == 'failure'}">
 		<script type="text/javascript">
 			alert("아이디 혹은 비밀번호를 틀렸습니다. 다시 로그인 해주세요.");
-			<%session.removeAttribute("msg");%>
+		<%session.removeAttribute("msg");%>
+
 		</script>
 	</c:if>
 	<div id="page-wrapper">
 		<div id="loginText">
 			<ul>
 				<li><c:choose>
-						<c:when test="${email==null }">
+						<c:when test="${memberEmail==null }">
 							<i class="fa fa-sign-in " aria-hidden="true"></i>
 							<a class="flatbtn login_open">로그인</a>
 						</c:when>
 						<c:otherwise>
-							<i class="fa fa-sign-in " aria-hidden="true"></i>
+							<i class="fa fa-sign-out" aria-hidden="true"></i>
 							<a href="logout.bang">로그아웃</a>
 						</c:otherwise>
 					</c:choose></li>
@@ -124,14 +131,13 @@
 						<li class="current"><a href="index.bang">알아방으로 알아봐!</a></li>
 						<li><a href="infoAdmin.bang">마이페이지</a></li>
 						<li><a href="userReserve.bang">예약내역</a></li>
-						<li><a href="no-sidebar.html">알아방 이벤트</a></li>
+						<li><a href="noticeList.bang">공지사항</a></li>
 
 					</ul>
 				</div>
 			</div>
 		</div>
 	</div>
-
 
 	<div id="login" class="checks etrans" style="background-color: white;">
 		<form class="loginform" name="loginform">
@@ -142,22 +148,20 @@
 
 				<h4 class="input-txt" style="font-size: 11px;">&nbsp;&nbsp;&nbsp;이메일</h4>
 				<div id="input-box">
-					<input type="text" class="input-type" name="email"
-						id="email" placeholder="  이메일을 입력하세요."
-						style="width: 225px;">
+					<input type="text" class="input-type" name="email" id="email"
+						placeholder="  이메일을 입력하세요." style="width: 225px;">
 				</div>
 
 				<h4 class="input-txt" style="font-size: 11px;">&nbsp;&nbsp;&nbsp;비밀번호</h4>
 				<div id="input-box">
 					<input type="password" class="input-type" name="password"
-						id="password" placeholder="  비밀번호를 입력하세요."
-						style="width: 225px;">
+						id="password" placeholder="  비밀번호를 입력하세요." style="width: 225px;">
 				</div>
 				<br />
 				<!-- 여기부터 소셜 로그인 넣으면될듯 -->
 				<input type="checkbox" id="divECI_ISDVSAVE" /> <span> <label
 					for="divECI_ISDVSAVE">아이디 저장</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<a href='findPw.bang'><label>비밀번호 찾기</label></a>
+					<a class="login_close findPwModal_open"><label>비밀번호 찾기</label></a>
 				</span>
 				<p>
 					<span><button id="loginbtn" class="button">로그인</button></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -175,7 +179,9 @@
 							로그인하기</span>
 					</div>
 				</div>
-
+				<script>
+					startApp();
+				</script>
 				<p align="center">
 				<div id="fb-root"></div>
 				<div id="face-click">
@@ -224,5 +230,8 @@
 		</form>
 	</div>
 	<script src="/searchBang/js/user/SocialLogin.js"></script>
+	<div id="findPwModal">
+		<jsp:include page="findPw.jsp" flush="false"></jsp:include>
+	</div>
 </body>
 </html>

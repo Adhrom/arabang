@@ -86,8 +86,8 @@
 				<li class="bigTitle" id="visit">방문형태</li>
 				<li class="parking"><input type="radio" id="radio1"
 					name="radios"> <label for="radio1">차량</label>
-				<li class="parking"><input type="radio" id="radio1"
-					name="radios"> <label for="radio1">도보</label>
+				<li class="parking"><input type="radio" id="radio12"
+					name="radios"> <label for="radio2">도보</label>
 				<li class="parking"><img style="width: 10px;" src="">●
 					주차장 이용을 안내해드립니다.</li>
 			</ul>
@@ -166,8 +166,8 @@
 
 			<div class="agreeText1" id="privacy">
 				개인정보 제 3자 제공<br> <br> <input type="checkbox"
-					name="cancleCheck" id="cancleCheckbox"><label
-					for="cancleCheckbox">개인정보 수집/이용, 개인정보 제3자 제공 약관을 확인하였으며 이에
+					name="cancleCheck" id="cancleCheckbox2"><label
+					for="cancleCheckbox2">개인정보 수집/이용, 개인정보 제3자 제공 약관을 확인하였으며 이에
 					동의합니다.</label><br> <br>
 				<div class="tb_area">
 					<table class="choice_tbl" id="policyTb">
@@ -231,7 +231,7 @@
 							<!-- react-text: 2933 -->
 							<!-- /react-text -->
 							<div
-								class="DateInput__display-text DateInput__display-text--has-input DateInput__display-text--disabled">${sessionScope.startDate }</div>
+								class="DateInput__display-text DateInput__display-text--has-input DateInput__display-text--disabled">${sessionScope.endDate }</div>
 						</div>
 						<div class="DateRangePickerInput__arrow">
 							<span></span>
@@ -244,7 +244,7 @@
 							<!-- react-text: 2939 -->
 							<!-- /react-text -->
 							<div
-								class="DateInput__display-text DateInput__display-text--has-input DateInput__display-text--disabled">${sessionScope.endDate }</div>
+								class="DateInput__display-text DateInput__display-text--has-input DateInput__display-text--disabled">${sessionScope.startDate }</div>
 						</div>
 					</div>
 				</div>

@@ -35,10 +35,6 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
-	<context:component-scan base-package="com.mainWeb.searchBang.owner" />
-	<task:scheduler id="myScheduler" pool-size="10"/>
-    <task:annotation-driven scheduler="myScheduler"/>
-
 	<interceptors>
 		<interceptor>
 			<mapping path="/accomManagement.owner" />

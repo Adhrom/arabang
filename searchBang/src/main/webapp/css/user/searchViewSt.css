@@ -59,10 +59,10 @@ body{
 ///////////////////////*/
 
 
+/*
 
-
-/*로그인 화면*/
-.title { /*회원가입 텍스트*/
+로그인 화면
+.title { 회원가입 텍스트
 	margin:auto;
 	margin-top:30px;
 	margin-bottom:10px;
@@ -143,18 +143,18 @@ input[type=checkbox]+ label:before {
     background-color: white;
 
     box-shadow: 1px 1px 0px 0px gray, 0px 0px 1px 1px gray;
-    /*box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);*/
+    box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
 }
 input[type=checkbox]:checked + label:before {
 
-    content: "\2713";  /* 체크모양 */
+    content: "\2713";  체크모양
     text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
     font-size: 15px;
     font-weight:800;
     color: #fff;
     background:#2f87c1;
     text-align: center;
-    line-height: 15px;  /*체크크기조절*/
+    line-height: 15px;  체크크기조절
 
 }
 
@@ -215,15 +215,15 @@ input#social-login {
 	width:135px;
 	height:35px;
 }
-/*로그인 화면*/
+로그인 화면
 
-/*소셜로그인 버튼*/
-/* Shared */
+소셜로그인 버튼
+Shared
 .loginBtn {
   width:135px;
   box-sizing: border-box;
   position: relative;
-  /* width: 13em;  - apply for fixed size */
+  width: 13em;  - apply for fixed size
 
   margin-top: 5px;
 
@@ -256,11 +256,11 @@ input#social-login {
 }
 
 
-/* Facebook */
+Facebook
 .loginBtn--facebook {
   background-color: #4C69BA;
   background-image: linear-gradient(#4C69BA, #3B55A0);
-  /*font-family: "Helvetica neue", Helvetica Neue, Helvetica, Arial, sans-serif;*/
+  font-family: "Helvetica neue", Helvetica Neue, Helvetica, Arial, sans-serif;
 
   text-shadow: 0 -1px 0 #354C8C;
 }
@@ -274,9 +274,9 @@ input#social-login {
   background-image: linear-gradient(#5B7BD5, #4864B1);
 }
 
-/* NAVER */
+NAVER
 .loginBtn--naver {
-  /*font-family: "Roboto", Roboto, arial, sans-serif;*/
+  font-family: "Roboto", Roboto, arial, sans-serif;
   background: #4ab941;
 
   left:7px;
@@ -291,9 +291,9 @@ input#social-login {
 
 }
 
-/* Google */
+Google
 .loginBtn--google {
-  /*font-family: "Roboto", Roboto, arial, sans-serif;*/
+  font-family: "Roboto", Roboto, arial, sans-serif;
   background: #DD4B39;
 }
 .loginBtn--google:before {
@@ -305,9 +305,9 @@ input#social-login {
   background: #E95f53;
 }
 
-/* Google */
+Google
 .loginBtn--kakao {
-  /*font-family: "Roboto", Roboto, arial, sans-serif;*/
+  font-family: "Roboto", Roboto, arial, sans-serif;
   background: #fbe300;
   left:7px;
 }
@@ -321,10 +321,10 @@ input#social-login {
 }
 
 
-/*소셜 로그인 버튼*/
+소셜 로그인 버튼
 
 
-/*SOHO 가입*/
+SOHO 가입
 
 .soho-form {
 	margin:0 auto;
@@ -338,7 +338,7 @@ input#social-login {
 	font-size:50px;
 }
 
-
+ */
 
 /*방정보 검색 jsp start */
 

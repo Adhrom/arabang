@@ -22,6 +22,8 @@ function naverSignInCallback() {
 		dataType : "json",
 		url : "getInfo.bang"
 	});
+	window.opener.location="sendInfo.bang";
+	self.close();
 }
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

@@ -34,11 +34,21 @@
 	</beans:bean>
 
 	<context:component-scan base-package="com.mainWeb.searchBang" />
+
 	<interceptors>
 		<interceptor>
 			<mapping path="/doReservation.bang" />
 			<beans:bean
 				class="com.mainWeb.searchBang.interceptor.ReservationInterceptor" />
+		</interceptor>
+		<interceptor>
+			<mapping path="/userPay.bang" />
+			<mapping path="/userReserve.bang" />
+			<mapping path="/infoAdmin.bang" />
+			<mapping path="/getfavoriteList.bang" />
+			<mapping path="/addFavorite.bang" />
+			<beans:bean
+				class="com.mainWeb.searchBang.interceptor.UserInterceptor" />
 		</interceptor>
 	</interceptors>
 

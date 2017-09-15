@@ -9,9 +9,10 @@
 <title>Main View Test Page</title>
 
 
-<link rel="stylesheet" href="/searchBang/css/user/searchViewSt.css?ver=1" />
+<link rel="stylesheet" href="/searchBang/css/user/searchViewSt.css?ver=2" />
 </head>
-<body>
+<body  style="width: 1000px; margin: 0 auto; ">
+	<div>
 	<jsp:include page="userTop.jsp" flush="false"></jsp:include>
 	<div id="search">
 		<jsp:include page="search.jsp" flush="false"></jsp:include>
@@ -22,6 +23,6 @@
 	<section id="main-view">
 		<jsp:include page="right-search-commit.jsp" />
 	</section>
-
+	</div>
 </body>
 </html>

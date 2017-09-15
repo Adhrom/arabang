@@ -143,11 +143,6 @@
 							</c:if></td>
 					</tr>
 				</c:forEach>
-				<tr style="border-top: 2px solid #00a699;">
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-				</tr>
 			</table>
 			<p style="text-align: center;">
 				<a class="initialism addAdmin_open btn btn-success"><button

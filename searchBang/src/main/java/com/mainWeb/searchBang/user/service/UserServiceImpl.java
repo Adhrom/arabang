@@ -9,12 +9,14 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 
+import com.mainWeb.searchBang.admin.model.AdminNoticeVO;
 import com.mainWeb.searchBang.owner.model.AccomVO;
 import com.mainWeb.searchBang.owner.model.RoomVO;
 import com.mainWeb.searchBang.user.dao.UserDAO;
 import com.mainWeb.searchBang.user.model.ReservationVO;
 import com.mainWeb.searchBang.user.model.ReviewVO;
 import com.mainWeb.searchBang.user.model.UserInfoVO;
+import com.mainWeb.searchBang.user.model.ViewReservation;
 import com.mainWeb.searchBang.utils.SHA256;
 
 @Service
@@ -95,8 +97,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void addFavorite(int accomNo, HttpSession session) {
-//		String email = (String) session.getAttribute("email"); // 세션에서 email이 저장안되는듯 ...,
-		String email = "swift779@naver.com";
+		String email = (String) session.getAttribute("memberEmail"); // 세션에서 email이 저장안되는듯 ...,
 		Map<String, Object> favorite  = new HashMap<String, Object>();
 		favorite.put("accomNo", accomNo);
 		favorite.put("email", email);
@@ -185,5 +186,25 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<AccomVO> accomTypeForRoomtype(String roomType) {
 		return dao.accomTypeForRoomtype(roomType);
+	}
+
+	@Override
+	public List<ViewReservation> viewReservation(String memberEmail) {
+		return dao.viewReservation(memberEmail);
+	}
+
+	@Override
+	public void cancelReservation(String reservation_no) {
+		dao.cancelReservation(reservation_no);
+	}
+
+	@Override
+	public List<AdminNoticeVO> noticeList() {
+		return dao.noticeList();
+	}
+
+	@Override
+	public List<ReviewVO> reviewList(String accom_no) {
+		return dao.reviewList(accom_no);
 	}
 }

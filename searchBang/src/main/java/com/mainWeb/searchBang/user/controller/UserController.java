@@ -8,6 +8,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -23,11 +24,13 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.CookieGenerator;
 
+import com.mainWeb.searchBang.admin.model.AdminNoticeVO;
 import com.mainWeb.searchBang.owner.model.AccomVO;
 import com.mainWeb.searchBang.owner.model.RoomVO;
 import com.mainWeb.searchBang.user.model.ReservationVO;
 import com.mainWeb.searchBang.user.model.ReviewVO;
 import com.mainWeb.searchBang.user.model.UserInfoVO;
+import com.mainWeb.searchBang.user.model.ViewReservation;
 import com.mainWeb.searchBang.user.service.UserService;
 import com.mainWeb.searchBang.utils.CharMix;
 import com.mainWeb.searchBang.utils.Mail;
@@ -69,18 +72,20 @@ public class UserController {
 	}
 
 	@RequestMapping("/userReserve.bang")
-	public String userReserve() {
-		return "userReserve";
+	public ModelAndView userReserve(HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		String memberEmail = (String) session.getAttribute("memberEmail");
+		List<ViewReservation> list = service.viewReservation(memberEmail);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("userReserve");
+		mv.addObject("list", list);
+		mv.addObject("size", list.size());
+		return mv;
 	}
 
 	@RequestMapping("/verysoonroom.bang")
 	public String very_soon_room() {
 		return "very_soon_room";
-	}
-
-	@RequestMapping("/bookmarkroomlist.bang")
-	public String bookmark_room_list() {
-		return "bookmark_room_list";
 	}
 
 	// social-login get(email, nickname)
@@ -110,17 +115,19 @@ public class UserController {
 
 	// 로그인 처리
 	@RequestMapping(value = "/loginProc.bang", method = { RequestMethod.POST, RequestMethod.GET })
-	public String loginProc(@RequestParam("email") String email, @RequestParam("password") String password, RedirectAttributes redirectAttributes , HttpServletRequest req) throws Exception {
+	public String loginProc(@RequestParam("email") String email, @RequestParam("password") String password,
+			RedirectAttributes redirectAttributes, HttpServletRequest req) throws Exception {
 		HttpSession session = req.getSession(false);
 		boolean result = service.loginUserService(email, password, session);
 		String url = req.getHeader("REFERER");
 		if (result) {
-			session.setAttribute("email", email);
+			session.setAttribute("memberEmail", email);
+			session.setAttribute("point", service.getPoint(session));
 			redirectAttributes.addFlashAttribute("msg", "success");
 		} else {
 			redirectAttributes.addFlashAttribute("msg", "failure");
 		}
-		return "redirect:"+url;
+		return "redirect:" + url;
 	}
 
 	// 로그아웃
@@ -150,6 +157,7 @@ public class UserController {
 			@RequestParam(value = "date") String date, @RequestParam(value = "people") String people,
 			HttpServletRequest req) {
 		HttpSession session = req.getSession(false);
+		System.out.println(date);
 		session.setAttribute("startDate", date.substring(0, 10));
 		session.setAttribute("endDate", date.substring(13, 23));
 		// session.setAttribute("room_no", vo.getRoom_no();
@@ -184,18 +192,20 @@ public class UserController {
 	public String doReservation(@ModelAttribute ReservationVO vo, @RequestParam(value = "point") String point,
 			HttpServletRequest req) {
 		HttpSession session = req.getSession(false);
-		System.out.println(vo + "/" + point + "/" + (String) session.getAttribute("email"));
-		service.doReservation(vo, point, "aaa@naver.com");
-		return "index";
+		System.out.println(vo + "/" + point + "/" + (String) session.getAttribute("memberEmail"));
+		service.doReservation(vo, point, (String) session.getAttribute("memberEmail"));
+		return "redirect:/userReserve.bang";
 	}
 
 	// 리뷰등록
 	@RequestMapping("/insertReview.bang")
 	public String insertReview(HttpServletRequest req, @ModelAttribute ReviewVO vo) {
 		HttpSession session = req.getSession();
-		String memberEmail = (String) session.getAttribute("email");
+		String memberEmail = (String) session.getAttribute("memberEmail");
 		vo.setMemberEmail(memberEmail);
-		return null;
+		System.out.println(vo);
+		// service.insertReview(vo);
+		return "redirect:/userReserve.bang";
 	}
 
 	// 페이페이지
@@ -203,7 +213,7 @@ public class UserController {
 	public ModelAndView userPay(@RequestParam(value = "room_no") String room_no,
 			@RequestParam(value = "rentAndLodge") String rentAndLodge, HttpServletRequest req) {
 		HttpSession session = req.getSession();
-		String memberEmail = (String) session.getAttribute("email");
+		String memberEmail = (String) session.getAttribute("memberEmail");
 		UserInfoVO userInfoVO = service.getUserInfo(memberEmail);
 		RoomVO roomVO = service.roomInfoForReservation(room_no);
 		AccomVO accomVO = service.accomInfoForReservation(room_no);
@@ -216,13 +226,15 @@ public class UserController {
 	}
 
 	@RequestMapping("/userInfo.bang")
-	public ModelAndView userInfo(HttpSession session) {
+	public ModelAndView userInfo(HttpServletRequest req) {
 		ModelAndView mv = new ModelAndView();
+		HttpSession session = req.getSession(false);
 		String str = this.getSession(session);
 		if (!str.equals(null)) {
 			mv.setViewName("userInfo");
-			mv.addObject("point", service.getPoint(session)); // 세션에 따라 포인트 조회해서
-																// 오기.
+			// mv.addObject("point", service.getPoint(session)); // 세션에 따라 포인트
+			// 조회해서
+			// 오기.
 		} else {
 			mv.setViewName("index");
 			mv.addObject("msg", "fail");
@@ -290,12 +302,48 @@ public class UserController {
 		cg.setCookieMaxAge(1 * 60 * 60); // 1hour?
 		cg.setCookieName("accom_no");
 		cg.addCookie(response, accom_no);
-
 		AccomVO vo = service.accomInfo(accom_no);
 		List<RoomVO> list = service.roomInfo(accom_no);
+		List<ReviewVO> list2 = service.reviewList(accom_no);
 		mv.addObject("vo", vo);
 		mv.addObject("list", list);
+		mv.addObject("list2", list2);
 		mv.setViewName("room_info");
+		return mv;
+	}
+
+	// 예약취소
+	@RequestMapping("cancelReservation.bang")
+	public String cancelReservation(@RequestParam("reservation_no") String reservation_no) {
+		System.out.println(reservation_no);
+		service.cancelReservation(reservation_no);
+		return "redirect:/userReserve.bang";
+	}
+
+	// 공지사항
+	@RequestMapping("noticeList.bang")
+	public ModelAndView noticeList() {
+		List<AdminNoticeVO> list = service.noticeList();
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("list", list);
+		mv.setViewName("noticeList");
+		return mv;
+	}
+
+	@RequestMapping("/getCookies.bang")
+	public ModelAndView getCookies(HttpServletRequest request) {
+		Cookie[] cookie = request.getCookies();
+		List<AccomVO> list = new ArrayList<>();
+		try {
+			if (cookie != null && cookie.length > 0) {
+				for (Cookie cc : cookie) {
+					list.add(service.accomInfo(cc.getValue()));
+				}
+			}
+		} catch (Exception e) {
+		}
+		ModelAndView mv = new ModelAndView("getCookies");
+		mv.addObject("list", list);
 		return mv;
 	}
 
